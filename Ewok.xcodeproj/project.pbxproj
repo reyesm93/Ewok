@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843E921FF5D8D700EE3C0D /* AppDelegate.swift */; };
+		DD843E951FF5D8D700EE3C0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843E941FF5D8D700EE3C0D /* ViewController.swift */; };
+		DD843E981FF5D8D700EE3C0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD843E961FF5D8D700EE3C0D /* Main.storyboard */; };
+		DD843E9B1FF5D8D700EE3C0D /* Ewok.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */; };
+		DD843E9D1FF5D8D700EE3C0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD843E9C1FF5D8D700EE3C0D /* Assets.xcassets */; };
+		DD843EA01FF5D8D700EE3C0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD843E9E1FF5D8D700EE3C0D /* LaunchScreen.storyboard */; };
+		DD843EAB1FF5D8D700EE3C0D /* EwokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EAA1FF5D8D700EE3C0D /* EwokTests.swift */; };
+		DD843EB61FF5D8D700EE3C0D /* EwokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DD843EA71FF5D8D700EE3C0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD843E871FF5D8D700EE3C0D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD843E8E1FF5D8D700EE3C0D;
+			remoteInfo = Ewok;
+		};
+		DD843EB21FF5D8D700EE3C0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD843E871FF5D8D700EE3C0D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD843E8E1FF5D8D700EE3C0D;
+			remoteInfo = Ewok;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DD843E8F1FF5D8D700EE3C0D /* Ewok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ewok.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD843E921FF5D8D700EE3C0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DD843E941FF5D8D700EE3C0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DD843E971FF5D8D700EE3C0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DD843E9A1FF5D8D700EE3C0D /* Ewok.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ewok.xcdatamodel; sourceTree = "<group>"; };
+		DD843E9C1FF5D8D700EE3C0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DD843E9F1FF5D8D700EE3C0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DD843EA11FF5D8D700EE3C0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD843EA61FF5D8D700EE3C0D /* EwokTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EwokTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD843EAA1FF5D8D700EE3C0D /* EwokTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwokTests.swift; sourceTree = "<group>"; };
+		DD843EAC1FF5D8D700EE3C0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD843EB11FF5D8D700EE3C0D /* EwokUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EwokUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwokUITests.swift; sourceTree = "<group>"; };
+		DD843EB71FF5D8D700EE3C0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD843E8C1FF5D8D700EE3C0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD843EA31FF5D8D700EE3C0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD843EAE1FF5D8D700EE3C0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DD843E861FF5D8D700EE3C0D = {
+			isa = PBXGroup;
+			children = (
+				DD843E911FF5D8D700EE3C0D /* Ewok */,
+				DD843EA91FF5D8D700EE3C0D /* EwokTests */,
+				DD843EB41FF5D8D700EE3C0D /* EwokUITests */,
+				DD843E901FF5D8D700EE3C0D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DD843E901FF5D8D700EE3C0D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD843E8F1FF5D8D700EE3C0D /* Ewok.app */,
+				DD843EA61FF5D8D700EE3C0D /* EwokTests.xctest */,
+				DD843EB11FF5D8D700EE3C0D /* EwokUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD843E911FF5D8D700EE3C0D /* Ewok */ = {
+			isa = PBXGroup;
+			children = (
+				DD843E921FF5D8D700EE3C0D /* AppDelegate.swift */,
+				DD843E941FF5D8D700EE3C0D /* ViewController.swift */,
+				DD843E961FF5D8D700EE3C0D /* Main.storyboard */,
+				DD843E9C1FF5D8D700EE3C0D /* Assets.xcassets */,
+				DD843E9E1FF5D8D700EE3C0D /* LaunchScreen.storyboard */,
+				DD843EA11FF5D8D700EE3C0D /* Info.plist */,
+				DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */,
+			);
+			path = Ewok;
+			sourceTree = "<group>";
+		};
+		DD843EA91FF5D8D700EE3C0D /* EwokTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD843EAA1FF5D8D700EE3C0D /* EwokTests.swift */,
+				DD843EAC1FF5D8D700EE3C0D /* Info.plist */,
+			);
+			path = EwokTests;
+			sourceTree = "<group>";
+		};
+		DD843EB41FF5D8D700EE3C0D /* EwokUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */,
+				DD843EB71FF5D8D700EE3C0D /* Info.plist */,
+			);
+			path = EwokUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DD843E8E1FF5D8D700EE3C0D /* Ewok */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD843EBA1FF5D8D700EE3C0D /* Build configuration list for PBXNativeTarget "Ewok" */;
+			buildPhases = (
+				DD843E8B1FF5D8D700EE3C0D /* Sources */,
+				DD843E8C1FF5D8D700EE3C0D /* Frameworks */,
+				DD843E8D1FF5D8D700EE3C0D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ewok;
+			productName = Ewok;
+			productReference = DD843E8F1FF5D8D700EE3C0D /* Ewok.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DD843EA51FF5D8D700EE3C0D /* EwokTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD843EBD1FF5D8D700EE3C0D /* Build configuration list for PBXNativeTarget "EwokTests" */;
+			buildPhases = (
+				DD843EA21FF5D8D700EE3C0D /* Sources */,
+				DD843EA31FF5D8D700EE3C0D /* Frameworks */,
+				DD843EA41FF5D8D700EE3C0D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD843EA81FF5D8D700EE3C0D /* PBXTargetDependency */,
+			);
+			name = EwokTests;
+			productName = EwokTests;
+			productReference = DD843EA61FF5D8D700EE3C0D /* EwokTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DD843EB01FF5D8D700EE3C0D /* EwokUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD843EC01FF5D8D700EE3C0D /* Build configuration list for PBXNativeTarget "EwokUITests" */;
+			buildPhases = (
+				DD843EAD1FF5D8D700EE3C0D /* Sources */,
+				DD843EAE1FF5D8D700EE3C0D /* Frameworks */,
+				DD843EAF1FF5D8D700EE3C0D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD843EB31FF5D8D700EE3C0D /* PBXTargetDependency */,
+			);
+			name = EwokUITests;
+			productName = EwokUITests;
+			productReference = DD843EB11FF5D8D700EE3C0D /* EwokUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DD843E871FF5D8D700EE3C0D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Arturo Reyes";
+				TargetAttributes = {
+					DD843E8E1FF5D8D700EE3C0D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					DD843EA51FF5D8D700EE3C0D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DD843E8E1FF5D8D700EE3C0D;
+					};
+					DD843EB01FF5D8D700EE3C0D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DD843E8E1FF5D8D700EE3C0D;
+					};
+				};
+			};
+			buildConfigurationList = DD843E8A1FF5D8D700EE3C0D /* Build configuration list for PBXProject "Ewok" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DD843E861FF5D8D700EE3C0D;
+			productRefGroup = DD843E901FF5D8D700EE3C0D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD843E8E1FF5D8D700EE3C0D /* Ewok */,
+				DD843EA51FF5D8D700EE3C0D /* EwokTests */,
+				DD843EB01FF5D8D700EE3C0D /* EwokUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD843E8D1FF5D8D700EE3C0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD843EA01FF5D8D700EE3C0D /* LaunchScreen.storyboard in Resources */,
+				DD843E9D1FF5D8D700EE3C0D /* Assets.xcassets in Resources */,
+				DD843E981FF5D8D700EE3C0D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD843EA41FF5D8D700EE3C0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD843EAF1FF5D8D700EE3C0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD843E8B1FF5D8D700EE3C0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD843E951FF5D8D700EE3C0D /* ViewController.swift in Sources */,
+				DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */,
+				DD843E9B1FF5D8D700EE3C0D /* Ewok.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD843EA21FF5D8D700EE3C0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD843EAB1FF5D8D700EE3C0D /* EwokTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD843EAD1FF5D8D700EE3C0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD843EB61FF5D8D700EE3C0D /* EwokUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD843EA81FF5D8D700EE3C0D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD843E8E1FF5D8D700EE3C0D /* Ewok */;
+			targetProxy = DD843EA71FF5D8D700EE3C0D /* PBXContainerItemProxy */;
+		};
+		DD843EB31FF5D8D700EE3C0D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD843E8E1FF5D8D700EE3C0D /* Ewok */;
+			targetProxy = DD843EB21FF5D8D700EE3C0D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DD843E961FF5D8D700EE3C0D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD843E971FF5D8D700EE3C0D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DD843E9E1FF5D8D700EE3C0D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD843E9F1FF5D8D700EE3C0D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DD843EB81FF5D8D700EE3C0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DD843EB91FF5D8D700EE3C0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DD843EBB1FF5D8D700EE3C0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L49JS5X5VY;
+				INFOPLIST_FILE = Ewok/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = arturoreyes.Ewok;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DD843EBC1FF5D8D700EE3C0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L49JS5X5VY;
+				INFOPLIST_FILE = Ewok/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = arturoreyes.Ewok;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DD843EBE1FF5D8D700EE3C0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L49JS5X5VY;
+				INFOPLIST_FILE = EwokTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = arturoreyes.EwokTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ewok.app/Ewok";
+			};
+			name = Debug;
+		};
+		DD843EBF1FF5D8D700EE3C0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L49JS5X5VY;
+				INFOPLIST_FILE = EwokTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = arturoreyes.EwokTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ewok.app/Ewok";
+			};
+			name = Release;
+		};
+		DD843EC11FF5D8D700EE3C0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L49JS5X5VY;
+				INFOPLIST_FILE = EwokUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = arturoreyes.EwokUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Ewok;
+			};
+			name = Debug;
+		};
+		DD843EC21FF5D8D700EE3C0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L49JS5X5VY;
+				INFOPLIST_FILE = EwokUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = arturoreyes.EwokUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Ewok;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DD843E8A1FF5D8D700EE3C0D /* Build configuration list for PBXProject "Ewok" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD843EB81FF5D8D700EE3C0D /* Debug */,
+				DD843EB91FF5D8D700EE3C0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD843EBA1FF5D8D700EE3C0D /* Build configuration list for PBXNativeTarget "Ewok" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD843EBB1FF5D8D700EE3C0D /* Debug */,
+				DD843EBC1FF5D8D700EE3C0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD843EBD1FF5D8D700EE3C0D /* Build configuration list for PBXNativeTarget "EwokTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD843EBE1FF5D8D700EE3C0D /* Debug */,
+				DD843EBF1FF5D8D700EE3C0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD843EC01FF5D8D700EE3C0D /* Build configuration list for PBXNativeTarget "EwokUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD843EC11FF5D8D700EE3C0D /* Debug */,
+				DD843EC21FF5D8D700EE3C0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DD843E9A1FF5D8D700EE3C0D /* Ewok.xcdatamodel */,
+			);
+			currentVersion = DD843E9A1FF5D8D700EE3C0D /* Ewok.xcdatamodel */;
+			path = Ewok.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = DD843E871FF5D8D700EE3C0D /* Project object */;
+}
