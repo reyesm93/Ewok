@@ -12,5 +12,11 @@ import CoreData
 
 @objc(Tag)
 public class Tag: NSManagedObject {
-
+    
+    convenience init(name: String) {
+        if let entity = NSEntityDescription.entity(forEntityName: "Tag", in: CoreDataStack.sharedInstance.context) {
+            self.init(entity: entity, insertInto: CoreDataStack.sharedInstance.context)
+            self.name = name
+        }
+    }
 }

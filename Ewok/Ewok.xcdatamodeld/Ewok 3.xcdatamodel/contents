@@ -34,7 +34,7 @@
         <relationship name="users" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="wallets" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Tag" positionX="727" positionY="-489" width="128" height="73"/>
+        <element name="Tag" positionX="727" positionY="-489" width="128" height="75"/>
         <element name="Transaction" positionX="513" positionY="-567" width="128" height="180"/>
         <element name="User" positionX="97" positionY="-543" width="128" height="165"/>
         <element name="Wallet" positionX="313" positionY="-531" width="128" height="135"/>
