@@ -39,20 +39,20 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="srN-pq-9uz">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36E-iW-SVV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="61.5" height="32"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36E-iW-SVV">
+                                                            <rect key="frame" x="0.0" y="0.0" width="73.5" height="32"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcx-Uc-PMn">
-                                                            <rect key="frame" x="61.5" y="0.0" width="186.5" height="32"/>
+                                                            <rect key="frame" x="73.5" y="0.0" width="179" height="32"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IME-EA-JNA">
-                                                            <rect key="frame" x="248" y="0.0" width="127" height="32"/>
+                                                            <rect key="frame" x="252.5" y="0.0" width="122.5" height="32"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -68,6 +68,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="date" destination="36E-iW-SVV" id="RWW-Up-Ac3"/>
                                             <outlet property="description" destination="kcx-Uc-PMn" id="8Z9-Tf-gmf"/>
                                             <outlet property="transAmount" destination="IME-EA-JNA" id="vsd-ZM-3H7"/>
                                             <outlet property="transDescription" destination="kcx-Uc-PMn" id="hkp-KB-zqB"/>
@@ -113,7 +114,7 @@
                     <connections>
                         <outlet property="balanceView" destination="agq-3h-u8f" id="h35-Gb-Czv"/>
                         <outlet property="mainBalance" destination="YEq-hP-0Gs" id="VcL-26-9Ez"/>
-                        <outlet property="transactionTableVIew" destination="4DW-8g-gq2" id="4dy-O6-ZJS"/>
+                        <outlet property="transactionTableView" destination="4DW-8g-gq2" id="cgA-7g-oI3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

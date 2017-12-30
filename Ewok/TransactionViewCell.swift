@@ -13,5 +13,6 @@ class TransactionViewCell : UITableViewCell {
     
     @IBOutlet weak var transDescription: UILabel!
     @IBOutlet weak var transAmount: UILabel!
+    @IBOutlet weak var date: UILabel!
     
 }
