@@ -56,6 +56,7 @@
 		DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD7A13571FF734DC00943E6C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DD7A13591FF7368700943E6C /* Ewok 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 2.xcdatamodel"; sourceTree = "<group>"; };
+		DD7A135A1FF739BB00943E6C /* Ewok 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 3.xcdatamodel"; sourceTree = "<group>"; };
 		DD843E8F1FF5D8D700EE3C0D /* Ewok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ewok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD843E921FF5D8D700EE3C0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD843E941FF5D8D700EE3C0D /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
@@ -608,10 +609,11 @@
 		DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DD7A135A1FF739BB00943E6C /* Ewok 3.xcdatamodel */,
 				DD7A13591FF7368700943E6C /* Ewok 2.xcdatamodel */,
 				DD843E9A1FF5D8D700EE3C0D /* Ewok.xcdatamodel */,
 			);
-			currentVersion = DD7A13591FF7368700943E6C /* Ewok 2.xcdatamodel */;
+			currentVersion = DD7A135A1FF739BB00943E6C /* Ewok 3.xcdatamodel */;
 			path = Ewok.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

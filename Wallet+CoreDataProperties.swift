@@ -17,12 +17,12 @@ extension Wallet {
         return NSFetchRequest<Wallet>(entityName: "Wallet")
     }
 
-    @NSManaged public var walletName: String?
     @NSManaged public var balance: Float
     @NSManaged public var createdAt: NSDate?
     @NSManaged public var updatedAt: NSDate?
-    @NSManaged public var users: User?
+    @NSManaged public var walletName: String?
     @NSManaged public var transactions: NSSet?
+    @NSManaged public var users: User?
 
 }
 

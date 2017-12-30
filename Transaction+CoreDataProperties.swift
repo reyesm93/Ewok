@@ -17,15 +17,15 @@ extension Transaction {
         return NSFetchRequest<Transaction>(entityName: "Transaction")
     }
 
-    @NSManaged public var createdAt: NSDate?
-    @NSManaged public var updatedAt: NSDate?
-    @NSManaged public var title: String?
     @NSManaged public var amount: Float
-    @NSManaged public var scheduled: Bool
-    @NSManaged public var variable: Bool
+    @NSManaged public var createdAt: NSDate?
     @NSManaged public var income: Bool
-    @NSManaged public var wallet: Wallet?
+    @NSManaged public var scheduled: Bool
+    @NSManaged public var title: String?
+    @NSManaged public var updatedAt: NSDate?
+    @NSManaged public var variable: Bool
     @NSManaged public var tags: NSSet?
+    @NSManaged public var wallet: Wallet?
 
 }
 
