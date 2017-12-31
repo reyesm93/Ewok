@@ -17,6 +17,8 @@ public class Tag: NSManagedObject {
         if let entity = NSEntityDescription.entity(forEntityName: "Tag", in: CoreDataStack.sharedInstance.context) {
             self.init(entity: entity, insertInto: CoreDataStack.sharedInstance.context)
             self.name = name
+        } else {
+            fatalError("Unable to find entity name")
         }
     }
 }

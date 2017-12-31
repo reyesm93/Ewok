@@ -71,6 +71,7 @@
 		DD843EB11FF5D8D700EE3C0D /* EwokUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EwokUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwokUITests.swift; sourceTree = "<group>"; };
 		DD843EB71FF5D8D700EE3C0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 4.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -609,11 +610,12 @@
 		DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */,
 				DD7A135A1FF739BB00943E6C /* Ewok 3.xcdatamodel */,
 				DD7A13591FF7368700943E6C /* Ewok 2.xcdatamodel */,
 				DD843E9A1FF5D8D700EE3C0D /* Ewok.xcdatamodel */,
 			);
-			currentVersion = DD7A135A1FF739BB00943E6C /* Ewok 3.xcdatamodel */;
+			currentVersion = DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */;
 			path = Ewok.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

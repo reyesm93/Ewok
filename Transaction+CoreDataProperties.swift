@@ -2,7 +2,7 @@
 //  Transaction+CoreDataProperties.swift
 //  Ewok
 //
-//  Created by Arturo Reyes on 12/29/17.
+//  Created by Arturo Reyes on 12/30/17.
 //  Copyright © 2017 Arturo Reyes. All rights reserved.
 //
 //

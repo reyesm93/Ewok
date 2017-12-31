@@ -20,7 +20,22 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7r-5z-TyX" userLabel="TagScrollView">
                                 <rect key="frame" x="0.0" y="616" width="375" height="51"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OHh-Qr-Mjy">
+                                        <rect key="frame" x="23" y="10" width="32" height="30"/>
+                                        <state key="normal" title="ADD"/>
+                                        <connections>
+                                            <action selector="add:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mLK-X7-yvJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="OHh-Qr-Mjy" firstAttribute="top" secondItem="u7r-5z-TyX" secondAttribute="top" constant="10" id="51s-VK-yW8"/>
+                                    <constraint firstItem="OHh-Qr-Mjy" firstAttribute="leading" secondItem="u7r-5z-TyX" secondAttribute="leading" constant="23" id="Dfi-2K-eiJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="OHh-Qr-Mjy" secondAttribute="bottom" constant="11" id="xjb-fE-PfD"/>
+                                    <constraint firstAttribute="trailing" secondItem="OHh-Qr-Mjy" secondAttribute="trailing" constant="320" id="ykg-oT-uDj"/>
+                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4DW-8g-gq2" userLabel="TransactionsTableView">
                                 <rect key="frame" x="0.0" y="162" width="375" height="454"/>

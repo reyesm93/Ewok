@@ -14,10 +14,16 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var balanceView: UIView!
     @IBOutlet weak var mainBalance: UILabel!
     @IBOutlet weak var transactionTableView: UITableView!
-    
+
     let stack = CoreDataStack.sharedInstance
      var blockOperations: [BlockOperation] = []
     
+    @IBAction func add(_ sender: Any) {
+        let createdat = NSDate()
+        let transaction = Transaction(title: "test", amount: 1220.0, income: true, createdAt: createdat, context: stack.context)
+        stack.save()
+        transactionTableView.reloadData()
+    }
     lazy var fetchedResultsController : NSFetchedResultsController<Transaction> = { () -> NSFetchedResultsController<Transaction> in
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
@@ -51,7 +57,12 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         
         cell.transDescription.text = transaction.title
         cell.transAmount.text = String(transaction.amount)
-        cell.date.text = String(describing: transaction.createdAt)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        let convertedDate = dateFormatter.string(from: transaction.createdAt! as Date)
+    
+        cell.date.text = convertedDate
         
         return cell
     
@@ -62,7 +73,9 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension WalletViewController: NSFetchedResultsControllerDelegate {
     // MARK: FetchedResultsController Delegate Methods
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { }
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        transactionTableView.beginUpdates()
+    }
     
     // Source: https://github.com/AshFurrow/UICollectionView-NSFetchedResultsController/issues/13
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
@@ -87,7 +100,7 @@ extension WalletViewController: NSFetchedResultsControllerDelegate {
             blockOperations.append(
                 BlockOperation() { [weak self] in
                     if let block = self {
-                        block.transactionTableView!.reloadData()
+                        block.transactionTableView!.reloadRows(at: [indexPath!], with: .fade)
                     }
                 }
             )
@@ -103,10 +116,11 @@ extension WalletViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        transactionTableView.endUpdates()
         
         let batchUpdates = {() -> Void in
             for operation in self.blockOperations {
-                operation.start()
+               operation.start()
             }
         }
         transactionTableView.performBatchUpdates(batchUpdates) { (finished) -> Void in
