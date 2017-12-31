@@ -11,8 +11,10 @@ import UIKit
 
 class TransactionViewCell : UITableViewCell {
     
+    @IBOutlet weak var contentCellView: UIView!
     @IBOutlet weak var transDescription: UILabel!
     @IBOutlet weak var transAmount: UILabel!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var stackview: UIStackView!
     
 }

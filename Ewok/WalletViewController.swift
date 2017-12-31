@@ -16,51 +16,78 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var transactionTableView: UITableView!
 
     let stack = CoreDataStack.sharedInstance
-     var blockOperations: [BlockOperation] = []
+    var transactions = [Transaction]()
     
     @IBAction func add(_ sender: Any) {
         let createdat = NSDate()
         let transaction = Transaction(title: "test", amount: 1220.0, income: true, createdAt: createdat, context: stack.context)
+        transactions.append(transaction)
         stack.save()
-        transactionTableView.reloadData()
     }
-    lazy var fetchedResultsController : NSFetchedResultsController<Transaction> = { () -> NSFetchedResultsController<Transaction> in
-        
+    
+    var fetchedResultsController : NSFetchedResultsController<Transaction>? {
+        didSet {
+            // Whenever the frc changes, we execute the search and
+            // reload the table
+            fetchedResultsController?.delegate = self
+            executeSearch()
+            transactionTableView.reloadData()
+        }
+    }
+    
+    // MARK: Initializers
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    init(fetchedResultsController fc : NSFetchedResultsController<Transaction>) {
+        fetchedResultsController = fc
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        let initialTransaction = Transaction(title: "initial", amount: 1220.0, income: true, createdAt: NSDate(), context: stack.context)
+        transactions.append(initialTransaction)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
         // Add predicate when wallets are set up
         
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as! NSFetchedResultsController<Transaction>
-        fetchedResultsController.delegate = self
-        
-        return fetchedResultsController
-        
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as! NSFetchedResultsController<Transaction>
     }
     
+    func executeSearch() {
+        if let fc = fetchedResultsController {
+            do {
+                try fc.performFetch()
+                transactions = fc.fetchedObjects!
+            } catch let e as NSError {
+                print("Error while trying to perform a search: \n\(e)\n\(fetchedResultsController)")
+            }
+        }
+    }
     
 }
 
 extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return transactions.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell", for: indexPath) as! TransactionViewCell
-        let transaction = fetchedResultsController.object(at: indexPath)
+        let transaction = fetchedResultsController?.object(at: indexPath)
         
-        cell.transDescription.text = transaction.title
-        cell.transAmount.text = String(transaction.amount)
+        cell.transDescription.text = transaction!.title
+        cell.transAmount.text = String(transaction!.amount)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.short
-        let convertedDate = dateFormatter.string(from: transaction.createdAt! as Date)
+        let convertedDate = dateFormatter.string(from: transaction!.createdAt! as Date)
     
         cell.date.text = convertedDate
         
@@ -72,60 +99,43 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
 }
 
 extension WalletViewController: NSFetchedResultsControllerDelegate {
-    // MARK: FetchedResultsController Delegate Methods
+    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         transactionTableView.beginUpdates()
     }
     
-    // Source: https://github.com/AshFurrow/UICollectionView-NSFetchedResultsController/issues/13
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        
+        let set = IndexSet(integer: sectionIndex)
+        
+        switch (type) {
+        case .insert:
+            transactionTableView.insertSections(set, with: .fade)
+        case .delete:
+            transactionTableView.deleteSections(set, with: .fade)
+        default:
+            // irrelevant in our case
+            break
+        }
+    }
+    
+
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
-        switch type {
+        switch(type) {
         case .insert:
-            blockOperations.append(
-                BlockOperation(){ [weak self] in
-                    if let block = self {
-                        block.transactionTableView!.insertRows(at: [indexPath!], with: .fade)                    }
-                }
-            )
+            transactionTableView.insertRows(at: [newIndexPath!], with: .fade)
         case .delete:
-            blockOperations.append(
-                BlockOperation() { [weak self] in
-                    if let block = self {
-                        block.transactionTableView!.deleteRows(at: [indexPath!], with: .fade)
-                    }
-                }
-            )
+            transactionTableView.deleteRows(at: [indexPath!], with: .fade)
         case .update:
-            blockOperations.append(
-                BlockOperation() { [weak self] in
-                    if let block = self {
-                        block.transactionTableView!.reloadRows(at: [indexPath!], with: .fade)
-                    }
-                }
-            )
+            transactionTableView.reloadRows(at: [indexPath!], with: .fade)
         case .move:
-            blockOperations.append(
-                BlockOperation() { [weak self] in
-                    if let block = self {
-                        block.transactionTableView!.moveRow(at: indexPath!, to: indexPath!)
-                    }
-                }
-            )
+            transactionTableView.deleteRows(at: [indexPath!], with: .fade)
+            transactionTableView.insertRows(at: [newIndexPath!], with: .fade)
         }
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         transactionTableView.endUpdates()
-        
-        let batchUpdates = {() -> Void in
-            for operation in self.blockOperations {
-               operation.start()
-            }
-        }
-        transactionTableView.performBatchUpdates(batchUpdates) { (finished) -> Void in
-            self.blockOperations.removeAll()
-        }
     }
 }
-
