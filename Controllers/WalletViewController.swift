@@ -17,12 +17,13 @@ class WalletViewController: UIViewController {
 
     let stack = CoreDataStack.sharedInstance
     var transactions = [Transaction]()
+    var wallet : Wallet?
+    var user: User?
     
     @IBAction func add(_ sender: Any) {
-        let createdat = NSDate()
-        let transaction = Transaction(title: "test", amount: 1220.0, income: true, createdAt: createdat, context: stack.context)
-        transactions.append(transaction)
-        stack.save()
+        
+
+        
     }
     
     var fetchedResultsController : NSFetchedResultsController<Transaction>? {
@@ -39,7 +40,7 @@ class WalletViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     init(fetchedResultsController fc : NSFetchedResultsController<Transaction>) {
         fetchedResultsController = fc
         super.init(nibName: nil, bundle: nil)
@@ -49,13 +50,25 @@ class WalletViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let initialTransaction = Transaction(title: "initial", amount: 1220.0, income: true, createdAt: NSDate(), context: stack.context)
-        transactions.append(initialTransaction)
+        
+        user = User(firstName: "Arturo", lastName: "Reyes", email: "reyesm93@gmail.com", createdAt: NSDate(), context: stack.context)
+        wallet = Wallet(walletName: "TestWallet", createdAt: NSDate(), context: stack.context)
+        wallet?.users = user
+        stack.save()
+        
+        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
-        // Add predicate when wallets are set up
+        fetchRequest.predicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
+    
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as? NSFetchedResultsController<Transaction>
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as! NSFetchedResultsController<Transaction>
+        executeSearch()
+        self.transactionTableView.reloadData()
     }
     
     func executeSearch() {
@@ -64,8 +77,15 @@ class WalletViewController: UIViewController {
                 try fc.performFetch()
                 transactions = fc.fetchedObjects!
             } catch let e as NSError {
-                print("Error while trying to perform a search: \n\(e)\n\(fetchedResultsController)")
+                print("Error while trying to perform a search: \n\(e)\n\(String(describing: fetchedResultsController))")
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addTransactionSegue" {
+            let destination = segue.destination as! AddTransactionViewController
+            destination.wallet = self.wallet!
         }
     }
     
@@ -74,7 +94,7 @@ class WalletViewController: UIViewController {
 extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactions.count
+        return (fetchedResultsController?.fetchedObjects?.count)!
     }
     
     
