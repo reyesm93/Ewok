@@ -4,6 +4,12 @@ platform :ios, '9.0'
 pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
+pod 'FirebaseUI'
+pod 'FirebaseUI/Google'
+pod 'FirebaseUI/Facebook'
+pod 'GoogleSignIn'
+
+
 
 target 'Ewok' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
