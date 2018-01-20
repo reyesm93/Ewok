@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		846AD3AFAD90479B45D663BD /* Pods_EwokTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B7FAE89054E6E265C19779 /* Pods_EwokTests.framework */; };
+		AE7B72FFB46B20CA515744E1 /* Pods_Ewok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A296D55DC567CB6C2F04AB66 /* Pods_Ewok.framework */; };
+		BCE5FB696912892E97F67718 /* Pods_EwokUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* ContainerVC.swift */; };
 		DD60A38D2012B4AA0019675C /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38C2012B4AA0019675C /* SideMenuVC.swift */; };
@@ -49,6 +52,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24B7FAE89054E6E265C19779 /* Pods_EwokTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EwokTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29145FCDCB2A56AF89CA73E9 /* Pods-EwokTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EwokTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EwokTests/Pods-EwokTests.release.xcconfig"; sourceTree = "<group>"; };
+		72445AA4FB8B3AF564AFBF3C /* Pods-Ewok.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ewok.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ewok/Pods-Ewok.debug.xcconfig"; sourceTree = "<group>"; };
+		92CBF6B06A5291DD706071B1 /* Pods-EwokUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EwokUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EwokUITests/Pods-EwokUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9CA75455A8553F93BBD46671 /* Pods-EwokUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EwokUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EwokUITests/Pods-EwokUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A24C4C6B9222284BF2331BCE /* Pods-Ewok.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ewok.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ewok/Pods-Ewok.release.xcconfig"; sourceTree = "<group>"; };
+		A296D55DC567CB6C2F04AB66 /* Pods_Ewok.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ewok.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEEDF333C9C14B23EFF618C7 /* Pods-EwokTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EwokTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EwokTests/Pods-EwokTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EwokUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
 		DD60A38C2012B4AA0019675C /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
@@ -87,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE7B72FFB46B20CA515744E1 /* Pods_Ewok.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846AD3AFAD90479B45D663BD /* Pods_EwokTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,12 +115,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCE5FB696912892E97F67718 /* Pods_EwokUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A9B720443667C5A7FA336EBD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A296D55DC567CB6C2F04AB66 /* Pods_Ewok.framework */,
+				24B7FAE89054E6E265C19779 /* Pods_EwokTests.framework */,
+				D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DD843E861FF5D8D700EE3C0D = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +148,8 @@
 				DD843EA91FF5D8D700EE3C0D /* EwokTests */,
 				DD843EB41FF5D8D700EE3C0D /* EwokUITests */,
 				DD843E901FF5D8D700EE3C0D /* Products */,
+				ED4E512D9AFD7D90DD92CA75 /* Pods */,
+				A9B720443667C5A7FA336EBD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,6 +208,19 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		ED4E512D9AFD7D90DD92CA75 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				72445AA4FB8B3AF564AFBF3C /* Pods-Ewok.debug.xcconfig */,
+				A24C4C6B9222284BF2331BCE /* Pods-Ewok.release.xcconfig */,
+				AEEDF333C9C14B23EFF618C7 /* Pods-EwokTests.debug.xcconfig */,
+				29145FCDCB2A56AF89CA73E9 /* Pods-EwokTests.release.xcconfig */,
+				92CBF6B06A5291DD706071B1 /* Pods-EwokUITests.debug.xcconfig */,
+				9CA75455A8553F93BBD46671 /* Pods-EwokUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,9 +228,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD843EBA1FF5D8D700EE3C0D /* Build configuration list for PBXNativeTarget "Ewok" */;
 			buildPhases = (
+				6776652961572FCBC4AA1C95 /* [CP] Check Pods Manifest.lock */,
 				DD843E8B1FF5D8D700EE3C0D /* Sources */,
 				DD843E8C1FF5D8D700EE3C0D /* Frameworks */,
 				DD843E8D1FF5D8D700EE3C0D /* Resources */,
+				6EAA2DDBF8EAF35BECC299EF /* [CP] Embed Pods Frameworks */,
+				F0B77FE1D61AFF7EC47BBB2C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,9 +248,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD843EBD1FF5D8D700EE3C0D /* Build configuration list for PBXNativeTarget "EwokTests" */;
 			buildPhases = (
+				7661606B1AC8D2636B00BF8D /* [CP] Check Pods Manifest.lock */,
 				DD843EA21FF5D8D700EE3C0D /* Sources */,
 				DD843EA31FF5D8D700EE3C0D /* Frameworks */,
 				DD843EA41FF5D8D700EE3C0D /* Resources */,
+				D1FA3336871E252F7AE3E48D /* [CP] Embed Pods Frameworks */,
+				E4808F089BA9D8E8653FD399 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -223,9 +269,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD843EC01FF5D8D700EE3C0D /* Build configuration list for PBXNativeTarget "EwokUITests" */;
 			buildPhases = (
+				A4410F90894FDD6340D599F2 /* [CP] Check Pods Manifest.lock */,
 				DD843EAD1FF5D8D700EE3C0D /* Sources */,
 				DD843EAE1FF5D8D700EE3C0D /* Frameworks */,
 				DD843EAF1FF5D8D700EE3C0D /* Resources */,
+				95E7973E9E78FD8DBFE4EA74 /* [CP] Embed Pods Frameworks */,
+				34CCB82025C85150EF17D356 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -309,6 +358,158 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		34CCB82025C85150EF17D356 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EwokUITests/Pods-EwokUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6776652961572FCBC4AA1C95 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ewok-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6EAA2DDBF8EAF35BECC299EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Ewok/Pods-Ewok-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ewok/Pods-Ewok-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7661606B1AC8D2636B00BF8D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EwokTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95E7973E9E78FD8DBFE4EA74 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EwokUITests/Pods-EwokUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4410F90894FDD6340D599F2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EwokUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1FA3336871E252F7AE3E48D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EwokTests/Pods-EwokTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4808F089BA9D8E8653FD399 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EwokTests/Pods-EwokTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0B77FE1D61AFF7EC47BBB2C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ewok/Pods-Ewok-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DD843E8B1FF5D8D700EE3C0D /* Sources */ = {
@@ -495,6 +696,7 @@
 		};
 		DD843EBB1FF5D8D700EE3C0D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72445AA4FB8B3AF564AFBF3C /* Pods-Ewok.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -510,6 +712,7 @@
 		};
 		DD843EBC1FF5D8D700EE3C0D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A24C4C6B9222284BF2331BCE /* Pods-Ewok.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -525,6 +728,7 @@
 		};
 		DD843EBE1FF5D8D700EE3C0D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEEDF333C9C14B23EFF618C7 /* Pods-EwokTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -542,6 +746,7 @@
 		};
 		DD843EBF1FF5D8D700EE3C0D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29145FCDCB2A56AF89CA73E9 /* Pods-EwokTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -559,6 +764,7 @@
 		};
 		DD843EC11FF5D8D700EE3C0D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92CBF6B06A5291DD706071B1 /* Pods-EwokUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -575,6 +781,7 @@
 		};
 		DD843EC21FF5D8D700EE3C0D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CA75455A8553F93BBD46671 /* Pods-EwokUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
