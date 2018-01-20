@@ -14,11 +14,17 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var balanceView: UIView!
     @IBOutlet weak var mainBalance: UILabel!
     @IBOutlet weak var transactionTableView: UITableView!
-
+    @IBOutlet weak var balanceLabel: UILabel!
+    
     let stack = CoreDataStack.sharedInstance
     var transactions = [Transaction]()
     var wallet : Wallet?
     var user: User?
+    var currentBalance: Float! {
+        didSet {
+            balanceLabel.text = String(currentBalance)
+        }
+    }
     
     @IBAction func add(_ sender: Any) {
         
@@ -52,7 +58,7 @@ class WalletViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         user = User(firstName: "Arturo", lastName: "Reyes", email: "reyesm93@gmail.com", createdAt: NSDate(), context: stack.context)
-        wallet = Wallet(walletName: "TestWallet", createdAt: NSDate(), context: stack.context)
+        wallet = Wallet(walletName: "TestWallet", balance: 0.0, createdAt: NSDate(), context: stack.context)
         wallet?.users = user
         stack.save()
         
