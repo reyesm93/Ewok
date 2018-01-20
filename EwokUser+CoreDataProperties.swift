@@ -1,9 +1,8 @@
 //
-//  User+CoreDataProperties.swift
-//  Ewok
+//  EwokUser+CoreDataProperties.swift
+//  
 //
-//  Created by Arturo Reyes on 12/30/17.
-//  Copyright © 2017 Arturo Reyes. All rights reserved.
+//  Created by Arturo Reyes on 1/20/18.
 //
 //
 
@@ -11,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension User {
+extension EwokUser {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<User> {
-        return NSFetchRequest<User>(entityName: "User")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<EwokUser> {
+        return NSFetchRequest<EwokUser>(entityName: "EwokUser")
     }
 
     @NSManaged public var createdAt: NSDate?
@@ -29,7 +28,7 @@ extension User {
 }
 
 // MARK: Generated accessors for wallets
-extension User {
+extension EwokUser {
 
     @objc(addWalletsObject:)
     @NSManaged public func addToWallets(_ value: Wallet)

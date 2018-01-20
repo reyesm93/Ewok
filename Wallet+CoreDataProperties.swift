@@ -22,7 +22,7 @@ extension Wallet {
     @NSManaged public var updatedAt: NSDate?
     @NSManaged public var walletName: String?
     @NSManaged public var transactions: NSSet?
-    @NSManaged public var users: User?
+    @NSManaged public var users: EwokUser?
 
 }
 

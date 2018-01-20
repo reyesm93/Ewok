@@ -11,6 +11,8 @@
 		AE7B72FFB46B20CA515744E1 /* Pods_Ewok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A296D55DC567CB6C2F04AB66 /* Pods_Ewok.framework */; };
 		BCE5FB696912892E97F67718 /* Pods_EwokUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */; };
 		DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */; };
+		DD2B9A672013C88B001E3AE1 /* EwokUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B9A662013C88B001E3AE1 /* EwokUser+CoreDataClass.swift */; };
+		DD2B9A692013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B9A682013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* ContainerVC.swift */; };
 		DD60A38D2012B4AA0019675C /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38C2012B4AA0019675C /* SideMenuVC.swift */; };
@@ -19,8 +21,6 @@
 		DD7A13501FF7340A00943E6C /* Wallet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */; };
 		DD7A13511FF7340A00943E6C /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13491FF7340A00943E6C /* Transaction+CoreDataClass.swift */; };
 		DD7A13521FF7340A00943E6C /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A134A1FF7340A00943E6C /* Transaction+CoreDataProperties.swift */; };
-		DD7A13531FF7340A00943E6C /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A134B1FF7340A00943E6C /* User+CoreDataClass.swift */; };
-		DD7A13541FF7340A00943E6C /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A134C1FF7340A00943E6C /* User+CoreDataProperties.swift */; };
 		DD7A13551FF7340A00943E6C /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A134D1FF7340A00943E6C /* Tag+CoreDataClass.swift */; };
 		DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */; };
 		DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13571FF734DC00943E6C /* CoreDataStack.swift */; };
@@ -64,6 +64,9 @@
 		AEEDF333C9C14B23EFF618C7 /* Pods-EwokTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EwokTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EwokTests/Pods-EwokTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EwokUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DD2B9A652013C81B001E3AE1 /* Ewok 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 5.xcdatamodel"; sourceTree = "<group>"; };
+		DD2B9A662013C88B001E3AE1 /* EwokUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EwokUser+CoreDataClass.swift"; path = "/Users/arturoreyes/Documents/Developer/Ewok/EwokUser+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		DD2B9A682013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EwokUser+CoreDataProperties.swift"; path = "/Users/arturoreyes/Documents/Developer/Ewok/EwokUser+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
 		DD60A38C2012B4AA0019675C /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
@@ -72,8 +75,6 @@
 		DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallet+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD7A13491FF7340A00943E6C /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DD7A134A1FF7340A00943E6C /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		DD7A134B1FF7340A00943E6C /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
-		DD7A134C1FF7340A00943E6C /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD7A134D1FF7340A00943E6C /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD7A13571FF734DC00943E6C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -139,12 +140,12 @@
 		DD843E861FF5D8D700EE3C0D = {
 			isa = PBXGroup;
 			children = (
+				DD2B9A662013C88B001E3AE1 /* EwokUser+CoreDataClass.swift */,
+				DD2B9A682013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift */,
 				DD7A13471FF7340A00943E6C /* Wallet+CoreDataClass.swift */,
 				DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */,
 				DD7A13491FF7340A00943E6C /* Transaction+CoreDataClass.swift */,
 				DD7A134A1FF7340A00943E6C /* Transaction+CoreDataProperties.swift */,
-				DD7A134B1FF7340A00943E6C /* User+CoreDataClass.swift */,
-				DD7A134C1FF7340A00943E6C /* User+CoreDataProperties.swift */,
 				DD7A134D1FF7340A00943E6C /* Tag+CoreDataClass.swift */,
 				DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */,
 				DDB1F6F12008224C00C26E40 /* Controllers */,
@@ -553,16 +554,16 @@
 				DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */,
 				DD7A134F1FF7340A00943E6C /* Wallet+CoreDataClass.swift in Sources */,
 				DD7A13501FF7340A00943E6C /* Wallet+CoreDataProperties.swift in Sources */,
+				DD2B9A672013C88B001E3AE1 /* EwokUser+CoreDataClass.swift in Sources */,
 				DDB1F6EF2008223200C26E40 /* AddTransactionViewController.swift in Sources */,
 				DD7A13511FF7340A00943E6C /* Transaction+CoreDataClass.swift in Sources */,
 				DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */,
-				DD7A13531FF7340A00943E6C /* User+CoreDataClass.swift in Sources */,
+				DD2B9A692013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift in Sources */,
 				DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */,
 				DD843E951FF5D8D700EE3C0D /* WalletViewController.swift in Sources */,
 				DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */,
 				DD7A13551FF7340A00943E6C /* Tag+CoreDataClass.swift in Sources */,
 				DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */,
-				DD7A13541FF7340A00943E6C /* User+CoreDataProperties.swift in Sources */,
 				DD60A38D2012B4AA0019675C /* SideMenuVC.swift in Sources */,
 				DD843E9B1FF5D8D700EE3C0D /* Ewok.xcdatamodeld in Sources */,
 			);
@@ -873,12 +874,13 @@
 		DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DD2B9A652013C81B001E3AE1 /* Ewok 5.xcdatamodel */,
 				DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */,
 				DD7A135A1FF739BB00943E6C /* Ewok 3.xcdatamodel */,
 				DD7A13591FF7368700943E6C /* Ewok 2.xcdatamodel */,
 				DD843E9A1FF5D8D700EE3C0D /* Ewok.xcdatamodel */,
 			);
-			currentVersion = DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */;
+			currentVersion = DD2B9A652013C81B001E3AE1 /* Ewok 5.xcdatamodel */;
 			path = Ewok.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

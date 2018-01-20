@@ -34,7 +34,7 @@ class LoginVC: UIViewController, FUIAuthDelegate {
     
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-        <#code#>
+        print("l")
     }
     
     

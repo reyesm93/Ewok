@@ -1,20 +1,19 @@
 //
-//  User+CoreDataClass.swift
-//  Ewok
+//  EwokUser+CoreDataClass.swift
+//  
 //
-//  Created by Arturo Reyes on 12/29/17.
-//  Copyright © 2017 Arturo Reyes. All rights reserved.
+//  Created by Arturo Reyes on 1/20/18.
 //
 //
 
 import Foundation
 import CoreData
 
-@objc(User)
-public class User: NSManagedObject {
+@objc(EwokUser)
+public class EwokUser: NSManagedObject {
     
     convenience init(firstName: String, lastName: String, email: String, createdAt: NSDate, context: NSManagedObjectContext) {
-        if let entity = NSEntityDescription.entity(forEntityName: "User", in: CoreDataStack.sharedInstance.context) {
+        if let entity = NSEntityDescription.entity(forEntityName: "EwokUser", in: CoreDataStack.sharedInstance.context) {
             self.init(entity: entity, insertInto: CoreDataStack.sharedInstance.context)
             self.firstName = firstName
             self.lastName = lastName
@@ -24,4 +23,5 @@ public class User: NSManagedObject {
             fatalError("Unable to find Entity name!")
         }
     }
+
 }
