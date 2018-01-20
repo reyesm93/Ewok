@@ -10,9 +10,27 @@ import UIKit
 
 class ContainerVC: UIViewController {
     
+    var sideMenuOpen = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
+        
     }
     
+    @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
+    
+    @objc func toggleSideMenu() {
+        if sideMenuOpen {
+            sideMenuConstraint.constant = -250
+            self.view.layoutIfNeeded()
+            sideMenuOpen = !sideMenuOpen
+        } else {
+            sideMenuConstraint.constant = 0
+            self.view.layoutIfNeeded()
+            sideMenuOpen = !sideMenuOpen
+        }
+    }
 }
 
