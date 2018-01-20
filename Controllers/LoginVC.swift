@@ -12,18 +12,26 @@ import Firebase
 import FirebaseAuthUI
 import FirebaseGoogleAuthUI
 import FirebaseFacebookAuthUI
+import GoogleSignIn
 
-class LoginVC: UIViewController, FUIAuthDelegate {
+class LoginVC: UIViewController, FUIAuthDelegate, GIDSignInUIDelegate {
     
     let providers: [FUIAuthProvider] = [
         FUIGoogleAuth(),
         FUIFacebookAuth()
     ]
+    @IBOutlet weak var googleSignInView: GIDSignInButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FirebaseApp.configure()
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
+        
         let authUI = FUIAuth.defaultAuthUI()
         // You need to adopt a FUIAuthDelegate protocol to receive callback
         authUI?.delegate = self
@@ -35,6 +43,26 @@ class LoginVC: UIViewController, FUIAuthDelegate {
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         print("l")
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        // ...
+        if let error = error {
+            print("error when signing in with google")
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if let error = error {
+                print("error when signing in with credential")
+                return
+            }
+            // User is signed in
+            print("user is signed in")
+        }
     }
     
     

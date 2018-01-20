@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jr7-u9-lQ1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qfh-Qz-N1D">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,19 +31,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fC-r8-Yu5" customClass="GIDSignInButton">
+                                <rect key="frame" x="78" y="397" width="224" height="51"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2fC-r8-Yu5" firstAttribute="top" secondItem="R5p-hV-nkg" secondAttribute="bottom" constant="77" id="46R-CK-NiN"/>
                             <constraint firstItem="R5p-hV-nkg" firstAttribute="top" secondItem="kl5-ep-5bF" secondAttribute="bottom" constant="23" id="HYx-LV-SqP"/>
                             <constraint firstItem="R5p-hV-nkg" firstAttribute="leading" secondItem="TSL-tR-69F" secondAttribute="leading" constant="78" id="J2e-8G-le6"/>
+                            <constraint firstItem="TSL-tR-69F" firstAttribute="bottom" secondItem="2fC-r8-Yu5" secondAttribute="bottom" constant="330" id="KJo-9f-57B"/>
                             <constraint firstItem="TSL-tR-69F" firstAttribute="bottom" secondItem="R5p-hV-nkg" secondAttribute="bottom" constant="458" id="Oxu-y1-iAs"/>
                             <constraint firstItem="TSL-tR-69F" firstAttribute="trailing" secondItem="R5p-hV-nkg" secondAttribute="trailing" constant="73" id="Qam-YS-PcJ"/>
                             <constraint firstItem="kl5-ep-5bF" firstAttribute="top" secondItem="TSL-tR-69F" secondAttribute="top" constant="193" id="dzW-Rb-gZG"/>
+                            <constraint firstItem="TSL-tR-69F" firstAttribute="trailing" secondItem="2fC-r8-Yu5" secondAttribute="trailing" constant="73" id="hEy-bo-VbV"/>
                             <constraint firstItem="kl5-ep-5bF" firstAttribute="leading" secondItem="R5p-hV-nkg" secondAttribute="leading" id="hJS-3G-IE2"/>
                             <constraint firstItem="kl5-ep-5bF" firstAttribute="width" secondItem="R5p-hV-nkg" secondAttribute="width" id="n9O-vH-S1x"/>
+                            <constraint firstItem="2fC-r8-Yu5" firstAttribute="leading" secondItem="TSL-tR-69F" secondAttribute="leading" constant="78" id="w0Z-cm-8WF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TSL-tR-69F"/>
                     </view>
+                    <connections>
+                        <outlet property="googleSignInView" destination="2fC-r8-Yu5" id="tku-qa-jpS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsQ-IR-bub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
