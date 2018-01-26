@@ -63,21 +63,21 @@
         <!--ContainerVC-->
         <scene sceneID="Wxq-hO-1wj">
             <objects>
-                <viewController id="jr7-u9-lQ1" customClass="ContainerVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContainerVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jr7-u9-lQ1" customClass="ContainerVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WWL-Ak-4Q4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8e-Q2-y4R">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8e-Q2-y4R" userLabel="SideMenuView">
                                 <rect key="frame" x="-250" y="44" width="250" height="734"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="Ojn-BB-IW3"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="c0G-kH-mmh" kind="embed" id="H6s-xL-IfO"/>
+                                    <segue destination="c0G-kH-mmh" kind="embed" identifier="sideMenuSegue" id="H6s-xL-IfO"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWe-IP-LuN">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWe-IP-LuN" userLabel="NavigationControllerView">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <connections>
                                     <segue destination="Knc-Ma-T3i" kind="embed" id="wd6-fO-BB1"/>
@@ -107,7 +107,7 @@
         <!--Side MenuVC-->
         <scene sceneID="dCk-BE-bpd">
             <objects>
-                <tableViewController id="c0G-kH-mmh" customClass="SideMenuVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SideMenuVC" id="c0G-kH-mmh" customClass="SideMenuVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="KiH-MN-srp">
                         <rect key="frame" x="0.0" y="0.0" width="250" height="734"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -462,7 +462,7 @@
         <!--MainVC-->
         <scene sceneID="F2G-Wy-pkj">
             <objects>
-                <viewController id="mMP-2S-lXp" customClass="MainVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" id="mMP-2S-lXp" customClass="MainVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZcI-Il-4N4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -506,7 +506,7 @@
         <!--Navigation Controller-->
         <scene sceneID="9br-a4-QTl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Knc-Ma-T3i" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Knc-Ma-T3i" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Agw-5e-bUa">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>

@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Controllers/WalletViewController.swift"
-            timestampString = "538171084.970582"
+            timestampString = "538618245.432816"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Controllers/WalletViewController.swift"
-            timestampString = "538171084.970665"
+            timestampString = "538618245.432881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "77"
@@ -134,27 +134,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Controllers/ContainerVC.swift"
-            timestampString = "538103925.792765"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Controllers/MainVC.swift"
-            timestampString = "538103925.792832"
+            timestampString = "538618245.432946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "19"
@@ -166,11 +150,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Controllers/ContainerVC.swift"
-            timestampString = "538106147.186627"
+            timestampString = "538618245.4332761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3"
@@ -179,14 +163,14 @@
             landmarkType = "0">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Ewok.ContainerVC.__deallocating_deinit"
                   moduleName = "Ewok"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arturoreyes/Documents/Developer/Ewok/Controllers/ContainerVC.swift"
-                  timestampString = "538171085.218812"
+                  timestampString = "538612194.5256031"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -194,14 +178,14 @@
                   offsetFromSymbolStart = "16">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Ewok.ContainerVC.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Ewok.ContainerVC"
                   moduleName = "Ewok"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arturoreyes/Documents/Developer/Ewok/Controllers/ContainerVC.swift"
-                  timestampString = "538171085.22057"
+                  timestampString = "538612194.527247"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -209,14 +193,14 @@
                   offsetFromSymbolStart = "16">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Ewok.ContainerVC.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; Ewok.ContainerVC"
                   moduleName = "Ewok"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arturoreyes/Documents/Developer/Ewok/Controllers/ContainerVC.swift"
-                  timestampString = "538171085.222188"
+                  timestampString = "538612194.528969"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -224,14 +208,14 @@
                   offsetFromSymbolStart = "64">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Ewok.ContainerVC.__allocating_init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;Ewok.ContainerVC&gt;"
                   moduleName = "Ewok"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arturoreyes/Documents/Developer/Ewok/Controllers/ContainerVC.swift"
-                  timestampString = "538171085.22383"
+                  timestampString = "538612194.5305459"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -239,14 +223,14 @@
                   offsetFromSymbolStart = "16">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Ewok.ContainerVC.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;Ewok.ContainerVC&gt;"
                   moduleName = "Ewok"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arturoreyes/Documents/Developer/Ewok/Controllers/ContainerVC.swift"
-                  timestampString = "538171085.225491"
+                  timestampString = "538612194.532082"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"

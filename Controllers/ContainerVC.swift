@@ -11,15 +11,28 @@ import UIKit
 class ContainerVC: UIViewController {
     
     var sideMenuOpen = false
+    //var navController: UINavigationController?
+    //var sideMenuVC: SideMenuVC?
+    
+    
+    @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //guard let nav = childViewControllers.first as? UINavigationController else {
+            //fatalError("Check storyboard for missing NavigationController")
+        //}
+        
+        //guard let sideMenu = childViewControllers.first as? SideMenuVC else {
+            //fatalError("Check storyboard for missing SideMenuVC")
+        //}
+        
+        //navController = nav
+        //sideMenuVC = sideMenu
         NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
         
     }
-    
-    @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
     
     @objc func toggleSideMenu() {
         if sideMenuOpen {
