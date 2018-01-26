@@ -33,6 +33,7 @@
 		DD843EAB1FF5D8D700EE3C0D /* EwokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EAA1FF5D8D700EE3C0D /* EwokTests.swift */; };
 		DD843EB61FF5D8D700EE3C0D /* EwokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */; };
 		DDB1F6EF2008223200C26E40 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F6EE2008223200C26E40 /* AddTransactionViewController.swift */; };
+		DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */; };
 		DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwokUITests.swift; sourceTree = "<group>"; };
 		DD843EB71FF5D8D700EE3C0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDB1F6EE2008223200C26E40 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 4.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +150,7 @@
 				DD7A134A1FF7340A00943E6C /* Transaction+CoreDataProperties.swift */,
 				DD7A134D1FF7340A00943E6C /* Tag+CoreDataClass.swift */,
 				DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */,
+				DDCAD2D5201BBF430057CD3D /* Database */,
 				DDB1F6F12008224C00C26E40 /* Controllers */,
 				DD843E911FF5D8D700EE3C0D /* Ewok */,
 				DD843EA91FF5D8D700EE3C0D /* EwokTests */,
@@ -213,6 +216,14 @@
 				DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DDCAD2D5201BBF430057CD3D /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		ED4E512D9AFD7D90DD92CA75 /* Pods */ = {
@@ -525,11 +536,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Ewok/Pods-Ewok-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle,
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
@@ -564,6 +575,7 @@
 				DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */,
 				DD843E951FF5D8D700EE3C0D /* WalletViewController.swift in Sources */,
 				DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */,
+				DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */,
 				DD7A13551FF7340A00943E6C /* Tag+CoreDataClass.swift in Sources */,
 				DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */,
 				DD60A38D2012B4AA0019675C /* SideMenuVC.swift in Sources */,

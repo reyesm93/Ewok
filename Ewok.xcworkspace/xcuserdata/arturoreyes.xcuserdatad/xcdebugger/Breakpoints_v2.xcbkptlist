@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ewok/AppDelegate.swift"
-            timestampString = "538620918.794911"
+            timestampString = "538692065.72442"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ewok/AppDelegate.swift"
-            timestampString = "538620918.795687"
+            timestampString = "538692065.7247699"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Controllers/LoginVC.swift"
-            timestampString = "538620918.796095"
+            timestampString = "538692065.725034"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Controllers/LoginVC.swift"
-            timestampString = "538620918.7964751"
+            timestampString = "538692065.725453"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ewok/AppDelegate.swift"
-            timestampString = "538620918.7965209"
+            timestampString = "538692065.725726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
@@ -170,13 +170,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ewok/AppDelegate.swift"
-            timestampString = "538620918.796903"
+            timestampString = "538692065.725969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
             endingLineNumber = "31"
             landmarkName = "sign(_:didSignInFor:withError:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Database/DatabaseManager.swift"
+            timestampString = "538692065.726498"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "DatabaseManager"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ewok.DatabaseManager.__allocating_init() -&gt; Ewok.DatabaseManager"
+                  moduleName = "Ewok"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arturoreyes/Documents/Developer/Ewok/Database/DatabaseManager.swift"
+                  timestampString = "538692065.9224271"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ewok.DatabaseManager.__deallocating_deinit"
+                  moduleName = "Ewok"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arturoreyes/Documents/Developer/Ewok/Database/DatabaseManager.swift"
+                  timestampString = "538692065.923982"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ewok.DatabaseManager.init() -&gt; Ewok.DatabaseManager"
+                  moduleName = "Ewok"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arturoreyes/Documents/Developer/Ewok/Database/DatabaseManager.swift"
+                  timestampString = "538692065.925576"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
