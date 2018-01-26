@@ -8,6 +8,7 @@ pod 'FirebaseUI'
 pod 'FirebaseUI/Google'
 pod 'FirebaseUI/Facebook'
 pod 'GoogleSignIn'
+pod 'Firebase/RemoteConfig'
 
 
 
