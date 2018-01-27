@@ -33,22 +33,22 @@ class MainVC: UIViewController {
             scrollView.addSubview(subview)
             subview.snp.makeConstraints { (make) in
                 // 4
-                //make.top.equalTo(0)
-                make.left.equalTo(0)
-                make.size.equalTo(scrollView)
-                //make.width.equalTo(scrollView).offset(-10)
-                //make.height.equalTo(CGFloat(40))
+                
+                make.centerX.lessThanOrEqualTo(scrollView)
+                make.width.equalTo(scrollView).offset(-70)
+                make.height.equalTo(scrollView).dividedBy(3)
+                
                 switch index {
                 // 5
                 case 0:
-                    make.top.equalTo(0)
+                    make.top.equalTo(50)
                 // 6
                 case subViews.count - 1:
-                    make.top.equalTo(subViews[index - 1].snp.bottom)
+                    make.top.equalTo(subViews[index - 1].snp.bottom).offset(40)
                     make.bottom.equalTo(0)
                 // 7
                 default:
-                    make.top.equalTo(subViews[index - 1].snp.bottom)
+                    make.top.equalTo(subViews[index - 1].snp.bottom).offset(40)
                 }
             }
         }
