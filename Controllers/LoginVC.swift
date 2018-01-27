@@ -12,10 +12,10 @@ import Firebase
 import GoogleSignIn
 
 class LoginVC: UIViewController, GIDSignInUIDelegate {
+    
+    var user: AnyObject?
  
     @IBOutlet weak var googleSignInView: GIDSignInButton!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +26,11 @@ class LoginVC: UIViewController, GIDSignInUIDelegate {
         
         GIDSignIn.sharedInstance().uiDelegate = self
         
-        let user = Auth.auth().currentUser
         
-        if user != nil {
+        
+        if Auth.auth().currentUser != nil {
             
+            user = Auth.auth().currentUser
             DatabaseManager.sharedInstance.addUser()
             
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "ContainerVC") as! ContainerVC
@@ -43,7 +44,7 @@ class LoginVC: UIViewController, GIDSignInUIDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if Auth.auth().currentUser != nil {
+        if user != nil {
             print(Auth.auth().currentUser?.email!)
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "ContainerVC") as! ContainerVC
             present(controller, animated: true, completion: nil)
