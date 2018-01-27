@@ -22,20 +22,21 @@ class LoginVC: UIViewController, GIDSignInUIDelegate {
         
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
-            
         }
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
         
         let user = Auth.auth().currentUser
         
         if user != nil {
             
             DatabaseManager.sharedInstance.addUser()
- 
+            
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "ContainerVC") as! ContainerVC
             present(controller, animated: true, completion: nil)
         }
         
-        GIDSignIn.sharedInstance().uiDelegate = self
+        
         
     }
     
@@ -49,5 +50,6 @@ class LoginVC: UIViewController, GIDSignInUIDelegate {
         }
     
     }
+
 
 }

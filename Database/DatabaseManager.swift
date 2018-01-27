@@ -18,7 +18,12 @@ class DatabaseManager: NSObject {
     let ref = Database.database().reference()
     
     func addUser() {
-        ref.child("users").child(user!.uid).setValue(["email": user!.email])
+        
+        let id = user!.uid
+        let email = user!.email
+        let name = user!.displayName
+    
+        ref.child("users").child(id).setValue(["email": email, "name": name])
     }
     
 }
