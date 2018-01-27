@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B56FFA9ABE1591148D9AB570A0356D2E"
+               BlueprintIdentifier = "631116D408599E9D12065A8462216665"
                BuildableName = "Pods_Ewok.framework"
                BlueprintName = "Pods-Ewok"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B56FFA9ABE1591148D9AB570A0356D2E"
+            BlueprintIdentifier = "631116D408599E9D12065A8462216665"
             BuildableName = "Pods_Ewok.framework"
             BlueprintName = "Pods-Ewok"
             ReferencedContainer = "container:Pods.xcodeproj">
