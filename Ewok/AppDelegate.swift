@@ -67,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
             // User is signed in
             print("user : \(Auth.auth().currentUser?.email) is signed in")
+            DatabaseManager.sharedInstance.addUser()
             self.userDidLogIn()
             
         }
