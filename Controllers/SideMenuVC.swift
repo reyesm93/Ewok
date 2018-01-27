@@ -2,15 +2,36 @@
 //  SideMenuVC.swift
 //  Ewok
 //
-//  Created by Arturo Reyes on 1/19/18.
+//  Created by Arturo Reyes on 1/27/18.
 //  Copyright © 2018 Arturo Reyes. All rights reserved.
 //
 
+import Foundation
 import UIKit
+import GoogleSignIn
+import Firebase
 
-class SideMenuVC: UITableViewController {
+class SideMenuVC: UIViewController {
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+    @IBAction func logOut(_ sender: Any) {
+        
+        GIDSignIn.sharedInstance().signOut()
+        
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        userDidLogOut()
+        
     }
+    
+    func userDidLogOut() {
+        
+        let controller = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+        present(controller, animated: true, completion: nil)
+    }
+    
 }

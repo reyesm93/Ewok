@@ -32,10 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         if user != nil {
             let email = Auth.auth().currentUser?.email
             print(email)
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "ContainerVC") as! ContainerVC
-            self.window!.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
+            userDidLogIn()
             
         }
         
@@ -43,6 +40,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
         
         return true
+    }
+    
+    func userDidLogIn() {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "ContainerVC") as! ContainerVC
+        self.window!.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
@@ -63,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
             // User is signed in
             print("user : \(Auth.auth().currentUser?.email) is signed in")
+            self.userDidLogIn()
             
         }
     }
@@ -103,13 +108,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
         
         self.saveContext()
     }

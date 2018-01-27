@@ -13,9 +13,9 @@
 		DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */; };
 		DD2B9A672013C88B001E3AE1 /* EwokUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B9A662013C88B001E3AE1 /* EwokUser+CoreDataClass.swift */; };
 		DD2B9A692013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B9A682013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift */; };
+		DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD34C760201D20240088CEBB /* SideMenuVC.swift */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* ContainerVC.swift */; };
-		DD60A38D2012B4AA0019675C /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38C2012B4AA0019675C /* SideMenuVC.swift */; };
 		DD60A38F2012C3F50019675C /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38E2012C3F50019675C /* MainVC.swift */; };
 		DD7A134F1FF7340A00943E6C /* Wallet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13471FF7340A00943E6C /* Wallet+CoreDataClass.swift */; };
 		DD7A13501FF7340A00943E6C /* Wallet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */; };
@@ -68,9 +68,9 @@
 		DD2B9A652013C81B001E3AE1 /* Ewok 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 5.xcdatamodel"; sourceTree = "<group>"; };
 		DD2B9A662013C88B001E3AE1 /* EwokUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EwokUser+CoreDataClass.swift"; path = "/Users/arturoreyes/Documents/Developer/Ewok/EwokUser+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		DD2B9A682013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EwokUser+CoreDataProperties.swift"; path = "/Users/arturoreyes/Documents/Developer/Ewok/EwokUser+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		DD34C760201D20240088CEBB /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
-		DD60A38C2012B4AA0019675C /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		DD60A38E2012C3F50019675C /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		DD7A13471FF7340A00943E6C /* Wallet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallet+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallet+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -209,11 +209,11 @@
 			children = (
 				DD60A38E2012C3F50019675C /* MainVC.swift */,
 				DD60A38A2012B4380019675C /* ContainerVC.swift */,
-				DD60A38C2012B4AA0019675C /* SideMenuVC.swift */,
 				DDB1F6EE2008223200C26E40 /* AddTransactionViewController.swift */,
 				DD843E941FF5D8D700EE3C0D /* WalletViewController.swift */,
 				DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */,
 				DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */,
+				DD34C760201D20240088CEBB /* SideMenuVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -573,12 +573,12 @@
 				DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */,
 				DD2B9A692013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift in Sources */,
 				DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */,
+				DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */,
 				DD843E951FF5D8D700EE3C0D /* WalletViewController.swift in Sources */,
 				DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */,
 				DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */,
 				DD7A13551FF7340A00943E6C /* Tag+CoreDataClass.swift in Sources */,
 				DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */,
-				DD60A38D2012B4AA0019675C /* SideMenuVC.swift in Sources */,
 				DD843E9B1FF5D8D700EE3C0D /* Ewok.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
