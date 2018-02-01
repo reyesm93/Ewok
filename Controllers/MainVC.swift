@@ -8,12 +8,28 @@
 
 import UIKit
 import SnapKit
+import CoreData
+import Firebase
 
-class MainVC: UIViewController {
+class MainVC: UIViewController  {
     
+    let user = Auth.auth().currentUser
+    let stack = CoreDataStack.sharedInstance
     let scrollView = UIScrollView()
     let subViews = [UIView(), UIView(), UIView(), UIView()]
     let colors = [UIColor.green, UIColor.blue, UIColor.red, UIColor.orange]
+    
+    lazy var fetchedResultsController : NSFetchedResultsController<Wallet> = { () -> NSFetchedResultsController<Wallet> in
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Wallet")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
+        //fetchRequest.predicate = NSPredicate(format: "users = %@", argumentArray: [user])
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as! NSFetchedResultsController<Wallet>
+        
+        fetchedResultsController.delegate = self
+        
+        return fetchedResultsController
+    }()
     
     
     override func viewDidLoad() {
@@ -25,6 +41,16 @@ class MainVC: UIViewController {
             make.edges.equalTo(view)
         }
         
+        setSubviewsLayout()
+        
+       
+    }
+    
+    @IBAction func menuPressed(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
+    }
+    
+    func setSubviewsLayout() {
         // 2
         subViews.enumerated().forEach { index, subview in
             subview.backgroundColor = colors[index]
@@ -54,8 +80,8 @@ class MainVC: UIViewController {
         }
     }
     
-    @IBAction func menuPressed(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
-    }
+}
+
+extension MainVC: NSFetchedResultsControllerDelegate {
     
 }

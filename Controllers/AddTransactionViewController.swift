@@ -17,6 +17,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
     var amount: Float?
     var wallet: Wallet!
     
+    
 
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
@@ -27,6 +28,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
             isIncome = incomeSwitch.isOn ? true : false
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,8 +45,7 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
-
+        
     }
 
     

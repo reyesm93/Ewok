@@ -19,7 +19,6 @@ class WalletViewController: UIViewController {
     let stack = CoreDataStack.sharedInstance
     var transactions = [Transaction]()
     var wallet : Wallet?
-    var user: EwokUser?
     var currentBalance: Float! {
         didSet {
             balanceLabel.text = String(currentBalance)
@@ -57,10 +56,10 @@ class WalletViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        user = EwokUser(firstName: "Arturo", lastName: "Reyes", email: "reyesm93@gmail.com", createdAt: NSDate(), context: stack.context)
-        wallet = Wallet(walletName: "TestWallet", balance: 0.0, createdAt: NSDate(), context: stack.context)
-        wallet?.users = user
-        stack.save()
+        //user = EwokUser(firstName: "Arturo", lastName: "Reyes", email: "reyesm93@gmail.com", createdAt: NSDate(), context: stack.context)
+        //wallet = Wallet(walletName: "TestWallet", balance: 0.0, createdAt: NSDate(), context: stack.context)
+        //wallet?.users = user
+        //stack.save()
         
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
