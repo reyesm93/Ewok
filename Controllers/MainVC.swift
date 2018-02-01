@@ -31,6 +31,7 @@ class MainVC: UIViewController  {
         return fetchedResultsController
     }()
     
+    @IBOutlet weak var addWalletButton: AddButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,12 @@ class MainVC: UIViewController  {
         scrollView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
+        
+        view.bringSubview(toFront: addWalletButton)
+        //addWalletButton.snp.makeConstraints { (make) in
+            //make.bottom.edges.equalTo(view).offset(10)
+            //make.right.edges.equalTo(view).offset(10)
+        //}
         
         setSubviewsLayout()
         

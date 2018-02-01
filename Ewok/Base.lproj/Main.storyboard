@@ -391,7 +391,21 @@
                     <view key="view" contentMode="scaleToFill" id="vVk-1L-onE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CrD-YB-9MB" customClass="AddButton" customModule="Ewok" customModuleProvider="target">
+                                <rect key="frame" x="295" y="654" width="55" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="C4B-DR-syP"/>
+                                    <constraint firstAttribute="width" constant="55" id="aa2-OG-VRU"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="puD-xd-SPG" firstAttribute="trailing" secondItem="CrD-YB-9MB" secondAttribute="trailing" constant="25" id="Xrj-19-git"/>
+                            <constraint firstAttribute="bottom" secondItem="CrD-YB-9MB" secondAttribute="bottom" constant="25" id="zYt-X1-dGg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="puD-xd-SPG"/>
                     </view>
                     <navigationItem key="navigationItem" id="HQF-5J-nfr">
@@ -409,11 +423,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addWalletButton" destination="CrD-YB-9MB" id="sll-0G-4u5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Yy-HE-emo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gKi-Mv-2a6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-618" y="794"/>
+            <point key="canvasLocation" x="-618.39999999999998" y="793.5960591133005"/>
         </scene>
         <!--SideMenuVC-->
         <scene sceneID="YLe-Lt-0na">

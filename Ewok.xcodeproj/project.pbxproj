@@ -11,8 +11,6 @@
 		AE7B72FFB46B20CA515744E1 /* Pods_Ewok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A296D55DC567CB6C2F04AB66 /* Pods_Ewok.framework */; };
 		BCE5FB696912892E97F67718 /* Pods_EwokUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */; };
 		DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */; };
-		DD2B9A672013C88B001E3AE1 /* EwokUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B9A662013C88B001E3AE1 /* EwokUser+CoreDataClass.swift */; };
-		DD2B9A692013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2B9A682013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift */; };
 		DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD34C760201D20240088CEBB /* SideMenuVC.swift */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* ContainerVC.swift */; };
@@ -32,6 +30,7 @@
 		DD843EA01FF5D8D700EE3C0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD843E9E1FF5D8D700EE3C0D /* LaunchScreen.storyboard */; };
 		DD843EAB1FF5D8D700EE3C0D /* EwokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EAA1FF5D8D700EE3C0D /* EwokTests.swift */; };
 		DD843EB61FF5D8D700EE3C0D /* EwokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */; };
+		DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95EF592022AC4E00C788D1 /* AddButton.swift */; };
 		DDB1F6EF2008223200C26E40 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F6EE2008223200C26E40 /* AddTransactionViewController.swift */; };
 		DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */; };
 		DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */; };
@@ -66,8 +65,6 @@
 		D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EwokUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD2B9A652013C81B001E3AE1 /* Ewok 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 5.xcdatamodel"; sourceTree = "<group>"; };
-		DD2B9A662013C88B001E3AE1 /* EwokUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EwokUser+CoreDataClass.swift"; path = "/Users/arturoreyes/Documents/Developer/Ewok/EwokUser+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		DD2B9A682013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EwokUser+CoreDataProperties.swift"; path = "/Users/arturoreyes/Documents/Developer/Ewok/EwokUser+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		DD34C760201D20240088CEBB /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
@@ -95,6 +92,7 @@
 		DD843EB11FF5D8D700EE3C0D /* EwokUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EwokUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwokUITests.swift; sourceTree = "<group>"; };
 		DD843EB71FF5D8D700EE3C0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD95EF592022AC4E00C788D1 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		DDB1F6EE2008223200C26E40 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -142,8 +140,6 @@
 		DD843E861FF5D8D700EE3C0D = {
 			isa = PBXGroup;
 			children = (
-				DD2B9A662013C88B001E3AE1 /* EwokUser+CoreDataClass.swift */,
-				DD2B9A682013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift */,
 				DD7A13471FF7340A00943E6C /* Wallet+CoreDataClass.swift */,
 				DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */,
 				DD7A13491FF7340A00943E6C /* Transaction+CoreDataClass.swift */,
@@ -182,6 +178,7 @@
 				DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */,
 				DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */,
 				DD7A13571FF734DC00943E6C /* CoreDataStack.swift */,
+				DD95EF592022AC4E00C788D1 /* AddButton.swift */,
 			);
 			path = Ewok;
 			sourceTree = "<group>";
@@ -573,14 +570,13 @@
 				DD7A13521FF7340A00943E6C /* Transaction+CoreDataProperties.swift in Sources */,
 				DD60A38F2012C3F50019675C /* MainVC.swift in Sources */,
 				DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */,
+				DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */,
 				DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */,
 				DD7A134F1FF7340A00943E6C /* Wallet+CoreDataClass.swift in Sources */,
 				DD7A13501FF7340A00943E6C /* Wallet+CoreDataProperties.swift in Sources */,
-				DD2B9A672013C88B001E3AE1 /* EwokUser+CoreDataClass.swift in Sources */,
 				DDB1F6EF2008223200C26E40 /* AddTransactionViewController.swift in Sources */,
 				DD7A13511FF7340A00943E6C /* Transaction+CoreDataClass.swift in Sources */,
 				DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */,
-				DD2B9A692013C88D001E3AE1 /* EwokUser+CoreDataProperties.swift in Sources */,
 				DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */,
 				DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */,
 				DD843E951FF5D8D700EE3C0D /* WalletViewController.swift in Sources */,
