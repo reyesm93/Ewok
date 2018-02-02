@@ -16,7 +16,7 @@ class MainVC: UIViewController  {
     let user = Auth.auth().currentUser
     let stack = CoreDataStack.sharedInstance
     let scrollView = UIScrollView()
-    let subViews = [UIView(), UIView(), UIView(), UIView()]
+    let subViews = [UIView]()
     let colors = [UIColor.green, UIColor.blue, UIColor.red, UIColor.orange]
     
     lazy var fetchedResultsController : NSFetchedResultsController<Wallet> = { () -> NSFetchedResultsController<Wallet> in
@@ -57,6 +57,9 @@ class MainVC: UIViewController  {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
     }
     
+    @IBAction func addWallet(_ sender: Any) {
+        
+    }
     func setSubviewsLayout() {
         // 2
         subViews.enumerated().forEach { index, subview in

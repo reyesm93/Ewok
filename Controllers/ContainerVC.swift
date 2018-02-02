@@ -7,43 +7,62 @@
 //
 
 import UIKit
+import SnapKit
 
-class ContainerVC: UIViewController {
+class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
     
     var sideMenuOpen = false
-    //var navController: UINavigationController?
-    //var sideMenuVC: SideMenuVC?
-    
+    var coverView: UIView? = nil
     
     @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sideMenuView: UIView!
+    @IBOutlet weak var addView: UIView!
+    @IBOutlet weak var navControllerView: UIView!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //guard let nav = childViewControllers.first as? UINavigationController else {
-            //fatalError("Check storyboard for missing NavigationController")
-        //}
-        
-        //guard let sideMenu = childViewControllers.first as? SideMenuVC else {
-            //fatalError("Check storyboard for missing SideMenuVC")
-        //}
-        
-        //navController = nav
-        //sideMenuVC = sideMenu
+        let navRect = navControllerView.bounds
+        coverView = UIView(frame: navRect)
+        coverView!.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+
         NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
-        
+        addView.isHidden = true
     }
     
     @objc func toggleSideMenu() {
-        if sideMenuOpen {
-            sideMenuConstraint.constant = -250
-            self.view.layoutIfNeeded()
-            sideMenuOpen = !sideMenuOpen
-        } else {
-            sideMenuConstraint.constant = 0
-            self.view.layoutIfNeeded()
-            sideMenuOpen = !sideMenuOpen
+        
+        performUIUpdatesOnMain {
+            
+            if !(self.sideMenuOpen) {
+        
+                self.sideMenuConstraint.constant = 0
+                
+                
+                self.navControllerView.addSubview(self.coverView!)
+                self.view.bringSubview(toFront: self.sideMenuView)
+                self.view.layoutIfNeeded()
+                self.sideMenuOpen = !self.sideMenuOpen
+                
+                let dismissTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissSideView))
+                self.navControllerView.addGestureRecognizer(dismissTapRecognizer)
+            }
         }
+    }
+    
+    @objc func dismissSideView() {
+        
+        performUIUpdatesOnMain {
+            
+            if self.sideMenuOpen {
+                self.coverView!.removeFromSuperview()
+                self.sideMenuConstraint.constant = -250
+                self.view.layoutIfNeeded()
+                self.sideMenuOpen = !self.sideMenuOpen
+            }
+        }
+        
     }
 }
 

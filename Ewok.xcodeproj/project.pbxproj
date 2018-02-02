@@ -11,6 +11,8 @@
 		AE7B72FFB46B20CA515744E1 /* Pods_Ewok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A296D55DC567CB6C2F04AB66 /* Pods_Ewok.framework */; };
 		BCE5FB696912892E97F67718 /* Pods_EwokUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */; };
 		DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */; };
+		DD2D0C7E2023BA8300077653 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2D0C7D2023BA8300077653 /* GCDBlackBox.swift */; };
+		DD2D0C802023C44700077653 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2D0C7F2023C44700077653 /* AddViewController.swift */; };
 		DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD34C760201D20240088CEBB /* SideMenuVC.swift */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* ContainerVC.swift */; };
@@ -65,6 +67,8 @@
 		D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EwokUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD2B9A652013C81B001E3AE1 /* Ewok 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 5.xcdatamodel"; sourceTree = "<group>"; };
+		DD2D0C7D2023BA8300077653 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		DD2D0C7F2023C44700077653 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		DD34C760201D20240088CEBB /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */,
 				DD7A13571FF734DC00943E6C /* CoreDataStack.swift */,
 				DD95EF592022AC4E00C788D1 /* AddButton.swift */,
+				DD2D0C7D2023BA8300077653 /* GCDBlackBox.swift */,
 			);
 			path = Ewok;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 				DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */,
 				DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */,
 				DD34C760201D20240088CEBB /* SideMenuVC.swift */,
+				DD2D0C7F2023C44700077653 /* AddViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -577,8 +583,10 @@
 				DDB1F6EF2008223200C26E40 /* AddTransactionViewController.swift in Sources */,
 				DD7A13511FF7340A00943E6C /* Transaction+CoreDataClass.swift in Sources */,
 				DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */,
+				DD2D0C802023C44700077653 /* AddViewController.swift in Sources */,
 				DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */,
 				DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */,
+				DD2D0C7E2023BA8300077653 /* GCDBlackBox.swift in Sources */,
 				DD843E951FF5D8D700EE3C0D /* WalletViewController.swift in Sources */,
 				DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */,
 				DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */,

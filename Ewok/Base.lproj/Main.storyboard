@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -83,26 +84,57 @@
                                     <segue destination="Knc-Ma-T3i" kind="embed" id="wd6-fO-BB1"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F90-V5-vxA" userLabel="AddView">
+                                <rect key="frame" x="28" y="241" width="319" height="340"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="F90-V5-vxA" secondAttribute="height" multiplier="91:97" id="uzN-4a-ozg"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="8pG-ke-Wxa" kind="embed" id="eAm-5W-jRG"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="PWe-IP-LuN" secondAttribute="trailing" id="BPK-ma-541"/>
                             <constraint firstItem="J8e-Q2-y4R" firstAttribute="bottom" secondItem="aMX-YP-yTu" secondAttribute="bottom" id="DID-Vi-K0x"/>
+                            <constraint firstItem="F90-V5-vxA" firstAttribute="centerX" secondItem="aMX-YP-yTu" secondAttribute="centerX" id="EOL-GM-skY"/>
+                            <constraint firstItem="PWe-IP-LuN" firstAttribute="leading" secondItem="aMX-YP-yTu" secondAttribute="leading" id="Fhr-OR-Afm"/>
+                            <constraint firstItem="F90-V5-vxA" firstAttribute="centerY" secondItem="aMX-YP-yTu" secondAttribute="centerY" id="I7H-NI-GUO"/>
+                            <constraint firstItem="aMX-YP-yTu" firstAttribute="trailing" secondItem="F90-V5-vxA" secondAttribute="trailing" constant="28" id="RKn-uI-4EQ"/>
                             <constraint firstItem="PWe-IP-LuN" firstAttribute="bottom" secondItem="aMX-YP-yTu" secondAttribute="bottom" id="TgR-9A-OM8"/>
                             <constraint firstItem="PWe-IP-LuN" firstAttribute="top" secondItem="aMX-YP-yTu" secondAttribute="top" id="asT-Ms-A5y"/>
                             <constraint firstItem="J8e-Q2-y4R" firstAttribute="leading" secondItem="aMX-YP-yTu" secondAttribute="leading" constant="-250" id="gdg-3t-Kre"/>
-                            <constraint firstItem="PWe-IP-LuN" firstAttribute="leading" secondItem="J8e-Q2-y4R" secondAttribute="trailing" id="qRn-xZ-zt5"/>
                             <constraint firstItem="J8e-Q2-y4R" firstAttribute="top" secondItem="aMX-YP-yTu" secondAttribute="top" id="tBR-nW-dtG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aMX-YP-yTu"/>
                     </view>
                     <connections>
+                        <outlet property="addView" destination="F90-V5-vxA" id="h89-Va-ngS"/>
+                        <outlet property="navControllerView" destination="PWe-IP-LuN" id="8Ji-Wf-BxX"/>
                         <outlet property="sideMenuConstraint" destination="gdg-3t-Kre" id="lnb-Ep-ion"/>
+                        <outlet property="sideMenuView" destination="J8e-Q2-y4R" id="Law-3y-oQN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhw-Kz-hat" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2111" y="53"/>
+            <point key="canvasLocation" x="-2111.1999999999998" y="52.463054187192121"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2cQ-bJ-MVR">
+            <objects>
+                <viewController id="RvB-xK-I0w" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C8m-t1-PYj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="Ilh-kl-jZg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ny6-IA-gkf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1076" y="104"/>
         </scene>
         <!--Wallet View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -398,7 +430,10 @@
                                     <constraint firstAttribute="height" constant="55" id="C4B-DR-syP"/>
                                     <constraint firstAttribute="width" constant="55" id="aa2-OG-VRU"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addWallet:" destination="mMP-2S-lXp" eventType="touchUpInside" id="YZS-Dl-Nyt"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -495,6 +530,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WBK-OZ-Hii" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="550"/>
+        </scene>
+        <!--Add View Controller-->
+        <scene sceneID="ySu-33-iTb">
+            <objects>
+                <viewController id="8pG-ke-Wxa" customClass="AddViewController" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bWs-y8-EE6">
+                        <rect key="frame" x="0.0" y="0.0" width="319" height="340"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Wallet Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXM-p5-pTl">
+                                <rect key="frame" x="86" y="44" width="146" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="raZ-so-YUa">
+                                <rect key="frame" x="46" y="111" width="227" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Initial Balance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKQ-5q-0k3">
+                                <rect key="frame" x="89" y="185" width="140" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qAX-Il-HPI">
+                                <rect key="frame" x="46" y="240" width="227" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3N-bR-Gw9">
+                                <rect key="frame" x="265" y="0.0" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uki-DU-h2m">
+                                <rect key="frame" x="113" y="294" width="92" height="30"/>
+                                <state key="normal" title="Create Wallet"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="u3N-bR-Gw9" secondAttribute="trailing" constant="6" id="0hu-OZ-ECZ"/>
+                            <constraint firstItem="uki-DU-h2m" firstAttribute="top" secondItem="qAX-Il-HPI" secondAttribute="bottom" constant="24" id="2jf-q1-pUN"/>
+                            <constraint firstItem="raZ-so-YUa" firstAttribute="centerX" secondItem="eXM-p5-pTl" secondAttribute="centerX" id="6HJ-2W-gKp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="raZ-so-YUa" secondAttribute="trailing" constant="30" id="9Ue-yY-AQk"/>
+                            <constraint firstItem="qAX-Il-HPI" firstAttribute="centerX" secondItem="cKQ-5q-0k3" secondAttribute="centerX" id="Bjn-kp-BWo"/>
+                            <constraint firstItem="u3N-bR-Gw9" firstAttribute="leading" secondItem="bWs-y8-EE6" secondAttribute="leading" constant="265" id="F0h-49-olb"/>
+                            <constraint firstAttribute="bottom" secondItem="uki-DU-h2m" secondAttribute="bottom" constant="16" id="HcY-in-CXJ"/>
+                            <constraint firstItem="qAX-Il-HPI" firstAttribute="top" secondItem="cKQ-5q-0k3" secondAttribute="bottom" constant="34" id="J1Z-nx-bLX"/>
+                            <constraint firstItem="u3N-bR-Gw9" firstAttribute="top" secondItem="bWs-y8-EE6" secondAttribute="top" id="QPb-H3-Za4"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="qAX-Il-HPI" secondAttribute="bottom" constant="36" id="RnK-Ym-CE2"/>
+                            <constraint firstItem="uki-DU-h2m" firstAttribute="leading" secondItem="bWs-y8-EE6" secondAttribute="leading" constant="113.5" id="Uap-WB-8q2"/>
+                            <constraint firstItem="cKQ-5q-0k3" firstAttribute="centerX" secondItem="raZ-so-YUa" secondAttribute="centerX" id="Vim-Gj-nLf"/>
+                            <constraint firstItem="eXM-p5-pTl" firstAttribute="top" secondItem="bWs-y8-EE6" secondAttribute="topMargin" id="aPv-aM-Ye2"/>
+                            <constraint firstItem="eXM-p5-pTl" firstAttribute="centerX" secondItem="bWs-y8-EE6" secondAttribute="centerX" id="gRT-zZ-8Zr"/>
+                            <constraint firstItem="raZ-so-YUa" firstAttribute="leading" secondItem="bWs-y8-EE6" secondAttribute="leadingMargin" constant="30" id="h4A-BM-wMn"/>
+                            <constraint firstItem="raZ-so-YUa" firstAttribute="top" secondItem="u3N-bR-Gw9" secondAttribute="bottom" constant="81" id="kl0-Eh-RQj"/>
+                            <constraint firstItem="raZ-so-YUa" firstAttribute="top" secondItem="eXM-p5-pTl" secondAttribute="bottom" constant="46" id="qbf-VC-dte"/>
+                            <constraint firstAttribute="trailing" secondItem="uki-DU-h2m" secondAttribute="trailing" constant="113.5" id="s2r-RZ-EWQ"/>
+                            <constraint firstItem="qAX-Il-HPI" firstAttribute="width" secondItem="raZ-so-YUa" secondAttribute="width" id="zeh-dd-FuK"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5qD-or-pr3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1429" y="-530"/>
         </scene>
     </scenes>
 </document>
