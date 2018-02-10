@@ -8,15 +8,16 @@
 
 import UIKit
 import SnapKit
+import CoreData
 
 class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
     
     var sideMenuOpen = false
     var coverView: UIView? = nil
+    //let currentWalletVC = MainVC()
     
     @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
     @IBOutlet weak var sideMenuView: UIView!
-    @IBOutlet weak var addView: UIView!
     @IBOutlet weak var navControllerView: UIView!
     
 
@@ -28,7 +29,6 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
         coverView!.backgroundColor = UIColor.black.withAlphaComponent(0.6)
 
         NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
-        addView.isHidden = true
     }
     
     @objc func toggleSideMenu() {

@@ -17,7 +17,7 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var balanceLabel: UILabel!
     
     let stack = CoreDataStack.sharedInstance
-    var transactions = [Transaction]()
+    //var transactions = [Transaction]()
     var wallet : Wallet?
     var currentBalance: Float! {
         didSet {
@@ -80,7 +80,7 @@ class WalletViewController: UIViewController {
         if let fc = fetchedResultsController {
             do {
                 try fc.performFetch()
-                transactions = fc.fetchedObjects!
+                //transactions = fc.fetchedObjects!
             } catch let e as NSError {
                 print("Error while trying to perform a search: \n\(e)\n\(String(describing: fetchedResultsController))")
             }

@@ -16,20 +16,33 @@ class MainVC: UIViewController  {
     let user = Auth.auth().currentUser
     let stack = CoreDataStack.sharedInstance
     let scrollView = UIScrollView()
-    let subViews = [UIView]()
-    let colors = [UIColor.green, UIColor.blue, UIColor.red, UIColor.orange]
+    var subViews = [UIView]()
+    var newWallet: Wallet?
+    var bottomConstraint: Constraint? = nil
+    //let colors = [UIColor.green, UIColor.blue, UIColor.red, UIColor.orange]
+    //var blockOperations: [BlockOperation] = []
     
-    lazy var fetchedResultsController : NSFetchedResultsController<Wallet> = { () -> NSFetchedResultsController<Wallet> in
+    var fetchedResultsController : NSFetchedResultsController<Wallet> = { () -> NSFetchedResultsController<Wallet> in
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Wallet")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
         //fetchRequest.predicate = NSPredicate(format: "users = %@", argumentArray: [user])
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as! NSFetchedResultsController<Wallet>
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.context, sectionNameKeyPath: nil, cacheName: nil) as! NSFetchedResultsController<Wallet>
         
-        fetchedResultsController.delegate = self
+        
         
         return fetchedResultsController
     }()
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//    }
+//
+//    init(fetchedResultsController fc : NSFetchedResultsController<Wallet>) {
+//        super.init(nibName: nil, bundle: nil)
+//        fetchedResultsController = fc
+//
+//    }
     
     @IBOutlet weak var addWalletButton: AddButton!
     
@@ -43,14 +56,23 @@ class MainVC: UIViewController  {
         }
         
         view.bringSubview(toFront: addWalletButton)
-        //addWalletButton.snp.makeConstraints { (make) in
-            //make.bottom.edges.equalTo(view).offset(10)
-            //make.right.edges.equalTo(view).offset(10)
-        //}
         
-        setSubviewsLayout()
+        fetchedResultsController.delegate = self
+    
         
+        if fetchWallets().isEmpty {
+            print("No wallets")
+        } else {
+            for wallet in fetchWallets() {
+                subViews.append(setWalletView(wallet))
+            }
+            setSubviewsLayout()
+        }
        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     @IBAction func menuPressed(_ sender: Any) {
@@ -59,39 +81,153 @@ class MainVC: UIViewController  {
     
     @IBAction func addWallet(_ sender: Any) {
         
+        let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddViewController") as! AddViewController
+        addVC.providesPresentationContextTransitionStyle = true
+        addVC.definesPresentationContext = true
+        addVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        addVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        addVC.delegate = self
+        self.present(addVC, animated: true, completion: nil)
+        
     }
+    
     func setSubviewsLayout() {
         // 2
         subViews.enumerated().forEach { index, subview in
-            subview.backgroundColor = colors[index]
-            print("index: \(index)")
-            // 3
-            scrollView.addSubview(subview)
-            subview.snp.makeConstraints { (make) in
-                // 4
-                
-                make.centerX.lessThanOrEqualTo(scrollView)
-                make.width.equalTo(scrollView).offset(-70)
-                make.height.equalTo(scrollView).dividedBy(3)
-                
-                switch index {
-                // 5
-                case 0:
-                    make.top.equalTo(50)
-                // 6
-                case subViews.count - 1:
-                    make.top.equalTo(subViews[index - 1].snp.bottom).offset(40)
-                    make.bottom.equalTo(0)
-                // 7
-                default:
-                    make.top.equalTo(subViews[index - 1].snp.bottom).offset(40)
-                }
-            }
+            //subview.backgroundColor = colors[index]
+            addWalletView(index: index, subview: subview)
         }
+        
+
     }
     
+    func addWalletView(index: Int, subview: UIView) {
+        
+        scrollView.addSubview(subview)
+        subview.snp.makeConstraints { (make) in
+            // 4
+            
+            make.centerX.lessThanOrEqualTo(scrollView)
+            make.width.equalTo(scrollView).offset(-70)
+            make.height.equalTo(scrollView).dividedBy(3)
+            
+            switch index {
+            // 5
+            case 0:
+                make.top.equalTo(50)
+            // 6
+            case subViews.count - 1:
+                make.top.equalTo(subViews[index - 1].snp.bottom).offset(40)
+                
+                if self.bottomConstraint != nil {
+                    self.bottomConstraint!.deactivate()
+                }
+                
+                self.bottomConstraint = make.bottom.equalTo(0).constraint
+            // 7
+            default:
+                make.top.equalTo(subViews[index - 1].snp.bottom).offset(40)
+            }
+        }
+        self.view.layoutIfNeeded()
+    }
+    
+    func setWalletView(_ wallet: Wallet) -> UIView {
+        
+        let walletView = UIView()
+        walletView.backgroundColor = UIColor.black
+        
+        let nameLabel = UILabel()
+        nameLabel.text = wallet.walletName
+        nameLabel.textColor = UIColor.white
+        nameLabel.textAlignment = NSTextAlignment.center
+        walletView.addSubview(nameLabel)
+        
+    
+        nameLabel.snp.makeConstraints { (make) in
+            
+            make.center.equalTo(walletView)
+            make.height.lessThanOrEqualTo(walletView)
+            make.width.lessThanOrEqualTo(walletView)
+            
+        }
+    
+        return walletView
+    }
+    
+    func fetchWallets() -> [Wallet] {
+        var wallets = [Wallet]()
+        
+        let fc = fetchedResultsController
+        do {
+            try fc.performFetch()
+            wallets = fc.fetchedObjects!
+        } catch let e as NSError {
+            print("Error while trying to perform a search: \n\(e)\n\(String(describing: fetchedResultsController))")
+        }
+        
+        return wallets
+    }
+
 }
 
 extension MainVC: NSFetchedResultsControllerDelegate {
-    
+
+//    func sendProperties(name: String, balance: Float) {
+//        self.stack.context.performAndWait {
+//            self.newWallet = Wallet(walletName: name, balance: balance, createdAt: NSDate(), context: self.stack.context)
+//            self.stack.save()
+//        }
+//    }
+
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { }
+
+    // Source: https://github.com/AshFurrow/UICollectionView-NSFetchedResultsController/issues/13
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+
+        switch type {
+
+        case .insert:
+            let walletView = self.setWalletView(anObject as! Wallet)
+            self.subViews.insert(walletView, at: (newIndexPath!.row))
+            self.addWalletView(index: newIndexPath!.row, subview: walletView)
+
+        case .delete:
+            self.subViews.remove(at: (indexPath?.row)!)
+
+        case .update:
+            let walletView = self.setWalletView(anObject as! Wallet)
+            self.subViews[(indexPath?.row)!] = walletView
+
+        case .move:
+            let walletView = self.subViews[(indexPath?.row)!]
+            self.subViews.remove(at: (indexPath?.row)!)
+            self.subViews.insert(walletView, at: (indexPath?.row)!)
+        }
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { }
 }
+
+extension MainVC: AddViewControllerDelegate {
+
+    func sendProperties(name: String, balance: Float) {
+        self.stack.context.performAndWait {
+            self.newWallet = Wallet(walletName: name, balance: balance, createdAt: NSDate(), context: self.stack.context)
+            self.stack.save()
+        }
+    }
+
+   
+//    func createObject(_ object: NSManagedObject) {
+//
+//        self.stack.context.performAndWait {
+//            let _ = object
+//            //self.executeSearch()
+//            self.stack.save()
+//        }
+//
+//    }
+
+}
+
