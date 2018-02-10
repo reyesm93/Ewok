@@ -31,12 +31,15 @@ class WalletView: UIView {
     func setUpView() {
         backgroundColor = UIColor.black
         translatesAutoresizingMaskIntoConstraints = false
+        self.layer.cornerRadius = 15
         setLabels()
+    
     }
 
 
     
     func setLabels() {
+        
         
         nameLabel.text = wallet.walletName
         balanceLabel.text = String(wallet.balance)

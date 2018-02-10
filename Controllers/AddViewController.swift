@@ -74,8 +74,6 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIGestureRecogni
 //        tapRecognizer.delegate = self
 //        self.view.addGestureRecognizer(tapRecognizer)
         
-        
-        
     }
     
     // TextFielDelegate methods

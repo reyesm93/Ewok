@@ -26,7 +26,11 @@ class WalletViewController: UIViewController {
     }
     
     @IBAction func add(_ sender: Any) {
-        
+//        
+//        let controller = storyboard?.instantiateViewController(withIdentifier: "AddTransactionViewController") as! AddTransactionViewController
+//        controller.wallet = wallet
+//        self.present(controller, animated: true, completion: nil)
+//        
 
         
     }

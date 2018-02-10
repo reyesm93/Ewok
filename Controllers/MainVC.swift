@@ -11,7 +11,7 @@ import SnapKit
 import CoreData
 import Firebase
 
-class MainVC: UIViewController  {
+class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     
     let user = Auth.auth().currentUser
     let stack = CoreDataStack.sharedInstance
@@ -96,6 +96,8 @@ class MainVC: UIViewController  {
         // 2
         subViews.enumerated().forEach { index, subview in
             //subview.backgroundColor = colors[index]
+            
+            setGestureRecognizer(subview)
             addWalletView(index: index, subview: subview)
         }
         
@@ -103,6 +105,7 @@ class MainVC: UIViewController  {
     }
     
     func addWalletView(index: Int, subview: WalletView) {
+        
         
         scrollView.addSubview(subview)
         subview.snp.makeConstraints { (make) in
@@ -127,12 +130,37 @@ class MainVC: UIViewController  {
                 self.bottomConstraint = make.bottom.equalTo(0).constraint
             // 7
             default:
+                
                 make.top.equalTo(subViews[index - 1].snp.bottom).offset(40)
             }
         }
         self.view.layoutIfNeeded()
     }
     
+    func setGestureRecognizer(_ walletView: WalletView) {
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectWalletRecognizer(_:)))
+        tapRecognizer.delegate = self
+        walletView.addGestureRecognizer(tapRecognizer)
+        
+    }
+    
+    @objc func selectWalletRecognizer(_ recognizer: UIGestureRecognizer) {
+        let viewTapped = recognizer.view as! WalletView
+        let wallet = viewTapped.wallet
+        performSegue(withIdentifier: "walletSegue", sender: wallet)
+        
+    }
+    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "walletSegue" {
+            let wallet = sender as! Wallet
+            let destination = segue.destination as! WalletViewController
+            destination.wallet = wallet
+            
+        }
+    }
 //    func setWalletView(_ wallet: Wallet) -> UIView {
 //
 //        let walletView = UIView()
@@ -189,16 +217,20 @@ extension MainVC: NSFetchedResultsControllerDelegate {
         switch type {
 
         case .insert:
-            let walletView = WalletView(frame: .zero, wallet: anObject as! Wallet)
-            self.subViews.insert(walletView, at: (newIndexPath!.row))
-            self.addWalletView(index: newIndexPath!.row, subview: walletView)
+            let newWallet = anObject as! Wallet
+            let newWalletView = WalletView(frame: .zero, wallet: newWallet)
+            self.setGestureRecognizer(newWalletView)
+            self.subViews.insert(newWalletView, at: (newIndexPath!.row))
+            self.addWalletView(index: newIndexPath!.row, subview: newWalletView)
 
         case .delete:
             self.subViews.remove(at: (indexPath?.row)!)
 
         case .update:
-            let walletView = WalletView(frame: .zero, wallet: anObject as! Wallet)
-            self.subViews[(indexPath?.row)!] = walletView
+            let newWallet = anObject as! Wallet
+            let newWalletView = WalletView(frame: .zero, wallet: newWallet)
+            self.setGestureRecognizer(newWalletView)
+            self.subViews[(indexPath?.row)!] = newWalletView
 
         case .move:
             let walletView = self.subViews[(indexPath?.row)!]
