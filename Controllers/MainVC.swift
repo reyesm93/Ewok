@@ -16,7 +16,7 @@ class MainVC: UIViewController  {
     let user = Auth.auth().currentUser
     let stack = CoreDataStack.sharedInstance
     let scrollView = UIScrollView()
-    var subViews = [UIView]()
+    var subViews = [WalletView]()
     var newWallet: Wallet?
     var bottomConstraint: Constraint? = nil
     //let colors = [UIColor.green, UIColor.blue, UIColor.red, UIColor.orange]
@@ -64,7 +64,8 @@ class MainVC: UIViewController  {
             print("No wallets")
         } else {
             for wallet in fetchWallets() {
-                subViews.append(setWalletView(wallet))
+                let walletView = WalletView(frame: .zero, wallet: wallet)
+                subViews.append(walletView)
             }
             setSubviewsLayout()
         }
@@ -101,7 +102,7 @@ class MainVC: UIViewController  {
 
     }
     
-    func addWalletView(index: Int, subview: UIView) {
+    func addWalletView(index: Int, subview: WalletView) {
         
         scrollView.addSubview(subview)
         subview.snp.makeConstraints { (make) in
@@ -132,28 +133,28 @@ class MainVC: UIViewController  {
         self.view.layoutIfNeeded()
     }
     
-    func setWalletView(_ wallet: Wallet) -> UIView {
-        
-        let walletView = UIView()
-        walletView.backgroundColor = UIColor.black
-        
-        let nameLabel = UILabel()
-        nameLabel.text = wallet.walletName
-        nameLabel.textColor = UIColor.white
-        nameLabel.textAlignment = NSTextAlignment.center
-        walletView.addSubview(nameLabel)
-        
-    
-        nameLabel.snp.makeConstraints { (make) in
-            
-            make.center.equalTo(walletView)
-            make.height.lessThanOrEqualTo(walletView)
-            make.width.lessThanOrEqualTo(walletView)
-            
-        }
-    
-        return walletView
-    }
+//    func setWalletView(_ wallet: Wallet) -> UIView {
+//
+//        let walletView = UIView()
+//        walletView.backgroundColor = UIColor.black
+//
+//        let nameLabel = UILabel()
+//        nameLabel.text = wallet.walletName
+//        nameLabel.textColor = UIColor.white
+//        nameLabel.textAlignment = NSTextAlignment.center
+//        walletView.addSubview(nameLabel)
+//
+//
+//        nameLabel.snp.makeConstraints { (make) in
+//
+//            make.center.equalTo(walletView)
+//            make.height.lessThanOrEqualTo(walletView)
+//            make.width.lessThanOrEqualTo(walletView)
+//
+//        }
+//
+//        return walletView
+//    }
     
     func fetchWallets() -> [Wallet] {
         var wallets = [Wallet]()
@@ -188,7 +189,7 @@ extension MainVC: NSFetchedResultsControllerDelegate {
         switch type {
 
         case .insert:
-            let walletView = self.setWalletView(anObject as! Wallet)
+            let walletView = WalletView(frame: .zero, wallet: anObject as! Wallet)
             self.subViews.insert(walletView, at: (newIndexPath!.row))
             self.addWalletView(index: newIndexPath!.row, subview: walletView)
 
@@ -196,7 +197,7 @@ extension MainVC: NSFetchedResultsControllerDelegate {
             self.subViews.remove(at: (indexPath?.row)!)
 
         case .update:
-            let walletView = self.setWalletView(anObject as! Wallet)
+            let walletView = WalletView(frame: .zero, wallet: anObject as! Wallet)
             self.subViews[(indexPath?.row)!] = walletView
 
         case .move:
