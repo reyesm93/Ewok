@@ -11,27 +11,24 @@ import CoreData
 
 class WalletViewController: UIViewController {
     
-    @IBOutlet weak var balanceView: UIView!
     @IBOutlet weak var mainBalance: UILabel!
     @IBOutlet weak var transactionTableView: UITableView!
-    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var addButton: AddButton!
     
     let stack = CoreDataStack.sharedInstance
     //var transactions = [Transaction]()
     var wallet : Wallet?
-    var currentBalance: Float! {
-        didSet {
-            balanceLabel.text = String(currentBalance)
-        }
-    }
+    var currentBalance: Float!
+//        didSet {
+//            balanceLabel.text = String(currentBalance)
+//        }
+//    }
     
-    @IBAction func add(_ sender: Any) {
-//        
-//        let controller = storyboard?.instantiateViewController(withIdentifier: "AddTransactionViewController") as! AddTransactionViewController
-//        controller.wallet = wallet
-//        self.present(controller, animated: true, completion: nil)
-//        
-
+    @IBAction func addTransaction(_ sender: Any) {
+        
+        let controller = storyboard?.instantiateViewController(withIdentifier: "AddTransactionViewController") as! AddTransactionViewController
+        controller.wallet = wallet
+        self.present(controller, animated: true, completion: nil)
         
     }
     
@@ -103,7 +100,9 @@ class WalletViewController: UIViewController {
 extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (fetchedResultsController?.fetchedObjects?.count)!
+        let objectCount = (fetchedResultsController?.fetchedObjects?.count)!
+        let sectionCount = tableView.numberOfSections
+        return objectCount
     }
     
     
