@@ -11,7 +11,7 @@ pod 'FirebaseUI/Google'
 pod 'FirebaseUI/Facebook'
 pod 'GoogleSignIn'
 pod 'Firebase/RemoteConfig'
-
+pod 'Plaid'
 
 
 

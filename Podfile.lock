@@ -107,6 +107,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - Plaid (1.1.4)
   - Protobuf (3.4.0)
   - SDWebImage (4.1.0):
     - SDWebImage/Core (= 4.1.0)
@@ -125,6 +126,7 @@ DEPENDENCIES:
   - FirebaseUI/Facebook
   - FirebaseUI/Google
   - GoogleSignIn
+  - Plaid
   - SnapKit (~> 4.0)
 
 SPEC CHECKSUMS:
@@ -146,12 +148,13 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Plaid: 4f7344dfce0cf69a49b489a176d8f090652c98c1
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   TwitterCore: 6856288a1c25e5281363250681f33b42fce1da42
   TwitterKit: 313bf02baee8427f7649b3640169178e5a8b5a99
 
-PODFILE CHECKSUM: 3f794c043a2fd5b82b7c3536c456b7d267800c14
+PODFILE CHECKSUM: 93b621ce1176ae1ee79fa81cae15bae5340281b8
 
 COCOAPODS: 1.4.0

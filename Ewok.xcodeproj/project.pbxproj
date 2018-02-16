@@ -32,6 +32,7 @@
 		DD843EA01FF5D8D700EE3C0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD843E9E1FF5D8D700EE3C0D /* LaunchScreen.storyboard */; };
 		DD843EAB1FF5D8D700EE3C0D /* EwokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EAA1FF5D8D700EE3C0D /* EwokTests.swift */; };
 		DD843EB61FF5D8D700EE3C0D /* EwokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */; };
+		DD8D1AB720375E5E00C52EC9 /* PlaidClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D1AB620375E5E00C52EC9 /* PlaidClient.swift */; };
 		DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */; };
 		DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */; };
 		DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95EF592022AC4E00C788D1 /* AddButton.swift */; };
@@ -98,6 +99,7 @@
 		DD843EB11FF5D8D700EE3C0D /* EwokUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EwokUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwokUITests.swift; sourceTree = "<group>"; };
 		DD843EB71FF5D8D700EE3C0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD8D1AB620375E5E00C52EC9 /* PlaidClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidClient.swift; sourceTree = "<group>"; };
 		DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBalanceView.swift; sourceTree = "<group>"; };
 		DD95EF592022AC4E00C788D1 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				DD7A134A1FF7340A00943E6C /* Transaction+CoreDataProperties.swift */,
 				DD7A134D1FF7340A00943E6C /* Tag+CoreDataClass.swift */,
 				DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */,
+				DD8D1AB820375E6700C52EC9 /* Network */,
 				DDCAD2D5201BBF430057CD3D /* Database */,
 				DDB1F6F12008224C00C26E40 /* Controllers */,
 				DD843E911FF5D8D700EE3C0D /* Ewok */,
@@ -211,6 +214,14 @@
 			path = EwokUITests;
 			sourceTree = "<group>";
 		};
+		DD8D1AB820375E6700C52EC9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DD8D1AB620375E5E00C52EC9 /* PlaidClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		DDB1F6F12008224C00C26E40 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +272,7 @@
 				DD843E8D1FF5D8D700EE3C0D /* Resources */,
 				6EAA2DDBF8EAF35BECC299EF /* [CP] Embed Pods Frameworks */,
 				F0B77FE1D61AFF7EC47BBB2C /* [CP] Copy Pods Resources */,
+				DDCEF6D22037689500BE889B /* Prepare For Distribution */,
 			);
 			buildRules = (
 			);
@@ -434,6 +446,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${PODS_ROOT}/Plaid/ios/LinkKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -448,6 +461,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinkKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -525,6 +539,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EwokTests/Pods-EwokTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DDCEF6D22037689500BE889B /* Prepare For Distribution */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare For Distribution";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "LINK_ROOT=${PODS_ROOT:+$PODS_ROOT/Plaid/ios}\ncp \"${LINK_ROOT:-$PROJECT_DIR}\"/LinkKit.framework/prepare_for_distribution.sh \"${CODESIGNING_FOLDER_PATH}\"/Frameworks/LinkKit.framework/prepare_for_distribution.sh\n\"${CODESIGNING_FOLDER_PATH}\"/Frameworks/LinkKit.framework/prepare_for_distribution.sh";
+		};
 		E4808F089BA9D8E8653FD399 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -596,6 +624,7 @@
 				DD2D0C7E2023BA8300077653 /* GCDBlackBox.swift in Sources */,
 				DD843E951FF5D8D700EE3C0D /* WalletViewController.swift in Sources */,
 				DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */,
+				DD8D1AB720375E5E00C52EC9 /* PlaidClient.swift in Sources */,
 				DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */,
 				DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */,
 				DD7A13551FF7340A00943E6C /* Tag+CoreDataClass.swift in Sources */,
