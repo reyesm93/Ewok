@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>PLKPlaidLinkConfiguration</key>
+	<dict>
+		<key>clientName</key>
+		<string>$(PRODUCT_NAME)</string>
+		<key>env</key>
+		<string>development</string>
+		<key>key</key>
+		<string>f53720fb84bcf61c3ab488096e6859</string>
+		<key>product</key>
+		<string>auth</string>
+		<key>selectAccount</key>
+		<false/>
+	</dict>
 	<key>FacebookDisplayName</key>
 	<string>Ewok</string>
 	<key>FacebookAppID</key>

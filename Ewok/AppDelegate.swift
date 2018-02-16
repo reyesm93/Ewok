@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Firebase set up
         FirebaseApp.configure()
         
         
@@ -37,7 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             
         }
         
-        
+        // Plaid setup
+        PlaidClient.sharedInstance.setupPlaidLinkWithSharedConfiguration()
 
         
         return true
