@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-class AddTransactionViewController: UIViewController, UITextFieldDelegate {
+class AddTransactionViewController: UIViewController {
     
     var isIncome: Bool! = false
     let stack = CoreDataStack.sharedInstance
     var transactionDate: NSDate?
     var amount: Float?
-    var wallet: Wallet!
+    var delegate: AddViewControllerDelegate?
     
     
 
@@ -51,11 +51,18 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func addTransaction(_ sender: Any) {
         
-        stack.context.performAndWait {
-            let transaction = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome, createdAt: transactionDate! , context: stack.context)
-            transaction.wallet = wallet
-            stack.save()
-        }
+        resignIfFirstResponder(amountTextField)
+        resignIfFirstResponder(descriptionTextField)
+        
+//        stack.context.performAndWait {
+//            let transaction = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome, createdAt: transactionDate! , context: stack.context)
+//            transaction.wallet = wallet
+//            stack.save(
+//        }
+        let transaction = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome, createdAt: transactionDate! , context: stack.context)
+        delegate?.addVC(controller: self, didCreateObject: transaction)
+        let parentVC = self.parent as? WalletViewController
+        parentVC?.transactionTableView.dataSource = parentVC
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -70,6 +77,11 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
         resignIfFirstResponder(descriptionTextField)
         resignIfFirstResponder(amountTextField)
     }
+    
+    
+}
+
+ extension AddTransactionViewController : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
@@ -92,6 +104,4 @@ class AddTransactionViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
-}
-
+ }

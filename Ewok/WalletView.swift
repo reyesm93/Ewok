@@ -16,6 +16,7 @@ class WalletView: UIView {
     var wallet : Wallet!
     var nameLabel = UILabel()
     var balanceLabel = UILabel()
+    var deleteButton = UIButton()
     
     
     init(frame: CGRect, wallet: Wallet) {
@@ -33,7 +34,30 @@ class WalletView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         self.layer.cornerRadius = 15
         setLabels()
+        setDeleteButton()
     
+    }
+    
+    func setDeleteButton() {
+        deleteButton.setTitle("Delete", for: .normal)
+        deleteButton.titleLabel!.text = "Delete"
+        deleteButton.titleLabel!.textColor = UIColor.white
+        
+        self.addSubview(deleteButton)
+        
+        deleteButton.snp.makeConstraints { (make) in
+            make.trailing.equalTo(self).offset(-5)
+            make.top.equalTo(self).offset(10)
+        }
+        
+        deleteButton.addTarget(self, action: #selector(didTapDelete(sender:)), for: .touchUpInside)
+        
+    }
+    
+    @objc func didTapDelete(sender: UIButton!) {
+        let currentWal = self.wallet
+        let userInfo =  [ "wallet" : currentWal ]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DeleteWallet"), object: nil, userInfo: userInfo)
     }
 
 

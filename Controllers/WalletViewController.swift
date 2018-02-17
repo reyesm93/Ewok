@@ -14,9 +14,9 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var mainBalance: UILabel!
     @IBOutlet weak var transactionTableView: UITableView!
     @IBOutlet weak var addButton: AddButton!
+    @IBOutlet weak var mainScrollView: UIScrollView!
     
     let stack = CoreDataStack.sharedInstance
-    //var transactions = [Transaction]()
     var wallet : Wallet?
     var currentBalance: Float!
 //        didSet {
@@ -27,7 +27,7 @@ class WalletViewController: UIViewController {
     @IBAction func addTransaction(_ sender: Any) {
         
         let controller = storyboard?.instantiateViewController(withIdentifier: "AddTransactionViewController") as! AddTransactionViewController
-        controller.wallet = wallet
+        controller.delegate = self
         self.present(controller, animated: true, completion: nil)
         
     }
@@ -55,13 +55,9 @@ class WalletViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        //user = EwokUser(firstName: "Arturo", lastName: "Reyes", email: "reyesm93@gmail.com", createdAt: NSDate(), context: stack.context)
-        //wallet = Wallet(walletName: "TestWallet", balance: 0.0, createdAt: NSDate(), context: stack.context)
-        //wallet?.users = user
-        //stack.save()
-        
+        transactionTableView.delegate = self
+        transactionTableView.dataSource = self
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
@@ -73,25 +69,31 @@ class WalletViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        executeSearch()
-        self.transactionTableView.reloadData()
+        if executeSearch().isEmpty {
+            mainScrollView.isHidden = true
+        } else {
+            mainScrollView.isHidden = false
+            transactionTableView.reloadData()
+        }
     }
     
-    func executeSearch() {
+    func executeSearch() -> [Transaction] {
+        var transactions = [Transaction]()
         if let fc = fetchedResultsController {
             do {
                 try fc.performFetch()
-                //transactions = fc.fetchedObjects!
+                transactions = fc.fetchedObjects!
             } catch let e as NSError {
                 print("Error while trying to perform a search: \n\(e)\n\(String(describing: fetchedResultsController))")
             }
         }
+        
+        return transactions
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addTransactionSegue" {
             let destination = segue.destination as! AddTransactionViewController
-            destination.wallet = self.wallet!
         }
     }
     
@@ -101,6 +103,7 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let objectCount = (fetchedResultsController?.fetchedObjects?.count)!
+        let rowCount = ( objectCount == 0 ) ? 1 : objectCount
         let sectionCount = tableView.numberOfSections
         return objectCount
     }
@@ -109,16 +112,7 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell", for: indexPath) as! TransactionViewCell
         let transaction = fetchedResultsController?.object(at: indexPath)
-        
-        cell.transDescription.text = transaction!.title
-        cell.transAmount.text = String(transaction!.amount)
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        let convertedDate = dateFormatter.string(from: transaction!.createdAt! as Date)
-    
-        cell.date.text = convertedDate
-        
+        cell.textLabel?.text = transaction?.description
         return cell
     
     }
@@ -166,5 +160,16 @@ extension WalletViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         transactionTableView.endUpdates()
+    }
+}
+
+extension WalletViewController : AddViewControllerDelegate {
+    
+    func addVC(controller: UIViewController, didCreateObject: NSManagedObject) {
+        stack.context.performAndWait {
+            let transaction = didCreateObject as! Transaction
+            transaction.wallet = self.wallet
+            stack.save()
+        }
     }
 }

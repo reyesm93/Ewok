@@ -15,6 +15,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     
     let user = Auth.auth().currentUser
     let stack = CoreDataStack.sharedInstance
+    //var context: NSManagedObjectContext?
     let scrollView = UIScrollView()
     var subViews = [WalletView]()
     var newWallet: Wallet?
@@ -28,9 +29,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
         //fetchRequest.predicate = NSPredicate(format: "users = %@", argumentArray: [user])
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.context, sectionNameKeyPath: nil, cacheName: nil) as! NSFetchedResultsController<Wallet>
-        
-        
-        
+
         return fetchedResultsController
     }()
 //
@@ -57,6 +56,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
         
         view.bringSubview(toFront: addWalletButton)
         
+        //context = stack.context
         fetchedResultsController.delegate = self
     
         
@@ -69,6 +69,8 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
             }
             setSubviewsLayout()
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteWallet), name: NSNotification.Name(rawValue: "DeleteWallet"), object: nil)
        
     }
     
@@ -101,6 +103,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
             addWalletView(index: index, subview: subview)
         }
         
+        self.view.layoutIfNeeded()
 
     }
     
@@ -118,7 +121,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
             switch index {
             // 5
             case 0:
-                make.top.equalTo(50)
+                make.top.equalTo(scrollView).offset(50)
             // 6
             case subViews.count - 1:
                 make.top.equalTo(subViews[index - 1].snp.bottom).offset(40)
@@ -127,14 +130,25 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
                     self.bottomConstraint!.deactivate()
                 }
                 
-                self.bottomConstraint = make.bottom.equalTo(0).constraint
+                self.bottomConstraint = make.bottom.equalTo(scrollView).constraint
             // 7
             default:
                 
                 make.top.equalTo(subViews[index - 1].snp.bottom).offset(40)
             }
         }
-        self.view.layoutIfNeeded()
+    }
+    
+    func removeWalletView(index: Int) {
+        
+        subViews.remove(at: index)
+        
+//        switch index {
+//
+//        case 0:
+//
+//        }
+        
     }
     
     func setGestureRecognizer(_ walletView: WalletView) {
@@ -149,7 +163,6 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
         let viewTapped = recognizer.view as! WalletView
         let wallet = viewTapped.wallet
         performSegue(withIdentifier: "walletSegue", sender: wallet)
-        
     }
     
 
@@ -158,8 +171,19 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
             let wallet = sender as! Wallet
             let destination = segue.destination as! WalletViewController
             destination.wallet = wallet
-            
         }
+    }
+    
+    
+    @objc func deleteWallet(notification: Notification) {
+        
+        guard let sender = notification.userInfo?["wallet"] as! Wallet! else { return }
+        
+        stack.context.performAndWait {
+            stack.context.delete(sender)
+            stack.save()
+        }
+        
     }
 //    func setWalletView(_ wallet: Wallet) -> UIView {
 //
@@ -224,43 +248,41 @@ extension MainVC: NSFetchedResultsControllerDelegate {
             self.addWalletView(index: newIndexPath!.row, subview: newWalletView)
 
         case .delete:
-            self.subViews.remove(at: (indexPath?.row)!)
+            let walletViewDeleted = subViews[(indexPath?.row)!]
+            let current = walletViewDeleted.wallet
+            self.removeWalletView(index: (indexPath?.row)!)
+            //walletViewDeleted.removeFromSuperview
+            
 
-        case .update:
-            let newWallet = anObject as! Wallet
-            let newWalletView = WalletView(frame: .zero, wallet: newWallet)
-            self.setGestureRecognizer(newWalletView)
-            self.subViews[(indexPath?.row)!] = newWalletView
+        case .update: break
+//            let newWallet = anObject as! Wallet
+//            let newWalletView = WalletView(frame: .zero, wallet: newWallet)
+//            self.setGestureRecognizer(newWalletView)
+//            self.subViews[(indexPath?.row)!] = newWalletView
 
-        case .move:
-            let walletView = self.subViews[(indexPath?.row)!]
-            self.subViews.remove(at: (indexPath?.row)!)
-            self.subViews.insert(walletView, at: (indexPath?.row)!)
+        case .move: break
+//            let walletView = self.subViews[(indexPath?.row)!]
+//            self.subViews.remove(at: (indexPath?.row)!)
+//            self.subViews.insert(walletView, at: (indexPath?.row)!)
         }
     }
 
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        //self.view.layoutIfNeeded()
+    }
 }
 
 extension MainVC: AddViewControllerDelegate {
-
-    func sendProperties(name: String, balance: Float) {
+    
+    func addVC(controller: UIViewController, didCreateObject: NSManagedObject) {
         self.stack.context.performAndWait {
-            self.newWallet = Wallet(walletName: name, balance: balance, createdAt: NSDate(), context: self.stack.context)
+            let _ = didCreateObject
             self.stack.save()
         }
+        
+        self.performSegue(withIdentifier: "walletSegue", sender: didCreateObject)
     }
-
-   
-//    func createObject(_ object: NSManagedObject) {
-//
-//        self.stack.context.performAndWait {
-//            let _ = object
-//            //self.executeSearch()
-//            self.stack.save()
-//        }
-//
-//    }
 
 }
 

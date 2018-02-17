@@ -147,7 +147,7 @@
                                             <constraint firstAttribute="height" constant="500" id="O7n-C2-PaO"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="H8O-JY-3hH" customClass="TransactionViewCell" customModule="Ewok" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionViewCell" id="H8O-JY-3hH" customClass="TransactionViewCell" customModule="Ewok" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H8O-JY-3hH" id="5kz-82-Brv">
@@ -211,6 +211,9 @@
                                     <constraint firstAttribute="height" constant="60" id="myX-xU-Vhc"/>
                                 </constraints>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addTransaction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AwC-7a-bUO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -234,6 +237,7 @@
                     <connections>
                         <outlet property="addButton" destination="B5a-vQ-ck4" id="i0q-4H-mYS"/>
                         <outlet property="mainBalance" destination="gJt-5I-Ny1" id="dGr-VG-LTp"/>
+                        <outlet property="mainScrollView" destination="oal-yt-lot" id="4RQ-75-GQA"/>
                         <outlet property="transactionTableView" destination="PPY-mf-ess" id="RWl-Qc-SxR"/>
                     </connections>
                 </viewController>

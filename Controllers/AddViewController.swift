@@ -11,15 +11,7 @@ import UIKit
 import CoreData
 import LinkKit
 
-//protocol AddViewControllerDelegate: class {
-//    func createObject(_ object: NSManagedObject)
-//}
-
-protocol AddViewControllerDelegate: class {
-    func sendProperties(name : String, balance: Float)
-}
-
-class AddViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
+class AddViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var walletNameTF: UITextField!
     @IBOutlet weak var balanceTF: UITextField!
@@ -27,7 +19,6 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIGestureRecogni
     let stack = CoreDataStack.sharedInstance
     var walletName: String!
     var balance: Float!
-    var wallet : Wallet!
     var delegate: AddViewControllerDelegate?
     
     override func awakeFromNib() {
@@ -79,14 +70,16 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIGestureRecogni
     }
     @IBAction func create(_ sender: Any) {
         
+        resignIfFirstResponder(balanceTF)
+        resignIfFirstResponder(walletNameTF)
+        
         if balanceTF.text == "" {
             self.balance = 0.0
         }
         
-//        wallet = Wallet(walletName: walletName, balance: balance, createdAt: NSDate(), context: self.stack.context)
+        let wallet = Wallet(walletName: walletName, balance: balance, createdAt: NSDate(), context: self.stack.context)
         
-        delegate?.sendProperties(name: walletName, balance: balance)
-        
+        delegate?.addVC(controller: self, didCreateObject: wallet)
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -99,45 +92,6 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIGestureRecogni
 //        let tapRecognizer = UIGestureRecognizer(target: self, action: #selector(self.dismiss(animated:completion:)))
 //        tapRecognizer.delegate = self
 //        self.view.addGestureRecognizer(tapRecognizer)
-        
-    }
-    
-    // TextFielDelegate methods
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == walletNameTF {
-           
-            guard let name = walletNameTF.text as? String else {
-                print("Wallet name not entered")
-                return
-            }
-            
-            walletName = name
-        } else if textField == balanceTF {
-            
-            if let number = Float(balanceTF.text!){
-                self.balance = number
-            } else {
-                self.balance = 0.0
-            }
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func resignIfFirstResponder(_ textField: UITextField) {
-        if textField.isFirstResponder {
-            textField.resignFirstResponder()
-        }
-    }
-    
-    func configureTextField(_ textField: UITextField) {
-        
-        textField.delegate = self
-        textField.returnKeyType = UIReturnKeyType.done
         
     }
 
@@ -183,12 +137,56 @@ class AddViewController: UIViewController, UITextFieldDelegate, UIGestureRecogni
     
 }
 
+extension AddViewController : UITextFieldDelegate {
+    
+    // TextFielDelegate methods
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == walletNameTF {
+            
+            guard let name = walletNameTF.text as? String else {
+                print("Wallet name not entered")
+                return
+            }
+            
+            walletName = name
+        } else if textField == balanceTF {
+            
+            if let number = Float(balanceTF.text!){
+                self.balance = number
+            } else {
+                self.balance = 0.0
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func resignIfFirstResponder(_ textField: UITextField) {
+        if textField.isFirstResponder {
+            textField.resignFirstResponder()
+        }
+    }
+    
+    func configureTextField(_ textField: UITextField) {
+        
+        textField.delegate = self
+        textField.returnKeyType = UIReturnKeyType.done
+        
+    }
+    
+}
+
 extension AddViewController : PLKPlaidLinkViewDelegate {
     
     func linkViewController(_ linkViewController: PLKPlaidLinkViewController, didSucceedWithPublicToken publicToken: String, metadata: [String : Any]?) {
         dismiss(animated: true) {
             // Handle success, e.g. by storing publicToken with your service
             NSLog("Successfully linked account!\npublicToken: \(publicToken)\nmetadata: \(metadata ?? [:])")
+            linkViewController.dismiss(animated: true, completion: nil)
             self.handleSuccessWithToken(publicToken, metadata: metadata)
         }
     }
@@ -205,8 +203,5 @@ extension AddViewController : PLKPlaidLinkViewDelegate {
             }
         }
     }
-    
-    
-    
     
 }
