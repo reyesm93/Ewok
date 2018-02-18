@@ -38,6 +38,7 @@ class WalletViewController: UIViewController {
             // reload the table
             fetchedResultsController?.delegate = self
             executeSearch()
+            self.transactionTableView.dataSource = self
             transactionTableView.reloadData()
         }
     }
@@ -115,6 +116,23 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = transaction?.description
         return cell
     
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            
+            self.stack.context.performAndWait {
+                let deleteTransaction = self.fetchedResultsController?.object(at: indexPath)
+                self.fetchedResultsController?.managedObjectContext.delete(deleteTransaction!)
+            }
+            completion(true)
+        }
+        
+        deleteAction.backgroundColor = .red
+        deleteAction.title = "Delete"
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
     
