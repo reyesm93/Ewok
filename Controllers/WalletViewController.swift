@@ -15,9 +15,11 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var transactionTableView: UITableView!
     @IBOutlet weak var addButton: AddButton!
     @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var customBalanceView: CustomBalanceView!
     
     let stack = CoreDataStack.sharedInstance
     var wallet : Wallet?
+    var scrollPosition: CGFloat?
     var currentBalance: Float!
 //        didSet {
 //            balanceLabel.text = String(currentBalance)
@@ -59,6 +61,7 @@ class WalletViewController: UIViewController {
         
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
+        mainScrollView.delegate = self
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
@@ -100,11 +103,42 @@ class WalletViewController: UIViewController {
     
 }
 
+extension WalletViewController : UIScrollViewDelegate {
+    
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        scrollPosition = scrollView.contentOffset.y
+//    }
+//
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//
+//        let newPosition = scrollView.contentOffset.y
+//        let customViewHeight = customBalanceView.frame.height
+//        let relativeFrame = view.convert(customBalanceView.frame, from: mainScrollView)
+//        let subViewTop = relativeFrame.origin.y
+//        let viewTop = mainScrollView.frame.origin.y
+//
+//
+//        if scrollPosition! < newPosition {
+//            // User is dragging scrollview downwards
+//
+//            if (subViewTop == viewTop) {
+//                mainScrollView.isScrollEnabled = false
+//            }
+//        } else {
+//            // User is dragging scrollview upwards
+//
+//            let tablePosition = transactionTableView.contentOffset.y
+//            if tablePosition == 0 {
+//                mainScrollView.isScrollEnabled = true
+//            }
+//        }
+//    }
+}
+
 extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let objectCount = (fetchedResultsController?.fetchedObjects?.count)!
-        let rowCount = ( objectCount == 0 ) ? 1 : objectCount
         let sectionCount = tableView.numberOfSections
         return objectCount
     }
@@ -113,7 +147,8 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell", for: indexPath) as! TransactionViewCell
         let transaction = fetchedResultsController?.object(at: indexPath)
-        cell.textLabel?.text = transaction?.description
+        cell.descriptionLabel.text = transaction?.title
+        cell.amountLabel.text = String(describing: (transaction?.amount)!)
         return cell
     
     }
@@ -134,9 +169,7 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-    
-    
-    
+ 
 }
 
 extension WalletViewController: NSFetchedResultsControllerDelegate {
