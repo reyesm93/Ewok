@@ -156,9 +156,24 @@
                                                     <subviews>
                                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbW-Mr-3kG">
                                                             <rect key="frame" x="0.0" y="65" width="375" height="22"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2e-Fy-Edo">
+                                                                    <rect key="frame" x="165" y="0.0" width="42" height="21"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="O2e-Fy-Edo" firstAttribute="leading" secondItem="RbW-Mr-3kG" secondAttribute="leading" constant="165" id="HEo-Kd-saC"/>
+                                                                <constraint firstAttribute="bottom" secondItem="O2e-Fy-Edo" secondAttribute="bottom" id="Mgs-lT-Yct"/>
+                                                                <constraint firstAttribute="height" constant="22" id="khe-r9-3JH"/>
+                                                                <constraint firstAttribute="trailing" secondItem="O2e-Fy-Edo" secondAttribute="trailing" constant="165" id="pX7-E1-5MD"/>
+                                                                <constraint firstItem="O2e-Fy-Edo" firstAttribute="top" secondItem="RbW-Mr-3kG" secondAttribute="top" id="uk8-4O-JoF"/>
+                                                            </constraints>
                                                         </scrollView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oyt-df-Gks">
-                                                            <rect key="frame" x="0.0" y="0.0" width="57" height="57"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oyt-df-Gks" customClass="AddButton" customModule="Ewok" customModuleProvider="target">
+                                                            <rect key="frame" x="8" y="0.0" width="57" height="57"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="57" id="4kf-wY-mcu"/>
                                                                 <constraint firstAttribute="height" constant="57" id="f35-1b-sGC"/>
@@ -166,7 +181,7 @@
                                                             <state key="normal" title="Button"/>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BT1-2k-JYx" userLabel="DescriptionLabel">
-                                                            <rect key="frame" x="65" y="0.0" width="221" height="42"/>
+                                                            <rect key="frame" x="73" y="0.0" width="213" height="42"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="42" id="Dsq-QF-vjB"/>
                                                             </constraints>
@@ -181,7 +196,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HII-uG-Lz1" userLabel="ExtrasLabel">
-                                                            <rect key="frame" x="65" y="46" width="221" height="16"/>
+                                                            <rect key="frame" x="73" y="46" width="213" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -215,11 +230,15 @@
                                                         <constraint firstItem="oyt-df-Gks" firstAttribute="top" secondItem="5kz-82-Brv" secondAttribute="top" id="l5p-Bl-HV8"/>
                                                         <constraint firstItem="f1h-GK-LO2" firstAttribute="top" secondItem="3dy-6S-KVy" secondAttribute="bottom" constant="3" id="lvv-Ll-vuV"/>
                                                         <constraint firstAttribute="trailing" secondItem="3dy-6S-KVy" secondAttribute="trailing" id="pl3-Fd-EpL"/>
-                                                        <constraint firstItem="oyt-df-Gks" firstAttribute="leading" secondItem="5kz-82-Brv" secondAttribute="leading" id="r8W-nb-DhH"/>
+                                                        <constraint firstItem="oyt-df-Gks" firstAttribute="leading" secondItem="5kz-82-Brv" secondAttribute="leading" constant="8" id="r8W-nb-DhH"/>
                                                         <constraint firstItem="f1h-GK-LO2" firstAttribute="leading" secondItem="HII-uG-Lz1" secondAttribute="trailing" constant="33" id="vxf-Ym-7TH"/>
                                                         <constraint firstItem="3dy-6S-KVy" firstAttribute="top" secondItem="5kz-82-Brv" secondAttribute="top" id="xal-m6-U5L"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="amountLabel" destination="3dy-6S-KVy" id="yV3-KF-vFr"/>
+                                                    <outlet property="descriptionLabel" destination="BT1-2k-JYx" id="OkZ-Rk-nyf"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
