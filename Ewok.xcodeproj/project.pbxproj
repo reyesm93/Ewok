@@ -17,6 +17,7 @@
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* ContainerVC.swift */; };
 		DD60A38F2012C3F50019675C /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38E2012C3F50019675C /* MainVC.swift */; };
+		DD6A7EEB20421ACB00B15C3D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6A7EEA20421ACB00B15C3D /* Constants.swift */; };
 		DD7A134F1FF7340A00943E6C /* Wallet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13471FF7340A00943E6C /* Wallet+CoreDataClass.swift */; };
 		DD7A13501FF7340A00943E6C /* Wallet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */; };
 		DD7A13511FF7340A00943E6C /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13491FF7340A00943E6C /* Transaction+CoreDataClass.swift */; };
@@ -77,6 +78,7 @@
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
 		DD60A38E2012C3F50019675C /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		DD6A7EEA20421ACB00B15C3D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DD7A13471FF7340A00943E6C /* Wallet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallet+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallet+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD7A13491FF7340A00943E6C /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				DD8D1AB620375E5E00C52EC9 /* PlaidClient.swift */,
+				DD6A7EEA20421ACB00B15C3D /* Constants.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD6A7EEB20421ACB00B15C3D /* Constants.swift in Sources */,
 				DD7A13521FF7340A00943E6C /* Transaction+CoreDataProperties.swift in Sources */,
 				DD60A38F2012C3F50019675C /* MainVC.swift in Sources */,
 				DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */,

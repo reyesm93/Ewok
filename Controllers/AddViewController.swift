@@ -117,6 +117,19 @@ class AddViewController: UIViewController, UIGestureRecognizerDelegate {
     // AlertView configuration methods
     
     func handleSuccessWithToken(_ publicToken: String, metadata: [String : Any]?) {
+        
+        let path = "/item/public_token/exchange"
+        
+        PlaidClient.sharedInstance.makeRequest(withPath: path, publicToken: publicToken) { (result, error, errorString) in
+            
+            if error != nil {
+                print(errorString)
+            } else {
+                print("RESULT: \(result)")
+            }
+            
+            
+        }
         presentAlertViewWithTitle("Success", message: "token: \(publicToken)\nmetadata: \(metadata ?? [:])")
     }
     
@@ -186,8 +199,8 @@ extension AddViewController : PLKPlaidLinkViewDelegate {
         dismiss(animated: true) {
             // Handle success, e.g. by storing publicToken with your service
             NSLog("Successfully linked account!\npublicToken: \(publicToken)\nmetadata: \(metadata ?? [:])")
-            linkViewController.dismiss(animated: true, completion: nil)
             self.handleSuccessWithToken(publicToken, metadata: metadata)
+            linkViewController.dismiss(animated: true, completion: nil)
         }
     }
     

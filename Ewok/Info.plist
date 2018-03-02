@@ -7,11 +7,15 @@
 		<key>clientName</key>
 		<string>$(PRODUCT_NAME)</string>
 		<key>env</key>
-		<string>development</string>
+		<string>sandbox</string>
 		<key>key</key>
 		<string>f53720fb84bcf61c3ab488096e6859</string>
 		<key>product</key>
-		<string>auth</string>
+		<array>
+			<string>auth</string>
+			<string>transactions</string>
+			<string>balance</string>
+		</array>
 		<key>selectAccount</key>
 		<false/>
 	</dict>
