@@ -64,7 +64,7 @@ class WalletViewController: UIViewController {
         mainScrollView.delegate = self
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         fetchRequest.predicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
     
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as? NSFetchedResultsController<Transaction>
@@ -149,6 +149,7 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         let transaction = fetchedResultsController?.object(at: indexPath)
         cell.descriptionLabel.text = transaction?.title
         cell.amountLabel.text = String(describing: (transaction?.amount)!)
+        cell.dateLabel.text = makeDate(fromTransaction: transaction!)
         return cell
     
     }
@@ -168,6 +169,19 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         deleteAction.title = "Delete"
         
         return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
+    func makeDate(fromTransaction: Transaction) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")
+        
+        let date = dateFormatter.string(from: fromTransaction.createdAt! as Date).uppercased()
+        
+        return date
+        
     }
  
 }

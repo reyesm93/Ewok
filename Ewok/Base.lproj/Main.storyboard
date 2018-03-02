@@ -195,7 +195,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HII-uG-Lz1" userLabel="ExtrasLabel">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HII-uG-Lz1" userLabel="DateLabel">
                                                             <rect key="frame" x="73" y="46" width="213" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -237,6 +237,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="amountLabel" destination="3dy-6S-KVy" id="yV3-KF-vFr"/>
+                                                    <outlet property="dateLabel" destination="HII-uG-Lz1" id="fUv-Gt-gSD"/>
                                                     <outlet property="descriptionLabel" destination="BT1-2k-JYx" id="OkZ-Rk-nyf"/>
                                                 </connections>
                                             </tableViewCell>
