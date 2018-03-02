@@ -201,7 +201,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1h-GK-LO2" userLabel="RemainderLabel">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1h-GK-LO2" userLabel="newBalanceLabel">
                                                             <rect key="frame" x="319" y="45" width="54" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="54" id="ALO-x7-SLA"/>
@@ -239,6 +239,7 @@
                                                     <outlet property="amountLabel" destination="3dy-6S-KVy" id="yV3-KF-vFr"/>
                                                     <outlet property="dateLabel" destination="HII-uG-Lz1" id="fUv-Gt-gSD"/>
                                                     <outlet property="descriptionLabel" destination="BT1-2k-JYx" id="OkZ-Rk-nyf"/>
+                                                    <outlet property="newBalanceLabel" destination="f1h-GK-LO2" id="Yk3-nB-64l"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
