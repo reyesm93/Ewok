@@ -17,9 +17,10 @@ extension Transaction {
         return NSFetchRequest<Transaction>(entityName: "Transaction")
     }
 
-    @NSManaged public var amount: Float
+    @NSManaged public var amount: Double
     @NSManaged public var createdAt: NSDate?
     @NSManaged public var income: Bool
+    @NSManaged public var newBalance: Double
     @NSManaged public var scheduled: Bool
     @NSManaged public var title: String?
     @NSManaged public var updatedAt: NSDate?

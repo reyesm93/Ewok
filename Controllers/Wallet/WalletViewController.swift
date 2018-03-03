@@ -18,6 +18,7 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var customBalanceView: CustomBalanceView!
     
     let stack = CoreDataStack.sharedInstance
+    var initialBalance: Double!
     var wallet : Wallet?
     var scrollPosition: CGFloat?
     var currentBalance: Float!
@@ -28,8 +29,9 @@ class WalletViewController: UIViewController {
     
     @IBAction func addTransaction(_ sender: Any) {
         
-        let controller = storyboard?.instantiateViewController(withIdentifier: "AddTransactionViewController") as! AddTransactionViewController
+        let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionViewController
         controller.delegate = self
+        controller.isNewTransaction = true
         self.present(controller, animated: true, completion: nil)
         
     }
@@ -96,8 +98,8 @@ class WalletViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addTransactionSegue" {
-            let destination = segue.destination as! AddTransactionViewController
+        if segue.identifier == "transactionSegue" {
+            let destination = segue.destination as! TransactionViewController
         }
     }
     
@@ -147,11 +149,25 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell", for: indexPath) as! TransactionViewCell
         let transaction = fetchedResultsController?.object(at: indexPath)
+        
+        
         cell.descriptionLabel.text = transaction?.title
         cell.amountLabel.text = String(describing: (transaction?.amount)!)
         cell.dateLabel.text = makeDate(fromTransaction: transaction!)
         return cell
     
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let transaction = fetchedResultsController?.object(at: indexPath)
+        
+        let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionViewController
+        controller.delegate = self
+        controller.isNewTransaction = false
+        controller.transaction = transaction
+        self.present(controller, animated: true, completion: nil)
+
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -230,10 +246,12 @@ extension WalletViewController: NSFetchedResultsControllerDelegate {
 
 extension WalletViewController : AddViewControllerDelegate {
     
-    func addVC(controller: UIViewController, didCreateObject: NSManagedObject) {
+    func addVC(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
         stack.context.performAndWait {
-            let transaction = didCreateObject as! Transaction
-            transaction.wallet = self.wallet
+            let transaction = saveObject as! Transaction
+            if isNew {
+                transaction.wallet = self.wallet
+            }
             stack.save()
         }
     }

@@ -9,13 +9,15 @@
 import Foundation
 import UIKit
 
-class AddTransactionViewController: UIViewController {
+class TransactionViewController: UIViewController {
     
+    var transaction: Transaction?
     var isIncome: Bool! = false
     let stack = CoreDataStack.sharedInstance
     var transactionDate: NSDate?
-    var amount: Float?
+    var amount: Double?
     var delegate: AddViewControllerDelegate?
+    var isNewTransaction: Bool?
     
     
 
@@ -32,12 +34,11 @@ class AddTransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        transactionDate = NSDate()
-        
         descriptionTextField.delegate = self
         amountTextField.delegate = self
-        descriptionTextField.returnKeyType = UIReturnKeyType.done
-        amountTextField.returnKeyType = UIReturnKeyType.done
+        
+        setUpView()
+        setUpTextFields()
     
         datePicker.datePickerMode = UIDatePickerMode.date
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControlEvents.valueChanged)
@@ -48,22 +49,34 @@ class AddTransactionViewController: UIViewController {
         
     }
 
+    @IBAction func cancelPressed(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
     
-    @IBAction func addTransaction(_ sender: Any) {
+    @IBAction func save(_ sender: Any) {
         
         resignIfFirstResponder(amountTextField)
         resignIfFirstResponder(descriptionTextField)
         
-//        stack.context.performAndWait {
-//            let transaction = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome, createdAt: transactionDate! , context: stack.context)
-//            transaction.wallet = wallet
-//            stack.save(
-//        }
-        let transaction = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome, createdAt: transactionDate! , context: stack.context)
-        delegate?.addVC(controller: self, didCreateObject: transaction)
+        if isNewTransaction! {
+            
+            let newTransaction = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome, createdAt: transactionDate! , context: stack.context)
+            delegate?.addVC(controller: self, saveObject: newTransaction, isNew: true)
+            
+            
+        } else {
+            
+            transaction?.createdAt = transactionDate
+            transaction?.amount = amount!
+            transaction?.title = descriptionTextField.text
+            transaction?.income = isIncome
+            delegate?.addVC(controller: self, saveObject: transaction!, isNew: false)
+            
+        }
+        
         let parentVC = self.parent as? WalletViewController
         parentVC?.transactionTableView.dataSource = parentVC
-        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -78,18 +91,38 @@ class AddTransactionViewController: UIViewController {
         resignIfFirstResponder(amountTextField)
     }
     
+    func setUpView() {
+        
+        if isNewTransaction! {
+            transactionDate = NSDate()
+            datePicker.date = transactionDate as! Date
+        } else {
+            transactionDate = transaction!.createdAt
+            datePicker.date = transactionDate as! Date
+            descriptionTextField.text = transaction!.title
+            amount = transaction!.amount
+            amountTextField.text = "\(amount!)"
+            isIncome = transaction!.income
+        }
+        
+    }
+    
+    func setUpTextFields() {
+        descriptionTextField.returnKeyType = UIReturnKeyType.done
+        amountTextField.returnKeyType = UIReturnKeyType.done
+    }
+    
     
 }
 
- extension AddTransactionViewController : UITextFieldDelegate {
+ extension TransactionViewController : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if textField == amountTextField {
             let numberFormatter = NumberFormatter()
             numberFormatter.numberStyle = .decimal
-            amount = (amountTextField.text! as NSString).floatValue
-            
+            amount = (amountTextField.text! as NSString).doubleValue
         }
     }
     

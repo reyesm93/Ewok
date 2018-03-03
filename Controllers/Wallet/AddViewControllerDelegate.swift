@@ -11,6 +11,6 @@ import CoreData
 import UIKit
 
 protocol AddViewControllerDelegate: class {
-    func addVC(controller : UIViewController, didCreateObject: NSManagedObject)
+    func addVC(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool)
 }
 

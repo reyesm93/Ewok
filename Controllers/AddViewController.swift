@@ -79,7 +79,7 @@ class AddViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let wallet = Wallet(walletName: walletName, balance: balance, createdAt: NSDate(), context: self.stack.context)
         
-        delegate?.addVC(controller: self, didCreateObject: wallet)
+        delegate?.addVC(controller: self, saveObject: wallet, isNew: true)
         self.dismiss(animated: true, completion: nil)
     }
 

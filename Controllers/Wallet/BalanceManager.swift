@@ -8,8 +8,10 @@
 
 import Foundation
 
-class BalanceManager : NSObject {
+extension WalletViewController {
     
-    
+    func updateBalances(newBalance: Double, fromDate: NSDate) {
+        
+    }
     
 }

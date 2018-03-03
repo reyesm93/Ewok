@@ -38,7 +38,7 @@
 		DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */; };
 		DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */; };
 		DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95EF592022AC4E00C788D1 /* AddButton.swift */; };
-		DDB1F6EF2008223200C26E40 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F6EE2008223200C26E40 /* AddTransactionViewController.swift */; };
+		DDB1F6EF2008223200C26E40 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F6EE2008223200C26E40 /* TransactionViewController.swift */; };
 		DDC3F1C92038D89900EFF9FE /* AddViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC3F1C82038D89900EFF9FE /* AddViewControllerDelegate.swift */; };
 		DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */; };
 		DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */; };
@@ -74,6 +74,7 @@
 		DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceManager.swift; sourceTree = "<group>"; };
 		DD213500204A13D30058AD08 /* Ewok 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 6.xcdatamodel"; sourceTree = "<group>"; };
+		DD213503204A1E420058AD08 /* Ewok 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 6.xcdatamodel"; sourceTree = "<group>"; };
 		DD2B9A652013C81B001E3AE1 /* Ewok 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 5.xcdatamodel"; sourceTree = "<group>"; };
 		DD2D0C7D2023BA8300077653 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		DD2D0C7F2023C44700077653 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +110,7 @@
 		DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBalanceView.swift; sourceTree = "<group>"; };
 		DD95EF592022AC4E00C788D1 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
-		DDB1F6EE2008223200C26E40 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		DDB1F6EE2008223200C26E40 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		DDC3F1C82038D89900EFF9FE /* AddViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewControllerDelegate.swift; sourceTree = "<group>"; };
 		DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -254,7 +255,7 @@
 			children = (
 				DD60A38E2012C3F50019675C /* MainVC.swift */,
 				DD60A38A2012B4380019675C /* ContainerVC.swift */,
-				DDB1F6EE2008223200C26E40 /* AddTransactionViewController.swift */,
+				DDB1F6EE2008223200C26E40 /* TransactionViewController.swift */,
 				DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */,
 				DD34C760201D20240088CEBB /* SideMenuVC.swift */,
 				DD2D0C7F2023C44700077653 /* AddViewController.swift */,
@@ -643,7 +644,7 @@
 				DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */,
 				DD7A134F1FF7340A00943E6C /* Wallet+CoreDataClass.swift in Sources */,
 				DD7A13501FF7340A00943E6C /* Wallet+CoreDataProperties.swift in Sources */,
-				DDB1F6EF2008223200C26E40 /* AddTransactionViewController.swift in Sources */,
+				DDB1F6EF2008223200C26E40 /* TransactionViewController.swift in Sources */,
 				DD7A13511FF7340A00943E6C /* Transaction+CoreDataClass.swift in Sources */,
 				DD2134FD2049FC6B0058AD08 /* BalanceManager.swift in Sources */,
 				DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */,
@@ -967,6 +968,7 @@
 		DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DD213503204A1E420058AD08 /* Ewok 6.xcdatamodel */,
 				DD213500204A13D30058AD08 /* Ewok 6.xcdatamodel */,
 				DD2B9A652013C81B001E3AE1 /* Ewok 5.xcdatamodel */,
 				DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */,

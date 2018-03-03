@@ -13,7 +13,7 @@ import CoreData
 @objc(Transaction)
 public class Transaction: NSManagedObject {
     
-    convenience init(title: String, amount: Float, income: Bool, createdAt: NSDate, context: NSManagedObjectContext) {
+    convenience init(title: String, amount: Double, income: Bool, createdAt: NSDate, context: NSManagedObjectContext) {
         if let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: CoreDataStack.sharedInstance.context) {
             self.init(entity: entity, insertInto: CoreDataStack.sharedInstance.context)
             self.title = title

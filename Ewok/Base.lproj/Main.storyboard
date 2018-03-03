@@ -333,19 +333,19 @@
             </objects>
             <point key="canvasLocation" x="120.8" y="21.428571428571431"/>
         </scene>
-        <!--Add Transaction View Controller-->
+        <!--Transaction View Controller-->
         <scene sceneID="gZY-Y8-4aC">
             <objects>
-                <viewController storyboardIdentifier="AddTransactionViewController" id="TCL-GD-utH" customClass="AddTransactionViewController" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TransactionViewController" id="TCL-GD-utH" customClass="TransactionViewController" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q4l-2A-NfD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="45t-Am-cDQ" userLabel="Vertical-Stack View">
-                                <rect key="frame" x="0.0" y="100" width="375" height="250"/>
+                                <rect key="frame" x="30" y="100" width="315" height="250"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="saR-wK-A3h" userLabel="DescriptionStackView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="48.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="48.333333333333336"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4p-cH-Yzf">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="48.333333333333336"/>
@@ -356,8 +356,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lub-vD-WmN">
-                                                <rect key="frame" x="100" y="0.0" width="275" height="48.333333333333336"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Transaction Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lub-vD-WmN">
+                                                <rect key="frame" x="100" y="0.0" width="215" height="48.333333333333336"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -365,7 +365,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="zNf-4F-kVx" userLabel="AmountStackView">
-                                        <rect key="frame" x="0.0" y="67.333333333333343" width="375" height="48.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="67.333333333333343" width="315" height="48.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cg-kg-fU5">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="48.333333333333336"/>
@@ -376,8 +376,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4C-PL-b62">
-                                                <rect key="frame" x="100" y="0.0" width="275" height="48.333333333333336"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Transaction Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4C-PL-b62">
+                                                <rect key="frame" x="100" y="0.0" width="215" height="48.333333333333336"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
@@ -385,7 +385,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hqo-aJ-mMJ" userLabel="DateStackView">
-                                        <rect key="frame" x="0.0" y="134.66666666666666" width="375" height="48"/>
+                                        <rect key="frame" x="0.0" y="134.66666666666666" width="315" height="48"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzq-w6-fPG">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="48"/>
@@ -397,7 +397,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="798-BR-OXv">
-                                                <rect key="frame" x="100" y="0.0" width="275" height="48"/>
+                                                <rect key="frame" x="100" y="0.0" width="215" height="48"/>
                                                 <date key="date" timeIntervalSinceReferenceDate="537935854.04698896">
                                                     <!--2018-01-18 02:37:34 +0000-->
                                                 </date>
@@ -405,16 +405,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xat-lD-nWZ">
-                                        <rect key="frame" x="0.0" y="201.66666666666669" width="375" height="48.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="201.66666666666669" width="315" height="48.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Income" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5g-nI-E5e">
-                                                <rect key="frame" x="0.0" y="0.0" width="326" height="48.333333333333336"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="266" height="48.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53I-0e-JWt">
-                                                <rect key="frame" x="326" y="0.0" width="51" height="48.333333333333336"/>
+                                                <rect key="frame" x="266" y="0.0" width="51" height="48.333333333333336"/>
                                             </switch>
                                         </subviews>
                                     </stackView>
@@ -422,26 +422,35 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="TPl-Aa-SIX"/>
                                     <constraint firstItem="zNf-4F-kVx" firstAttribute="width" secondItem="hqo-aJ-mMJ" secondAttribute="width" id="bBw-0O-j5O"/>
+                                    <constraint firstItem="saR-wK-A3h" firstAttribute="width" secondItem="45t-Am-cDQ" secondAttribute="width" id="kQp-e7-vyF"/>
                                     <constraint firstItem="xat-lD-nWZ" firstAttribute="width" secondItem="45t-Am-cDQ" secondAttribute="width" id="qvv-sQ-HwO"/>
                                     <constraint firstItem="saR-wK-A3h" firstAttribute="width" secondItem="zNf-4F-kVx" secondAttribute="width" id="yeQ-6Z-BW8"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4P4-Ao-aGE">
-                                <rect key="frame" x="169" y="430" width="37" height="30"/>
-                                <state key="normal" title="Done"/>
+                                <rect key="frame" x="170.66666666666666" y="430" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
                                 <connections>
-                                    <action selector="addTransaction:" destination="TCL-GD-utH" eventType="touchUpInside" id="yEb-fJ-QS6"/>
+                                    <action selector="save:" destination="TCL-GD-utH" eventType="touchUpInside" id="ayd-Kf-81H"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asM-N0-3PH">
+                                <rect key="frame" x="311" y="44" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="TCL-GD-utH" eventType="touchUpInside" id="0eU-2T-4R7"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="45t-Am-cDQ" firstAttribute="leading" secondItem="jYR-Nw-bcP" secondAttribute="leading" id="0ib-7p-dYE"/>
+                            <constraint firstItem="45t-Am-cDQ" firstAttribute="leading" secondItem="jYR-Nw-bcP" secondAttribute="leading" constant="30" id="0ib-7p-dYE"/>
+                            <constraint firstItem="jYR-Nw-bcP" firstAttribute="trailing" secondItem="asM-N0-3PH" secondAttribute="trailing" constant="16" id="3yv-0y-9o0"/>
                             <constraint firstItem="4P4-Ao-aGE" firstAttribute="top" secondItem="45t-Am-cDQ" secondAttribute="bottom" constant="80" id="AbG-A8-Hh1"/>
                             <constraint firstItem="45t-Am-cDQ" firstAttribute="top" secondItem="Q4l-2A-NfD" secondAttribute="top" constant="100" id="CHq-zk-cef"/>
-                            <constraint firstItem="jYR-Nw-bcP" firstAttribute="trailing" secondItem="45t-Am-cDQ" secondAttribute="trailing" id="Cbw-ep-W2L"/>
                             <constraint firstItem="4P4-Ao-aGE" firstAttribute="centerX" secondItem="jYR-Nw-bcP" secondAttribute="centerX" id="XO8-wv-gDd"/>
-                            <constraint firstItem="saR-wK-A3h" firstAttribute="width" secondItem="jYR-Nw-bcP" secondAttribute="width" id="ozS-NB-Upl"/>
+                            <constraint firstItem="jYR-Nw-bcP" firstAttribute="trailing" secondItem="45t-Am-cDQ" secondAttribute="trailing" constant="30" id="oNt-bS-Fde"/>
+                            <constraint firstItem="asM-N0-3PH" firstAttribute="top" secondItem="jYR-Nw-bcP" secondAttribute="top" id="quP-WA-HzH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jYR-Nw-bcP"/>
                         <connections>

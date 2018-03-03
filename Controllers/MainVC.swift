@@ -275,13 +275,13 @@ extension MainVC: NSFetchedResultsControllerDelegate {
 
 extension MainVC: AddViewControllerDelegate {
     
-    func addVC(controller: UIViewController, didCreateObject: NSManagedObject) {
+    func addVC(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
         self.stack.context.performAndWait {
-            let _ = didCreateObject
+            let _ = saveObject
             self.stack.save()
         }
         
-        self.performSegue(withIdentifier: "walletSegue", sender: didCreateObject)
+        self.performSegue(withIdentifier: "walletSegue", sender: saveObject)
     }
 
 }
