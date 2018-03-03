@@ -33,20 +33,8 @@ class TransactionViewController: UIViewController {
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var incomeSwitch: UISwitch! {
-        
-        didSet {
-            isIncome = incomeSwitch.isOn ? true : false
-            
-            if let transaction = transaction {
-                if isIncome != transaction.income {
-                    updatedValue = true
-                }
-            }
-        }
-    }
+    @IBOutlet weak var incomeSwitch: UISwitch!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,6 +54,8 @@ class TransactionViewController: UIViewController {
     
         datePicker.datePickerMode = UIDatePickerMode.date
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControlEvents.valueChanged)
+        
+        incomeSwitch.addTarget(self, action: #selector(switchValueChanged), for: UIControlEvents.valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,7 +107,22 @@ class TransactionViewController: UIViewController {
             updatedValue = true
             }
         }
-
+    }
+    
+    @objc func switchValueChanged(_sender: UISwitch) {
+        
+        isIncome = incomeSwitch.isOn
+        
+        if let transaction = transaction {
+            if isIncome != transaction.income {
+                updatedValue = true
+            } else {
+                saveButton.isEnabled = (transaction.createdAt != transactionDate) || (transaction.title != transactionTitle) || (transaction.amount != amount)
+            }
+        } else {
+            saveButton.isEnabled = (amount != nil) && (transactionTitle != nil)
+        }
+        
     }
 
     @IBAction func userDidTapView(_ sender: Any) {
