@@ -13,7 +13,7 @@ import CoreData
 @objc(Wallet)
 public class Wallet: NSManagedObject {
     
-    convenience init(walletName: String, balance: Float, createdAt: NSDate, context: NSManagedObjectContext) {
+    convenience init(walletName: String, balance: Double, createdAt: NSDate, context: NSManagedObjectContext) {
         if let entity = NSEntityDescription.entity(forEntityName: "Wallet", in: CoreDataStack.sharedInstance.context) {
             self.init(entity: entity, insertInto: CoreDataStack.sharedInstance.context)
             self.walletName = walletName

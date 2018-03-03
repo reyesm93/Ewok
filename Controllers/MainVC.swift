@@ -273,9 +273,9 @@ extension MainVC: NSFetchedResultsControllerDelegate {
     }
 }
 
-extension MainVC: AddViewControllerDelegate {
+extension MainVC: UpdateModelDelegate {
     
-    func addVC(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
+    func updateModel(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool, indexPath: IndexPath?) {
         self.stack.context.performAndWait {
             let _ = saveObject
             self.stack.save()

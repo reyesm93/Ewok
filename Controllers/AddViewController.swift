@@ -14,12 +14,10 @@ import LinkKit
 class AddViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var walletNameTF: UITextField!
-    @IBOutlet weak var balanceTF: UITextField!
     @IBOutlet weak var alertView: UIView!
     let stack = CoreDataStack.sharedInstance
     var walletName: String!
-    var balance: Float!
-    var delegate: AddViewControllerDelegate?
+    var delegate: UpdateModelDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,7 +34,6 @@ class AddViewController: UIViewController, UIGestureRecognizerDelegate {
         walletNameTF.becomeFirstResponder()
         
         configureTextField(walletNameTF)
-        configureTextField(balanceTF)
     }
     
     @objc func didReceiveNotification(_ notification: NSNotification) {
@@ -70,16 +67,11 @@ class AddViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     @IBAction func create(_ sender: Any) {
         
-        resignIfFirstResponder(balanceTF)
         resignIfFirstResponder(walletNameTF)
         
-        if balanceTF.text == "" {
-            self.balance = 0.0
-        }
+        let wallet = Wallet(walletName: walletName, balance: 0.0, createdAt: NSDate(), context: self.stack.context)
         
-        let wallet = Wallet(walletName: walletName, balance: balance, createdAt: NSDate(), context: self.stack.context)
-        
-        delegate?.addVC(controller: self, saveObject: wallet, isNew: true)
+        delegate?.updateModel(controller: self, saveObject: wallet, isNew: true, indexPath: nil)
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -163,13 +155,6 @@ extension AddViewController : UITextFieldDelegate {
             }
             
             walletName = name
-        } else if textField == balanceTF {
-            
-            if let number = Float(balanceTF.text!){
-                self.balance = number
-            } else {
-                self.balance = 0.0
-            }
         }
     }
     

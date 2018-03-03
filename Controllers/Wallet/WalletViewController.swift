@@ -18,14 +18,8 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var customBalanceView: CustomBalanceView!
     
     let stack = CoreDataStack.sharedInstance
-    var initialBalance: Double!
     var wallet : Wallet?
     var scrollPosition: CGFloat?
-    var currentBalance: Float!
-//        didSet {
-//            balanceLabel.text = String(currentBalance)
-//        }
-//    }
     
     @IBAction func addTransaction(_ sender: Any) {
         
@@ -74,6 +68,8 @@ class WalletViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        mainBalance.text = "\((wallet?.balance)!)"
         
         if executeSearch().isEmpty {
             mainScrollView.isHidden = true
@@ -166,6 +162,7 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         controller.delegate = self
         controller.isNewTransaction = false
         controller.transaction = transaction
+        controller.itemIndex = indexPath
         self.present(controller, animated: true, completion: nil)
 
     }
@@ -226,6 +223,8 @@ extension WalletViewController: NSFetchedResultsControllerDelegate {
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
+        let count = fetchedResultsController?.fetchedObjects?.count
+        
         switch(type) {
         case .insert:
             transactionTableView.insertRows(at: [newIndexPath!], with: .fade)
@@ -244,13 +243,17 @@ extension WalletViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
-extension WalletViewController : AddViewControllerDelegate {
+extension WalletViewController : UpdateModelDelegate {
     
-    func addVC(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
+    func updateModel(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool, indexPath: IndexPath? = nil) {
         stack.context.performAndWait {
             let transaction = saveObject as! Transaction
             if isNew {
                 transaction.wallet = self.wallet
+            }
+            
+            if let index = indexPath {
+                updateBalances(fromIndex: index)
             }
             stack.save()
         }

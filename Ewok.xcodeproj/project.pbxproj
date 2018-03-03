@@ -39,7 +39,7 @@
 		DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */; };
 		DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95EF592022AC4E00C788D1 /* AddButton.swift */; };
 		DDB1F6EF2008223200C26E40 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F6EE2008223200C26E40 /* TransactionViewController.swift */; };
-		DDC3F1C92038D89900EFF9FE /* AddViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC3F1C82038D89900EFF9FE /* AddViewControllerDelegate.swift */; };
+		DDC3F1C92038D89900EFF9FE /* UpdateModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC3F1C82038D89900EFF9FE /* UpdateModelDelegate.swift */; };
 		DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */; };
 		DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */; };
 /* End PBXBuildFile section */
@@ -111,7 +111,7 @@
 		DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBalanceView.swift; sourceTree = "<group>"; };
 		DD95EF592022AC4E00C788D1 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		DDB1F6EE2008223200C26E40 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
-		DDC3F1C82038D89900EFF9FE /* AddViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewControllerDelegate.swift; sourceTree = "<group>"; };
+		DDC3F1C82038D89900EFF9FE /* UpdateModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateModelDelegate.swift; sourceTree = "<group>"; };
 		DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 4.xcdatamodel"; sourceTree = "<group>"; };
@@ -159,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				DD843E941FF5D8D700EE3C0D /* WalletViewController.swift */,
-				DDC3F1C82038D89900EFF9FE /* AddViewControllerDelegate.swift */,
 				DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */,
 				DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */,
 			);
@@ -260,6 +259,7 @@
 				DD34C760201D20240088CEBB /* SideMenuVC.swift */,
 				DD2D0C7F2023C44700077653 /* AddViewController.swift */,
 				DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */,
+				DDC3F1C82038D89900EFF9FE /* UpdateModelDelegate.swift */,
 				DD2134FA2049FB570058AD08 /* Wallet */,
 			);
 			path = Controllers;
@@ -640,7 +640,7 @@
 				DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */,
 				DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */,
 				DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */,
-				DDC3F1C92038D89900EFF9FE /* AddViewControllerDelegate.swift in Sources */,
+				DDC3F1C92038D89900EFF9FE /* UpdateModelDelegate.swift in Sources */,
 				DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */,
 				DD7A134F1FF7340A00943E6C /* Wallet+CoreDataClass.swift in Sources */,
 				DD7A13501FF7340A00943E6C /* Wallet+CoreDataProperties.swift in Sources */,

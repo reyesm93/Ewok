@@ -12,12 +12,14 @@ import UIKit
 class TransactionViewController: UIViewController {
     
     var transaction: Transaction?
+    var itemIndex: IndexPath?
     var isIncome: Bool! = false
     let stack = CoreDataStack.sharedInstance
     var transactionDate: NSDate?
     var amount: Double?
-    var delegate: AddViewControllerDelegate?
+    var delegate: UpdateModelDelegate?
     var isNewTransaction: Bool?
+    var updatedValue: Bool?
     
     
 
@@ -34,11 +36,10 @@ class TransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        descriptionTextField.delegate = self
-        amountTextField.delegate = self
+        configureTextField(descriptionTextField)
+        configureTextField(amountTextField)
         
         setUpView()
-        setUpTextFields()
     
         datePicker.datePickerMode = UIDatePickerMode.date
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControlEvents.valueChanged)
@@ -62,7 +63,7 @@ class TransactionViewController: UIViewController {
         if isNewTransaction! {
             
             let newTransaction = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome, createdAt: transactionDate! , context: stack.context)
-            delegate?.addVC(controller: self, saveObject: newTransaction, isNew: true)
+            delegate?.updateModel(controller: self, saveObject: newTransaction, isNew: true, indexPath: nil)
             
             
         } else {
@@ -71,7 +72,7 @@ class TransactionViewController: UIViewController {
             transaction?.amount = amount!
             transaction?.title = descriptionTextField.text
             transaction?.income = isIncome
-            delegate?.addVC(controller: self, saveObject: transaction!, isNew: false)
+            delegate?.updateModel(controller: self, saveObject: transaction!, isNew: false, indexPath: itemIndex)
             
         }
         
@@ -107,9 +108,11 @@ class TransactionViewController: UIViewController {
         
     }
     
-    func setUpTextFields() {
-        descriptionTextField.returnKeyType = UIReturnKeyType.done
-        amountTextField.returnKeyType = UIReturnKeyType.done
+    func configureTextField(_ textField: UITextField) {
+        
+        textField.delegate = self
+        textField.returnKeyType = UIReturnKeyType.done
+        
     }
     
     
@@ -120,8 +123,8 @@ class TransactionViewController: UIViewController {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if textField == amountTextField {
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .decimal
+//            let numberFormatter = NumberFormatter()
+//            numberFormatter.numberStyle = .decimal
             amount = (amountTextField.text! as NSString).doubleValue
         }
     }

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-protocol AddViewControllerDelegate: class {
-    func addVC(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool)
+protocol UpdateModelDelegate: class {
+    func updateModel(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool, indexPath: IndexPath?)
 }
 
