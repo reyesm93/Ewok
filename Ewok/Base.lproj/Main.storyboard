@@ -467,6 +467,7 @@
                         <outlet property="datePicker" destination="798-BR-OXv" id="eLa-RX-sld"/>
                         <outlet property="descriptionTextField" destination="Lub-vD-WmN" id="Gj1-zw-ZZ4"/>
                         <outlet property="incomeSwitch" destination="53I-0e-JWt" id="JhU-bf-8Bg"/>
+                        <outlet property="saveButton" destination="4P4-Ao-aGE" id="Toq-Za-6hh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vCu-jv-gZt" userLabel="First Responder" sceneMemberID="firstResponder"/>

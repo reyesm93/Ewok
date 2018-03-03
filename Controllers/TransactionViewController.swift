@@ -13,28 +13,51 @@ class TransactionViewController: UIViewController {
     
     var transaction: Transaction?
     var itemIndex: IndexPath?
-    var isIncome: Bool! = false
+    var isIncome: Bool?
     let stack = CoreDataStack.sharedInstance
+    var transactionTitle: String?
     var transactionDate: NSDate?
     var amount: Double?
     var delegate: UpdateModelDelegate?
-    var isNewTransaction: Bool?
-    var updatedValue: Bool?
-    
+    var newValues = [String : Any]()
+    var updatedValue = false {
+        didSet {
+            if updatedValue {
+                self.saveButton.isEnabled = true
+            }
+        }
+    }
     
 
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var incomeSwitch: UISwitch! {
         
         didSet {
             isIncome = incomeSwitch.isOn ? true : false
+            
+            if let transaction = transaction {
+                if isIncome != transaction.income {
+                    updatedValue = true
+                }
+            }
         }
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let transaction = transaction {
+            transactionTitle = transaction.title
+            transactionDate = transaction.createdAt
+            amount = transaction.amount
+            isIncome = transaction.income
+        }
+        
+        saveButton.isEnabled = false
         
         configureTextField(descriptionTextField)
         configureTextField(amountTextField)
@@ -60,19 +83,22 @@ class TransactionViewController: UIViewController {
         resignIfFirstResponder(amountTextField)
         resignIfFirstResponder(descriptionTextField)
         
-        if isNewTransaction! {
+        newValues["title"] = transactionTitle
+        newValues["amount"] = amount!
+        newValues["createdAt"] = transactionDate
+        
+        if updatedValue {
             
-            let newTransaction = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome, createdAt: transactionDate! , context: stack.context)
-            delegate?.updateModel(controller: self, saveObject: newTransaction, isNew: true, indexPath: nil)
-            
+            transaction!.createdAt = newValues["createdAt"] as? NSDate
+            transaction!.amount = newValues["amount"] as! Double
+            transaction!.title = newValues["title"] as? String
+            transaction!.income = isIncome!
+            delegate?.updateModel(controller: self, saveObject: transaction!, isNew: false, indexPath: itemIndex)
             
         } else {
             
-            transaction?.createdAt = transactionDate
-            transaction?.amount = amount!
-            transaction?.title = descriptionTextField.text
-            transaction?.income = isIncome
-            delegate?.updateModel(controller: self, saveObject: transaction!, isNew: false, indexPath: itemIndex)
+            let newTransaction = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome!, createdAt: transactionDate! , context: stack.context)
+            delegate?.updateModel(controller: self, saveObject: newTransaction, isNew: true, indexPath: nil)
             
         }
         
@@ -85,8 +111,15 @@ class TransactionViewController: UIViewController {
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
         
         transactionDate = sender.date as NSDate
+        
+        if let transaction = transaction {
+            if transactionDate != transaction.createdAt {
+            updatedValue = true
+            }
+        }
+
     }
-    
+
     @IBAction func userDidTapView(_ sender: Any) {
         resignIfFirstResponder(descriptionTextField)
         resignIfFirstResponder(amountTextField)
@@ -94,16 +127,16 @@ class TransactionViewController: UIViewController {
     
     func setUpView() {
         
-        if isNewTransaction! {
+        if let transaction = transaction {
+            
+            datePicker.date = transactionDate as! Date
+            descriptionTextField.text = transaction.title
+            amountTextField.text = "\(amount!)"
+            
+        } else {
             transactionDate = NSDate()
             datePicker.date = transactionDate as! Date
-        } else {
-            transactionDate = transaction!.createdAt
-            datePicker.date = transactionDate as! Date
-            descriptionTextField.text = transaction!.title
-            amount = transaction!.amount
-            amountTextField.text = "\(amount!)"
-            isIncome = transaction!.income
+            incomeSwitch.isOn = false
         }
         
     }
@@ -114,18 +147,29 @@ class TransactionViewController: UIViewController {
         textField.returnKeyType = UIReturnKeyType.done
         
     }
-    
-    
 }
 
- extension TransactionViewController : UITextFieldDelegate {
+extension TransactionViewController : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        if textField == amountTextField {
-//            let numberFormatter = NumberFormatter()
-//            numberFormatter.numberStyle = .decimal
+        switch textField {
+        case amountTextField:
             amount = (amountTextField.text! as NSString).doubleValue
+        case descriptionTextField:
+            transactionTitle = descriptionTextField.text!
+        default:
+            break
+        }
+        
+        if let transaction = transaction {
+            if (amount != transaction.amount) || (transactionTitle != transaction.title) {
+                updatedValue = true
+            } else {
+                saveButton.isEnabled = (transaction.createdAt != transactionDate) || (transaction.income != isIncome)
+            }
+        } else {
+            saveButton.isEnabled = (amount != nil) && (transactionTitle != nil)
         }
     }
     
@@ -139,5 +183,5 @@ class TransactionViewController: UIViewController {
             textField.resignFirstResponder()
         }
     }
-    
- }
+
+}

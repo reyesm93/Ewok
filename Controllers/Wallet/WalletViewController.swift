@@ -20,16 +20,6 @@ class WalletViewController: UIViewController {
     let stack = CoreDataStack.sharedInstance
     var wallet : Wallet?
     var scrollPosition: CGFloat?
-    
-    @IBAction func addTransaction(_ sender: Any) {
-        
-        let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionViewController
-        controller.delegate = self
-        controller.isNewTransaction = true
-        self.present(controller, animated: true, completion: nil)
-        
-    }
-    
     var fetchedResultsController : NSFetchedResultsController<Transaction>? {
         didSet {
             // Whenever the frc changes, we execute the search and
@@ -45,12 +35,19 @@ class WalletViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
+    
     init(fetchedResultsController fc : NSFetchedResultsController<Transaction>) {
         fetchedResultsController = fc
         super.init(nibName: nil, bundle: nil)
     }
     
+    @IBAction func addTransaction(_ sender: Any) {
+        
+        let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionViewController
+        controller.delegate = self
+        self.present(controller, animated: true, completion: nil)
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -160,7 +157,6 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         
         let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionViewController
         controller.delegate = self
-        controller.isNewTransaction = false
         controller.transaction = transaction
         controller.itemIndex = indexPath
         self.present(controller, animated: true, completion: nil)
