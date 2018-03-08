@@ -147,6 +147,7 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         cell.descriptionLabel.text = transaction?.title
         cell.amountLabel.text = String(describing: (transaction?.amount)!)
         cell.dateLabel.text = makeDate(fromTransaction: transaction!)
+        cell.newBalanceLabel.text = String(describing: (transaction?.newBalance)!)
         return cell
     
     }
@@ -226,11 +227,20 @@ extension WalletViewController: NSFetchedResultsControllerDelegate {
             transactionTableView.insertRows(at: [newIndexPath!], with: .fade)
         case .delete:
             transactionTableView.deleteRows(at: [indexPath!], with: .fade)
+            
         case .update:
             transactionTableView.reloadRows(at: [indexPath!], with: .fade)
         case .move:
             transactionTableView.deleteRows(at: [indexPath!], with: .fade)
             transactionTableView.insertRows(at: [newIndexPath!], with: .fade)
+            
+//            if indexPath?.compare(newIndexPath!) == ComparisonResult.orderedDescending {
+//                updateBalances(fromIndex: newIndexPath!)
+//            } else {
+//                updateBalances(fromIndex: indexPath!)
+//            }
+        
+            
         }
     }
     
@@ -248,9 +258,8 @@ extension WalletViewController : UpdateModelDelegate {
                 transaction.wallet = self.wallet
             }
             
-            if let index = indexPath {
-                updateBalances(fromIndex: index)
-            }
+            let index = fetchedResultsController?.indexPath(forObject: transaction)
+            updateBalances(fromIndex: index!)
             stack.save()
         }
     }

@@ -19,7 +19,7 @@ class TransactionViewController: UIViewController {
     var transactionDate: NSDate?
     var amount: Double?
     var delegate: UpdateModelDelegate?
-    var newValues = [String : Any]()
+    var updatedValues = [String : Bool]()
     var updatedValue = false {
         didSet {
             if updatedValue {
@@ -73,15 +73,14 @@ class TransactionViewController: UIViewController {
         resignIfFirstResponder(amountTextField)
         resignIfFirstResponder(descriptionTextField)
         
-        newValues["title"] = transactionTitle
-        newValues["amount"] = amount!
-        newValues["createdAt"] = transactionDate
-        
+        isIncome = incomeSwitch.isOn
+        let multiplier = isIncome! ? 1.0 : -1.0
+        amount = amount! * multiplier
         if updatedValue {
             
-            transaction!.createdAt = newValues["createdAt"] as? NSDate
-            transaction!.amount = newValues["amount"] as! Double
-            transaction!.title = newValues["title"] as? String
+            transaction!.createdAt = transactionDate
+            transaction!.amount = amount!
+            transaction!.title = transactionTitle
             transaction!.income = isIncome!
             delegate?.updateModel(controller: self, saveObject: transaction!, isNew: false, indexPath: itemIndex)
             
@@ -110,8 +109,6 @@ class TransactionViewController: UIViewController {
     }
     
     @objc func switchValueChanged(_sender: UISwitch) {
-        
-        isIncome = incomeSwitch.isOn
         
         if let transaction = transaction {
             if isIncome != transaction.income {
