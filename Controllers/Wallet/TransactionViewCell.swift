@@ -16,7 +16,4 @@ class TransactionViewCell : UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var newBalanceLabel: UILabel!
     
-    
-    
-    
 }

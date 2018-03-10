@@ -7,67 +7,120 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
 
-extension WalletViewController {
+extension WalletVC: UpdateModelDelegate {
     
-    func updateBalances(fromIndex: IndexPath) {
+    func updateModel(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
         
-        let updatedTransaction = fetchedResultsController?.object(at: fromIndex)
-        let count = fetchedResultsController?.fetchedObjects?.count
-        let newIndex = fetchedResultsController?.fetchedObjects?.index(of: updatedTransaction!) as! Int
+        let transaction = saveObject as! Transaction
         
-        if (count == 1) {
-            
-            if updatedTransaction?.newBalance != (updatedTransaction?.amount)! {
-                updatedTransaction?.newBalance = (updatedTransaction?.amount)!
-            }
-            wallet?.balance = (updatedTransaction?.newBalance)!
-        } else {
-            
-            if newIndex != 0 {
-                
-                for i in stride(from: newIndex, to: 0, by: -1) {
-
-                    //i+1 causes to search for objext outside of fetchedobjects bounds, not iteration boundds
-                    
-                    let current = fetchedResultsController?.fetchedObjects![i]
-
-                    if count! - i == 1 {
-                        current?.newBalance = (current?.amount)!
-                        let next = fetchedResultsController?.fetchedObjects![i-1]
-                        next?.newBalance = (current?.newBalance)! + (next?.amount)!
-                    } else {
-                        let previous = fetchedResultsController?.fetchedObjects![i+1]
-                        current?.newBalance = (previous!.newBalance) + (current?.amount)!
-                        
-                    }
-                    
-                    
-                    if i == 0 {
-                        wallet?.balance = (current?.newBalance)!
-                    }
-                    
+        if isNew {
+            transaction.wallet = self.wallet
+        }
+        
+        updateBalances(startingAt: transaction) { (success, errorString) in
+            if success {
+                self.stack.context.performAndWait {
+                    self.stack.save()
                 }
+            } else {
+                print(errorString)
+            }
+        }
+
+    }
+    
+    func updateBalances(startingAt: Transaction, completionHandlerForUpdates: @escaping (_ success: Bool, _ errorString: String?) -> Void) {
+        
+        getUnsavedTransactions() { (success, result, errorString) in
+            
+            if success {
+                var updateList = self.sortTransactions(result!)
+                let updateCount = updateList.count
+                let modified = updateList.index(of: startingAt)
+                let shouldRemove: Bool = (updateCount - modified!) > 2
+                
+                if shouldRemove {
+                    updateList.removeSubrange((modified!+2)..<updateCount)
+                }
+                
+                for tran in updateList {
+                    let tranDate = tran.createdAt
+                    let tranDesc = tran.title
+                    let tranIndex = updateList.index(of: tran)
+                    
+                    print("\(tranDate!) index: \(tranIndex!) - desc: \(tranDesc!)")
+                }
+                
+                if updateCount == 1 {
+                    startingAt.newBalance = startingAt.amount
+                } else {
+                    
+                    if modified == 0 {
+                        startingAt.newBalance = startingAt.amount + updateList[1].newBalance
+                    } else {
+                        
+                        for index in stride(from: modified as! Int, to: -1, by: -1) {
+                            
+                            let current = updateList[index]
+                            
+                            if index == (updateCount-1) {
+                                current.newBalance = current.amount
+                                updateList[index-1].newBalance = updateList[index-1].amount + current.newBalance
+                            } else {
+                                let previous = updateList[index+1]
+                                current.newBalance = current.amount + previous.newBalance
+                            }
+                        }
+                    }
+                }
+                
+                self.wallet?.balance = updateList[0].newBalance
+                
+                completionHandlerForUpdates(true, nil)
                 
             } else {
                 
-                let previous = fetchedResultsController?.fetchedObjects![1]
-                let current = fetchedResultsController?.fetchedObjects![0]
-                current?.newBalance = (previous?.newBalance)! + (current?.amount)!
-                wallet?.balance = (current?.newBalance)!
+                completionHandlerForUpdates(false, errorString)
             }
             
         }
         
+        
+        
+        
+
     }
     
-    func getTransactions(fromDate: NSDate) -> [Transaction] {
+    func getUnsavedTransactions(completionHandlerForUnsaved: @escaping (_ succes: Bool, _ result: [Transaction]?, _ errorString: String?) -> Void) {
         
-        let updateTransactions = fetchedResultsController?.fetchedObjects?.filter({
+        var transactionArray = [Transaction]()
+        
+        do {
+            transactionArray = try stack.context.fetch(fetchRequest) as! [Transaction]
+        } catch let e as NSError {
+            let error = "Error while trying to perform a search: \n\(e)\n\(String(describing: stack.context))"
+            completionHandlerForUnsaved(false, nil, error)
+            
+        }
+        
+        completionHandlerForUnsaved(true, transactionArray, nil)
+    
+    }
+
+    
+  
+    
+    func filterByDate(transactions: [Transaction], fromDate: NSDate) -> [Transaction] {
+        
+        let updateTransactions = transactions.filter({
             $0.createdAt?.compare(fromDate as Date) == ComparisonResult.orderedDescending
         })
         
-        return (updateTransactions)!
+        return updateTransactions
+
     }
     
     func getTransactionsSum(_ transactions: [Transaction]) -> Double {
@@ -80,4 +133,72 @@ extension WalletViewController {
         return sum
     }
     
+    func sortTransactions(_ list: [Transaction]) -> [Transaction] {
+        let sortedTransactions = list.sorted(by: {
+            $0.createdAt?.compare($1.createdAt as! Date) == ComparisonResult.orderedDescending
+        })
+        
+        print(sortedTransactions)
+        return sortedTransactions
+    }
+    
+    func deleteTransation(indexPath: IndexPath, completionHandlerForDelete: @escaping (_ success: Bool, _ error: String?) -> Void) {
+        
+        let currentRow = indexPath.row
+        let nextRow = currentRow - 1
+        let prevRow = currentRow + 1
+        let nextIndexPath = NSIndexPath(row: nextRow, section: indexPath.section)
+        let prevIndexPath = NSIndexPath(row: prevRow, section: indexPath.section)
+        
+        let deleteTransaction = self.fetchedResultsController?.object(at: indexPath)
+        
+        if indexPath.row == 0 {
+            if (fetchedResultsController?.fetchedObjects?.count)! > 1 {
+                let prevTransaction = self.fetchedResultsController?.object(at: prevIndexPath as! IndexPath)
+                self.stack.context.performAndWait {
+                    self.fetchedResultsController?.managedObjectContext.delete(deleteTransaction!)
+                    self.wallet?.balance = (prevTransaction?.newBalance)!
+                    self.stack.save()
+                    completionHandlerForDelete(true, nil)
+                }
+            } else {
+                self.stack.context.performAndWait {
+                    self.fetchedResultsController?.managedObjectContext.delete(deleteTransaction!)
+                    self.wallet?.balance = 0.0
+                    self.stack.save()
+                    completionHandlerForDelete(true, nil)
+                }
+            }
+
+        } else {
+            
+            let nextTransaction = self.fetchedResultsController?.object(at: nextIndexPath as! IndexPath)
+            self.fetchedResultsController?.managedObjectContext.delete(deleteTransaction!)
+            self.updateBalances(startingAt: nextTransaction!) { (success, errorString) in
+                if success {
+                    self.stack.context.performAndWait {
+                        self.stack.save()
+                        completionHandlerForDelete(true, nil)
+                    }
+                } else {
+                    completionHandlerForDelete(false, errorString)
+                }
+            }
+        }
+    }
+    
+    public func getNextTransaction(fromTransaction: Transaction, completionHandlerForNext: @escaping (_ result: Transaction?) -> Void) {
+        
+        var nextTransaction: Transaction?
+        let currentIndex = fetchedResultsController?.fetchedObjects?.index(of: fromTransaction)
+        let nextIndex = currentIndex! - 1
+        
+        if currentIndex == 0 {
+            completionHandlerForNext(fromTransaction)
+        } else {
+            nextTransaction = self.fetchedResultsController?.fetchedObjects![nextIndex]
+            completionHandlerForNext(nextTransaction)
+        }
+    
+    }
 }

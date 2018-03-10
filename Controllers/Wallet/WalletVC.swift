@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class WalletViewController: UIViewController {
+class WalletVC: UIViewController {
     
     @IBOutlet weak var mainBalance: UILabel!
     @IBOutlet weak var transactionTableView: UITableView!
@@ -19,7 +19,9 @@ class WalletViewController: UIViewController {
     
     let stack = CoreDataStack.sharedInstance
     var wallet : Wallet?
+    var placeholder: Transaction?
     var scrollPosition: CGFloat?
+    var fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
     var fetchedResultsController : NSFetchedResultsController<Transaction>? {
         didSet {
             // Whenever the frc changes, we execute the search and
@@ -43,8 +45,8 @@ class WalletViewController: UIViewController {
     
     @IBAction func addTransaction(_ sender: Any) {
         
-        let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionViewController
-        controller.delegate = self
+        let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionVC
+        controller.saveDelegate = self
         self.present(controller, animated: true, completion: nil)
         
     }
@@ -56,9 +58,9 @@ class WalletViewController: UIViewController {
         transactionTableView.dataSource = self
         mainScrollView.delegate = self
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         fetchRequest.predicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
+        fetchRequest.includesPendingChanges = true
     
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as? NSFetchedResultsController<Transaction>
     }
@@ -89,16 +91,9 @@ class WalletViewController: UIViewController {
         
         return transactions
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "transactionSegue" {
-            let destination = segue.destination as! TransactionViewController
-        }
-    }
-    
 }
 
-extension WalletViewController : UIScrollViewDelegate {
+extension WalletVC : UIScrollViewDelegate {
     
 //    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
 //        scrollPosition = scrollView.contentOffset.y
@@ -130,7 +125,7 @@ extension WalletViewController : UIScrollViewDelegate {
 //    }
 }
 
-extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
+extension WalletVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let objectCount = (fetchedResultsController?.fetchedObjects?.count)!
@@ -156,8 +151,8 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         
         let transaction = fetchedResultsController?.object(at: indexPath)
         
-        let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionViewController
-        controller.delegate = self
+        let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionVC
+        controller.saveDelegate = self
         controller.transaction = transaction
         controller.itemIndex = indexPath
         self.present(controller, animated: true, completion: nil)
@@ -168,11 +163,14 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
             
-            self.stack.context.performAndWait {
-                let deleteTransaction = self.fetchedResultsController?.object(at: indexPath)
-                self.fetchedResultsController?.managedObjectContext.delete(deleteTransaction!)
+            self.deleteTransation(indexPath: indexPath) { (success, error) in
+                if success {
+                    completion(true)
+                } else {
+                    print(error)
+                }
             }
-            completion(true)
+            
         }
         
         deleteAction.backgroundColor = .red
@@ -196,71 +194,4 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
  
 }
 
-extension WalletViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        transactionTableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        
-        let set = IndexSet(integer: sectionIndex)
-        
-        switch (type) {
-        case .insert:
-            transactionTableView.insertSections(set, with: .fade)
-        case .delete:
-            transactionTableView.deleteSections(set, with: .fade)
-        default:
-            // irrelevant in our case
-            break
-        }
-    }
-    
 
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        let count = fetchedResultsController?.fetchedObjects?.count
-        
-        switch(type) {
-        case .insert:
-            transactionTableView.insertRows(at: [newIndexPath!], with: .fade)
-        case .delete:
-            transactionTableView.deleteRows(at: [indexPath!], with: .fade)
-            
-        case .update:
-            transactionTableView.reloadRows(at: [indexPath!], with: .fade)
-        case .move:
-            transactionTableView.deleteRows(at: [indexPath!], with: .fade)
-            transactionTableView.insertRows(at: [newIndexPath!], with: .fade)
-            
-//            if indexPath?.compare(newIndexPath!) == ComparisonResult.orderedDescending {
-//                updateBalances(fromIndex: newIndexPath!)
-//            } else {
-//                updateBalances(fromIndex: indexPath!)
-//            }
-        
-            
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        transactionTableView.endUpdates()
-    }
-}
-
-extension WalletViewController : UpdateModelDelegate {
-    
-    func updateModel(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool, indexPath: IndexPath? = nil) {
-        stack.context.performAndWait {
-            let transaction = saveObject as! Transaction
-            if isNew {
-                transaction.wallet = self.wallet
-            }
-            
-            let index = fetchedResultsController?.indexPath(forObject: transaction)
-            updateBalances(fromIndex: index!)
-            stack.save()
-        }
-    }
-}

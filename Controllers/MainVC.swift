@@ -84,7 +84,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     
     @IBAction func addWallet(_ sender: Any) {
         
-        let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddViewController") as! AddViewController
+        let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddViewController") as! AddVC
         addVC.providesPresentationContextTransitionStyle = true
         addVC.definesPresentationContext = true
         addVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
@@ -169,7 +169,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "walletSegue" {
             let wallet = sender as! Wallet
-            let destination = segue.destination as! WalletViewController
+            let destination = segue.destination as! WalletVC
             destination.wallet = wallet
         }
     }
@@ -275,7 +275,7 @@ extension MainVC: NSFetchedResultsControllerDelegate {
 
 extension MainVC: UpdateModelDelegate {
     
-    func updateModel(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool, indexPath: IndexPath?) {
+    func updateModel(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
         self.stack.context.performAndWait {
             let _ = saveObject
             self.stack.save()

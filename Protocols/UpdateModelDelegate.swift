@@ -11,6 +11,7 @@ import CoreData
 import UIKit
 
 protocol UpdateModelDelegate: class {
-    func updateModel(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool, indexPath: IndexPath?)
+    func updateModel(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool)
+    
 }
 

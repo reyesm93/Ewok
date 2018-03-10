@@ -56,6 +56,7 @@
                     </view>
                     <connections>
                         <outlet property="googleSignInView" destination="2fC-r8-Yu5" id="tku-qa-jpS"/>
+                        <outlet property="username" destination="kl5-ep-5bF" id="Poi-WZ-frE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsQ-IR-bub" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,10 +125,10 @@
             </objects>
             <point key="canvasLocation" x="-1034" y="52"/>
         </scene>
-        <!--Wallet View Controller-->
+        <!--WalletVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WalletViewController" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="WalletVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,7 +186,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dy-6S-KVy" userLabel="AmountLabel">
-                                                            <rect key="frame" x="317" y="0.0" width="58" height="42"/>
+                                                            <rect key="frame" x="274" y="0.0" width="101" height="42"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -197,9 +198,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1h-GK-LO2" userLabel="newBalanceLabel">
-                                                            <rect key="frame" x="319" y="45" width="54" height="16"/>
+                                                            <rect key="frame" x="260" y="45" width="113" height="16"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="54" id="ALO-x7-SLA"/>
+                                                                <constraint firstAttribute="width" constant="113" id="ALO-x7-SLA"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -219,14 +220,14 @@
                                                         <constraint firstItem="HII-uG-Lz1" firstAttribute="top" secondItem="BT1-2k-JYx" secondAttribute="bottom" constant="4" id="YBQ-2G-sTH"/>
                                                         <constraint firstItem="BT1-2k-JYx" firstAttribute="top" secondItem="5kz-82-Brv" secondAttribute="top" id="biT-q4-LI7"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="f1h-GK-LO2" secondAttribute="trailing" constant="-13" id="cmo-yG-kOL"/>
-                                                        <constraint firstItem="f1h-GK-LO2" firstAttribute="centerX" secondItem="3dy-6S-KVy" secondAttribute="centerX" id="d3S-cA-zYJ"/>
+                                                        <constraint firstItem="f1h-GK-LO2" firstAttribute="centerX" secondItem="3dy-6S-KVy" secondAttribute="centerX" constant="-8" id="d3S-cA-zYJ"/>
                                                         <constraint firstItem="RbW-Mr-3kG" firstAttribute="top" secondItem="HII-uG-Lz1" secondAttribute="bottom" constant="3" id="gzm-9C-YOj"/>
                                                         <constraint firstItem="HII-uG-Lz1" firstAttribute="width" secondItem="BT1-2k-JYx" secondAttribute="width" id="kTL-aH-J25"/>
                                                         <constraint firstItem="oyt-df-Gks" firstAttribute="top" secondItem="5kz-82-Brv" secondAttribute="top" id="l5p-Bl-HV8"/>
                                                         <constraint firstItem="f1h-GK-LO2" firstAttribute="top" secondItem="3dy-6S-KVy" secondAttribute="bottom" constant="3" id="lvv-Ll-vuV"/>
                                                         <constraint firstAttribute="trailing" secondItem="3dy-6S-KVy" secondAttribute="trailing" id="pl3-Fd-EpL"/>
                                                         <constraint firstItem="oyt-df-Gks" firstAttribute="leading" secondItem="5kz-82-Brv" secondAttribute="leading" constant="8" id="r8W-nb-DhH"/>
-                                                        <constraint firstItem="f1h-GK-LO2" firstAttribute="leading" secondItem="HII-uG-Lz1" secondAttribute="trailing" constant="67" id="vxf-Ym-7TH"/>
+                                                        <constraint firstItem="f1h-GK-LO2" firstAttribute="leading" secondItem="HII-uG-Lz1" secondAttribute="trailing" constant="8" id="vxf-Ym-7TH"/>
                                                         <constraint firstItem="3dy-6S-KVy" firstAttribute="top" secondItem="5kz-82-Brv" secondAttribute="top" id="xal-m6-U5L"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -338,10 +339,10 @@
             </objects>
             <point key="canvasLocation" x="120.8" y="21.428571428571431"/>
         </scene>
-        <!--Transaction View Controller-->
+        <!--TransactionVC-->
         <scene sceneID="gZY-Y8-4aC">
             <objects>
-                <viewController storyboardIdentifier="TransactionViewController" id="TCL-GD-utH" customClass="TransactionViewController" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TransactionViewController" id="TCL-GD-utH" customClass="TransactionVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q4l-2A-NfD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -580,10 +581,10 @@
             </objects>
             <point key="canvasLocation" x="-1450" y="795"/>
         </scene>
-        <!--Add View Controller-->
+        <!--AddVC-->
         <scene sceneID="ySu-33-iTb">
             <objects>
-                <viewController storyboardIdentifier="AddViewController" id="8pG-ke-Wxa" customClass="AddViewController" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddViewController" id="8pG-ke-Wxa" customClass="AddVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="bWs-y8-EE6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

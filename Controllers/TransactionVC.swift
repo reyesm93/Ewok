@@ -9,17 +9,19 @@
 import Foundation
 import UIKit
 
-class TransactionViewController: UIViewController {
+class TransactionVC: UIViewController {
     
     var transaction: Transaction?
     var itemIndex: IndexPath?
     var isIncome: Bool?
+    var isLaterDate: Bool = false
     let stack = CoreDataStack.sharedInstance
     var transactionTitle: String?
     var transactionDate: NSDate?
     var amount: Double?
-    var delegate: UpdateModelDelegate?
-    var updatedValues = [String : Bool]()
+    var oldTransaction : TransactionStruct?
+    var newTransaction : TransactionStruct?
+    var saveDelegate: UpdateModelDelegate?
     var updatedValue = false {
         didSet {
             if updatedValue {
@@ -43,6 +45,8 @@ class TransactionViewController: UIViewController {
             transactionDate = transaction.createdAt
             amount = transaction.amount
             isIncome = transaction.income
+            
+            oldTransaction = TransactionStruct(description: transaction.title!, amount: transaction.amount, date: transaction.createdAt!, income: transaction.income)
         }
         
         saveButton.isEnabled = false
@@ -73,25 +77,40 @@ class TransactionViewController: UIViewController {
         resignIfFirstResponder(amountTextField)
         resignIfFirstResponder(descriptionTextField)
         
+        let parentVC = self.parent as? WalletVC
+        
         isIncome = incomeSwitch.isOn
-        let multiplier = isIncome! ? 1.0 : -1.0
-        amount = amount! * multiplier
+        let multiplier = -1.0
+        
+        if (amount! < 0.0 && isIncome!) || (amount! > 0.0 && !isIncome!) {
+            amount = amount! * multiplier
+        }
+        
         if updatedValue {
+            
+            newTransaction = TransactionStruct(description: transactionTitle!, amount: amount!, date: transactionDate!, income: isIncome!)
             
             transaction!.createdAt = transactionDate
             transaction!.amount = amount!
             transaction!.title = transactionTitle
             transaction!.income = isIncome!
-            delegate?.updateModel(controller: self, saveObject: transaction!, isNew: false, indexPath: itemIndex)
             
+            if isLaterDate {
+                parentVC?.getNextTransaction(fromTransaction: transaction!) { (result) in
+                    self.saveDelegate?.updateModel(controller: self, saveObject: result!, isNew: false)
+                }
+            } else {
+                saveDelegate?.updateModel(controller: self, saveObject: transaction!, isNew: false)
+            }
+
         } else {
             
-            let newTransaction = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome!, createdAt: transactionDate! , context: stack.context)
-            delegate?.updateModel(controller: self, saveObject: newTransaction, isNew: true, indexPath: nil)
+            let new = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome!, createdAt: transactionDate! , context: stack.context)
+            saveDelegate?.updateModel(controller: self, saveObject: new, isNew: true)
             
         }
         
-        let parentVC = self.parent as? WalletViewController
+        
         parentVC?.transactionTableView.dataSource = parentVC
         self.dismiss(animated: true, completion: nil)
     }
@@ -99,16 +118,22 @@ class TransactionViewController: UIViewController {
     
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
         
+        if oldTransaction?.date.compare(sender.date) == ComparisonResult.orderedAscending {
+            isLaterDate = true
+        }
+        
         transactionDate = sender.date as NSDate
         
         if let transaction = transaction {
             if transactionDate != transaction.createdAt {
-            updatedValue = true
+                updatedValue = true
             }
         }
     }
     
     @objc func switchValueChanged(_sender: UISwitch) {
+        
+        isIncome = incomeSwitch.isOn
         
         if let transaction = transaction {
             if isIncome != transaction.income {
@@ -132,10 +157,12 @@ class TransactionViewController: UIViewController {
         if let transaction = transaction {
             
             datePicker.date = transactionDate as! Date
-            descriptionTextField.text = transaction.title
+            descriptionTextField.text = transactionTitle
             amountTextField.text = "\(amount!)"
+            incomeSwitch.isOn = isIncome!
             
         } else {
+            
             transactionDate = NSDate()
             datePicker.date = transactionDate as! Date
             incomeSwitch.isOn = false
@@ -151,7 +178,7 @@ class TransactionViewController: UIViewController {
     }
 }
 
-extension TransactionViewController : UITextFieldDelegate {
+extension TransactionVC : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         

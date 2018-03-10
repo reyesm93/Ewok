@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import LinkKit
 
-class AddViewController: UIViewController, UIGestureRecognizerDelegate {
+class AddVC: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var walletNameTF: UITextField!
     @IBOutlet weak var alertView: UIView!
@@ -21,7 +21,7 @@ class AddViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        NotificationCenter.default.addObserver(self, selector: #selector(AddViewController.didReceiveNotification(_:)), name: NSNotification.Name(rawValue: "PLDPlaidLinkSetupFinished"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddVC.didReceiveNotification(_:)), name: NSNotification.Name(rawValue: "PLDPlaidLinkSetupFinished"), object: nil)
     }
     
     override func viewDidLoad() {
@@ -71,7 +71,7 @@ class AddViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let wallet = Wallet(walletName: walletName, balance: 0.0, createdAt: NSDate(), context: self.stack.context)
         
-        delegate?.updateModel(controller: self, saveObject: wallet, isNew: true, indexPath: nil)
+        delegate?.updateModel(controller: self, saveObject: wallet, isNew: true)
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -142,7 +142,7 @@ class AddViewController: UIViewController, UIGestureRecognizerDelegate {
     
 }
 
-extension AddViewController : UITextFieldDelegate {
+extension AddVC : UITextFieldDelegate {
     
     // TextFielDelegate methods
     
@@ -178,7 +178,7 @@ extension AddViewController : UITextFieldDelegate {
     
 }
 
-extension AddViewController : PLKPlaidLinkViewDelegate {
+extension AddVC : PLKPlaidLinkViewDelegate {
     
     func linkViewController(_ linkViewController: PLKPlaidLinkViewController, didSucceedWithPublicToken publicToken: String, metadata: [String : Any]?) {
         dismiss(animated: true) {

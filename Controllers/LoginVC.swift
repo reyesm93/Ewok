@@ -14,7 +14,8 @@ import GoogleSignIn
 class LoginVC: UIViewController, GIDSignInUIDelegate {
     
     var user: AnyObject?
- 
+    @IBOutlet weak var username: UITextField!
+    
     @IBOutlet weak var googleSignInView: GIDSignInButton!
     
     override func viewDidLoad() {

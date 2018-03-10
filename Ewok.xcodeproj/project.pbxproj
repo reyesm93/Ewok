@@ -13,7 +13,7 @@
 		DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */; };
 		DD2134FD2049FC6B0058AD08 /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */; };
 		DD2D0C7E2023BA8300077653 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2D0C7D2023BA8300077653 /* GCDBlackBox.swift */; };
-		DD2D0C802023C44700077653 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2D0C7F2023C44700077653 /* AddViewController.swift */; };
+		DD2D0C802023C44700077653 /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2D0C7F2023C44700077653 /* AddVC.swift */; };
 		DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD34C760201D20240088CEBB /* SideMenuVC.swift */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* ContainerVC.swift */; };
@@ -27,7 +27,7 @@
 		DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */; };
 		DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13571FF734DC00943E6C /* CoreDataStack.swift */; };
 		DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843E921FF5D8D700EE3C0D /* AppDelegate.swift */; };
-		DD843E951FF5D8D700EE3C0D /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843E941FF5D8D700EE3C0D /* WalletViewController.swift */; };
+		DD843E951FF5D8D700EE3C0D /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843E941FF5D8D700EE3C0D /* WalletVC.swift */; };
 		DD843E981FF5D8D700EE3C0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD843E961FF5D8D700EE3C0D /* Main.storyboard */; };
 		DD843E9B1FF5D8D700EE3C0D /* Ewok.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */; };
 		DD843E9D1FF5D8D700EE3C0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD843E9C1FF5D8D700EE3C0D /* Assets.xcassets */; };
@@ -38,10 +38,13 @@
 		DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */; };
 		DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */; };
 		DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95EF592022AC4E00C788D1 /* AddButton.swift */; };
-		DDB1F6EF2008223200C26E40 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F6EE2008223200C26E40 /* TransactionViewController.swift */; };
+		DDB1F6EF2008223200C26E40 /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F6EE2008223200C26E40 /* TransactionVC.swift */; };
 		DDC3F1C92038D89900EFF9FE /* UpdateModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC3F1C82038D89900EFF9FE /* UpdateModelDelegate.swift */; };
 		DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */; };
 		DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */; };
+		DDE0D9F62052190700F3A527 /* FetchControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0D9F52052190700F3A527 /* FetchControllerDelegate.swift */; };
+		DDE3E6302051DAC700A13182 /* TransactionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE3E62F2051DAC700A13182 /* TransactionStruct.swift */; };
+		DDE3E6342051E18B00A13182 /* UpdateBalancesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE3E6332051E18B00A13182 /* UpdateBalancesDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +80,7 @@
 		DD213503204A1E420058AD08 /* Ewok 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 6.xcdatamodel"; sourceTree = "<group>"; };
 		DD2B9A652013C81B001E3AE1 /* Ewok 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 5.xcdatamodel"; sourceTree = "<group>"; };
 		DD2D0C7D2023BA8300077653 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
-		DD2D0C7F2023C44700077653 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		DD2D0C7F2023C44700077653 /* AddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
 		DD34C760201D20240088CEBB /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
@@ -94,7 +97,7 @@
 		DD7A135A1FF739BB00943E6C /* Ewok 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 3.xcdatamodel"; sourceTree = "<group>"; };
 		DD843E8F1FF5D8D700EE3C0D /* Ewok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ewok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD843E921FF5D8D700EE3C0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DD843E941FF5D8D700EE3C0D /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		DD843E941FF5D8D700EE3C0D /* WalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletVC.swift; sourceTree = "<group>"; };
 		DD843E971FF5D8D700EE3C0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD843E9A1FF5D8D700EE3C0D /* Ewok.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ewok.xcdatamodel; sourceTree = "<group>"; };
 		DD843E9C1FF5D8D700EE3C0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,11 +113,14 @@
 		DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBalanceView.swift; sourceTree = "<group>"; };
 		DD95EF592022AC4E00C788D1 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
-		DDB1F6EE2008223200C26E40 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
+		DDB1F6EE2008223200C26E40 /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
 		DDC3F1C82038D89900EFF9FE /* UpdateModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateModelDelegate.swift; sourceTree = "<group>"; };
 		DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 4.xcdatamodel"; sourceTree = "<group>"; };
+		DDE0D9F52052190700F3A527 /* FetchControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchControllerDelegate.swift; sourceTree = "<group>"; };
+		DDE3E62F2051DAC700A13182 /* TransactionStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStruct.swift; sourceTree = "<group>"; };
+		DDE3E6332051E18B00A13182 /* UpdateBalancesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBalancesDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,9 +164,10 @@
 		DD2134FA2049FB570058AD08 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				DD843E941FF5D8D700EE3C0D /* WalletViewController.swift */,
+				DD843E941FF5D8D700EE3C0D /* WalletVC.swift */,
 				DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */,
 				DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */,
+				DDE0D9F52052190700F3A527 /* FetchControllerDelegate.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -168,6 +175,7 @@
 		DD2134FB2049FB780058AD08 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */,
 				DD95EF592022AC4E00C788D1 /* AddButton.swift */,
 				DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */,
 			);
@@ -184,10 +192,12 @@
 				DD7A134D1FF7340A00943E6C /* Tag+CoreDataClass.swift */,
 				DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */,
 				DD843E911FF5D8D700EE3C0D /* Ewok */,
+				DDE3E62E2051DA9600A13182 /* Model */,
+				DDB1F6F12008224C00C26E40 /* Controllers */,
+				DD2134FB2049FB780058AD08 /* Views */,
+				DDE3E6322051DDE800A13182 /* Protocols */,
 				DD8D1AB820375E6700C52EC9 /* Network */,
 				DDCAD2D5201BBF430057CD3D /* Database */,
-				DD2134FB2049FB780058AD08 /* Views */,
-				DDB1F6F12008224C00C26E40 /* Controllers */,
 				DD843EA91FF5D8D700EE3C0D /* EwokTests */,
 				DD843EB41FF5D8D700EE3C0D /* EwokUITests */,
 				DD843E901FF5D8D700EE3C0D /* Products */,
@@ -254,12 +264,10 @@
 			children = (
 				DD60A38E2012C3F50019675C /* MainVC.swift */,
 				DD60A38A2012B4380019675C /* ContainerVC.swift */,
-				DDB1F6EE2008223200C26E40 /* TransactionViewController.swift */,
+				DDB1F6EE2008223200C26E40 /* TransactionVC.swift */,
 				DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */,
 				DD34C760201D20240088CEBB /* SideMenuVC.swift */,
-				DD2D0C7F2023C44700077653 /* AddViewController.swift */,
-				DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */,
-				DDC3F1C82038D89900EFF9FE /* UpdateModelDelegate.swift */,
+				DD2D0C7F2023C44700077653 /* AddVC.swift */,
 				DD2134FA2049FB570058AD08 /* Wallet */,
 			);
 			path = Controllers;
@@ -271,6 +279,23 @@
 				DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		DDE3E62E2051DA9600A13182 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DDE3E62F2051DAC700A13182 /* TransactionStruct.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DDE3E6322051DDE800A13182 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DDC3F1C82038D89900EFF9FE /* UpdateModelDelegate.swift */,
+				DDE3E6332051E18B00A13182 /* UpdateBalancesDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		ED4E512D9AFD7D90DD92CA75 /* Pods */ = {
@@ -638,23 +663,26 @@
 				DD7A13521FF7340A00943E6C /* Transaction+CoreDataProperties.swift in Sources */,
 				DD60A38F2012C3F50019675C /* MainVC.swift in Sources */,
 				DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */,
+				DDE0D9F62052190700F3A527 /* FetchControllerDelegate.swift in Sources */,
 				DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */,
 				DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */,
 				DDC3F1C92038D89900EFF9FE /* UpdateModelDelegate.swift in Sources */,
 				DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */,
 				DD7A134F1FF7340A00943E6C /* Wallet+CoreDataClass.swift in Sources */,
 				DD7A13501FF7340A00943E6C /* Wallet+CoreDataProperties.swift in Sources */,
-				DDB1F6EF2008223200C26E40 /* TransactionViewController.swift in Sources */,
+				DDB1F6EF2008223200C26E40 /* TransactionVC.swift in Sources */,
 				DD7A13511FF7340A00943E6C /* Transaction+CoreDataClass.swift in Sources */,
 				DD2134FD2049FC6B0058AD08 /* BalanceManager.swift in Sources */,
 				DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */,
-				DD2D0C802023C44700077653 /* AddViewController.swift in Sources */,
+				DD2D0C802023C44700077653 /* AddVC.swift in Sources */,
+				DDE3E6302051DAC700A13182 /* TransactionStruct.swift in Sources */,
 				DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */,
 				DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */,
 				DD2D0C7E2023BA8300077653 /* GCDBlackBox.swift in Sources */,
-				DD843E951FF5D8D700EE3C0D /* WalletViewController.swift in Sources */,
+				DD843E951FF5D8D700EE3C0D /* WalletVC.swift in Sources */,
 				DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */,
 				DD8D1AB720375E5E00C52EC9 /* PlaidClient.swift in Sources */,
+				DDE3E6342051E18B00A13182 /* UpdateBalancesDelegate.swift in Sources */,
 				DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */,
 				DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */,
 				DD7A13551FF7340A00943E6C /* Tag+CoreDataClass.swift in Sources */,
