@@ -11,6 +11,7 @@
 		AE7B72FFB46B20CA515744E1 /* Pods_Ewok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A296D55DC567CB6C2F04AB66 /* Pods_Ewok.framework */; };
 		BCE5FB696912892E97F67718 /* Pods_EwokUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */; };
 		DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */; };
+		DD0A91C82064256B006E7039 /* DatesFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A91C72064256B006E7039 /* DatesFilterVC.swift */; };
 		DD2134FD2049FC6B0058AD08 /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */; };
 		DD2D0C7E2023BA8300077653 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2D0C7D2023BA8300077653 /* GCDBlackBox.swift */; };
 		DD2D0C802023C44700077653 /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2D0C7F2023C44700077653 /* AddVC.swift */; };
@@ -34,6 +35,11 @@
 		DD843EA01FF5D8D700EE3C0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD843E9E1FF5D8D700EE3C0D /* LaunchScreen.storyboard */; };
 		DD843EAB1FF5D8D700EE3C0D /* EwokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EAA1FF5D8D700EE3C0D /* EwokTests.swift */; };
 		DD843EB61FF5D8D700EE3C0D /* EwokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */; };
+		DD844041205DD1E8003EF476 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844040205DD1E8003EF476 /* CalendarVC.swift */; };
+		DD844043205DD1F9003EF476 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844042205DD1F9003EF476 /* MonthView.swift */; };
+		DD844045205DD21B003EF476 /* WeedaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844044205DD21B003EF476 /* WeedaysView.swift */; };
+		DD844047205DD232003EF476 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844046205DD232003EF476 /* CalendarView.swift */; };
+		DD844049205DE73B003EF476 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844048205DE73B003EF476 /* DateCell.swift */; };
 		DD8D1AB720375E5E00C52EC9 /* PlaidClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D1AB620375E5E00C52EC9 /* PlaidClient.swift */; };
 		DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */; };
 		DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */; };
@@ -75,6 +81,7 @@
 		AEEDF333C9C14B23EFF618C7 /* Pods-EwokTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EwokTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EwokTests/Pods-EwokTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EwokUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DD0A91C72064256B006E7039 /* DatesFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesFilterVC.swift; sourceTree = "<group>"; };
 		DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceManager.swift; sourceTree = "<group>"; };
 		DD213500204A13D30058AD08 /* Ewok 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 6.xcdatamodel"; sourceTree = "<group>"; };
 		DD213503204A1E420058AD08 /* Ewok 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 6.xcdatamodel"; sourceTree = "<group>"; };
@@ -109,6 +116,11 @@
 		DD843EB11FF5D8D700EE3C0D /* EwokUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EwokUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwokUITests.swift; sourceTree = "<group>"; };
 		DD843EB71FF5D8D700EE3C0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD844040205DD1E8003EF476 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
+		DD844042205DD1F9003EF476 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		DD844044205DD21B003EF476 /* WeedaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeedaysView.swift; sourceTree = "<group>"; };
+		DD844046205DD232003EF476 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		DD844048205DE73B003EF476 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		DD8D1AB620375E5E00C52EC9 /* PlaidClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidClient.swift; sourceTree = "<group>"; };
 		DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBalanceView.swift; sourceTree = "<group>"; };
@@ -168,6 +180,7 @@
 				DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */,
 				DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */,
 				DDE0D9F52052190700F3A527 /* FetchControllerDelegate.swift */,
+				DD0A91C72064256B006E7039 /* DatesFilterVC.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -250,6 +263,18 @@
 			path = EwokUITests;
 			sourceTree = "<group>";
 		};
+		DD84403F205DD1CE003EF476 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				DD844040205DD1E8003EF476 /* CalendarVC.swift */,
+				DD844042205DD1F9003EF476 /* MonthView.swift */,
+				DD844044205DD21B003EF476 /* WeedaysView.swift */,
+				DD844046205DD232003EF476 /* CalendarView.swift */,
+				DD844048205DE73B003EF476 /* DateCell.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		DD8D1AB820375E6700C52EC9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +287,7 @@
 		DDB1F6F12008224C00C26E40 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DD84403F205DD1CE003EF476 /* Calendar */,
 				DD60A38E2012C3F50019675C /* MainVC.swift */,
 				DD60A38A2012B4380019675C /* ContainerVC.swift */,
 				DDB1F6EE2008223200C26E40 /* TransactionVC.swift */,
@@ -659,12 +685,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD844043205DD1F9003EF476 /* MonthView.swift in Sources */,
 				DD6A7EEB20421ACB00B15C3D /* Constants.swift in Sources */,
 				DD7A13521FF7340A00943E6C /* Transaction+CoreDataProperties.swift in Sources */,
 				DD60A38F2012C3F50019675C /* MainVC.swift in Sources */,
 				DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */,
 				DDE0D9F62052190700F3A527 /* FetchControllerDelegate.swift in Sources */,
 				DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */,
+				DD0A91C82064256B006E7039 /* DatesFilterVC.swift in Sources */,
+				DD844049205DE73B003EF476 /* DateCell.swift in Sources */,
 				DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */,
 				DDC3F1C92038D89900EFF9FE /* UpdateModelDelegate.swift in Sources */,
 				DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */,
@@ -675,13 +704,16 @@
 				DD2134FD2049FC6B0058AD08 /* BalanceManager.swift in Sources */,
 				DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */,
 				DD2D0C802023C44700077653 /* AddVC.swift in Sources */,
+				DD844047205DD232003EF476 /* CalendarView.swift in Sources */,
 				DDE3E6302051DAC700A13182 /* TransactionStruct.swift in Sources */,
 				DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */,
 				DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */,
 				DD2D0C7E2023BA8300077653 /* GCDBlackBox.swift in Sources */,
+				DD844041205DD1E8003EF476 /* CalendarVC.swift in Sources */,
 				DD843E951FF5D8D700EE3C0D /* WalletVC.swift in Sources */,
 				DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */,
 				DD8D1AB720375E5E00C52EC9 /* PlaidClient.swift in Sources */,
+				DD844045205DD21B003EF476 /* WeedaysView.swift in Sources */,
 				DDE3E6342051E18B00A13182 /* UpdateBalancesDelegate.swift in Sources */,
 				DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */,
 				DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */,

@@ -62,7 +62,6 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
                 self.sideMenuOpen = !self.sideMenuOpen
             }
         }
-        
     }
 }
 

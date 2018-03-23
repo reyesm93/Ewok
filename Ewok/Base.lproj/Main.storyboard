@@ -110,20 +110,78 @@
             </objects>
             <point key="canvasLocation" x="-2111.1999999999998" y="52.463054187192121"/>
         </scene>
-        <!--View Controller-->
+        <!--CalendarVC-->
         <scene sceneID="2cQ-bJ-MVR">
             <objects>
-                <viewController id="RvB-xK-I0w" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalendarVC" id="RvB-xK-I0w" customClass="CalendarVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C8m-t1-PYj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rd-38-67c">
+                                <rect key="frame" x="40" y="204" width="294" height="408"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mf3-TV-xNb">
+                                        <rect key="frame" x="0.0" y="356" width="147" height="52"/>
+                                        <color key="backgroundColor" red="0.46847921850000002" green="1" blue="0.5555262447" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="Mfg-wq-o0n"/>
+                                        </constraints>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" red="0.97181245070118216" green="1" blue="0.98048946825850136" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="titleShadowColor" red="0.46847921851561092" green="1" blue="0.55552624469905232" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="completeDate:" destination="RvB-xK-I0w" eventType="touchUpInside" id="xsf-5g-C8b"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlh-LW-xRg">
+                                        <rect key="frame" x="147" y="356" width="147" height="52"/>
+                                        <color key="backgroundColor" red="1" green="0.36307599699999998" blue="0.3973241079" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="6m1-6R-1nL"/>
+                                        </constraints>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.97605178041774965" green="0.9807710818950699" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="titleShadowColor" red="1" green="0.36307599702850246" blue="0.39732410791167383" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelDate:" destination="RvB-xK-I0w" eventType="touchUpInside" id="ows-ta-qw1"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IP5-33-xaw" customClass="CalendarView" customModule="Ewok" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="294" height="356"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="mf3-TV-xNb" firstAttribute="leading" secondItem="4rd-38-67c" secondAttribute="leading" id="1Ri-ah-RFt"/>
+                                    <constraint firstAttribute="trailing" secondItem="wlh-LW-xRg" secondAttribute="trailing" id="24d-ze-umR"/>
+                                    <constraint firstAttribute="bottom" secondItem="mf3-TV-xNb" secondAttribute="bottom" id="6Dn-WS-u6a"/>
+                                    <constraint firstItem="IP5-33-xaw" firstAttribute="top" secondItem="4rd-38-67c" secondAttribute="top" id="BhA-CV-HCJ"/>
+                                    <constraint firstItem="mf3-TV-xNb" firstAttribute="top" secondItem="IP5-33-xaw" secondAttribute="bottom" id="JZG-on-0LT"/>
+                                    <constraint firstAttribute="trailing" secondItem="IP5-33-xaw" secondAttribute="trailing" id="YMB-g9-11l"/>
+                                    <constraint firstItem="IP5-33-xaw" firstAttribute="leading" secondItem="4rd-38-67c" secondAttribute="leading" id="cH8-bI-S94"/>
+                                    <constraint firstAttribute="bottom" secondItem="wlh-LW-xRg" secondAttribute="bottom" id="mHk-KD-sds"/>
+                                    <constraint firstItem="mf3-TV-xNb" firstAttribute="width" secondItem="wlh-LW-xRg" secondAttribute="width" id="o7F-9G-Cx6"/>
+                                    <constraint firstItem="wlh-LW-xRg" firstAttribute="leading" secondItem="mf3-TV-xNb" secondAttribute="trailing" id="rlR-jN-Fk6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4rd-38-67c" firstAttribute="top" secondItem="Ilh-kl-jZg" secondAttribute="top" constant="160" id="25c-M4-bW1"/>
+                            <constraint firstItem="Ilh-kl-jZg" firstAttribute="trailing" secondItem="4rd-38-67c" secondAttribute="trailing" constant="40.5" id="GQK-pJ-NAc"/>
+                            <constraint firstItem="Ilh-kl-jZg" firstAttribute="bottom" secondItem="4rd-38-67c" secondAttribute="bottom" constant="166" id="JPE-tx-C5o"/>
+                            <constraint firstItem="4rd-38-67c" firstAttribute="leading" secondItem="Ilh-kl-jZg" secondAttribute="leading" constant="40.5" id="kDx-Fz-gDc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Ilh-kl-jZg"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ny6-IA-gkf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1034" y="52"/>
+            <point key="canvasLocation" x="148" y="1018.9655172413793"/>
         </scene>
         <!--WalletVC-->
         <scene sceneID="tne-QT-ifu">
@@ -251,7 +309,7 @@
                                                     <segment title=""/>
                                                 </segments>
                                             </segmentedControl>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMU-gE-Y1d">
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMU-gE-Y1d" userLabel="FilterContainerView">
                                                 <rect key="frame" x="0.0" y="28" width="359" height="111"/>
                                                 <connections>
                                                     <segue destination="2KR-ib-Fro" kind="embed" id="5zT-Uk-zQ7"/>
@@ -656,14 +714,28 @@
             </objects>
             <point key="canvasLocation" x="-2111.1999999999998" y="-738.17733990147781"/>
         </scene>
-        <!--View Controller-->
+        <!--DatesFilterVC-->
         <scene sceneID="YIB-au-c4C">
             <objects>
-                <viewController id="2KR-ib-Fro" sceneMemberID="viewController">
+                <viewController id="2KR-ib-Fro" userLabel="DatesFilterVC" customClass="DatesFilterVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EBY-Nb-Txq">
                         <rect key="frame" x="0.0" y="0.0" width="359" height="111"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fl8-dC-RdA">
+                                <rect key="frame" x="32" y="45.666666666666664" width="46" height="29.999999999999993"/>
+                                <state key="normal" title="Dates"/>
+                                <connections>
+                                    <action selector="showCalendar:" destination="2KR-ib-Fro" eventType="touchUpInside" id="WLa-oh-7wf"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fl8-dC-RdA" firstAttribute="centerY" secondItem="96I-yU-IId" secondAttribute="centerY" id="9tS-Ps-cGc"/>
+                            <constraint firstItem="fl8-dC-RdA" firstAttribute="leading" secondItem="96I-yU-IId" secondAttribute="leading" constant="32" id="HJe-hH-v2i"/>
+                            <constraint firstItem="96I-yU-IId" firstAttribute="trailing" secondItem="fl8-dC-RdA" secondAttribute="trailing" constant="281" id="LQm-G8-8Qn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="96I-yU-IId"/>
                     </view>
                 </viewController>
