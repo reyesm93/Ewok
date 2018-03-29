@@ -11,4 +11,6 @@ import UIKit
 
 class CustomBalanceView : UIView {
     
+    var wallet : Wallet?
+    
 }

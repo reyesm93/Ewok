@@ -8,16 +8,11 @@
 
 import UIKit
 
-protocol MonthViewDelegate: class {
-    func didChangeMonth(monthIndex: Int, year: Int)
-}
-
 class MonthView: UIView {
     
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     var currentMonthIndex = 0
     var currentYear: Int = 0
-    var delegate: MonthViewDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -77,7 +72,6 @@ class MonthView: UIView {
             }
         }
         monthLbl.text = "\(months[currentMonthIndex]) \(currentYear)"
-        delegate?.didChangeMonth(monthIndex: currentMonthIndex, year: currentYear)
     }
     
     func setupViews() {

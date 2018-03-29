@@ -10,12 +10,14 @@ import UIKit
 import CoreData
 
 class WalletVC: UIViewController {
-    
+
     @IBOutlet weak var mainBalance: UILabel!
     @IBOutlet weak var transactionTableView: UITableView!
     @IBOutlet weak var addButton: AddButton!
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var customBalanceView: CustomBalanceView!
+    @IBOutlet weak var filterContainerView: FilterContainerView!
+    
     
     let stack = CoreDataStack.sharedInstance
     var wallet : Wallet?
@@ -38,10 +40,10 @@ class WalletVC: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    init(fetchedResultsController fc : NSFetchedResultsController<Transaction>) {
-        fetchedResultsController = fc
-        super.init(nibName: nil, bundle: nil)
-    }
+//    init(fetchedResultsController fc : NSFetchedResultsController<Transaction>) {
+//        fetchedResultsController = fc
+//        super.init(nibName: nil, bundle: nil)
+//    }
     
     @IBAction func addTransaction(_ sender: Any) {
         
@@ -54,9 +56,18 @@ class WalletVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        print("childVCs WalletVC: \(self.childViewControllers)")
+        
+        if let filterVC = self.childViewControllers[0] as? DatesFilterVC {
+            filterVC.parentVC = self
+        }
+        
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
         mainScrollView.delegate = self
+        
+        customBalanceView.wallet = wallet
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         fetchRequest.predicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
@@ -74,7 +85,6 @@ class WalletVC: UIViewController {
             mainScrollView.isHidden = true
         } else {
             mainScrollView.isHidden = false
-            transactionTableView.reloadData()
         }
     }
     
@@ -132,7 +142,6 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
         let sectionCount = tableView.numberOfSections
         return objectCount
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell", for: indexPath) as! TransactionViewCell

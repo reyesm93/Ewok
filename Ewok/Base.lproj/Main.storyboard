@@ -178,6 +178,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ilh-kl-jZg"/>
                     </view>
+                    <connections>
+                        <outlet property="calendarView" destination="IP5-33-xaw" id="bs5-cq-rsI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ny6-IA-gkf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -309,7 +312,7 @@
                                                     <segment title=""/>
                                                 </segments>
                                             </segmentedControl>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMU-gE-Y1d" userLabel="FilterContainerView">
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMU-gE-Y1d" userLabel="FilterContainerView" customClass="FilterContainerView" customModule="Ewok" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="359" height="111"/>
                                                 <connections>
                                                     <segue destination="2KR-ib-Fro" kind="embed" id="5zT-Uk-zQ7"/>
@@ -388,6 +391,7 @@
                     <connections>
                         <outlet property="addButton" destination="B5a-vQ-ck4" id="i0q-4H-mYS"/>
                         <outlet property="customBalanceView" destination="Ls7-Od-eLK" id="5bP-WJ-odV"/>
+                        <outlet property="filterContainerView" destination="QMU-gE-Y1d" id="aLN-eQ-dmK"/>
                         <outlet property="mainBalance" destination="ZaA-dm-432" id="GdP-3a-1F0"/>
                         <outlet property="mainScrollView" destination="oal-yt-lot" id="4RQ-75-GQA"/>
                         <outlet property="transactionTableView" destination="PPY-mf-ess" id="RWl-Qc-SxR"/>

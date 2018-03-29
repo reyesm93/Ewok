@@ -14,7 +14,6 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
     
     var sideMenuOpen = false
     var coverView: UIView? = nil
-    //let currentWalletVC = MainVC()
     
     @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
     @IBOutlet weak var sideMenuView: UIView!
@@ -23,6 +22,8 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("childVCs ContainerVC: \(self.childViewControllers)")
         
         let navRect = navControllerView.bounds
         coverView = UIView(frame: navRect)

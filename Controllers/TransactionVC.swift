@@ -111,7 +111,6 @@ class TransactionVC: UIViewController {
         }
         
         
-        parentVC?.transactionTableView.dataSource = parentVC
         self.dismiss(animated: true, completion: nil)
     }
     

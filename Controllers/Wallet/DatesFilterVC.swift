@@ -9,7 +9,14 @@ import UIKit
 
 class DatesFilterVC : UIViewController {
     
-    var calendarView : CalendarView?
+    var parentVC: WalletVC?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    
     
     @IBAction func showCalendar(_ sender: Any) {
         
@@ -17,8 +24,10 @@ class DatesFilterVC : UIViewController {
         vc.definesPresentationContext = true
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        vc.parentVC = parentVC
         self.present(vc, animated: true, completion: nil)
+        
     }
-    
  
 }
+

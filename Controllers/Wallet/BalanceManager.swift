@@ -135,7 +135,7 @@ extension WalletVC: UpdateModelDelegate {
     
     func sortTransactions(_ list: [Transaction]) -> [Transaction] {
         let sortedTransactions = list.sorted(by: {
-            $0.createdAt?.compare($1.createdAt as! Date) == ComparisonResult.orderedDescending
+            $0.createdAt?.compare($1.createdAt! as Date) == ComparisonResult.orderedDescending
         })
         
         print(sortedTransactions)
@@ -187,7 +187,7 @@ extension WalletVC: UpdateModelDelegate {
         }
     }
     
-    public func getNextTransaction(fromTransaction: Transaction, completionHandlerForNext: @escaping (_ result: Transaction?) -> Void) {
+    func getNextTransaction(fromTransaction: Transaction, completionHandlerForNext: @escaping (_ result: Transaction?) -> Void) {
         
         var nextTransaction: Transaction?
         let currentIndex = fetchedResultsController?.fetchedObjects?.index(of: fromTransaction)
