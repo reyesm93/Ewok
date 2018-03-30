@@ -26,8 +26,9 @@ class MonthHeader : UICollectionReusableView {
     var monthLbl : UILabel = {
         
         let label = UILabel()
+        label.font = label.font.bold
         label.textAlignment = .left
-        label.font=UIFont.systemFont(ofSize: 16)
+        label.font=UIFont.systemFont(ofSize: 24)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints=false
         
@@ -44,3 +45,8 @@ class MonthHeader : UICollectionReusableView {
     }
     
 }
+
+
+
+
+

@@ -10,15 +10,15 @@ import UIKit
 
 class CalendarView: UIView {
     
+    var scrollTo: IndexPath?
     // items created in storyboard call initWithCoder instead of initWithFrame
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupViews()
-        
     }
     
-    let monthView: MonthView = {
-        let v = MonthView()
+    let monthView: YearView = {
+        let v = YearView()
         v.translatesAutoresizingMaskIntoConstraints=false
         return v
     }()
@@ -32,6 +32,8 @@ class CalendarView: UIView {
     let myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.headerReferenceSize = CGSize(width: 0, height: 40)
+        //layout.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: IndexPath(item: 0, section: (self.scrollTo?.section)!))
 
         let myCollectionView=UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         myCollectionView.showsHorizontalScrollIndicator = false

@@ -11,47 +11,54 @@ import UIKit
 class CalendarVC : UIViewController {
     
     var parentVC: WalletVC?
-    var currentMonthIndex: Int = 0
-    var currentYear: Int = 0
-    var presentMonthIndex = 0
-    var presentYear = 0
-    var todaysDate = 0
     var firstWeekDayOfMonth = 0   //(Sunday-Saturday 1-7)
     var startFilter: IndexPath?
     var endFilter: IndexPath?
+    var todayIndexPath : IndexPath?
     var dateLimits : [Date]?
-    var highlightArray = [IndexPath]()
+    var limitsIndexPath : [IndexPath]?
     let calendarData = CalendarModel()
+    var selectedDateRange = [IndexPath]()
     
     @IBOutlet weak var calendarView: CalendarView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        todayIndexPath = calendarData.todayIndexPath
+        limitsIndexPath = getTransactionIndexLimits(getTransactionsDateLimits())
         setUpView()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+       
+        
     }
     
     func setUpView() {
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         self.view.layoutIfNeeded()
         
+        calendarView.scrollTo = todayIndexPath
         calendarView.myCollectionView.delegate = self
         calendarView.myCollectionView.dataSource = self
         calendarView.myCollectionView.register(DateCell.self, forCellWithReuseIdentifier: "DateCell")
         calendarView.myCollectionView.register(MonthHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "MonthHeader")
-        
-        dateLimits = getTransactionsDateLimits()
-        
-        currentMonthIndex = Calendar.current.component(.month, from: Date())
-        currentYear = Calendar.current.component(.year, from: Date())
-        todaysDate = Calendar.current.component(.day, from: Date())
-        
-        presentMonthIndex=currentMonthIndex
-        presentYear=currentYear
-        
+        calendarView.myCollectionView.scrollToItem(at: todayIndexPath!, at: .centeredVertically, animated: false)
 
+//        if let attributes = calendarView.myCollectionView.collectionViewLayout.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: IndexPath(item: 0, section: (todayIndexPath?.section)!)) {
+//            let yOrigin = attributes.frame.origin.y
+//            let top = calendarView.myCollectionView.contentInset.top
+//            calendarView.myCollectionView.setContentOffset(CGPoint(x: 0, y: yOrigin - top), animated: true)
+//        }
+        
         
     }
+    
+    
     @IBAction func completeDate(_ sender: Any) {
         
         
@@ -59,6 +66,15 @@ class CalendarVC : UIViewController {
     
     @IBAction func cancelDate(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func getTransactionIndexLimits(_ limits : [Date]) -> [IndexPath] {
+        var indexes = [IndexPath]()
+        for date in limits {
+            let index = calendarData.getDateIndexPath(date: date, monthArray: calendarData.monthArray)
+            indexes.append(index)
+        }
+        return indexes
     }
     
     func getTransactionsDateLimits() -> [Date] {
@@ -79,7 +95,7 @@ class CalendarVC : UIViewController {
         print("firstDate : \(firstDate)")
         print("lastDate : \(lastDate)")
         
-        return [firstDate, lastDate]
+        return [lastDate, firstDate]
     }
 
 

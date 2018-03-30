@@ -40,7 +40,7 @@
 		DD843EAB1FF5D8D700EE3C0D /* EwokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EAA1FF5D8D700EE3C0D /* EwokTests.swift */; };
 		DD843EB61FF5D8D700EE3C0D /* EwokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */; };
 		DD844041205DD1E8003EF476 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844040205DD1E8003EF476 /* CalendarVC.swift */; };
-		DD844043205DD1F9003EF476 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844042205DD1F9003EF476 /* MonthView.swift */; };
+		DD844043205DD1F9003EF476 /* YearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844042205DD1F9003EF476 /* YearView.swift */; };
 		DD844045205DD21B003EF476 /* WeedaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844044205DD21B003EF476 /* WeedaysView.swift */; };
 		DD844047205DD232003EF476 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844046205DD232003EF476 /* CalendarView.swift */; };
 		DD844049205DE73B003EF476 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844048205DE73B003EF476 /* DateCell.swift */; };
@@ -125,7 +125,7 @@
 		DD843EB51FF5D8D700EE3C0D /* EwokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EwokUITests.swift; sourceTree = "<group>"; };
 		DD843EB71FF5D8D700EE3C0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD844040205DD1E8003EF476 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
-		DD844042205DD1F9003EF476 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		DD844042205DD1F9003EF476 /* YearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearView.swift; sourceTree = "<group>"; };
 		DD844044205DD21B003EF476 /* WeedaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeedaysView.swift; sourceTree = "<group>"; };
 		DD844046205DD232003EF476 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		DD844048205DE73B003EF476 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
@@ -276,7 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				DD844040205DD1E8003EF476 /* CalendarVC.swift */,
-				DD844042205DD1F9003EF476 /* MonthView.swift */,
+				DD844042205DD1F9003EF476 /* YearView.swift */,
 				DD844044205DD21B003EF476 /* WeedaysView.swift */,
 				DD844046205DD232003EF476 /* CalendarView.swift */,
 				DD844048205DE73B003EF476 /* DateCell.swift */,
@@ -697,7 +697,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD844043205DD1F9003EF476 /* MonthView.swift in Sources */,
+				DD844043205DD1F9003EF476 /* YearView.swift in Sources */,
 				DD6A7EEB20421ACB00B15C3D /* Constants.swift in Sources */,
 				DD7A13521FF7340A00943E6C /* Transaction+CoreDataProperties.swift in Sources */,
 				DD342542206984BC00B664C3 /* MonthHeader.swift in Sources */,

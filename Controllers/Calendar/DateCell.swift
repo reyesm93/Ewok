@@ -11,6 +11,8 @@ import UIKit
 
 class DateCell: UICollectionViewCell {
     
+    var isInRange = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor=UIColor.clear
@@ -19,9 +21,17 @@ class DateCell: UICollectionViewCell {
         
         setupViews()
     }
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.lbl.font = self.lbl.font.removeBold()
+        self.lbl.textColor = .black
+        self.isUserInteractionEnabled = true
     }
     
     let lbl: UILabel = {

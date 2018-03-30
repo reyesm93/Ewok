@@ -13,8 +13,11 @@ class WeekdaysView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor=UIColor.clear
-        
         setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setupViews() {
@@ -41,9 +44,6 @@ class WeekdaysView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints=false
         return stackView
     }()
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
 }
 
