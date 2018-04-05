@@ -11,8 +11,6 @@ import UIKit
 
 class DateCell: UICollectionViewCell {
     
-    var isInRange = false
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor=UIColor.clear

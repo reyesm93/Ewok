@@ -61,7 +61,11 @@ class CalendarVC : UIViewController {
     
     @IBAction func completeDate(_ sender: Any) {
         
+        var dates = [Date]()
         
+        for index in selectedDateRange {
+            dates.append(calendarData.getDate(fromIndex: index))
+        }
     }
     
     @IBAction func cancelDate(_ sender: Any) {
@@ -71,7 +75,7 @@ class CalendarVC : UIViewController {
     func getTransactionIndexLimits(_ limits : [Date]) -> [IndexPath] {
         var indexes = [IndexPath]()
         for date in limits {
-            let index = calendarData.getDateIndexPath(date: date, monthArray: calendarData.monthArray)
+            let index = calendarData.getIndexPath(fromDate: date)
             indexes.append(index)
         }
         return indexes
@@ -92,13 +96,8 @@ class CalendarVC : UIViewController {
             }
         }
         
-        print("firstDate : \(firstDate)")
-        print("lastDate : \(lastDate)")
-        
         return [lastDate, firstDate]
     }
-
-
 }
 
 

@@ -68,48 +68,21 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
         return CGSize(width: width, height: height)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if startFilter != nil {
             if endFilter != nil {
-                for i in selectedDateRange {
-                    highlightDate(collectionView, i)
-                }
-                selectedDateRange.removeAll()
-                startFilter = indexPath
-                selectedDateRange.append(startFilter!)
+                restartRange(collectionView, indexPath)
                 endFilter = nil
             } else {
                 if indexPath < startFilter! {
-                    for i in selectedDateRange {
-                        highlightDate(collectionView, i)
-                    }
-                    selectedDateRange.removeAll()
-                    startFilter = indexPath
-                    selectedDateRange.append(startFilter!)
+                    restartRange(collectionView, indexPath)
                 } else if indexPath > startFilter! {
-                    for i in selectedDateRange {
-                        highlightDate(collectionView, i)
-                    }
                     selectedDateRange.removeAll()
                     endFilter = indexPath
-
-                    let from = IndexPath(item: (startFilter?.item)!, section: (startFilter?.section)!)
-                    let to = IndexPath(item: (endFilter?.item)!, section: (endFilter?.section)!)
-
-                    for month in (from.section)...(to.section) {
-                        
-                        let dayCount = collectionView.numberOfItems(inSection: month)
-                        let fromDay = (month == from.section) ? from.item : 0
-                        let toDay = (month == to.section) ? to.item : (dayCount-1)
-                        
-                        for day in fromDay...toDay {
-                            let i = IndexPath(item: day, section: month)
-                            selectedDateRange.append(i)
-                            
-                        }
-                    }
-
+                    setDateRange(collectionView)
                 }
             }
         } else {
@@ -117,8 +90,8 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
             selectedDateRange.append(startFilter!)
         }
         
-        for i in selectedDateRange {
-            highlightDate(collectionView, i)
+        for cell in selectedDateRange {
+            highlightCell(collectionView, cell)
         }
         
         print("item: \(indexPath.item)")
@@ -146,17 +119,46 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
 
     }
     
-    fileprivate func highlightDate(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
+    fileprivate func highlightCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! DateCell
         if cell.isHidden == false {
-            cell.isInRange = !(cell.isInRange)
+            cell.backgroundColor = .black
+            cell.lbl.textColor = .white
+        }
+    }
+    
+    fileprivate func unHighlightCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! DateCell
+        if cell.isHidden == false {
+            cell.backgroundColor = .clear
+            cell.lbl.textColor = .black
+        }
+    }
+    
+    fileprivate func restartRange(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
+        for cell in selectedDateRange {
+            unHighlightCell(collectionView, cell)
+        }
+        
+        selectedDateRange.removeAll()
+        startFilter = indexPath
+        selectedDateRange.append(startFilter!)
+    }
+    
+    fileprivate func setDateRange(_ collectionView: UICollectionView) {
+        let from = IndexPath(item: (startFilter?.item)!, section: (startFilter?.section)!)
+        let to = IndexPath(item: (endFilter?.item)!, section: (endFilter?.section)!)
+        
+        for month in (from.section)...(to.section) {
             
-            if cell.isInRange {
-                cell.backgroundColor = .black
-                cell.lbl.textColor = .white
-            } else {
-                cell.backgroundColor = .clear
-                cell.lbl.textColor = .black
+            let dayCount = collectionView.numberOfItems(inSection: month)
+            let fromDay = (month == from.section) ? from.item : 0
+            let toDay = (month == to.section) ? to.item : (dayCount-1)
+            
+            for day in fromDay...toDay {
+                let i = IndexPath(item: day, section: month)
+                selectedDateRange.append(i)
+                
             }
         }
     }

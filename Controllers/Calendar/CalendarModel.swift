@@ -19,22 +19,23 @@ enum Weekdays : Int {
 
 struct Month {
     let name : String
-    var year : Int
-    var length : Int
-    var firstWeekDay : Int
+    let year : Int
+    let length : Int
+    let firstWeekDay : Int
     let numOfDaysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31]
+    let monthNo : Int
     
-    init(index: MonthIndex, year: Int) {
-        self.year = year
+    init(index: MonthIndex, fromYear: Int) {
+        year = fromYear
+        monthNo = index.rawValue + 1
+        firstWeekDay = ("\(year)-\(index.rawValue+1)-01".date?.firstDayOfTheMonth.weekday)!
         
         //for leap years set Feb length to 29 days
-        if (index.rawValue) == 1 && year % 4 == 0 {
+        if (index.rawValue) == 1 && fromYear % 4 == 0 {
             length = 29
         } else {
             length = numOfDaysInMonth[index.rawValue]
         }
-        
-        firstWeekDay = ("\(year)-\(index.rawValue+1)-01".date?.firstDayOfTheMonth.weekday)!
         
         switch index {
         case .january:
@@ -62,7 +63,6 @@ struct Month {
         case .december:
             name = "December"
         }
-        
     }
 }
 
@@ -80,7 +80,7 @@ class CalendarModel : NSObject {
     override init() {
         super.init()
         self.createCalendar()
-        todayIndexPath = getDateIndexPath(date: Date(), monthArray: monthArray)
+        todayIndexPath = getIndexPath(fromDate: Date())
     }
     
     func setCalendarYears() {
@@ -104,24 +104,24 @@ class CalendarModel : NSObject {
             
             for i in 0...11 {
                 let monthIndex = MonthIndex(rawValue: i)
-                let month = Month(index: monthIndex!, year: year)
+                let month = Month(index: monthIndex!, fromYear: year)
                 monthArray.append(month)
             }
         }
     }
 
-    func getDateIndexPath(date: Date, monthArray: [Month]) -> IndexPath {
+    func getIndexPath(fromDate: Date) -> IndexPath {
         
         var section = 0
         var item = 0
-        let startYear = monthArray[0].year
+        let startYear = self.monthArray[0].year
         let monthsInYear = 12
         
-        if startYear < date.year {
-            let yearDiff = date.year - startYear
+        if startYear < fromDate.year {
+            let yearDiff = fromDate.year - startYear
             
-            item = date.firstDayOfTheMonth.weekday + date.day - 2
-            section += (yearDiff*monthsInYear) + date.month - 1
+            item = fromDate.firstDayOfTheMonth.weekday + fromDate.day - 2
+            section += (yearDiff*monthsInYear) + fromDate.month - 1
             
         } else {
             //return error
@@ -133,8 +133,19 @@ class CalendarModel : NSObject {
         return indexPath
 
     }
+    
+    func getDate(fromIndex: IndexPath) -> Date {
+        
+        let indexYear = self.monthArray[fromIndex.section].year
+        let indexMonth = self.monthArray[fromIndex.section].monthNo
+        let indexDay = fromIndex.item - self.monthArray[fromIndex.section].firstWeekDay + 2
+        
+        let indexDate =  ("\(indexYear)-\(indexMonth)-\(indexDay)".date)!
+    
+        return indexDate
+    }
 }
-// get first weekday of month
+
 extension Date {
     var weekday: Int {
         return Calendar.current.component(.weekday, from: self)
