@@ -12,10 +12,10 @@ struct TransactionStruct {
     
     var description: String
     var amount: Double
-    var date: NSDate
+    var date: Date
     var income: Bool
     
-    init(description: String, amount: Double, date: NSDate, income: Bool) {
+    init(description: String, amount: Double, date: Date, income: Bool) {
         self.description = description
         self.amount = amount
         self.date = date

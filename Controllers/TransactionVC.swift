@@ -14,11 +14,11 @@ class TransactionVC: UIViewController {
     var transaction: Transaction?
     var itemIndex: IndexPath?
     var isIncome: Bool?
-    weak var walletVC: WalletVC?
+    weak var walletVC: WalletVC?  //https://stackoverflow.com/questions/32028405/presentingviewcontroller-returns-the-parent-of-the-actual-presenting-view-contro
     var isLaterDate: Bool = false
     let stack = CoreDataStack.sharedInstance
     var transactionTitle: String?
-    var transactionDate: NSDate?
+    var transactionDate: Date?
     var amount: Double?
     var oldTransaction : TransactionStruct?
     var newTransaction : TransactionStruct?
@@ -43,11 +43,11 @@ class TransactionVC: UIViewController {
         
         if let transaction = transaction {
             transactionTitle = transaction.title
-            transactionDate = transaction.createdAt
+            transactionDate = transaction.createdAt as? Date
             amount = transaction.amount
             isIncome = transaction.income
             
-            oldTransaction = TransactionStruct(description: transaction.title!, amount: transaction.amount, date: transaction.createdAt!, income: transaction.income)
+            oldTransaction = TransactionStruct(description: transaction.title!, amount: transaction.amount, date: transaction.createdAt! as Date, income: transaction.income)
         }
         
         saveButton.isEnabled = false
@@ -89,7 +89,7 @@ class TransactionVC: UIViewController {
             
             newTransaction = TransactionStruct(description: transactionTitle!, amount: amount!, date: transactionDate!, income: isIncome!)
             
-            transaction!.createdAt = transactionDate
+            transaction!.createdAt = transactionDate as! NSDate
             transaction!.amount = amount!
             transaction!.title = transactionTitle
             transaction!.income = isIncome!
@@ -104,7 +104,7 @@ class TransactionVC: UIViewController {
 
         } else {
             
-            let new = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome!, createdAt: transactionDate! , context: stack.context)
+            let new = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome!, createdAt: transactionDate! as NSDate , context: stack.context)
             saveDelegate?.updateModel(controller: self, saveObject: new, isNew: true)
             
         }
@@ -121,10 +121,10 @@ class TransactionVC: UIViewController {
             isLaterDate = true
         }
         
-        transactionDate = sender.date as NSDate
+        transactionDate = sender.date
         
         if let transaction = transaction {
-            if transactionDate != transaction.createdAt {
+            if transactionDate != (transaction.createdAt as Date?) {
                 updatedValue = true
             }
         }
@@ -138,7 +138,7 @@ class TransactionVC: UIViewController {
             if isIncome != transaction.income {
                 updatedValue = true
             } else {
-                saveButton.isEnabled = (transaction.createdAt != transactionDate) || (transaction.title != transactionTitle) || (transaction.amount != amount)
+                saveButton.isEnabled = ((transaction.createdAt! as Date) != transactionDate) || (transaction.title != transactionTitle) || (transaction.amount != amount)
             }
         } else {
             saveButton.isEnabled = (amount != nil) && (transactionTitle != nil)
@@ -153,17 +153,17 @@ class TransactionVC: UIViewController {
     
     func setUpView() {
         
-        if let transaction = transaction {
+        if transaction != nil {
             
-            datePicker.date = transactionDate as! Date
+            datePicker.date = transactionDate!
             descriptionTextField.text = transactionTitle
             amountTextField.text = "\(amount!)"
             incomeSwitch.isOn = isIncome!
             
         } else {
             
-            transactionDate = NSDate()
-            datePicker.date = transactionDate as! Date
+            transactionDate = Date()
+            datePicker.date = transactionDate!
             incomeSwitch.isOn = false
         }
         
@@ -194,7 +194,7 @@ extension TransactionVC : UITextFieldDelegate {
             if (amount != transaction.amount) || (transactionTitle != transaction.title) {
                 updatedValue = true
             } else {
-                saveButton.isEnabled = (transaction.createdAt != transactionDate) || (transaction.income != isIncome)
+                saveButton.isEnabled = ((transaction.createdAt! as Date) != transactionDate) || (transaction.income != isIncome)
             }
         } else {
             saveButton.isEnabled = (amount != nil) && (transactionTitle != nil)
