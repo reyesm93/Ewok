@@ -42,6 +42,7 @@ extension WalletVC: UpdateModelDelegate {
                 let modified = updateList.index(of: startingAt)
                 let shouldRemove: Bool = (updateCount - modified!) > 2
                 
+                // Remove transactions that don't need to be updated
                 if shouldRemove {
                     updateList.removeSubrange((modified!+2)..<updateCount)
                 }
@@ -56,7 +57,7 @@ extension WalletVC: UpdateModelDelegate {
                 
                 if updateCount == 1 {
                     startingAt.newBalance = startingAt.amount
-                } else {
+                 } else {
                     
                     if modified == 0 {
                         startingAt.newBalance = startingAt.amount + updateList[1].newBalance

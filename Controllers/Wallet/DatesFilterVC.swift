@@ -9,7 +9,7 @@ import UIKit
 
 class DatesFilterVC : UIViewController {
     
-    var parentVC: WalletVC?
+    weak var parentVC: WalletVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()

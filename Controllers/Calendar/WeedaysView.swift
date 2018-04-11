@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum Weekdays : Int {
+    case sunday = 1, monday, tuesday, wednesday, thursday, friday, saturday
+}
+
+
 class WeekdaysView: UIView {
     
     override init(frame: CGRect) {

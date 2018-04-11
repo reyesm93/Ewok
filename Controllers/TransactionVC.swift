@@ -14,6 +14,7 @@ class TransactionVC: UIViewController {
     var transaction: Transaction?
     var itemIndex: IndexPath?
     var isIncome: Bool?
+    weak var walletVC: WalletVC?
     var isLaterDate: Bool = false
     let stack = CoreDataStack.sharedInstance
     var transactionTitle: String?
@@ -64,7 +65,7 @@ class TransactionVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        print("walletVC transVC : \(walletVC)")
     }
 
     @IBAction func cancelPressed(_ sender: Any) {
@@ -76,8 +77,6 @@ class TransactionVC: UIViewController {
         
         resignIfFirstResponder(amountTextField)
         resignIfFirstResponder(descriptionTextField)
-        
-        let parentVC = self.parent as? WalletVC
         
         isIncome = incomeSwitch.isOn
         let multiplier = -1.0
@@ -96,7 +95,7 @@ class TransactionVC: UIViewController {
             transaction!.income = isIncome!
             
             if isLaterDate {
-                parentVC?.getNextTransaction(fromTransaction: transaction!) { (result) in
+                walletVC?.getNextTransaction(fromTransaction: transaction!) { (result) in
                     self.saveDelegate?.updateModel(controller: self, saveObject: result!, isNew: false)
                 }
             } else {
@@ -117,6 +116,7 @@ class TransactionVC: UIViewController {
     
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
         
+        // Transaction date was changed to a later date
         if oldTransaction?.date.compare(sender.date) == ComparisonResult.orderedAscending {
             isLaterDate = true
         }

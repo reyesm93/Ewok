@@ -49,6 +49,7 @@ class WalletVC: UIViewController {
         
         let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionVC
         controller.saveDelegate = self
+        controller.walletVC = self
         self.present(controller, animated: true, completion: nil)
         
     }
@@ -68,6 +69,10 @@ class WalletVC: UIViewController {
         mainScrollView.delegate = self
         
         customBalanceView.wallet = wallet
+        
+        // create cases for different predicate arguments
+        // https://stackoverflow.com/questions/8364495/nspredicate-for-finding-events-that-occur-between-a-certain-date-range
+        // https://stackoverflow.com/questions/24176605/using-predicate-in-swift
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         fetchRequest.predicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
@@ -162,6 +167,7 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
         
         let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionVC
         controller.saveDelegate = self
+        controller.walletVC = self
         controller.transaction = transaction
         controller.itemIndex = indexPath
         self.present(controller, animated: true, completion: nil)

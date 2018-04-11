@@ -13,10 +13,6 @@ enum MonthIndex : Int {
     case january = 0, february, march, april, may, june, july, august, september, october, november, december
 }
 
-enum Weekdays : Int {
-    case sunday = 1, monday, tuesday, wednesday, thursday, friday, saturday
-}
-
 struct Month {
     let name : String
     let year : Int
