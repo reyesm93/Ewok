@@ -61,6 +61,5 @@ extension WalletVC: NSFetchedResultsControllerDelegate {
             self.mainBalance.text = String(describing: (self.wallet?.balance)!)
             self.mainBalance.setNeedsDisplay()
         }
-        
     }
 }

@@ -24,6 +24,8 @@ class WalletVC: UIViewController {
     var placeholder: Transaction?
     var scrollPosition: CGFloat?
     var fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
+    var compoundPredicate : NSCompoundPredicate?
+    var predicates = [NSPredicate]()
     var fetchedResultsController : NSFetchedResultsController<Transaction>? {
         didSet {
             // Whenever the frc changes, we execute the search and
@@ -74,8 +76,15 @@ class WalletVC: UIViewController {
         // https://stackoverflow.com/questions/8364495/nspredicate-for-finding-events-that-occur-between-a-certain-date-range
         // https://stackoverflow.com/questions/24176605/using-predicate-in-swift
         
+        let walletPredicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
+        //let futureDate = "2018-07-30".date
+        //let todayPredicate = NSPredicate(format: "createdAt >= %@ && createdAt <= %@", argumentArray: [NSDate(), futureDate])
+        predicates.append(walletPredicate)
+        //predicates.append(todayPredicate)
+        compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
-        fetchRequest.predicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
+        fetchRequest.predicate = compoundPredicate
         fetchRequest.includesPendingChanges = true
     
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as? NSFetchedResultsController<Transaction>

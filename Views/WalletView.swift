@@ -24,7 +24,7 @@ class WalletView: UIView {
         self.wallet = wallet
         setUpView()
     }
-    
+    // Was not created in storyboard but it needs initwithCoder
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

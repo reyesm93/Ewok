@@ -76,6 +76,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
     }
     
     @IBAction func menuPressed(_ sender: Any) {
@@ -254,7 +255,10 @@ extension MainVC: NSFetchedResultsControllerDelegate {
             //walletViewDeleted.removeFromSuperview
             
 
-        case .update: break
+        case .update:
+            let updated = subViews[(indexPath?.row)!]
+            updated.setLabels()
+            
 //            let newWallet = anObject as! Wallet
 //            let newWalletView = WalletView(frame: .zero, wallet: newWallet)
 //            self.setGestureRecognizer(newWalletView)
@@ -269,7 +273,7 @@ extension MainVC: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         
-        //self.view.layoutIfNeeded()
+        self.view.layoutIfNeeded()
     }
 }
 
