@@ -44,13 +44,21 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
             let day = indexPath.item - month.firstWeekDay + 2
             cell.lbl.text="\(day)"
             
-            let firstTran = limitsIndexPath![0]
-            let lastTran = limitsIndexPath![1]
-            let isBefore = indexPath < firstTran
-            let isAfter = indexPath > lastTran
+            let firstTransaction = limitsIndexPath![0]
+            let lastTransaction = limitsIndexPath![1]
+            let isBefore = indexPath < firstTransaction
+            let isAfter = indexPath > lastTransaction
             
             if indexPath == todayIndexPath {
                 cell.lbl.font = cell.lbl.font.bold
+            }
+            
+            if selectedDateRange.contains(indexPath) {
+                cell.backgroundColor = .black
+                cell.lbl.textColor = .white
+            } else {
+                cell.backgroundColor = .white
+                cell.lbl.textColor = .black
             }
             
             if isBefore || isAfter {
@@ -90,9 +98,7 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
             selectedDateRange.append(startFilter!)
         }
         
-        for cell in selectedDateRange {
-            highlightCell(collectionView, cell)
-        }
+        collectionView.reloadData()
         
         print("item: \(indexPath.item)")
         print("section: \(indexPath.section)")
@@ -100,7 +106,7 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
     }
     
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8.0
     }
@@ -120,7 +126,8 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
     }
     
     fileprivate func highlightCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! DateCell
+        let cell = collectionView.cellForItem(at: indexPath) as! DateCell // The cell object at the corresponding index path or nil if the cell is not visible or indexPath is out of range. You should update your underlying model, which provides the data to the views.
+        
         if cell.isHidden == false {
             cell.backgroundColor = .black
             cell.lbl.textColor = .white
@@ -136,10 +143,6 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
     }
     
     fileprivate func restartRange(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
-        for cell in selectedDateRange {
-            unHighlightCell(collectionView, cell)
-        }
-        
         selectedDateRange.removeAll()
         startFilter = indexPath
         selectedDateRange.append(startFilter!)

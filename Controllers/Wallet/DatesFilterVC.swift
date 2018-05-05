@@ -16,8 +16,6 @@ class DatesFilterVC : UIViewController {
         
     }
     
-    
-    
     @IBAction func showCalendar(_ sender: Any) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC

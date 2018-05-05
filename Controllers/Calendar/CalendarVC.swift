@@ -33,9 +33,7 @@ class CalendarVC : UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-       
-        
+
     }
     
     func setUpView() {
@@ -62,10 +60,18 @@ class CalendarVC : UIViewController {
     @IBAction func completeDate(_ sender: Any) {
         
         var dates = [Date]()
-        
-        for index in selectedDateRange {
-            dates.append(calendarData.getDate(fromIndex: index))
+        if selectedDateRange.count > 1 {
+            dates.append(calendarData.getDate(fromIndex: selectedDateRange.first!))
+            dates.append(calendarData.getDate(fromIndex: selectedDateRange.last!))
+        } else {
+            //range not wide enough alert
         }
+        
+        performUIUpdatesOnMain {
+            self.parentVC?.updatePrededicates()
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelDate(_ sender: Any) {
@@ -97,6 +103,13 @@ class CalendarVC : UIViewController {
         }
         
         return [lastDate, firstDate]
+    }
+    
+    
+    public func createPredicateWithDates(dates: [Date]) -> NSPredicate {
+        
+        return NSPredicate(format: "createdAt >= %@ && createdAt <= %@", argumentArray: [dates[0], dates[1]])
+        
     }
 }
 

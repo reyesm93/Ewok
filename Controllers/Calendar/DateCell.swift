@@ -16,6 +16,12 @@ class DateCell: UICollectionViewCell {
         backgroundColor=UIColor.clear
         layer.cornerRadius=5
         layer.masksToBounds=true
+        self.isUserInteractionEnabled = true
+        
+//        if self.isHighlighted {
+//            self.backgroundColor = .black
+//            self.lbl.textColor = .white
+//        }
         
         setupViews()
     }
@@ -29,8 +35,15 @@ class DateCell: UICollectionViewCell {
         super.prepareForReuse()
         self.lbl.font = self.lbl.font.removeBold()
         self.lbl.textColor = .black
+        self.backgroundColor = .white
         self.isUserInteractionEnabled = true
+        
+//        if self.isHighlighted {
+//            self.backgroundColor = .black
+//            self.lbl.textColor = .white
+//        }
     }
+    
     
     let lbl: UILabel = {
         let label = UILabel()

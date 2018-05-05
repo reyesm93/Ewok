@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qfh-Qz-N1D">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qfh-Qz-N1D">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -313,7 +313,7 @@
                                                 </segments>
                                             </segmentedControl>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMU-gE-Y1d" userLabel="FilterContainerView" customClass="FilterContainerView" customModule="Ewok" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="359" height="111"/>
+                                                <rect key="frame" x="0.0" y="31" width="359" height="108"/>
                                                 <connections>
                                                     <segue destination="2KR-ib-Fro" kind="embed" id="5zT-Uk-zQ7"/>
                                                 </connections>
@@ -324,7 +324,7 @@
                                             <constraint firstItem="UrM-m5-R7K" firstAttribute="top" secondItem="Ls7-Od-eLK" secondAttribute="top" id="AG2-6b-si3"/>
                                             <constraint firstAttribute="bottom" secondItem="QMU-gE-Y1d" secondAttribute="bottom" id="LAj-ib-WAN"/>
                                             <constraint firstAttribute="height" constant="139" id="Z9X-49-jbg"/>
-                                            <constraint firstItem="QMU-gE-Y1d" firstAttribute="top" secondItem="UrM-m5-R7K" secondAttribute="bottom" id="omU-0C-SKc"/>
+                                            <constraint firstItem="QMU-gE-Y1d" firstAttribute="top" secondItem="UrM-m5-R7K" secondAttribute="bottom" constant="3" id="omU-0C-SKc"/>
                                             <constraint firstItem="QMU-gE-Y1d" firstAttribute="leading" secondItem="Ls7-Od-eLK" secondAttribute="leading" id="peg-YB-iag"/>
                                             <constraint firstAttribute="trailing" secondItem="QMU-gE-Y1d" secondAttribute="trailing" id="tTv-8f-D2M"/>
                                             <constraint firstAttribute="trailing" secondItem="UrM-m5-R7K" secondAttribute="trailing" id="y6Q-z9-X2S"/>
@@ -368,7 +368,7 @@
                                 </constraints>
                                 <state key="normal" title="Add"/>
                                 <connections>
-                                    <action selector="addTransaction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AwC-7a-bUO"/>
+                                    <action selector="createTransaction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AwC-7a-bUO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -391,6 +391,7 @@
                     <connections>
                         <outlet property="addButton" destination="B5a-vQ-ck4" id="i0q-4H-mYS"/>
                         <outlet property="customBalanceView" destination="Ls7-Od-eLK" id="5bP-WJ-odV"/>
+                        <outlet property="filterBySC" destination="UrM-m5-R7K" id="5cs-uG-6o5"/>
                         <outlet property="filterContainerView" destination="QMU-gE-Y1d" id="aLN-eQ-dmK"/>
                         <outlet property="mainBalance" destination="ZaA-dm-432" id="GdP-3a-1F0"/>
                         <outlet property="mainScrollView" destination="oal-yt-lot" id="4RQ-75-GQA"/>
@@ -723,11 +724,11 @@
             <objects>
                 <viewController id="2KR-ib-Fro" userLabel="DatesFilterVC" customClass="DatesFilterVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EBY-Nb-Txq">
-                        <rect key="frame" x="0.0" y="0.0" width="359" height="111"/>
+                        <rect key="frame" x="0.0" y="0.0" width="359" height="108"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fl8-dC-RdA">
-                                <rect key="frame" x="32" y="45.666666666666664" width="46" height="29.999999999999993"/>
+                                <rect key="frame" x="32" y="44" width="46" height="30"/>
                                 <state key="normal" title="Dates"/>
                                 <connections>
                                     <action selector="showCalendar:" destination="2KR-ib-Fro" eventType="touchUpInside" id="WLa-oh-7wf"/>

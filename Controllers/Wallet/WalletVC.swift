@@ -17,6 +17,7 @@ class WalletVC: UIViewController {
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var customBalanceView: CustomBalanceView!
     @IBOutlet weak var filterContainerView: FilterContainerView!
+    @IBOutlet weak var filterBySC: UISegmentedControl!
     
     
     let stack = CoreDataStack.sharedInstance
@@ -31,7 +32,7 @@ class WalletVC: UIViewController {
             // Whenever the frc changes, we execute the search and
             // reload the table
             fetchedResultsController?.delegate = self
-            executeSearch()
+            fetchTransactions()
             self.transactionTableView.dataSource = self
             transactionTableView.reloadData()
         }
@@ -47,7 +48,7 @@ class WalletVC: UIViewController {
 //        super.init(nibName: nil, bundle: nil)
 //    }
     
-    @IBAction func addTransaction(_ sender: Any) {
+    @IBAction func createTransaction(_ sender: Any) {
         
         let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionVC
         controller.saveDelegate = self
@@ -66,28 +67,16 @@ class WalletVC: UIViewController {
             filterVC.parentVC = self
         }
         
+        // Set delegates and datasources
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
         mainScrollView.delegate = self
         
         customBalanceView.wallet = wallet
         
-        // create cases for different predicate arguments
-        // https://stackoverflow.com/questions/8364495/nspredicate-for-finding-events-that-occur-between-a-certain-date-range
-        // https://stackoverflow.com/questions/24176605/using-predicate-in-swift
         
-        let walletPredicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
-        //let futureDate = "2018-07-30".date
-        //let todayPredicate = NSPredicate(format: "createdAt >= %@ && createdAt <= %@", argumentArray: [NSDate(), futureDate])
-        predicates.append(walletPredicate)
-        //predicates.append(todayPredicate)
-        compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
-        fetchRequest.predicate = compoundPredicate
-        fetchRequest.includesPendingChanges = true
-    
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as? NSFetchedResultsController<Transaction>
+        updatePrededicates()
+        setFilterBySC()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,14 +84,14 @@ class WalletVC: UIViewController {
         
         mainBalance.text = "\((wallet?.balance)!)"
         
-        if executeSearch().isEmpty {
+        if fetchTransactions().isEmpty {
             mainScrollView.isHidden = true
         } else {
             mainScrollView.isHidden = false
         }
     }
     
-    func executeSearch() -> [Transaction] {
+    func fetchTransactions() -> [Transaction] {
         var transactions = [Transaction]()
         if let fc = fetchedResultsController {
             do {
@@ -114,6 +103,58 @@ class WalletVC: UIViewController {
         }
         
         return transactions
+    }
+    
+    func setFilterBySC() {
+        
+        filterBySC.setTitle("Date", forSegmentAt: 0)
+        filterBySC.setTitle("Tags", forSegmentAt: 1)
+        filterBySC.setTitle("Search", forSegmentAt: 2)
+        filterBySC.addTarget(self, action: #selector(changeFilter), for: UIControlEvents.valueChanged)
+        
+    }
+    
+    func setFetchRequest() {
+        // create cases for different predicate arguments
+        // https://stackoverflow.com/questions/8364495/nspredicate-for-finding-events-that-occur-between-a-certain-date-range
+        // https://stackoverflow.com/questions/24176605/using-predicate-in-swift
+        
+        compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        fetchRequest.predicate = compoundPredicate
+        fetchRequest.includesPendingChanges = true
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as? NSFetchedResultsController<Transaction>
+    }
+    
+    func updatePrededicates(withPredicate: NSPredicate? = nil) {
+        predicates.removeAll()
+        let walletPredicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
+        predicates.append(walletPredicate)
+        
+        if withPredicate != nil {
+            predicates.append(withPredicate!)
+        }
+        
+        setFetchRequest()
+        transactionTableView.reloadData()
+
+    }
+    
+    @objc func changeFilter(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+            
+        case 0:
+            print("date")
+        case 1:
+            print("tag")
+        case 2:
+            print("search")
+        default:
+            break
+        }
     }
 }
 
