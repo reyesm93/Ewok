@@ -68,7 +68,7 @@ class CalendarVC : UIViewController {
         }
         
         performUIUpdatesOnMain {
-            self.parentVC?.updatePrededicates()
+            self.parentVC?.updatePrededicates(withPredicate: self.createPredicateWithDates(dates))
         }
         
         dismiss(animated: true, completion: nil)
@@ -106,7 +106,7 @@ class CalendarVC : UIViewController {
     }
     
     
-    public func createPredicateWithDates(dates: [Date]) -> NSPredicate {
+    public func createPredicateWithDates(_ dates: [Date]) -> NSPredicate {
         
         return NSPredicate(format: "createdAt >= %@ && createdAt <= %@", argumentArray: [dates[0], dates[1]])
         

@@ -17,12 +17,7 @@ class DateCell: UICollectionViewCell {
         layer.cornerRadius=5
         layer.masksToBounds=true
         self.isUserInteractionEnabled = true
-        
-//        if self.isHighlighted {
-//            self.backgroundColor = .black
-//            self.lbl.textColor = .white
-//        }
-        
+   
         setupViews()
     }
 
@@ -37,11 +32,7 @@ class DateCell: UICollectionViewCell {
         self.lbl.textColor = .black
         self.backgroundColor = .white
         self.isUserInteractionEnabled = true
-        
-//        if self.isHighlighted {
-//            self.backgroundColor = .black
-//            self.lbl.textColor = .white
-//        }
+
     }
     
     
