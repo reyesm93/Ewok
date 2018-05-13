@@ -20,6 +20,7 @@
 		DD3425442069872A00B664C3 /* CalendarCollectionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3425432069872A00B664C3 /* CalendarCollectionUtils.swift */; };
 		DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD34C760201D20240088CEBB /* SideMenuVC.swift */; };
 		DD42BD21206ACA8C000518FA /* FilterContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD42BD20206ACA8C000518FA /* FilterContainerView.swift */; };
+		DD5DD042209FB15C009F2041 /* FiltersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DD041209FB15C009F2041 /* FiltersDelegate.swift */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* ContainerVC.swift */; };
 		DD60A38F2012C3F50019675C /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38E2012C3F50019675C /* MainVC.swift */; };
@@ -49,12 +50,11 @@
 		DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */; };
 		DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95EF592022AC4E00C788D1 /* AddButton.swift */; };
 		DDB1F6EF2008223200C26E40 /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F6EE2008223200C26E40 /* TransactionVC.swift */; };
-		DDC3F1C92038D89900EFF9FE /* UpdateModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC3F1C82038D89900EFF9FE /* UpdateModelDelegate.swift */; };
+		DDC3F1C92038D89900EFF9FE /* UpdateTransactionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC3F1C82038D89900EFF9FE /* UpdateTransactionsDelegate.swift */; };
 		DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */; };
 		DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */; };
 		DDE0D9F62052190700F3A527 /* FetchControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0D9F52052190700F3A527 /* FetchControllerDelegate.swift */; };
 		DDE3E6302051DAC700A13182 /* TransactionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE3E62F2051DAC700A13182 /* TransactionStruct.swift */; };
-		DDF0D07C206574EE008E8802 /* CalendarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF0D07B206574EE008E8802 /* CalendarDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +97,7 @@
 		DD3425432069872A00B664C3 /* CalendarCollectionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionUtils.swift; sourceTree = "<group>"; };
 		DD34C760201D20240088CEBB /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		DD42BD20206ACA8C000518FA /* FilterContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterContainerView.swift; sourceTree = "<group>"; };
+		DD5DD041209FB15C009F2041 /* FiltersDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersDelegate.swift; sourceTree = "<group>"; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
 		DD60A38E2012C3F50019675C /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -134,13 +135,12 @@
 		DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBalanceView.swift; sourceTree = "<group>"; };
 		DD95EF592022AC4E00C788D1 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		DDB1F6EE2008223200C26E40 /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
-		DDC3F1C82038D89900EFF9FE /* UpdateModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateModelDelegate.swift; sourceTree = "<group>"; };
+		DDC3F1C82038D89900EFF9FE /* UpdateTransactionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTransactionsDelegate.swift; sourceTree = "<group>"; };
 		DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 4.xcdatamodel"; sourceTree = "<group>"; };
 		DDE0D9F52052190700F3A527 /* FetchControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchControllerDelegate.swift; sourceTree = "<group>"; };
 		DDE3E62F2051DAC700A13182 /* TransactionStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStruct.swift; sourceTree = "<group>"; };
-		DDF0D07B206574EE008E8802 /* CalendarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,8 +330,8 @@
 		DDE3E6322051DDE800A13182 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				DDC3F1C82038D89900EFF9FE /* UpdateModelDelegate.swift */,
-				DDF0D07B206574EE008E8802 /* CalendarDelegate.swift */,
+				DDC3F1C82038D89900EFF9FE /* UpdateTransactionsDelegate.swift */,
+				DD5DD041209FB15C009F2041 /* FiltersDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -701,6 +701,7 @@
 				DD6A7EEB20421ACB00B15C3D /* Constants.swift in Sources */,
 				DD7A13521FF7340A00943E6C /* Transaction+CoreDataProperties.swift in Sources */,
 				DD342542206984BC00B664C3 /* MonthHeader.swift in Sources */,
+				DD5DD042209FB15C009F2041 /* FiltersDelegate.swift in Sources */,
 				DD60A38F2012C3F50019675C /* MainVC.swift in Sources */,
 				DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */,
 				DDE0D9F62052190700F3A527 /* FetchControllerDelegate.swift in Sources */,
@@ -708,7 +709,7 @@
 				DD0A91C82064256B006E7039 /* DatesFilterVC.swift in Sources */,
 				DD844049205DE73B003EF476 /* DateCell.swift in Sources */,
 				DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */,
-				DDC3F1C92038D89900EFF9FE /* UpdateModelDelegate.swift in Sources */,
+				DDC3F1C92038D89900EFF9FE /* UpdateTransactionsDelegate.swift in Sources */,
 				DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */,
 				DD7A134F1FF7340A00943E6C /* Wallet+CoreDataClass.swift in Sources */,
 				DD7A13501FF7340A00943E6C /* Wallet+CoreDataProperties.swift in Sources */,
@@ -727,7 +728,6 @@
 				DD843E951FF5D8D700EE3C0D /* WalletVC.swift in Sources */,
 				DD03A696206BE50E00B4C639 /* CalendarModel.swift in Sources */,
 				DD3425442069872A00B664C3 /* CalendarCollectionUtils.swift in Sources */,
-				DDF0D07C206574EE008E8802 /* CalendarDelegate.swift in Sources */,
 				DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */,
 				DD8D1AB720375E5E00C52EC9 /* PlaidClient.swift in Sources */,
 				DD844045205DD21B003EF476 /* WeedaysView.swift in Sources */,

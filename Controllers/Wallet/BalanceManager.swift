@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import CoreData
 
-extension WalletVC: UpdateModelDelegate {
+extension WalletVC: UpdateTransactionsDelegate {
     
-    func updateModel(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
+    func updateTransactionList(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
         
         let transaction = saveObject as! Transaction
         

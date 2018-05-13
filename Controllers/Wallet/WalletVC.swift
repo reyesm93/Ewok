@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 
+enum Filters : Int {
+    case dates = 0, tags, search
+}
+
 class WalletVC: UIViewController {
 
     @IBOutlet weak var mainBalance: UILabel!
@@ -23,10 +27,13 @@ class WalletVC: UIViewController {
     let stack = CoreDataStack.sharedInstance
     var wallet : Wallet?
     var placeholder: Transaction?
+    var transactionsDelegate : UpdateTransactionsDelegate?
     var scrollPosition: CGFloat?
     var fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
     var compoundPredicate : NSCompoundPredicate?
     var predicates = [NSPredicate]()
+    var isFilterApplied : [Bool] = [false, false, false]
+    
     var fetchedResultsController : NSFetchedResultsController<Transaction>? {
         didSet {
             // Whenever the frc changes, we execute the search and
@@ -35,6 +42,17 @@ class WalletVC: UIViewController {
             fetchTransactions()
             self.transactionTableView.dataSource = self
             transactionTableView.reloadData()
+        }
+    }
+    
+    var topTransaction : IndexPath? {
+        didSet {
+            //update table view
+            performUIUpdatesOnMain {
+                self.transactionTableView.scrollToRow(at: self.topTransaction!, at: .top, animated: true)
+                self.transactionTableView.reloadData()
+            }
+            
         }
     }
     
@@ -59,13 +77,16 @@ class WalletVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+         self.automaticallyAdjustsScrollViewInsets = false
         
         print("childVCs WalletVC: \(self.childViewControllers)")
         
         if let filterVC = self.childViewControllers[0] as? DatesFilterVC {
             filterVC.parentVC = self
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applyFilter), name: NSNotification.Name(rawValue: "ApplyDateFilter"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearFilter), name: NSNotification.Name(rawValue: "ClearFilter"), object: nil)
         
         // Set delegates and datasources
         transactionTableView.delegate = self
@@ -74,15 +95,15 @@ class WalletVC: UIViewController {
         
         customBalanceView.wallet = wallet
         
+        topTransaction = setTopTransaction(fromDate: [Date()])
         
-        updatePrededicates()
         setFilterBySC()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        mainBalance.text = "\((wallet?.balance)!)"
+        mainBalance.text = wallet?.balance.currency
         
         if fetchTransactions().isEmpty {
             mainScrollView.isHidden = true
@@ -107,9 +128,9 @@ class WalletVC: UIViewController {
     
     func setFilterBySC() {
         
-        filterBySC.setTitle("Date", forSegmentAt: 0)
-        filterBySC.setTitle("Tags", forSegmentAt: 1)
-        filterBySC.setTitle("Search", forSegmentAt: 2)
+        filterBySC.setTitle("Date", forSegmentAt: Filters.dates.rawValue)
+        filterBySC.setTitle("Tags", forSegmentAt: Filters.tags.rawValue)
+        filterBySC.setTitle("Search", forSegmentAt: Filters.search.rawValue)
         filterBySC.addTarget(self, action: #selector(changeFilter), for: UIControlEvents.valueChanged)
         
     }
@@ -128,17 +149,49 @@ class WalletVC: UIViewController {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as? NSFetchedResultsController<Transaction>
     }
     
-    func updatePrededicates(withPredicate: NSPredicate? = nil) {
+    func updatePredicates(withPredicate: NSPredicate? = nil, filterType: Filters? = nil) {
         predicates.removeAll()
         let walletPredicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
         predicates.append(walletPredicate)
         
-        if withPredicate != nil {
+        if (withPredicate != nil) && (filterType != nil) {
             predicates.append(withPredicate!)
+            isFilterApplied[(filterType?.rawValue)!] = true
         }
         
         setFetchRequest()
 
+    }
+    
+    // Assure that when called the first transaction in array is the later date
+    func setTopTransaction(fromDate: [Date]) -> IndexPath {
+        
+        // Need to assure that predicate is set for all existing transactions so
+        // that the fetch returns all
+        updatePredicates()
+        
+        let date = fromDate[0]
+        let transactions = fetchTransactions()
+        var count : Int = 0
+        var scrollTo: Transaction? = transactions[count]
+        var scrollToIndexPath: IndexPath?
+        
+        
+        while (scrollTo?.createdAt! as! Date) > date && count < transactions.count {
+            
+            // consider scenario where it's the same day but later
+            
+            scrollTo = transactions[count]
+            count += 1
+        }
+        
+        scrollToIndexPath = IndexPath(item: (transactions.index(of: scrollTo!))!, section: 0)
+        return scrollToIndexPath!
+        
+    }
+    
+    func scrollToTransaction() {
+        
     }
     
     @objc func changeFilter(_ sender: UISegmentedControl) {
@@ -154,6 +207,30 @@ class WalletVC: UIViewController {
         default:
             break
         }
+    }
+    
+    @objc func applyFilter(notification: Notification) {
+        
+        guard let filterDates = notification.userInfo?["dates"] as! [Date]? else { return }
+        guard let filterType = notification.userInfo?["filterType"] as! Filters? else { return }
+        
+        isFilterApplied[filterType.rawValue] = true
+        
+        switch filterType {
+        case .dates:
+            if let dates = filterDates as [Date]? {
+                updatePredicates(withPredicate: createPredicateWithDates(dates), filterType: .dates)
+            }
+        case .tags:
+            print("S")
+        case .search:
+            print("S")
+        }
+    
+    }
+    
+    @objc func clearFilter(notification: Notification) {
+        updatePredicates()
     }
 }
 
@@ -193,7 +270,6 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let objectCount = (fetchedResultsController?.fetchedObjects?.count)!
-        let sectionCount = tableView.numberOfSections
         return objectCount
     }
     
@@ -203,9 +279,9 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
         
         
         cell.descriptionLabel.text = transaction?.title
-        cell.amountLabel.text = String(describing: (transaction?.amount)!)
-        cell.dateLabel.text = makeDate(fromTransaction: transaction!)
-        cell.newBalanceLabel.text = String(describing: (transaction?.newBalance)!)
+        cell.amountLabel.text = transaction?.amount.currency
+        cell.dateLabel.text = (transaction!.createdAt! as Date).formattedString
+        cell.newBalanceLabel.text = transaction?.newBalance.currency
         return cell
     
     }
@@ -234,7 +310,6 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
                     print(error)
                 }
             }
-            
         }
         
         deleteAction.backgroundColor = .red
@@ -243,19 +318,26 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
-    func makeDate(fromTransaction: Transaction) -> String {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")
-        
-        let date = dateFormatter.string(from: fromTransaction.createdAt! as Date).uppercased()
-        
-        return date
-        
+    func createPredicateWithDates(_ dates: [Date]) -> NSPredicate {
+        return NSPredicate(format: "createdAt >= %@ && createdAt <= %@", argumentArray: [dates[0], dates[1]])
     }
  
 }
+
+extension Double {
+    
+    static var currencyFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = "$"
+        return formatter
+    }()
+    
+    var currency: String? {
+        return Double.currencyFormatter.string(from: self as NSNumber)
+    }
+}
+
+
 
 

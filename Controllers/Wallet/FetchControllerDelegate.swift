@@ -58,7 +58,7 @@ extension WalletVC: NSFetchedResultsControllerDelegate {
         transactionTableView.endUpdates()
         
         performUIUpdatesOnMain {
-            self.mainBalance.text = String(describing: (self.wallet?.balance)!)
+            self.mainBalance.text = self.wallet?.balance.currency
             self.mainBalance.setNeedsDisplay()
         }
     }

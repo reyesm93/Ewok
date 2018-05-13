@@ -17,7 +17,7 @@ class AddVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var alertView: UIView!
     let stack = CoreDataStack.sharedInstance
     var walletName: String!
-    var delegate: UpdateModelDelegate?
+    var delegate: UpdateTransactionsDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -71,7 +71,7 @@ class AddVC: UIViewController, UIGestureRecognizerDelegate {
         
         let wallet = Wallet(walletName: walletName, balance: 0.0, createdAt: NSDate(), context: self.stack.context)
         
-        delegate?.updateModel(controller: self, saveObject: wallet, isNew: true)
+        delegate?.updateTransactionList(controller: self, saveObject: wallet, isNew: true)
         self.dismiss(animated: true, completion: nil)
     }
 

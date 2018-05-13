@@ -39,8 +39,6 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
             if !(self.sideMenuOpen) {
         
                 self.sideMenuConstraint.constant = 0
-                
-                
                 self.navControllerView.addSubview(self.coverView!)
                 self.view.bringSubview(toFront: self.sideMenuView)
                 self.view.layoutIfNeeded()

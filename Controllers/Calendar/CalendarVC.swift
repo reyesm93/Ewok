@@ -19,8 +19,10 @@ class CalendarVC : UIViewController {
     var limitsIndexPath : [IndexPath]?
     let calendarData = CalendarModel()
     var selectedDateRange = [IndexPath]()
+    var filtersDelegate: FiltersDelegate?
     
     @IBOutlet weak var calendarView: CalendarView!
+    @IBOutlet weak var completeDateButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -29,11 +31,32 @@ class CalendarVC : UIViewController {
         limitsIndexPath = getTransactionIndexLimits(getTransactionsDateLimits())
         setUpView()
         
+        completeDateButton.addTarget(self, action: #selector(didTapCompleteDate(sender:)), for: .touchUpInside)
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+    }
+    
+    @objc func didTapCompleteDate(sender: UIButton) {
+        var dates = [Date]()
+        if selectedDateRange.count > 1 {
+            dates.append(calendarData.getDate(fromIndex: selectedDateRange.first!))
+            dates.append(calendarData.getDate(fromIndex: selectedDateRange.last!))
+        } else {
+            //range not wide enough alert
+        }
+        
+        var userInfo = [String:Any]()
+        userInfo["dates"] = dates
+        userInfo["filterType"] = Filters.dates
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ApplyDateFilter"), object: nil, userInfo: userInfo)
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     func setUpView() {
@@ -52,27 +75,25 @@ class CalendarVC : UIViewController {
 //            let top = calendarView.myCollectionView.contentInset.top
 //            calendarView.myCollectionView.setContentOffset(CGPoint(x: 0, y: yOrigin - top), animated: true)
 //        }
-        
-        
     }
     
     
-    @IBAction func completeDate(_ sender: Any) {
-        
-        var dates = [Date]()
-        if selectedDateRange.count > 1 {
-            dates.append(calendarData.getDate(fromIndex: selectedDateRange.first!))
-            dates.append(calendarData.getDate(fromIndex: selectedDateRange.last!))
-        } else {
-            //range not wide enough alert
-        }
-        
-        performUIUpdatesOnMain {
-            self.parentVC?.updatePrededicates(withPredicate: self.createPredicateWithDates(dates))
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func completeDate(_ sender: Any) {
+//
+//        var dates = [Date]()
+//        if selectedDateRange.count > 1 {
+//            dates.append(calendarData.getDate(fromIndex: selectedDateRange.first!))
+//            dates.append(calendarData.getDate(fromIndex: selectedDateRange.last!))
+//        } else {
+//            //range not wide enough alert
+//        }
+//
+//        performUIUpdatesOnMain {
+//            self.filtersDelegate?.applyFilter(controller: self, filterType: Filters.dates, filterArgument: dates)
+//        }
+//
+//        dismiss(animated: true, completion: nil)
+//    }
     
     @IBAction func cancelDate(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -104,13 +125,7 @@ class CalendarVC : UIViewController {
         
         return [lastDate, firstDate]
     }
-    
-    
-    public func createPredicateWithDates(_ dates: [Date]) -> NSPredicate {
-        
-        return NSPredicate(format: "createdAt >= %@ && createdAt <= %@", argumentArray: [dates[0], dates[1]])
-        
-    }
+
 }
 
 
