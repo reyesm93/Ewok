@@ -32,7 +32,9 @@ class WalletVC: UIViewController {
     var fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
     var compoundPredicate : NSCompoundPredicate?
     var predicates = [NSPredicate]()
+    //var cachePredicates = [NSPredicate]()
     var isFilterApplied : [Bool] = [false, false, false]
+    var calendarDateLimits = [Date]()
     
     var fetchedResultsController : NSFetchedResultsController<Transaction>? {
         didSet {
@@ -98,6 +100,7 @@ class WalletVC: UIViewController {
         topTransaction = setTopTransaction(fromDate: [Date()])
         
         setFilterBySC()
+        setCalendarDateLimits()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -190,6 +193,27 @@ class WalletVC: UIViewController {
         
     }
     
+    // Update date limits to show in calendar for date range of existing transactions
+    func setCalendarDateLimits() {
+        calendarDateLimits.removeAll()
+        var firstDate : Date?
+        var lastDate : Date?
+        let transactionList = fetchTransactions()
+        
+        if !transactionList.isEmpty {
+            
+            if transactionList.count > 1 {
+                lastDate = transactionList[transactionList.count-1].createdAt! as Date
+                calendarDateLimits.append(lastDate!)
+            }
+            
+            firstDate = transactionList[0].createdAt! as Date
+            calendarDateLimits.append(firstDate!)
+            
+            
+        }
+    }
+    
     func scrollToTransaction() {
         
     }
@@ -220,6 +244,7 @@ class WalletVC: UIViewController {
         case .dates:
             if let dates = filterDates as [Date]? {
                 updatePredicates(withPredicate: createPredicateWithDates(dates), filterType: .dates)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DateBalances"), object: nil)
             }
         case .tags:
             print("S")
@@ -230,6 +255,10 @@ class WalletVC: UIViewController {
     }
     
     @objc func clearFilter(notification: Notification) {
+        
+        guard let filterType = notification.userInfo?["filterType"] as! Filters? else { return }
+        
+        isFilterApplied[filterType.rawValue] = false
         updatePredicates()
     }
 }
@@ -321,7 +350,6 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
     func createPredicateWithDates(_ dates: [Date]) -> NSPredicate {
         return NSPredicate(format: "createdAt >= %@ && createdAt <= %@", argumentArray: [dates[0], dates[1]])
     }
- 
 }
 
 extension Double {

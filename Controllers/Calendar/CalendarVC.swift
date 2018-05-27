@@ -28,7 +28,11 @@ class CalendarVC : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         todayIndexPath = calendarData.todayIndexPath
-        limitsIndexPath = getTransactionIndexLimits(getTransactionsDateLimits())
+        
+        if let dateLimits = parentVC?.calendarDateLimits {
+            limitsIndexPath = getTransactionIndexLimits(dateLimits)
+        }
+        
         setUpView()
         
         completeDateButton.addTarget(self, action: #selector(didTapCompleteDate(sender:)), for: .touchUpInside)
@@ -40,6 +44,16 @@ class CalendarVC : UIViewController {
         super.viewDidLayoutSubviews()
 
     }
+    
+    // Need to clear any filters so that the date range in the calendar covers all the exisiting transactions in wallet
+//    func clearFilteredPredicates() {
+//        if let walletVC = parentVC {
+//            walletVC.cachePredicates = walletVC.predicates
+//            walletVC.updatePredicates()
+//
+//        }
+//
+//    }
     
     @objc func didTapCompleteDate(sender: UIButton) {
         var dates = [Date]()
@@ -108,23 +122,23 @@ class CalendarVC : UIViewController {
         return indexes
     }
     
-    func getTransactionsDateLimits() -> [Date] {
-        var firstDate = Date()
-        var lastDate = Date()
-        let sortedTransactions = parentVC?.fetchedResultsController?.fetchedObjects
-        
-        if (sortedTransactions?.isEmpty)! {
-            //show alertview error
-        } else {
-            firstDate = (sortedTransactions![0].createdAt as Date?)!
-            
-            if (sortedTransactions?.count)! > 1 {
-                lastDate = (sortedTransactions![(sortedTransactions?.count)!-1].createdAt as Date?)!
-            }
-        }
-        
-        return [lastDate, firstDate]
-    }
+//    func getTransactionsDateLimits() -> [Date] {
+//        var firstDate = Date()
+//        var lastDate = Date()
+//        let sortedTransactions = parentVC?.fetchedResultsController?.fetchedObjects
+//
+//        if (sortedTransactions?.isEmpty)! {
+//            //show alertview error
+//        } else {
+//            firstDate = (sortedTransactions![0].createdAt as Date?)!
+//
+//            if (sortedTransactions?.count)! > 1 {
+//                lastDate = (sortedTransactions![(sortedTransactions?.count)!-1].createdAt as Date?)!
+//            }
+//        }
+//
+//        return [lastDate, firstDate]
+//    }
 
 }
 
