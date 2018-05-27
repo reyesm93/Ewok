@@ -57,13 +57,13 @@ extension WalletVC: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         transactionTableView.endUpdates()
         
-        if isFilterApplied == [false, false, false] {
-            setCalendarDateLimits()
+        setCalendarDateLimits()
+        performUIUpdatesOnMain {
+            self.topTransaction = self.setTopTransaction()
+            //            self.mainBalance.text = self.wallet?.balance.currency
+            //            self.mainBalance.setNeedsDisplay()
         }
         
-        performUIUpdatesOnMain {
-            self.mainBalance.text = self.wallet?.balance.currency
-            self.mainBalance.setNeedsDisplay()
-        }
+        
     }
 }

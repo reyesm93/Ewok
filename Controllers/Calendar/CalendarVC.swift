@@ -10,6 +10,10 @@ import UIKit
 
 class CalendarVC : UIViewController {
     
+    @IBOutlet weak var calendarView: CalendarView!
+    @IBOutlet weak var completeDateButton: UIButton!
+    
+    
     var parentVC: WalletVC?
     var firstWeekDayOfMonth = 0   //(Sunday-Saturday 1-7)
     var startFilter: IndexPath?
@@ -18,11 +22,14 @@ class CalendarVC : UIViewController {
     var dateLimits : [Date]?
     var limitsIndexPath : [IndexPath]?
     let calendarData = CalendarModel()
-    var selectedDateRange = [IndexPath]()
     var filtersDelegate: FiltersDelegate?
+    var selectedDateRange = [IndexPath]() {
+        didSet {
+            completeDateButton.isEnabled = (selectedDateRange.count > 0) ? true : false
+        }
+    }
     
-    @IBOutlet weak var calendarView: CalendarView!
-    @IBOutlet weak var completeDateButton: UIButton!
+
     
     
     override func viewDidLoad() {
@@ -60,8 +67,8 @@ class CalendarVC : UIViewController {
         if selectedDateRange.count > 1 {
             dates.append(calendarData.getDate(fromIndex: selectedDateRange.first!))
             dates.append(calendarData.getDate(fromIndex: selectedDateRange.last!))
-        } else {
-            //range not wide enough alert
+        } else if selectedDateRange.count == 1 {
+            dates.append(calendarData.getDate(fromIndex: selectedDateRange[0]))
         }
         
         var userInfo = [String:Any]()

@@ -114,11 +114,9 @@ class DatesFilterVC : UIViewController {
             } else {
                 // send notification and show message saying that there are not any transactions in the requested date(s)
             }
-            
-            
         }
         
-        total = sum - minus
+        total = sum + minus
         
         earningsLabel.text = "\(sum.currency!)"
         expensesLabel.text = "\(minus.currency!)"
@@ -130,9 +128,10 @@ class DatesFilterVC : UIViewController {
     }
     
     @objc func setDateBalances(notification: Notification) {
-        
         calculateDateBalances()
-        
+    }
+    
+    func setSingleDayBalances() {
         
         
     }

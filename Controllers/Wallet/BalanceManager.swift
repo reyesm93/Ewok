@@ -100,7 +100,7 @@ extension WalletVC: UpdateTransactionsDelegate {
         var transactionArray = [Transaction]()
         
         do {
-            transactionArray = try stack.context.fetch(fetchRequest) as! [Transaction]
+            transactionArray = try stack.context.fetch(staticFetchRequest) as! [Transaction]
         } catch let e as NSError {
             let error = "Error while trying to perform a search: \n\(e)\n\(String(describing: stack.context))"
             completionHandlerForUnsaved(false, nil, error)
