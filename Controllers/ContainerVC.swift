@@ -27,7 +27,7 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
         
         let navRect = navControllerView.bounds
         coverView = UIView(frame: navRect)
-        coverView!.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        //coverView!.backgroundColor = UIColor.black.withAlphaComponent(0.6)
 
         NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
     }
@@ -41,11 +41,19 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
                 self.sideMenuConstraint.constant = 0
                 self.navControllerView.addSubview(self.coverView!)
                 self.view.bringSubview(toFront: self.sideMenuView)
-                self.view.layoutIfNeeded()
+                self.sideMenuView.layer.shadowOpacity = 1
+                self.sideMenuView.layer.shadowRadius = 8
                 self.sideMenuOpen = !self.sideMenuOpen
                 
                 let dismissTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissSideView))
                 self.navControllerView.addGestureRecognizer(dismissTapRecognizer)
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.view.layoutIfNeeded()
+                })
+                
+            } else {
+                self.dismissSideView()
             }
         }
     }
@@ -56,9 +64,12 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
             
             if self.sideMenuOpen {
                 self.coverView!.removeFromSuperview()
-                self.sideMenuConstraint.constant = -250
-                self.view.layoutIfNeeded()
+                self.sideMenuConstraint.constant = -260
                 self.sideMenuOpen = !self.sideMenuOpen
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.view.layoutIfNeeded()
+                })
             }
         }
     }
