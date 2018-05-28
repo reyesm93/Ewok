@@ -20,6 +20,9 @@
 		DD3425442069872A00B664C3 /* CalendarCollectionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3425432069872A00B664C3 /* CalendarCollectionUtils.swift */; };
 		DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD34C760201D20240088CEBB /* SideMenuVC.swift */; };
 		DD42BD21206ACA8C000518FA /* FilterContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD42BD20206ACA8C000518FA /* FilterContainerView.swift */; };
+		DD4331FC20BC7EED0081C3EF /* ProfileHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4331FB20BC7EED0081C3EF /* ProfileHeaderCell.xib */; };
+		DD4331FE20BC7F080081C3EF /* SideMenuCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4331FD20BC7F080081C3EF /* SideMenuCells.swift */; };
+		DD4736C820BCA3C8009B6D50 /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4736C720BCA3C8009B6D50 /* SideMenuCell.xib */; };
 		DD5DD042209FB15C009F2041 /* FiltersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DD041209FB15C009F2041 /* FiltersDelegate.swift */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* ContainerVC.swift */; };
@@ -97,6 +100,9 @@
 		DD3425432069872A00B664C3 /* CalendarCollectionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionUtils.swift; sourceTree = "<group>"; };
 		DD34C760201D20240088CEBB /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		DD42BD20206ACA8C000518FA /* FilterContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterContainerView.swift; sourceTree = "<group>"; };
+		DD4331FB20BC7EED0081C3EF /* ProfileHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderCell.xib; sourceTree = "<group>"; };
+		DD4331FD20BC7F080081C3EF /* SideMenuCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCells.swift; sourceTree = "<group>"; };
+		DD4736C720BCA3C8009B6D50 /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
 		DD5DD041209FB15C009F2041 /* FiltersDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersDelegate.swift; sourceTree = "<group>"; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
@@ -200,6 +206,9 @@
 				DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */,
 				DD95EF592022AC4E00C788D1 /* AddButton.swift */,
 				DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */,
+				DD4331FB20BC7EED0081C3EF /* ProfileHeaderCell.xib */,
+				DD4331FD20BC7F080081C3EF /* SideMenuCells.swift */,
+				DD4736C720BCA3C8009B6D50 /* SideMenuCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -469,6 +478,8 @@
 				DD843EA01FF5D8D700EE3C0D /* LaunchScreen.storyboard in Resources */,
 				DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */,
 				DD843E9D1FF5D8D700EE3C0D /* Assets.xcassets in Resources */,
+				DD4331FC20BC7EED0081C3EF /* ProfileHeaderCell.xib in Resources */,
+				DD4736C820BCA3C8009B6D50 /* SideMenuCell.xib in Resources */,
 				DD843E981FF5D8D700EE3C0D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -700,6 +711,7 @@
 				DD844043205DD1F9003EF476 /* YearView.swift in Sources */,
 				DD6A7EEB20421ACB00B15C3D /* Constants.swift in Sources */,
 				DD7A13521FF7340A00943E6C /* Transaction+CoreDataProperties.swift in Sources */,
+				DD4331FE20BC7F080081C3EF /* SideMenuCells.swift in Sources */,
 				DD342542206984BC00B664C3 /* MonthHeader.swift in Sources */,
 				DD5DD042209FB15C009F2041 /* FiltersDelegate.swift in Sources */,
 				DD60A38F2012C3F50019675C /* MainVC.swift in Sources */,
