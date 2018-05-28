@@ -29,7 +29,6 @@ extension WalletVC: UpdateTransactionsDelegate {
                 print(errorString)
             }
         }
-
     }
     
     func updateBalances(startingAt: Transaction, completionHandlerForUpdates: @escaping (_ success: Bool, _ errorString: String?) -> Void) {
@@ -88,11 +87,6 @@ extension WalletVC: UpdateTransactionsDelegate {
             }
             
         }
-        
-        
-        
-        
-
     }
     
     func getUnsavedTransactions(completionHandlerForUnsaved: @escaping (_ succes: Bool, _ result: [Transaction]?, _ errorString: String?) -> Void) {

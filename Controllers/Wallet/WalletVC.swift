@@ -22,6 +22,7 @@ class WalletVC: UIViewController {
     @IBOutlet weak var customBalanceView: CustomBalanceView!
     @IBOutlet weak var filterContainerView: FilterContainerView!
     @IBOutlet weak var filterBySC: UISegmentedControl!
+    @IBOutlet weak var tagScrollView: UIScrollView!
     
     
     let stack = CoreDataStack.sharedInstance
@@ -33,7 +34,6 @@ class WalletVC: UIViewController {
     let staticFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
     var compoundPredicate : NSCompoundPredicate?
     var predicates = [NSPredicate]()
-    //var cachePredicates = [NSPredicate]()
     var isFilterApplied : [Bool] = [false, false, false]
     var calendarDateLimits = [Date]()
     
@@ -47,6 +47,14 @@ class WalletVC: UIViewController {
             self.transactionTableView.dataSource = self
             transactionTableView.reloadData()
         }
+    }
+    
+    var tagsFetchedResultsController : NSFetchedResultsController<Tag>? {
+        
+        didSet {
+            fetchTags()
+        }
+        
     }
     
     var topTransaction : IndexPath? {
@@ -132,6 +140,20 @@ class WalletVC: UIViewController {
         }
         
         return transactions
+    }
+    
+    func fetchTags() -> [Tag] {
+        var tags = [Tag]()
+        if let fc = tagsFetchedResultsController {
+            do {
+                try fc.performFetch()
+                tags = fc.fetchedObjects!
+            } catch let e as NSError {
+                print("Error while trying to perform a search: \n\(e)\n\(String(describing: fetchedResultsController))")
+            }
+        }
+        
+        return tags
     }
     
     func setFilterBySC() {
