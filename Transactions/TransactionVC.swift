@@ -22,7 +22,7 @@ class TransactionVC: UIViewController {
     var amount: Double?
     var oldTransaction : TransactionStruct?
     var newTransaction : TransactionStruct?
-    var saveDelegate: UpdateTransactionsDelegate?
+    var saveDelegate: CreateObjectDelegate?
     var updatedValue = false {
         didSet {
             if updatedValue {
@@ -96,16 +96,16 @@ class TransactionVC: UIViewController {
             
             if isLaterDate {
                 walletVC?.getNextTransaction(fromTransaction: transaction!) { (result) in
-                    self.saveDelegate?.updateTransactionList(controller: self, saveObject: result!, isNew: false)
+                    self.saveDelegate?.createNewObject(controller: self, saveObject: result!, isNew: false)
                 }
             } else {
-                saveDelegate?.updateTransactionList(controller: self, saveObject: transaction!, isNew: false)
+                saveDelegate?.createNewObject(controller: self, saveObject: transaction!, isNew: false)
             }
 
         } else {
             
             let new = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome!, createdAt: transactionDate! as NSDate , context: stack.context)
-            saveDelegate?.updateTransactionList(controller: self, saveObject: new, isNew: true)
+            saveDelegate?.createNewObject(controller: self, saveObject: new, isNew: true)
             
         }
         

@@ -277,9 +277,9 @@ extension MainVC: NSFetchedResultsControllerDelegate {
     }
 }
 
-extension MainVC: UpdateTransactionsDelegate {
+extension MainVC: CreateObjectDelegate {
     
-    func updateTransactionList(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
+    func createNewObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
         self.stack.context.performAndWait {
             let _ = saveObject
             self.stack.save()

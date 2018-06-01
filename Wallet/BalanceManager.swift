@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import CoreData
 
-extension WalletVC: UpdateTransactionsDelegate {
+extension WalletVC: CreateObjectDelegate {
     
-    func updateTransactionList(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
+    func createNewObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
         
         let transaction = saveObject as! Transaction
         

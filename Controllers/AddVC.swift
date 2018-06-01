@@ -13,11 +13,18 @@ import LinkKit
 
 class AddVC: UIViewController, UIGestureRecognizerDelegate {
     
+    //  MARK: - Outlets
+    
     @IBOutlet weak var walletNameTF: UITextField!
     @IBOutlet weak var alertView: UIView!
+    
+    // MARK: - Properties
+    
     let stack = CoreDataStack.sharedInstance
     var walletName: String!
-    var delegate: UpdateTransactionsDelegate?
+    var delegate: CreateObjectDelegate?
+    
+    // MARK: - Override methods
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,13 +43,6 @@ class AddVC: UIViewController, UIGestureRecognizerDelegate {
         configureTextField(walletNameTF)
     }
     
-    @objc func didReceiveNotification(_ notification: NSNotification) {
-        if notification.name.rawValue == "PLDPlaidLinkSetupFinished" {
-            NotificationCenter.default.removeObserver(self, name: notification.name, object: nil)
-            //button.isEnabled = true
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupView()
@@ -58,6 +58,17 @@ class AddVC: UIViewController, UIGestureRecognizerDelegate {
         view.layoutIfNeeded()
     }
     
+    @objc func didReceiveNotification(_ notification: NSNotification) {
+        if notification.name.rawValue == "PLDPlaidLinkSetupFinished" {
+            NotificationCenter.default.removeObserver(self, name: notification.name, object: nil)
+            //button.isEnabled = true
+        }
+    }
+    
+    
+    
+    
+    
     @IBAction func cancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -71,7 +82,7 @@ class AddVC: UIViewController, UIGestureRecognizerDelegate {
         
         let wallet = Wallet(walletName: walletName, balance: 0.0, createdAt: NSDate(), context: self.stack.context)
         
-        delegate?.updateTransactionList(controller: self, saveObject: wallet, isNew: true)
+        delegate?.createNewObject(controller: self, saveObject: wallet, isNew: true)
         self.dismiss(animated: true, completion: nil)
     }
 

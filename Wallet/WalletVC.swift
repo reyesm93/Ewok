@@ -14,6 +14,8 @@ enum Filters : Int {
 }
 
 class WalletVC: UIViewController {
+    
+    // MARK: - Outlets
 
     @IBOutlet weak var mainBalance: UILabel!
     @IBOutlet weak var transactionTableView: UITableView!
@@ -24,11 +26,12 @@ class WalletVC: UIViewController {
     @IBOutlet weak var filterBySC: UISegmentedControl!
     @IBOutlet weak var tagScrollView: UIScrollView!
     
+    // MARK: - Properties
     
     let stack = CoreDataStack.sharedInstance
     var wallet : Wallet?
     var placeholder: Transaction?
-    var transactionsDelegate : UpdateTransactionsDelegate?
+    var transactionsDelegate : CreateObjectDelegate?
     var scrollPosition: CGFloat?
     var fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
     let staticFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
@@ -59,16 +62,22 @@ class WalletVC: UIViewController {
     
     var topTransaction : IndexPath? {
         didSet {
-            //update table view
-            performUIUpdatesOnMain {
-                self.transactionTableView.scrollToRow(at: self.topTransaction!, at: .top, animated: true)
-                self.transactionTableView.reloadData()
+            
+            //Update table view
+            if fetchTransactions().count > 0 {
+                guard let top = self.topTransaction else { return }
+                performUIUpdatesOnMain {
+                    self.transactionTableView.scrollToRow(at: top, at: .top, animated: true)
+                    self.transactionTableView.reloadData()
+                }
             }
+            
             
         }
     }
     
-    // MARK: Initializers
+    // MARK: - Initializers
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -78,14 +87,7 @@ class WalletVC: UIViewController {
 //        super.init(nibName: nil, bundle: nil)
 //    }
     
-    @IBAction func createTransaction(_ sender: Any) {
-        
-        let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionVC
-        controller.saveDelegate = self
-        controller.walletVC = self
-        self.present(controller, animated: true, completion: nil)
-        
-    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,13 +121,25 @@ class WalletVC: UIViewController {
         super.viewWillAppear(animated)
         
 //      mainBalance.text = wallet?.balance.currency
-        topTransaction = setTopTransaction()
+        if fetchTransactions().count > 0 {
+            topTransaction = setTopTransaction()
+        }
+        
 
         if fetchTransactions().isEmpty {
             mainScrollView.isHidden = true
         } else {
             mainScrollView.isHidden = false
         }
+    }
+    
+    @IBAction func createTransaction(_ sender: Any) {
+        
+        let controller = storyboard?.instantiateViewController(withIdentifier: "TransactionViewController") as! TransactionVC
+        controller.saveDelegate = self
+        controller.walletVC = self
+        self.present(controller, animated: true, completion: nil)
+        
     }
     
     func fetchTransactions() -> [Transaction] {
@@ -194,7 +208,7 @@ class WalletVC: UIViewController {
     }
     
     // Assure that when called the first transaction in array is the later date
-    func setTopTransaction(fromDate: [Date]? = nil) -> IndexPath {
+    func setTopTransaction(fromDate: [Date]? = nil) -> IndexPath? {
         
         // Need to assure that predicate is set for all existing transactions so
         // that the fetch returns all
@@ -208,27 +222,30 @@ class WalletVC: UIViewController {
             dates = [Date()]
         }
         
-        let date = (dates.count > 1) ? dates[1] : dates[0]
-        let transactions = fetchTransactions()
-        var count : Int = 0
-        var scrollTo: Transaction = transactions[count]
-        var scrollToIndexPath: IndexPath?
-        
-        
-        while (scrollTo.createdAt! as Date) > date && count < transactions.count {
+        if fetchTransactions().count > 0 {
+            let date = (dates.count > 1) ? dates[1] : dates[0]
+            let transactions = fetchTransactions()
+            var count : Int = 0
+            var scrollTo: Transaction = transactions[count]
+            var scrollToIndexPath: IndexPath?
             
-            // consider scenario where it's the same day but later
-            scrollTo = transactions[count]
-            count += 1
+            while (scrollTo.createdAt! as Date) > date && count < transactions.count {
+                
+                // consider scenario where it's the same day but later
+                scrollTo = transactions[count]
+                count += 1
+            }
+            
+            if fromDate == nil {
+                mainBalance.text = scrollTo.newBalance.currency
+            }
+            
+            updateSingleDateBalances(scrollTo)
+            scrollToIndexPath = IndexPath(item: (transactions.index(of: scrollTo))!, section: 0)
+            return scrollToIndexPath!
         }
         
-        if fromDate == nil {
-            mainBalance.text = scrollTo.newBalance.currency
-        }
-        
-        updateSingleDateBalances(scrollTo)
-        scrollToIndexPath = IndexPath(item: (transactions.index(of: scrollTo))!, section: 0)
-        return scrollToIndexPath!
+        return nil
         
     }
     

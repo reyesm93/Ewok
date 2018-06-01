@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 import UIKit
 
-protocol UpdateTransactionsDelegate: class {
-    func updateTransactionList(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool)
+protocol CreateObjectDelegate: class {
+    func createNewObject(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool)
     
 }
 
