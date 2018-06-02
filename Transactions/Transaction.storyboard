@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--TransactionVC-->
+        <scene sceneID="tXF-P3-CJK">
+            <objects>
+                <viewController storyboardIdentifier="TransactionViewController" id="z5R-su-np8" customClass="TransactionVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ryu-r5-DPx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="om9-bi-J8G" userLabel="Vertical-Stack View">
+                                <rect key="frame" x="30" y="100" width="315" height="250"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="DQK-3f-USo" userLabel="DescriptionStackView">
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="48.333333333333336"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y95-Iv-0Dc">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="48.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="9bp-ve-RBu"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Transaction Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dvy-Hd-dCd">
+                                                <rect key="frame" x="100" y="0.0" width="215" height="48.333333333333336"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="GtU-nA-4OR" userLabel="AmountStackView">
+                                        <rect key="frame" x="0.0" y="67.333333333333343" width="315" height="48.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0k-Cs-sw8">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="48.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="C2c-lk-4YT"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Transaction Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nTk-sf-Z58">
+                                                <rect key="frame" x="100" y="0.0" width="215" height="48.333333333333336"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="h6P-cL-EQH" userLabel="DateStackView">
+                                        <rect key="frame" x="0.0" y="134.66666666666666" width="315" height="48"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyS-CA-mmq">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="63L-G4-dCF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="DQo-vN-aiE">
+                                                <rect key="frame" x="60" y="0.0" width="255" height="48"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="537935854.04698896">
+                                                    <!--2018-01-18 02:37:34 +0000-->
+                                                </date>
+                                            </datePicker>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lK8-gN-fSu">
+                                        <rect key="frame" x="0.0" y="201.66666666666669" width="315" height="48.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Income" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNe-x1-w9f">
+                                                <rect key="frame" x="0.0" y="0.0" width="266" height="48.333333333333336"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DL7-9A-YGB">
+                                                <rect key="frame" x="266" y="0.0" width="51" height="48.333333333333336"/>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="lK8-gN-fSu" firstAttribute="width" secondItem="om9-bi-J8G" secondAttribute="width" id="2yG-r2-A8g"/>
+                                    <constraint firstAttribute="height" constant="250" id="5v4-i0-lnO"/>
+                                    <constraint firstItem="DQK-3f-USo" firstAttribute="width" secondItem="om9-bi-J8G" secondAttribute="width" id="Phs-4u-PM8"/>
+                                    <constraint firstItem="DQK-3f-USo" firstAttribute="width" secondItem="GtU-nA-4OR" secondAttribute="width" id="TGM-hu-rh0"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSf-1U-jb8">
+                                <rect key="frame" x="170.66666666666666" y="430" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="save:" destination="z5R-su-np8" eventType="touchUpInside" id="eKl-3f-kmZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSa-u7-ZhO">
+                                <rect key="frame" x="311" y="44" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="z5R-su-np8" eventType="touchUpInside" id="0xf-Ss-bbz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="om9-bi-J8G" firstAttribute="leading" secondItem="afh-z8-BWd" secondAttribute="leading" constant="30" id="3GK-af-NLA"/>
+                            <constraint firstItem="TSa-u7-ZhO" firstAttribute="top" secondItem="afh-z8-BWd" secondAttribute="top" id="7PH-gU-eZd"/>
+                            <constraint firstItem="afh-z8-BWd" firstAttribute="trailing" secondItem="TSa-u7-ZhO" secondAttribute="trailing" constant="16" id="H3d-Fn-wnx"/>
+                            <constraint firstItem="SSf-1U-jb8" firstAttribute="top" secondItem="om9-bi-J8G" secondAttribute="bottom" constant="80" id="a3e-yO-FNo"/>
+                            <constraint firstItem="om9-bi-J8G" firstAttribute="top" secondItem="Ryu-r5-DPx" secondAttribute="top" constant="100" id="bhx-Hx-OAk"/>
+                            <constraint firstItem="afh-z8-BWd" firstAttribute="trailing" secondItem="om9-bi-J8G" secondAttribute="trailing" constant="30" id="ggl-5h-3fQ"/>
+                            <constraint firstItem="SSf-1U-jb8" firstAttribute="centerX" secondItem="afh-z8-BWd" secondAttribute="centerX" id="uQv-i2-ke3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="afh-z8-BWd"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jff-nC-2uH" appends="YES" id="tpY-Br-aF5"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="amountTextField" destination="nTk-sf-Z58" id="QkK-Y7-xM0"/>
+                        <outlet property="datePicker" destination="DQo-vN-aiE" id="8LD-7Q-aLQ"/>
+                        <outlet property="descriptionTextField" destination="dvy-Hd-dCd" id="mVD-Qe-5XD"/>
+                        <outlet property="incomeSwitch" destination="DL7-9A-YGB" id="eCP-Ua-BSv"/>
+                        <outlet property="saveButton" destination="SSf-1U-jb8" id="Bib-gP-Qsr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ce-NG-kVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="jff-nC-2uH">
+                    <connections>
+                        <action selector="userDidTapView:" destination="z5R-su-np8" id="am6-af-tPM"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="135" y="-624"/>
+        </scene>
+    </scenes>
+</document>

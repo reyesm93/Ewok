@@ -51,6 +51,9 @@
 		DD844045205DD21B003EF476 /* WeedaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844044205DD21B003EF476 /* WeedaysView.swift */; };
 		DD844047205DD232003EF476 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844046205DD232003EF476 /* CalendarView.swift */; };
 		DD844049205DE73B003EF476 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD844048205DE73B003EF476 /* DateCell.swift */; };
+		DD855F9C20C22123002B0B7D /* TagDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD855F9B20C22123002B0B7D /* TagDetailVC.swift */; };
+		DD855F9E20C227A0002B0B7D /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD855F9D20C227A0002B0B7D /* Calendar.storyboard */; };
+		DD855FA520C22C9A002B0B7D /* Transaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD855FA420C22C9A002B0B7D /* Transaction.storyboard */; };
 		DD8D1AB720375E5E00C52EC9 /* PlaidClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D1AB620375E5E00C52EC9 /* PlaidClient.swift */; };
 		DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */; };
 		DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */; };
@@ -142,6 +145,9 @@
 		DD844044205DD21B003EF476 /* WeedaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeedaysView.swift; sourceTree = "<group>"; };
 		DD844046205DD232003EF476 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		DD844048205DE73B003EF476 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
+		DD855F9B20C22123002B0B7D /* TagDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailVC.swift; sourceTree = "<group>"; };
+		DD855F9D20C227A0002B0B7D /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		DD855FA420C22C9A002B0B7D /* Transaction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transaction.storyboard; sourceTree = "<group>"; };
 		DD8D1AB620375E5E00C52EC9 /* PlaidClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidClient.swift; sourceTree = "<group>"; };
 		DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBalanceView.swift; sourceTree = "<group>"; };
@@ -228,6 +234,7 @@
 				DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */,
 				DDB1F6EE2008223200C26E40 /* TransactionVC.swift */,
 				DDE3E62F2051DAC700A13182 /* TransactionStruct.swift */,
+				DD855FA420C22C9A002B0B7D /* Transaction.storyboard */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -248,6 +255,7 @@
 				DD35724720C0D1400078D2B6 /* TagFlow.storyboard */,
 				DD35724920C0D1700078D2B6 /* TagsVC.swift */,
 				DD35724B20C0D1DB0078D2B6 /* TagsFetchControllerDelegate.swift */,
+				DD855F9B20C22123002B0B7D /* TagDetailVC.swift */,
 			);
 			path = Tags;
 			sourceTree = "<group>";
@@ -256,14 +264,14 @@
 			isa = PBXGroup;
 			children = (
 				DD843E911FF5D8D700EE3C0D /* Ewok */,
+				DDE3E62E2051DA9600A13182 /* Model */,
+				DD2134FB2049FB780058AD08 /* Views */,
+				DDB1F6F12008224C00C26E40 /* Controllers */,
 				DD35724520C0C0FD0078D2B6 /* Login */,
-				DD84403F205DD1CE003EF476 /* Calendar */,
 				DD2134FA2049FB570058AD08 /* Wallet */,
+				DD84403F205DD1CE003EF476 /* Calendar */,
 				DD35724420C0C0E50078D2B6 /* Transactions */,
 				DD35724620C0C1670078D2B6 /* Tags */,
-				DDE3E62E2051DA9600A13182 /* Model */,
-				DDB1F6F12008224C00C26E40 /* Controllers */,
-				DD2134FB2049FB780058AD08 /* Views */,
 				DDE3E6322051DDE800A13182 /* Protocols */,
 				DD8D1AB820375E6700C52EC9 /* Network */,
 				DDCAD2D5201BBF430057CD3D /* Database */,
@@ -322,16 +330,41 @@
 		DD84403F205DD1CE003EF476 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				DD844040205DD1E8003EF476 /* CalendarVC.swift */,
-				DD844042205DD1F9003EF476 /* YearView.swift */,
-				DD844044205DD21B003EF476 /* WeedaysView.swift */,
-				DD844046205DD232003EF476 /* CalendarView.swift */,
-				DD844048205DE73B003EF476 /* DateCell.swift */,
-				DD342541206984BC00B664C3 /* MonthHeader.swift */,
-				DD3425432069872A00B664C3 /* CalendarCollectionUtils.swift */,
-				DD03A695206BE50E00B4C639 /* CalendarModel.swift */,
+				DD855FA120C227BE002B0B7D /* Views */,
+				DD855FA020C227B7002B0B7D /* Controllers */,
+				DD855F9F20C227AF002B0B7D /* Model */,
+				DD855F9D20C227A0002B0B7D /* Calendar.storyboard */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		DD855F9F20C227AF002B0B7D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD03A695206BE50E00B4C639 /* CalendarModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD855FA020C227B7002B0B7D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD844040205DD1E8003EF476 /* CalendarVC.swift */,
+				DD3425432069872A00B664C3 /* CalendarCollectionUtils.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DD855FA120C227BE002B0B7D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD844044205DD21B003EF476 /* WeedaysView.swift */,
+				DD844048205DE73B003EF476 /* DateCell.swift */,
+				DD844042205DD1F9003EF476 /* YearView.swift */,
+				DD342541206984BC00B664C3 /* MonthHeader.swift */,
+				DD844046205DD232003EF476 /* CalendarView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DD8D1AB820375E6700C52EC9 /* Network */ = {
@@ -510,8 +543,10 @@
 			files = (
 				DD843EA01FF5D8D700EE3C0D /* LaunchScreen.storyboard in Resources */,
 				DD35724820C0D1400078D2B6 /* TagFlow.storyboard in Resources */,
+				DD855FA520C22C9A002B0B7D /* Transaction.storyboard in Resources */,
 				DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */,
 				DD843E9D1FF5D8D700EE3C0D /* Assets.xcassets in Resources */,
+				DD855F9E20C227A0002B0B7D /* Calendar.storyboard in Resources */,
 				DD4331FC20BC7EED0081C3EF /* ProfileHeaderCell.xib in Resources */,
 				DD4736C820BCA3C8009B6D50 /* SideMenuCell.xib in Resources */,
 				DD843E981FF5D8D700EE3C0D /* Main.storyboard in Resources */,
@@ -744,6 +779,7 @@
 			files = (
 				DD844043205DD1F9003EF476 /* YearView.swift in Sources */,
 				DD6A7EEB20421ACB00B15C3D /* Constants.swift in Sources */,
+				DD855F9C20C22123002B0B7D /* TagDetailVC.swift in Sources */,
 				DD7A13521FF7340A00943E6C /* Transaction+CoreDataProperties.swift in Sources */,
 				DD4331FE20BC7F080081C3EF /* SideMenuCells.swift in Sources */,
 				DD342542206984BC00B664C3 /* MonthHeader.swift in Sources */,

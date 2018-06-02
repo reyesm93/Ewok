@@ -52,3 +52,12 @@ class TagsVC : UIViewController {
 //    }
     
 }
+
+extension TagsVC : CreateObjectDelegate {
+    func createNewObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
+        // to perform when a Tag is added
+    }
+    
+    
+    
+}

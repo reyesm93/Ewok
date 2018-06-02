@@ -178,7 +178,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     
     @objc func deleteWallet(notification: Notification) {
         
-        guard let sender = notification.userInfo?["wallet"] as! Wallet! else { return }
+        guard let sender = notification.userInfo?["wallet"] as! Wallet? else { return }
         
         stack.context.performAndWait {
             stack.context.delete(sender)
