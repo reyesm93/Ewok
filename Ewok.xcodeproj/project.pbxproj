@@ -38,6 +38,7 @@
 		DD7A13551FF7340A00943E6C /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A134D1FF7340A00943E6C /* Tag+CoreDataClass.swift */; };
 		DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */; };
 		DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13571FF734DC00943E6C /* CoreDataStack.swift */; };
+		DD81C9A720C31FC1005DE1EC /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD81C9A620C31FC1005DE1EC /* Wallet.storyboard */; };
 		DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843E921FF5D8D700EE3C0D /* AppDelegate.swift */; };
 		DD843E951FF5D8D700EE3C0D /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD843E941FF5D8D700EE3C0D /* WalletVC.swift */; };
 		DD843E981FF5D8D700EE3C0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD843E961FF5D8D700EE3C0D /* Main.storyboard */; };
@@ -126,6 +127,7 @@
 		DD7A13571FF734DC00943E6C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DD7A13591FF7368700943E6C /* Ewok 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 2.xcdatamodel"; sourceTree = "<group>"; };
 		DD7A135A1FF739BB00943E6C /* Ewok 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 3.xcdatamodel"; sourceTree = "<group>"; };
+		DD81C9A620C31FC1005DE1EC /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		DD843E8F1FF5D8D700EE3C0D /* Ewok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ewok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD843E921FF5D8D700EE3C0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD843E941FF5D8D700EE3C0D /* WalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletVC.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				DD7A13471FF7340A00943E6C /* Wallet+CoreDataClass.swift */,
+				DD81C9A620C31FC1005DE1EC /* Wallet.storyboard */,
 				DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */,
 				DD843E941FF5D8D700EE3C0D /* WalletVC.swift */,
 				DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */,
@@ -542,6 +545,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD843EA01FF5D8D700EE3C0D /* LaunchScreen.storyboard in Resources */,
+				DD81C9A720C31FC1005DE1EC /* Wallet.storyboard in Resources */,
 				DD35724820C0D1400078D2B6 /* TagFlow.storyboard in Resources */,
 				DD855FA520C22C9A002B0B7D /* Transaction.storyboard in Resources */,
 				DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */,

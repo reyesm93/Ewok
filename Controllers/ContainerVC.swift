@@ -14,6 +14,7 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
     
     var sideMenuOpen = false
     var coverView: UIView? = nil
+    var mainNavController: UINavigationController?
     
     @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
     @IBOutlet weak var sideMenuView: UIView!
@@ -24,6 +25,12 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         
         print("childVCs ContainerVC: \(self.childViewControllers)")
+        
+        for child in self.childViewControllers {
+            if child is UINavigationController {
+                mainNavController = child as? UINavigationController
+            }
+        }
         
         let navRect = navControllerView.bounds
         coverView = UIView(frame: navRect)

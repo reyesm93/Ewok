@@ -13,14 +13,21 @@ import Firebase
 
 class SideMenuVC: UITableViewController {
     
+    var mainNavController : UINavigationController?
+    
     override func viewDidLoad() {
+        
+        
+        
+        
         tableView.register(UINib(nibName: "ProfileHeaderCell", bundle: nil), forCellReuseIdentifier: "ProfileHeaderCell")
         tableView.register(UINib(nibName: "SideMenuCell", bundle: nil), forCellReuseIdentifier: "SideMenuCell")
+        tableView.isScrollEnabled = false
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
     }
     
-    @IBAction func logOut(_ sender: Any) {
+    func logOut() {
         
         GIDSignIn.sharedInstance().signOut()
         
@@ -62,15 +69,31 @@ class SideMenuVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if let parentVC = self.parent as? ContainerVC {
+            if let nav = parentVC.mainNavController {
+                mainNavController = nav
+            }
+        }
+        
         let section = indexPath.section
         
         switch section {
         case 0: break
             //profile
-        case 1: break
-            //wallet,tags,
+        case 1:
+            switch indexPath.row {
+            case 0:
+                if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainVC") as? MainVC {
+                    mainNavController?.pushViewController(controller, animated: true)
+                    showSideMenu()
+                }
+                
+            default:
+                break
+            }
+        
         case 2: break
-            //logout
+            logOut()
         default:
             break
         }

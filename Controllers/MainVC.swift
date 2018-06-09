@@ -13,13 +13,16 @@ import Firebase
 
 class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     
+    // MARK: Properties
+    
     let user = Auth.auth().currentUser
     let stack = CoreDataStack.sharedInstance
-    //var context: NSManagedObjectContext?
     let scrollView = UIScrollView()
     var subViews = [WalletView]()
     var newWallet: Wallet?
     var bottomConstraint: Constraint? = nil
+    var menuButton = UIBarButtonItem()
+    var mainNavController : UINavigationController?
     //let colors = [UIColor.green, UIColor.blue, UIColor.red, UIColor.orange]
     //var blockOperations: [BlockOperation] = []
     
@@ -43,7 +46,12 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
 //
 //    }
     
+    // MARK: Outlets
+    
     @IBOutlet weak var addWalletButton: AddButton!
+    
+    
+    // MARK : View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +61,10 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
         scrollView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
+        
+        mainNavController = self.navigationController
+        menuButton = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.plain, target: self, action: #selector(showSideMenu))
+        self.navigationItem.leftBarButtonItem = menuButton
         
         view.bringSubview(toFront: addWalletButton)
         
@@ -79,10 +91,14 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
 
     }
     
-    @IBAction func menuPressed(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
-    }
     
+//
+//    @IBAction func menuPressed(_ sender: Any) {
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
+//    }
+    
+    // MARK : Actions
+
     @IBAction func addWallet(_ sender: Any) {
         
         let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddViewController") as! AddVC
@@ -163,17 +179,24 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     @objc func selectWalletRecognizer(_ recognizer: UIGestureRecognizer) {
         let viewTapped = recognizer.view as! WalletView
         let wallet = viewTapped.wallet
-        performSegue(withIdentifier: "walletSegue", sender: wallet)
+        
+        if let controller = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletVC") as? WalletVC {
+            controller.wallet = wallet
+            controller.navigationItem.leftBarButtonItem = menuButton
+            mainNavController?.pushViewController(controller, animated: true)
+            
+        }
+
     }
     
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "walletSegue" {
-            let wallet = sender as! Wallet
-            let destination = segue.destination as! WalletVC
-            destination.wallet = wallet
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "walletSegue" {
+//            let wallet = sender as! Wallet
+//            let destination = segue.destination as! WalletVC
+//            destination.wallet = wallet
+//        }
+//    }
     
     
     @objc func deleteWallet(notification: Notification) {
@@ -288,5 +311,11 @@ extension MainVC: CreateObjectDelegate {
         self.performSegue(withIdentifier: "walletSegue", sender: saveObject)
     }
 
+}
+
+extension UIViewController {
+    @objc func showSideMenu() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
+    }
 }
 
