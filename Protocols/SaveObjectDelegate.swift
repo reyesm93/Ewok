@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 import UIKit
 
-protocol CreateObjectDelegate: class {
-    func createNewObject(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool)
+protocol SaveObjectDelegate: class {
+    func saveObject(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool)
     
 }
 

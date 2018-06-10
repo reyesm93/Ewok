@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,13 +36,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AlW-Cg-sF7" userLabel="Main Scroll View">
-                                <rect key="frame" x="0.0" y="88" width="375" height="582"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="725"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EKI-c7-OUB">
-                                        <rect key="frame" x="0.0" y="270" width="375" height="377"/>
+                                        <rect key="frame" x="0.0" y="270" width="375" height="455"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="377" id="mKk-qP-1xY"/>
+                                            <constraint firstAttribute="height" constant="455" id="mKk-qP-1xY"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionViewCell" rowHeight="88" id="i5j-LC-NWU" customClass="TransactionViewCell" customModule="Ewok" customModuleProvider="target">
@@ -173,7 +174,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xi1-va-9Cs" userLabel="Balance">
-                                        <rect key="frame" x="107.66666666666669" y="51" width="160" height="21"/>
+                                        <rect key="frame" x="108" y="51" width="160" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="vwQ-mv-PAR"/>
                                         </constraints>
@@ -189,7 +190,7 @@
                                     <constraint firstItem="EKI-c7-OUB" firstAttribute="top" secondItem="AlW-Cg-sF7" secondAttribute="top" constant="270" id="RN5-Lp-DXv"/>
                                     <constraint firstItem="EKI-c7-OUB" firstAttribute="top" secondItem="g54-Uy-P5d" secondAttribute="bottom" constant="8" id="SE1-wG-2IG"/>
                                     <constraint firstItem="EKI-c7-OUB" firstAttribute="centerX" secondItem="AlW-Cg-sF7" secondAttribute="centerX" id="STG-dg-49d"/>
-                                    <constraint firstAttribute="bottom" secondItem="EKI-c7-OUB" secondAttribute="bottom" constant="-65" id="XoQ-Se-8o8"/>
+                                    <constraint firstAttribute="bottom" secondItem="EKI-c7-OUB" secondAttribute="bottom" id="XoQ-Se-8o8"/>
                                     <constraint firstItem="EKI-c7-OUB" firstAttribute="top" secondItem="g54-Uy-P5d" secondAttribute="bottom" constant="8" id="b9V-kT-cxy"/>
                                     <constraint firstItem="EKI-c7-OUB" firstAttribute="top" secondItem="g54-Uy-P5d" secondAttribute="bottom" constant="8" symbolic="YES" id="ccO-oE-LDR"/>
                                     <constraint firstItem="EKI-c7-OUB" firstAttribute="centerX" secondItem="g54-Uy-P5d" secondAttribute="centerX" id="fjR-HL-HRM"/>
@@ -197,9 +198,6 @@
                                     <constraint firstItem="g54-Uy-P5d" firstAttribute="top" secondItem="xi1-va-9Cs" secondAttribute="bottom" constant="51" id="sro-m7-oNO"/>
                                     <constraint firstItem="xi1-va-9Cs" firstAttribute="centerX" secondItem="AlW-Cg-sF7" secondAttribute="centerX" id="wds-WW-CIZ"/>
                                 </constraints>
-                            </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oyS-5J-eNe" userLabel="Tags Scroll View">
-                                <rect key="frame" x="0.0" y="670" width="375" height="142"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loR-Yn-u7b" customClass="AddButton" customModule="Ewok" customModuleProvider="target">
                                 <rect key="frame" x="299" y="752" width="60" height="60"/>
@@ -215,16 +213,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="AlW-Cg-sF7" secondAttribute="bottom" constant="-35" id="2pN-zH-xmL"/>
                             <constraint firstItem="AlW-Cg-sF7" firstAttribute="trailing" secondItem="rrZ-Xd-vl7" secondAttribute="trailing" id="6kN-ZM-Lll"/>
-                            <constraint firstItem="oyS-5J-eNe" firstAttribute="top" secondItem="G8n-WK-mYJ" secondAttribute="top" constant="670" id="8jC-4m-7XJ"/>
-                            <constraint firstItem="oyS-5J-eNe" firstAttribute="top" secondItem="AlW-Cg-sF7" secondAttribute="bottom" id="GXM-gd-ngV"/>
                             <constraint firstAttribute="bottom" secondItem="loR-Yn-u7b" secondAttribute="bottom" id="P6r-mx-Lin"/>
                             <constraint firstItem="AlW-Cg-sF7" firstAttribute="leading" secondItem="rrZ-Xd-vl7" secondAttribute="leading" id="WfV-ad-glF"/>
                             <constraint firstItem="AlW-Cg-sF7" firstAttribute="top" secondItem="rrZ-Xd-vl7" secondAttribute="top" id="aET-2K-Hd5"/>
-                            <constraint firstItem="oyS-5J-eNe" firstAttribute="leading" secondItem="rrZ-Xd-vl7" secondAttribute="leading" id="gg2-6I-HlP"/>
                             <constraint firstItem="rrZ-Xd-vl7" firstAttribute="trailing" secondItem="loR-Yn-u7b" secondAttribute="trailing" constant="16" id="n34-z7-QZR"/>
-                            <constraint firstAttribute="bottom" secondItem="oyS-5J-eNe" secondAttribute="bottom" id="nE6-Tu-30L"/>
-                            <constraint firstItem="oyS-5J-eNe" firstAttribute="trailing" secondItem="rrZ-Xd-vl7" secondAttribute="trailing" id="zaj-wA-u8d"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rrZ-Xd-vl7"/>
                     </view>

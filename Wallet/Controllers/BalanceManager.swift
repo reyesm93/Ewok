@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import CoreData
 
-extension WalletVC: CreateObjectDelegate {
+extension WalletVC: SaveObjectDelegate {
     
-    func createNewObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
+    func saveObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
         
         let transaction = saveObject as! Transaction
         
@@ -47,7 +47,7 @@ extension WalletVC: CreateObjectDelegate {
                 }
                 
                 for tran in updateList {
-                    let tranDate = tran.createdAt
+                    let tranDate = tran.date
                     let tranDesc = tran.title
                     let tranIndex = updateList.index(of: tran)
                     
@@ -111,7 +111,7 @@ extension WalletVC: CreateObjectDelegate {
     func filterByDate(transactions: [Transaction], fromDate: NSDate) -> [Transaction] {
         
         let updateTransactions = transactions.filter({
-            $0.createdAt?.compare(fromDate as Date) == ComparisonResult.orderedDescending
+            $0.date?.compare(fromDate as Date) == ComparisonResult.orderedDescending
         })
         
         return updateTransactions
@@ -130,7 +130,7 @@ extension WalletVC: CreateObjectDelegate {
     
     func sortTransactions(_ list: [Transaction]) -> [Transaction] {
         let sortedTransactions = list.sorted(by: {
-            $0.createdAt?.compare($1.createdAt! as Date) == ComparisonResult.orderedDescending
+            $0.date?.compare($1.date! as Date) == ComparisonResult.orderedDescending
         })
         
         print(sortedTransactions)

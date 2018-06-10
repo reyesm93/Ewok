@@ -11,6 +11,7 @@
 		AE7B72FFB46B20CA515744E1 /* Pods_Ewok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A296D55DC567CB6C2F04AB66 /* Pods_Ewok.framework */; };
 		BCE5FB696912892E97F67718 /* Pods_EwokUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */; };
 		DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */; };
+		DD0305F620CDC8BD00875F2E /* TransactionTagsFetchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0305F520CDC8BC00875F2E /* TransactionTagsFetchDelegate.swift */; };
 		DD03A696206BE50E00B4C639 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03A695206BE50E00B4C639 /* CalendarModel.swift */; };
 		DD0A91C82064256B006E7039 /* DatesFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A91C72064256B006E7039 /* DatesFilterVC.swift */; };
 		DD2134FD2049FC6B0058AD08 /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */; };
@@ -26,6 +27,9 @@
 		DD4331FC20BC7EED0081C3EF /* ProfileHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4331FB20BC7EED0081C3EF /* ProfileHeaderCell.xib */; };
 		DD4331FE20BC7F080081C3EF /* SideMenuCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4331FD20BC7F080081C3EF /* SideMenuCells.swift */; };
 		DD4736C820BCA3C8009B6D50 /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4736C720BCA3C8009B6D50 /* SideMenuCell.xib */; };
+		DD4BE7EB20CCAA4C00033090 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4BE7EA20CCAA4C00033090 /* Transaction+CoreDataProperties.swift */; };
+		DD4BE7EE20CCBBFF00033090 /* TagCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4BE7ED20CCBBFF00033090 /* TagCellView.xib */; };
+		DD4BE7F320CCBCE500033090 /* TagViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4BE7F220CCBCE500033090 /* TagViews.swift */; };
 		DD5DD042209FB15C009F2041 /* FiltersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DD041209FB15C009F2041 /* FiltersDelegate.swift */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* ContainerVC.swift */; };
@@ -34,7 +38,6 @@
 		DD7A134F1FF7340A00943E6C /* Wallet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13471FF7340A00943E6C /* Wallet+CoreDataClass.swift */; };
 		DD7A13501FF7340A00943E6C /* Wallet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */; };
 		DD7A13511FF7340A00943E6C /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13491FF7340A00943E6C /* Transaction+CoreDataClass.swift */; };
-		DD7A13521FF7340A00943E6C /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A134A1FF7340A00943E6C /* Transaction+CoreDataProperties.swift */; };
 		DD7A13551FF7340A00943E6C /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A134D1FF7340A00943E6C /* Tag+CoreDataClass.swift */; };
 		DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */; };
 		DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A13571FF734DC00943E6C /* CoreDataStack.swift */; };
@@ -60,7 +63,7 @@
 		DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */; };
 		DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95EF592022AC4E00C788D1 /* AddButton.swift */; };
 		DDB1F6EF2008223200C26E40 /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F6EE2008223200C26E40 /* TransactionVC.swift */; };
-		DDC3F1C92038D89900EFF9FE /* CreateObjectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC3F1C82038D89900EFF9FE /* CreateObjectDelegate.swift */; };
+		DDC3F1C92038D89900EFF9FE /* SaveObjectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC3F1C82038D89900EFF9FE /* SaveObjectDelegate.swift */; };
 		DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */; };
 		DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */; };
 		DDE0D9F62052190700F3A527 /* WalletFetchControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0D9F52052190700F3A527 /* WalletFetchControllerDelegate.swift */; };
@@ -95,6 +98,7 @@
 		AEEDF333C9C14B23EFF618C7 /* Pods-EwokTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EwokTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EwokTests/Pods-EwokTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EwokUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DD0305F520CDC8BC00875F2E /* TransactionTagsFetchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTagsFetchDelegate.swift; sourceTree = "<group>"; };
 		DD03A695206BE50E00B4C639 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
 		DD0A91C72064256B006E7039 /* DatesFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesFilterVC.swift; sourceTree = "<group>"; };
 		DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceManager.swift; sourceTree = "<group>"; };
@@ -113,6 +117,11 @@
 		DD4331FB20BC7EED0081C3EF /* ProfileHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderCell.xib; sourceTree = "<group>"; };
 		DD4331FD20BC7F080081C3EF /* SideMenuCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCells.swift; sourceTree = "<group>"; };
 		DD4736C720BCA3C8009B6D50 /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
+		DD4BE7E920CCA8E500033090 /* Ewok 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 7.xcdatamodel"; sourceTree = "<group>"; };
+		DD4BE7EA20CCAA4C00033090 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DD4BE7EC20CCABE800033090 /* Ewok 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 8.xcdatamodel"; sourceTree = "<group>"; };
+		DD4BE7ED20CCBBFF00033090 /* TagCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCellView.xib; sourceTree = "<group>"; };
+		DD4BE7F220CCBCE500033090 /* TagViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViews.swift; sourceTree = "<group>"; };
 		DD5DD041209FB15C009F2041 /* FiltersDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersDelegate.swift; sourceTree = "<group>"; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
@@ -121,7 +130,6 @@
 		DD7A13471FF7340A00943E6C /* Wallet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallet+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallet+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD7A13491FF7340A00943E6C /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
-		DD7A134A1FF7340A00943E6C /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD7A134D1FF7340A00943E6C /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD7A13571FF734DC00943E6C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -155,7 +163,7 @@
 		DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBalanceView.swift; sourceTree = "<group>"; };
 		DD95EF592022AC4E00C788D1 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		DDB1F6EE2008223200C26E40 /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
-		DDC3F1C82038D89900EFF9FE /* CreateObjectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateObjectDelegate.swift; sourceTree = "<group>"; };
+		DDC3F1C82038D89900EFF9FE /* SaveObjectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveObjectDelegate.swift; sourceTree = "<group>"; };
 		DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 4.xcdatamodel"; sourceTree = "<group>"; };
@@ -201,17 +209,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DD0305F720CDC8CF00875F2E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DDE3E62F2051DAC700A13182 /* TransactionStruct.swift */,
+				DD7A13491FF7340A00943E6C /* Transaction+CoreDataClass.swift */,
+				DD4BE7EA20CCAA4C00033090 /* Transaction+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD0305F820CDC8DA00875F2E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DD0305F520CDC8BC00875F2E /* TransactionTagsFetchDelegate.swift */,
+				DDB1F6EE2008223200C26E40 /* TransactionVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DD0305F920CDC8E300875F2E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD855FA420C22C9A002B0B7D /* Transaction.storyboard */,
+				DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		DD2134FA2049FB570058AD08 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				DD7A13471FF7340A00943E6C /* Wallet+CoreDataClass.swift */,
-				DD81C9A620C31FC1005DE1EC /* Wallet.storyboard */,
-				DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */,
-				DD843E941FF5D8D700EE3C0D /* WalletVC.swift */,
-				DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */,
-				DDE0D9F52052190700F3A527 /* WalletFetchControllerDelegate.swift */,
-				DD0A91C72064256B006E7039 /* DatesFilterVC.swift */,
-				DD42BD20206ACA8C000518FA /* FilterContainerView.swift */,
+				DD228A1120CCC81F0031C304 /* Views */,
+				DD228A1020CCC8180031C304 /* Controllers */,
+				DD228A0F20CCC8120031C304 /* Model */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -229,15 +260,41 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		DD228A0F20CCC8120031C304 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A13481FF7340A00943E6C /* Wallet+CoreDataProperties.swift */,
+				DD7A13471FF7340A00943E6C /* Wallet+CoreDataClass.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD228A1020CCC8180031C304 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD843E941FF5D8D700EE3C0D /* WalletVC.swift */,
+				DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */,
+				DD0A91C72064256B006E7039 /* DatesFilterVC.swift */,
+				DDE0D9F52052190700F3A527 /* WalletFetchControllerDelegate.swift */,
+				DD42BD20206ACA8C000518FA /* FilterContainerView.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DD228A1120CCC81F0031C304 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD81C9A620C31FC1005DE1EC /* Wallet.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		DD35724420C0C0E50078D2B6 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
-				DD7A13491FF7340A00943E6C /* Transaction+CoreDataClass.swift */,
-				DD7A134A1FF7340A00943E6C /* Transaction+CoreDataProperties.swift */,
-				DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */,
-				DDB1F6EE2008223200C26E40 /* TransactionVC.swift */,
-				DDE3E62F2051DAC700A13182 /* TransactionStruct.swift */,
-				DD855FA420C22C9A002B0B7D /* Transaction.storyboard */,
+				DD0305F920CDC8E300875F2E /* Views */,
+				DD0305F820CDC8DA00875F2E /* Controller */,
+				DD0305F720CDC8CF00875F2E /* Model */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -253,14 +310,40 @@
 		DD35724620C0C1670078D2B6 /* Tags */ = {
 			isa = PBXGroup;
 			children = (
-				DD7A134D1FF7340A00943E6C /* Tag+CoreDataClass.swift */,
-				DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */,
-				DD35724720C0D1400078D2B6 /* TagFlow.storyboard */,
-				DD35724920C0D1700078D2B6 /* TagsVC.swift */,
-				DD35724B20C0D1DB0078D2B6 /* TagsFetchControllerDelegate.swift */,
-				DD855F9B20C22123002B0B7D /* TagDetailVC.swift */,
+				DD4BE7F120CCBC8700033090 /* Views */,
+				DD4BE7F020CCBC7500033090 /* Controllers */,
+				DD4BE7EF20CCBC6B00033090 /* Model */,
 			);
 			path = Tags;
+			sourceTree = "<group>";
+		};
+		DD4BE7EF20CCBC6B00033090 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD7A134D1FF7340A00943E6C /* Tag+CoreDataClass.swift */,
+				DD7A134E1FF7340A00943E6C /* Tag+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD4BE7F020CCBC7500033090 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD35724B20C0D1DB0078D2B6 /* TagsFetchControllerDelegate.swift */,
+				DD855F9B20C22123002B0B7D /* TagDetailVC.swift */,
+				DD35724920C0D1700078D2B6 /* TagsVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DD4BE7F120CCBC8700033090 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD35724720C0D1400078D2B6 /* TagFlow.storyboard */,
+				DD4BE7ED20CCBBFF00033090 /* TagCellView.xib */,
+				DD4BE7F220CCBCE500033090 /* TagViews.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DD843E861FF5D8D700EE3C0D = {
@@ -408,7 +491,7 @@
 		DDE3E6322051DDE800A13182 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				DDC3F1C82038D89900EFF9FE /* CreateObjectDelegate.swift */,
+				DDC3F1C82038D89900EFF9FE /* SaveObjectDelegate.swift */,
 				DD5DD041209FB15C009F2041 /* FiltersDelegate.swift */,
 			);
 			path = Protocols;
@@ -549,6 +632,7 @@
 				DD35724820C0D1400078D2B6 /* TagFlow.storyboard in Resources */,
 				DD855FA520C22C9A002B0B7D /* Transaction.storyboard in Resources */,
 				DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */,
+				DD4BE7EE20CCBBFF00033090 /* TagCellView.xib in Resources */,
 				DD843E9D1FF5D8D700EE3C0D /* Assets.xcassets in Resources */,
 				DD855F9E20C227A0002B0B7D /* Calendar.storyboard in Resources */,
 				DD4331FC20BC7EED0081C3EF /* ProfileHeaderCell.xib in Resources */,
@@ -784,7 +868,6 @@
 				DD844043205DD1F9003EF476 /* YearView.swift in Sources */,
 				DD6A7EEB20421ACB00B15C3D /* Constants.swift in Sources */,
 				DD855F9C20C22123002B0B7D /* TagDetailVC.swift in Sources */,
-				DD7A13521FF7340A00943E6C /* Transaction+CoreDataProperties.swift in Sources */,
 				DD4331FE20BC7F080081C3EF /* SideMenuCells.swift in Sources */,
 				DD342542206984BC00B664C3 /* MonthHeader.swift in Sources */,
 				DD5DD042209FB15C009F2041 /* FiltersDelegate.swift in Sources */,
@@ -796,19 +879,21 @@
 				DD0A91C82064256B006E7039 /* DatesFilterVC.swift in Sources */,
 				DD844049205DE73B003EF476 /* DateCell.swift in Sources */,
 				DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */,
-				DDC3F1C92038D89900EFF9FE /* CreateObjectDelegate.swift in Sources */,
+				DDC3F1C92038D89900EFF9FE /* SaveObjectDelegate.swift in Sources */,
 				DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */,
 				DD7A134F1FF7340A00943E6C /* Wallet+CoreDataClass.swift in Sources */,
 				DD7A13501FF7340A00943E6C /* Wallet+CoreDataProperties.swift in Sources */,
 				DDB1F6EF2008223200C26E40 /* TransactionVC.swift in Sources */,
 				DD7A13511FF7340A00943E6C /* Transaction+CoreDataClass.swift in Sources */,
 				DD2134FD2049FC6B0058AD08 /* BalanceManager.swift in Sources */,
+				DD0305F620CDC8BD00875F2E /* TransactionTagsFetchDelegate.swift in Sources */,
 				DD7A13581FF734DC00943E6C /* CoreDataStack.swift in Sources */,
 				DD35724C20C0D1DB0078D2B6 /* TagsFetchControllerDelegate.swift in Sources */,
 				DD2D0C802023C44700077653 /* AddVC.swift in Sources */,
 				DD844047205DD232003EF476 /* CalendarView.swift in Sources */,
 				DDE3E6302051DAC700A13182 /* TransactionStruct.swift in Sources */,
 				DD42BD21206ACA8C000518FA /* FilterContainerView.swift in Sources */,
+				DD4BE7EB20CCAA4C00033090 /* Transaction+CoreDataProperties.swift in Sources */,
 				DD60A38B2012B4380019675C /* ContainerVC.swift in Sources */,
 				DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */,
 				DD2D0C7E2023BA8300077653 /* GCDBlackBox.swift in Sources */,
@@ -820,6 +905,7 @@
 				DD8D1AB720375E5E00C52EC9 /* PlaidClient.swift in Sources */,
 				DD844045205DD21B003EF476 /* WeedaysView.swift in Sources */,
 				DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */,
+				DD4BE7F320CCBCE500033090 /* TagViews.swift in Sources */,
 				DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */,
 				DD7A13551FF7340A00943E6C /* Tag+CoreDataClass.swift in Sources */,
 				DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */,
@@ -1132,6 +1218,8 @@
 		DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DD4BE7EC20CCABE800033090 /* Ewok 8.xcdatamodel */,
+				DD4BE7E920CCA8E500033090 /* Ewok 7.xcdatamodel */,
 				DD213503204A1E420058AD08 /* Ewok 6.xcdatamodel */,
 				DD213500204A13D30058AD08 /* Ewok 6.xcdatamodel */,
 				DD2B9A652013C81B001E3AE1 /* Ewok 5.xcdatamodel */,
@@ -1140,7 +1228,7 @@
 				DD7A13591FF7368700943E6C /* Ewok 2.xcdatamodel */,
 				DD843E9A1FF5D8D700EE3C0D /* Ewok.xcdatamodel */,
 			);
-			currentVersion = DD213500204A13D30058AD08 /* Ewok 6.xcdatamodel */;
+			currentVersion = DD4BE7EC20CCABE800033090 /* Ewok 8.xcdatamodel */;
 			path = Ewok.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

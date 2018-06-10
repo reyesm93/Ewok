@@ -84,6 +84,11 @@ class SideMenuVC: UITableViewController {
                     mainNavController?.pushViewController(controller, animated: true)
                     showSideMenu()
                 }
+            case 1:
+                if let controller = UIStoryboard(name: "TagFlow", bundle: nil).instantiateViewController(withIdentifier: "TagsVC") as? TagsVC {
+                    mainNavController?.pushViewController(controller, animated: true)
+                    showSideMenu()
+                }
                 
             default:
                 break

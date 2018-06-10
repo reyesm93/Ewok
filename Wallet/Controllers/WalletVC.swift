@@ -31,7 +31,7 @@ class WalletVC: UIViewController {
     let stack = CoreDataStack.sharedInstance
     var wallet : Wallet?
     var placeholder: Transaction?
-    var transactionsDelegate : CreateObjectDelegate?
+    var transactionsDelegate : SaveObjectDelegate?
     var scrollPosition: CGFloat?
     var fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
     let staticFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
@@ -92,6 +92,9 @@ class WalletVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          self.automaticallyAdjustsScrollViewInsets = false
+        customBalanceView.layer.shadowRadius = 5
+        customBalanceView.layer.shadowOpacity = 0.8
+        customBalanceView.layer.cornerRadius = 5
         
         print("childVCs WalletVC: \(self.childViewControllers)")
         
@@ -110,7 +113,7 @@ class WalletVC: UIViewController {
         customBalanceView.wallet = wallet
         
         staticFetchRequest.predicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
-        staticFetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        staticFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
         setFilterBySC()
         updatePredicates()
@@ -187,7 +190,7 @@ class WalletVC: UIViewController {
         
         compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         fetchRequest.predicate = compoundPredicate
         fetchRequest.includesPendingChanges = true
         
@@ -230,7 +233,7 @@ class WalletVC: UIViewController {
             var scrollTo: Transaction = transactions[count]
             var scrollToIndexPath: IndexPath?
             
-            while (scrollTo.createdAt! as Date) > date && count < transactions.count {
+            while (scrollTo.date! as Date) > date && count < transactions.count {
                 
                 // consider scenario where it's the same day but later
                 scrollTo = transactions[count]
@@ -266,11 +269,11 @@ class WalletVC: UIViewController {
                 if let transactionList = result {
                     if !transactionList.isEmpty {
                         if transactionList.count > 1 {
-                            lastDate = transactionList[transactionList.count-1].createdAt! as Date
+                            lastDate = transactionList[transactionList.count-1].date! as Date
                             self.calendarDateLimits.append(lastDate!)
                         }
                         
-                        firstDate = transactionList[0].createdAt! as Date
+                        firstDate = transactionList[0].date! as Date
                         self.calendarDateLimits.append(firstDate!)
                         
                     }
@@ -380,10 +383,10 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell", for: indexPath) as! TransactionViewCell
         let transaction = fetchedResultsController?.object(at: indexPath)
         
-        
+        cell.selectionStyle = .none
         cell.descriptionLabel.text = transaction?.title
         cell.amountLabel.text = transaction?.amount.currency
-        cell.dateLabel.text = (transaction!.createdAt! as Date).formattedString
+        cell.dateLabel.text = (transaction!.date! as Date).formattedString
         cell.newBalanceLabel.text = transaction?.newBalance.currency
         return cell
     
@@ -424,7 +427,7 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func createPredicateWithDates(_ dates: [Date]) -> NSPredicate {
-        return NSPredicate(format: "createdAt >= %@ && createdAt <= %@", argumentArray: [dates[0], dates[1]])
+        return NSPredicate(format: "date >= %@ && date <= %@", argumentArray: [dates[0], dates[1]])
     }
 }
 

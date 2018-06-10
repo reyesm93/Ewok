@@ -11,18 +11,23 @@ import UIKit
 import CoreData
 import LinkKit
 
+enum ObjectType {
+    case wallet, tag
+}
+
 class AddVC: UIViewController, UIGestureRecognizerDelegate {
     
     //  MARK: - Outlets
     
-    @IBOutlet weak var walletNameTF: UITextField!
+    @IBOutlet weak var objectNameTextField: UITextField!
     @IBOutlet weak var alertView: UIView!
     
     // MARK: - Properties
     
     let stack = CoreDataStack.sharedInstance
-    var walletName: String!
-    var delegate: CreateObjectDelegate?
+    var objectName: String!
+    var saveDelegate: SaveObjectDelegate?
+    var objectToAdd: ObjectType?
     
     // MARK: - Override methods
     
@@ -36,11 +41,22 @@ class AddVC: UIViewController, UIGestureRecognizerDelegate {
         
         // Plaid Link setup
         
-        
-        
-        walletNameTF.becomeFirstResponder()
-        
-        configureTextField(walletNameTF)
+        if let objectType = objectToAdd {
+            
+            var objectString = " "
+            switch objectType {
+            case .wallet:
+                objectString = "wallet"
+            case .tag:
+                objectString = "tag"
+            }
+
+            objectNameTextField.placeholder = "Enter \(objectString) name here"
+            
+        }
+
+        objectNameTextField.becomeFirstResponder()
+        configureTextField(objectNameTextField)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,18 +94,27 @@ class AddVC: UIViewController, UIGestureRecognizerDelegate {
     }
     @IBAction func create(_ sender: Any) {
         
-        resignIfFirstResponder(walletNameTF)
+        resignIfFirstResponder(objectNameTextField)
         
-        let wallet = Wallet(walletName: walletName, balance: 0.0, createdAt: NSDate(), context: self.stack.context)
+        if let objectType = objectToAdd {
+            var object: NSManagedObject?
+            switch objectType {
+            case .wallet:
+                object = Wallet(walletName: objectName, balance: 0.0, dateCreated: NSDate(), context: self.stack.context)
+            case .tag:
+                object = Tag(name: objectName, context: self.stack.context)
+            }
+            guard let newObject = object else { return }
+            saveDelegate?.saveObject(controller: self, saveObject: newObject, isNew: true)
+            self.dismiss(animated: true, completion: nil)
+        }
         
-        delegate?.createNewObject(controller: self, saveObject: wallet, isNew: true)
-        self.dismiss(animated: true, completion: nil)
     }
 
     
     func setupView() {
         alertView.layer.cornerRadius = 15
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         self.view.layoutIfNeeded()
         
 //        let tapRecognizer = UIGestureRecognizer(target: self, action: #selector(self.dismiss(animated:completion:)))
@@ -158,14 +183,14 @@ extension AddVC : UITextFieldDelegate {
     // TextFielDelegate methods
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == walletNameTF {
+        if textField == objectNameTextField {
             
-            guard let name = walletNameTF.text as? String else {
+            guard let name = objectNameTextField.text as? String else {
                 print("Wallet name not entered")
                 return
             }
             
-            walletName = name
+            objectName = name
         }
     }
     

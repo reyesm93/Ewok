@@ -13,13 +13,13 @@ import CoreData
 @objc(Transaction)
 public class Transaction: NSManagedObject {
     
-    convenience init(title: String, amount: Double, income: Bool, createdAt: NSDate, context: NSManagedObjectContext) {
+    convenience init(title: String, amount: Double, income: Bool, date: NSDate, context: NSManagedObjectContext) {
         if let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: CoreDataStack.sharedInstance.context) {
             self.init(entity: entity, insertInto: CoreDataStack.sharedInstance.context)
             self.title = title
             self.amount = amount
             self.income = income
-            self.createdAt = createdAt
+            self.date = date
         } else {
             fatalError("Unable to find Entity name!")
         }

@@ -1,9 +1,8 @@
 //
 //  Transaction+CoreDataProperties.swift
-//  Ewok
+//  
 //
-//  Created by Arturo Reyes on 12/30/17.
-//  Copyright © 2017 Arturo Reyes. All rights reserved.
+//  Created by Arturo Reyes on 6/9/18.
 //
 //
 
@@ -18,12 +17,11 @@ extension Transaction {
     }
 
     @NSManaged public var amount: Double
-    @NSManaged public var createdAt: NSDate?
+    @NSManaged public var date: NSDate?
     @NSManaged public var income: Bool
     @NSManaged public var newBalance: Double
-    @NSManaged public var scheduled: Bool
+    @NSManaged public var recurrent: Bool
     @NSManaged public var title: String?
-    @NSManaged public var updatedAt: NSDate?
     @NSManaged public var variable: Bool
     @NSManaged public var tags: NSSet?
     @NSManaged public var wallet: Wallet?

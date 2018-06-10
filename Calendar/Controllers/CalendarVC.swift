@@ -137,10 +137,10 @@ class CalendarVC : UIViewController {
 //        if (sortedTransactions?.isEmpty)! {
 //            //show alertview error
 //        } else {
-//            firstDate = (sortedTransactions![0].createdAt as Date?)!
+//            firstDate = (sortedTransactions![0].date as Date?)!
 //
 //            if (sortedTransactions?.count)! > 1 {
-//                lastDate = (sortedTransactions![(sortedTransactions?.count)!-1].createdAt as Date?)!
+//                lastDate = (sortedTransactions![(sortedTransactions?.count)!-1].date as Date?)!
 //            }
 //        }
 //

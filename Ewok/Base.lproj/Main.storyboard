@@ -194,40 +194,30 @@
                                 <rect key="frame" x="48" y="114" width="279" height="222"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVW-rU-9yd">
-                                        <rect key="frame" x="224" y="7" width="48" height="30"/>
+                                        <rect key="frame" x="216" y="7" width="48" height="30"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
                                             <action selector="cancel:" destination="8pG-ke-Wxa" eventType="touchUpInside" id="7dN-EW-3wn"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Wallet Name Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JLw-Ok-TSu" userLabel="Wallet Name TextField">
-                                        <rect key="frame" x="50" y="57" width="180" height="17"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JLw-Ok-TSu" userLabel="Wallet Name TextField">
+                                        <rect key="frame" x="50" y="57" width="180" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="Oyw-S9-H8s"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="veb-dQ-pWF"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D6j-JE-dB0">
-                                        <rect key="frame" x="125" y="114" width="30" height="30"/>
-                                        <state key="normal" title="Link"/>
-                                        <connections>
-                                            <action selector="didTapPlaidLink:" destination="8pG-ke-Wxa" eventType="touchUpInside" id="4d7-AJ-E0b"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="D6j-JE-dB0" secondAttribute="bottom" constant="78" id="DdY-HU-mFU"/>
                                     <constraint firstItem="pVW-rU-9yd" firstAttribute="top" secondItem="N2f-ds-1B1" secondAttribute="top" constant="7" id="Ot2-XE-3rf"/>
-                                    <constraint firstItem="D6j-JE-dB0" firstAttribute="top" secondItem="JLw-Ok-TSu" secondAttribute="bottom" constant="40" id="Q7n-Ik-duO"/>
                                     <constraint firstItem="JLw-Ok-TSu" firstAttribute="top" secondItem="pVW-rU-9yd" secondAttribute="bottom" constant="20" id="TGK-Ze-peU"/>
                                     <constraint firstItem="JLw-Ok-TSu" firstAttribute="centerX" secondItem="N2f-ds-1B1" secondAttribute="centerX" id="Z64-ST-ksT"/>
                                     <constraint firstItem="pVW-rU-9yd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="N2f-ds-1B1" secondAttribute="leading" constant="20" symbolic="YES" id="atN-GH-Mq1"/>
-                                    <constraint firstItem="D6j-JE-dB0" firstAttribute="centerX" secondItem="N2f-ds-1B1" secondAttribute="centerX" id="d1A-pn-GME"/>
-                                    <constraint firstAttribute="trailing" secondItem="pVW-rU-9yd" secondAttribute="trailing" constant="7" id="nZu-1t-BJn"/>
+                                    <constraint firstAttribute="trailing" secondItem="pVW-rU-9yd" secondAttribute="trailing" constant="15" id="nZu-1t-BJn"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIG-T4-Y9a">
@@ -250,7 +240,7 @@
                     </view>
                     <connections>
                         <outlet property="alertView" destination="N2f-ds-1B1" id="6tK-PF-g0f"/>
-                        <outlet property="walletNameTF" destination="JLw-Ok-TSu" id="tA1-5Y-lOM"/>
+                        <outlet property="objectNameTextField" destination="JLw-Ok-TSu" id="tA1-5Y-lOM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5qD-or-pr3" userLabel="First Responder" sceneMemberID="firstResponder"/>

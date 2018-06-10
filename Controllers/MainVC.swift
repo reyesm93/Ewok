@@ -29,7 +29,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     var fetchedResultsController : NSFetchedResultsController<Wallet> = { () -> NSFetchedResultsController<Wallet> in
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Wallet")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: true)]
         //fetchRequest.predicate = NSPredicate(format: "users = %@", argumentArray: [user])
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.context, sectionNameKeyPath: nil, cacheName: nil) as! NSFetchedResultsController<Wallet>
 
@@ -106,7 +106,8 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
         addVC.definesPresentationContext = true
         addVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         addVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        addVC.delegate = self
+        addVC.objectToAdd = ObjectType.wallet
+        addVC.saveDelegate = self
         self.present(addVC, animated: true, completion: nil)
         
     }
@@ -252,7 +253,7 @@ extension MainVC: NSFetchedResultsControllerDelegate {
 
 //    func sendProperties(name: String, balance: Float) {
 //        self.stack.context.performAndWait {
-//            self.newWallet = Wallet(walletName: name, balance: balance, createdAt: NSDate(), context: self.stack.context)
+//            self.newWallet = Wallet(walletName: name, balance: balance, date: NSDate(), context: self.stack.context)
 //            self.stack.save()
 //        }
 //    }
@@ -300,15 +301,20 @@ extension MainVC: NSFetchedResultsControllerDelegate {
     }
 }
 
-extension MainVC: CreateObjectDelegate {
+extension MainVC: SaveObjectDelegate {
     
-    func createNewObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
+    func saveObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
         self.stack.context.performAndWait {
             let _ = saveObject
             self.stack.save()
         }
         
-        self.performSegue(withIdentifier: "walletSegue", sender: saveObject)
+        if let controller = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletVC") as? WalletVC {
+            controller.wallet = saveObject as? Wallet
+            controller.navigationItem.leftBarButtonItem = menuButton
+            mainNavController?.pushViewController(controller, animated: true)
+            
+        }
     }
 
 }

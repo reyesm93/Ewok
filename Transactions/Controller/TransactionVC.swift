@@ -8,8 +8,11 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class TransactionVC: UIViewController {
+    
+    // MARK: Properties
     
     var transaction: Transaction?
     var itemIndex: IndexPath?
@@ -20,9 +23,15 @@ class TransactionVC: UIViewController {
     var transactionTitle: String?
     var transactionDate: Date?
     var amount: Double?
+    var tagsFetchRequest : NSFetchRequest<Tag>?
     var oldTransaction : TransactionStruct?
     var newTransaction : TransactionStruct?
-    var saveDelegate: CreateObjectDelegate?
+    var saveDelegate: SaveObjectDelegate?
+    var isEditingTags : Bool = false {
+        didSet {
+            addNewTagButton.isHidden = isEditingTags
+        }
+    }
     var updatedValue = false {
         didSet {
             if updatedValue {
@@ -31,24 +40,44 @@ class TransactionVC: UIViewController {
         }
     }
     
+    var fetchedResultsController : NSFetchedResultsController<Tag>? {
+        didSet {
+            // Whenever the frc changes, we execute the search and
+            // reload the table
+            
+            fetchTags()
+            fetchedResultsController?.delegate = self
+            tagsTableView.dataSource = self
+            tagsTableView.reloadData()
+        }
+    }
+    
+    // MARK: Outlets
 
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var incomeSwitch: UISwitch!
-
+    @IBOutlet weak var tagsTableView: UITableView!
+    @IBOutlet weak var editTagsButton: UIButton!
+    @IBOutlet weak var addNewTagButton: AddButton!
+    
+    // MARK: Initializers
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let transaction = transaction {
             transactionTitle = transaction.title
-            transactionDate = transaction.createdAt as? Date
+            transactionDate = transaction.date as? Date
             amount = transaction.amount
             isIncome = transaction.income
             
-            oldTransaction = TransactionStruct(description: transaction.title!, amount: transaction.amount, date: transaction.createdAt! as Date, income: transaction.income)
+            oldTransaction = TransactionStruct(description: transaction.title!, amount: transaction.amount, date: transaction.date! as Date, income: transaction.income)
         }
+        
+        addNewTagButton.isHidden = isEditingTags
         
         saveButton.isEnabled = false
         
@@ -56,6 +85,8 @@ class TransactionVC: UIViewController {
         configureTextField(amountTextField)
         
         setUpView()
+        
+        tagsTableView.register(UINib(nibName: "TagCellView", bundle: nil), forCellReuseIdentifier: "TagCell")
     
         datePicker.datePickerMode = UIDatePickerMode.date
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControlEvents.valueChanged)
@@ -67,6 +98,8 @@ class TransactionVC: UIViewController {
         super.viewWillAppear(animated)
         print("walletVC transVC : \(walletVC)")
     }
+    
+    // MARK: Actions
 
     @IBAction func cancelPressed(_ sender: Any) {
         
@@ -89,29 +122,44 @@ class TransactionVC: UIViewController {
             
             newTransaction = TransactionStruct(description: transactionTitle!, amount: amount!, date: transactionDate!, income: isIncome!)
             
-            transaction!.createdAt = transactionDate as! NSDate
+            transaction!.date = transactionDate as! NSDate
             transaction!.amount = amount!
             transaction!.title = transactionTitle
             transaction!.income = isIncome!
             
             if isLaterDate {
                 walletVC?.getNextTransaction(fromTransaction: transaction!) { (result) in
-                    self.saveDelegate?.createNewObject(controller: self, saveObject: result!, isNew: false)
+                    self.saveDelegate?.saveObject(controller: self, saveObject: result!, isNew: false)
                 }
             } else {
-                saveDelegate?.createNewObject(controller: self, saveObject: transaction!, isNew: false)
+                saveDelegate?.saveObject(controller: self, saveObject: transaction!, isNew: false)
             }
 
         } else {
             
-            let new = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome!, createdAt: transactionDate! as NSDate , context: stack.context)
-            saveDelegate?.createNewObject(controller: self, saveObject: new, isNew: true)
+            let new = Transaction(title: descriptionTextField.text!, amount: amount!, income: isIncome!, date: transactionDate! as NSDate , context: stack.context)
+            saveDelegate?.saveObject(controller: self, saveObject: new, isNew: true)
             
         }
         
         
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func editTagsPressed(_ sender: Any) {
+        isEditingTags = !isEditingTags
+        editTagsButton.titleLabel?.text = isEditingTags ? "Done" : "Edit"
+        setFetchRequest()
+    }
+    
+    @IBAction func userDidTapView(_ sender: Any) {
+        resignIfFirstResponder(descriptionTextField)
+        resignIfFirstResponder(amountTextField)
+    }
+    
+    @IBAction func addNewTag(_ sender: Any) {
+    }
+    // MARK: Obj-C selectors
     
     
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
@@ -124,7 +172,7 @@ class TransactionVC: UIViewController {
         transactionDate = sender.date
         
         if let transaction = transaction {
-            if transactionDate != (transaction.createdAt as Date?) {
+            if transactionDate != (transaction.date as Date?) {
                 updatedValue = true
             }
         }
@@ -138,18 +186,17 @@ class TransactionVC: UIViewController {
             if isIncome != transaction.income {
                 updatedValue = true
             } else {
-                saveButton.isEnabled = ((transaction.createdAt! as Date) != transactionDate) || (transaction.title != transactionTitle) || (transaction.amount != amount)
+                saveButton.isEnabled = ((transaction.date! as Date) != transactionDate) || (transaction.title != transactionTitle) || (transaction.amount != amount)
             }
         } else {
             saveButton.isEnabled = (amount != nil) && (transactionTitle != nil)
         }
         
     }
+    
+    // MARK: Methods
 
-    @IBAction func userDidTapView(_ sender: Any) {
-        resignIfFirstResponder(descriptionTextField)
-        resignIfFirstResponder(amountTextField)
-    }
+
     
     func setUpView() {
         
@@ -175,7 +222,51 @@ class TransactionVC: UIViewController {
         textField.returnKeyType = UIReturnKeyType.done
         
     }
+    
+    func setFetchRequest() {
+        
+        tagsFetchRequest = NSFetchRequest<Tag>(entityName: "Tag")
+        
+        if let existingTransaction = transaction {
+            if !isEditingTags {
+                tagsFetchRequest?.predicate = NSPredicate(format: "transaction = %@", argumentArray: [existingTransaction])
+            }
+            
+        }
+        
+        tagsFetchRequest?.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: tagsFetchRequest!, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as? NSFetchedResultsController<Tag>
+    }
+    
+    func fetchTags() -> [Tag] {
+        var tags = [Tag]()
+        if let fc = fetchedResultsController {
+            do {
+                try fc.performFetch()
+                tags = fc.fetchedObjects!
+            } catch let e as NSError {
+                print("Error while trying to perform a search: \n\(e)\n\(String(describing: fetchedResultsController))")
+            }
+        }
+
+        return tags
+    }
 }
+ 
+ extension TransactionVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return fetchTags().count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let tag = fetchedResultsController?.object(at: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell") as! TagCell
+        cell.tagNameLabel.text = tag?.name
+        
+        return cell
+    }
+ }
+
 
 extension TransactionVC : UITextFieldDelegate {
     
@@ -194,7 +285,7 @@ extension TransactionVC : UITextFieldDelegate {
             if (amount != transaction.amount) || (transactionTitle != transaction.title) {
                 updatedValue = true
             } else {
-                saveButton.isEnabled = ((transaction.createdAt! as Date) != transactionDate) || (transaction.income != isIncome)
+                saveButton.isEnabled = ((transaction.date! as Date) != transactionDate) || (transaction.income != isIncome)
             }
         } else {
             saveButton.isEnabled = (amount != nil) && (transactionTitle != nil)

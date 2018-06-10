@@ -1,9 +1,8 @@
 //
 //  Wallet+CoreDataProperties.swift
-//  Ewok
+//  
 //
-//  Created by Arturo Reyes on 12/30/17.
-//  Copyright © 2017 Arturo Reyes. All rights reserved.
+//  Created by Arturo Reyes on 6/9/18.
 //
 //
 
@@ -18,8 +17,7 @@ extension Wallet {
     }
 
     @NSManaged public var balance: Double
-    @NSManaged public var createdAt: NSDate?
-    @NSManaged public var updatedAt: NSDate?
+    @NSManaged public var dateCreated: NSDate?
     @NSManaged public var walletName: String?
     @NSManaged public var transactions: NSSet?
 

@@ -44,10 +44,26 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
             let day = indexPath.item - month.firstWeekDay + 2
             cell.lbl.text="\(day)"
             
-            let firstTransaction = limitsIndexPath![0]
-            let lastTransaction = limitsIndexPath![1]
-            let isBefore = indexPath < firstTransaction
-            let isAfter = indexPath > lastTransaction
+            var isBefore = Bool()
+            var isAfter = Bool()
+            
+            if (limitsIndexPath?.count)! > 1 {
+                let firstTransaction = limitsIndexPath![0]
+                let lastTransaction = limitsIndexPath![1]
+                isBefore = indexPath < firstTransaction
+                isAfter = indexPath > lastTransaction
+                
+            } else if limitsIndexPath?.count == 1 {
+                let onlyTransaction = limitsIndexPath![0]
+                isBefore = indexPath < onlyTransaction
+                isAfter = indexPath > onlyTransaction
+                
+            }
+            
+            if isBefore || isAfter {
+                cell.isUserInteractionEnabled = false
+                cell.lbl.textColor = .gray
+            }
             
             if indexPath == todayIndexPath {
                 cell.lbl.font = cell.lbl.font.bold
@@ -61,10 +77,7 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
                 cell.lbl.textColor = .black
             }
             
-            if isBefore || isAfter {
-                cell.isUserInteractionEnabled = false
-                cell.lbl.textColor = .gray
-            }
+            
             
         }
         return cell
