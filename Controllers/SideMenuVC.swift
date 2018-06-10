@@ -17,9 +17,6 @@ class SideMenuVC: UITableViewController {
     
     override func viewDidLoad() {
         
-        
-        
-        
         tableView.register(UINib(nibName: "ProfileHeaderCell", bundle: nil), forCellReuseIdentifier: "ProfileHeaderCell")
         tableView.register(UINib(nibName: "SideMenuCell", bundle: nil), forCellReuseIdentifier: "SideMenuCell")
         tableView.isScrollEnabled = false

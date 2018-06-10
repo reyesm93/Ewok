@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -104,29 +104,42 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSf-1U-jb8">
-                                <rect key="frame" x="170.66666666666666" y="430" width="34" height="30"/>
+                                <rect key="frame" x="325" y="44" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="save:" destination="z5R-su-np8" eventType="touchUpInside" id="eKl-3f-kmZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSa-u7-ZhO">
-                                <rect key="frame" x="311" y="44" width="48" height="30"/>
+                                <rect key="frame" x="16" y="44" width="48" height="30"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
                                     <action selector="cancelPressed:" destination="z5R-su-np8" eventType="touchUpInside" id="0xf-Ss-bbz"/>
                                 </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PQa-Xf-qTh">
+                                <rect key="frame" x="0.0" y="397" width="375" height="415"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1V-Hx-pQV">
+                                <rect key="frame" x="313" y="748" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="om9-bi-J8G" firstAttribute="leading" secondItem="afh-z8-BWd" secondAttribute="leading" constant="30" id="3GK-af-NLA"/>
                             <constraint firstItem="TSa-u7-ZhO" firstAttribute="top" secondItem="afh-z8-BWd" secondAttribute="top" id="7PH-gU-eZd"/>
-                            <constraint firstItem="afh-z8-BWd" firstAttribute="trailing" secondItem="TSa-u7-ZhO" secondAttribute="trailing" constant="16" id="H3d-Fn-wnx"/>
-                            <constraint firstItem="SSf-1U-jb8" firstAttribute="top" secondItem="om9-bi-J8G" secondAttribute="bottom" constant="80" id="a3e-yO-FNo"/>
+                            <constraint firstItem="afh-z8-BWd" firstAttribute="trailing" secondItem="h1V-Hx-pQV" secondAttribute="trailing" constant="16" id="AuV-2H-tjJ"/>
+                            <constraint firstItem="h1V-Hx-pQV" firstAttribute="top" secondItem="om9-bi-J8G" secondAttribute="bottom" constant="398" id="CRL-Yr-AlD"/>
+                            <constraint firstItem="h1V-Hx-pQV" firstAttribute="bottom" secondItem="afh-z8-BWd" secondAttribute="bottom" id="CWJ-X0-Ucj"/>
+                            <constraint firstItem="afh-z8-BWd" firstAttribute="trailing" secondItem="TSa-u7-ZhO" secondAttribute="trailing" constant="311" id="H3d-Fn-wnx"/>
+                            <constraint firstItem="SSf-1U-jb8" firstAttribute="top" secondItem="om9-bi-J8G" secondAttribute="bottom" constant="-306" id="a3e-yO-FNo"/>
                             <constraint firstItem="om9-bi-J8G" firstAttribute="top" secondItem="Ryu-r5-DPx" secondAttribute="top" constant="100" id="bhx-Hx-OAk"/>
                             <constraint firstItem="afh-z8-BWd" firstAttribute="trailing" secondItem="om9-bi-J8G" secondAttribute="trailing" constant="30" id="ggl-5h-3fQ"/>
-                            <constraint firstItem="SSf-1U-jb8" firstAttribute="centerX" secondItem="afh-z8-BWd" secondAttribute="centerX" id="uQv-i2-ke3"/>
+                            <constraint firstItem="h1V-Hx-pQV" firstAttribute="leading" secondItem="afh-z8-BWd" secondAttribute="leading" constant="313" id="tze-px-7J0"/>
+                            <constraint firstItem="SSf-1U-jb8" firstAttribute="centerX" secondItem="afh-z8-BWd" secondAttribute="centerX" constant="154.5" id="uQv-i2-ke3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="afh-z8-BWd"/>
                         <connections>
@@ -148,7 +161,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="135" y="-624"/>
+            <point key="canvasLocation" x="133.59999999999999" y="-624.38423645320199"/>
         </scene>
     </scenes>
 </document>
