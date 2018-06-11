@@ -62,6 +62,8 @@ class TransactionVC: UIViewController {
     @IBOutlet weak var tagsTableView: UITableView!
     @IBOutlet weak var editTagsButton: UIButton!
     @IBOutlet weak var addNewTagButton: AddButton!
+    @IBOutlet weak var topTableViewConstraint: NSLayoutConstraint!
+    @IBOutlet var dateLabel: UIView!
     
     // MARK: Initializers
     
