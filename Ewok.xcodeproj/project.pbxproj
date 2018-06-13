@@ -12,6 +12,10 @@
 		BCE5FB696912892E97F67718 /* Pods_EwokUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */; };
 		DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */; };
 		DD0305F620CDC8BD00875F2E /* TransactionTagsFetchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0305F520CDC8BC00875F2E /* TransactionTagsFetchDelegate.swift */; };
+		DD0305FB20CF4E2D00875F2E /* IncomeSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD0305FA20CF4E2D00875F2E /* IncomeSwitchCell.xib */; };
+		DD0305FD20CF51CF00875F2E /* RecurrentSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD0305FC20CF51CF00875F2E /* RecurrentSwitchCell.xib */; };
+		DD0305FF20D09ED000875F2E /* TransactionNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD0305FE20D09ED000875F2E /* TransactionNameCell.xib */; };
+		DD03060120D0A2D500875F2E /* TransactionDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD03060020D0A2D500875F2E /* TransactionDateCell.xib */; };
 		DD03A696206BE50E00B4C639 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD03A695206BE50E00B4C639 /* CalendarModel.swift */; };
 		DD0A91C82064256B006E7039 /* DatesFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A91C72064256B006E7039 /* DatesFilterVC.swift */; };
 		DD2134FD2049FC6B0058AD08 /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */; };
@@ -99,6 +103,10 @@
 		D414B0711FDE32BB2097E8D9 /* Pods_EwokUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EwokUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0115852012E7C4001ED2B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD0305F520CDC8BC00875F2E /* TransactionTagsFetchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTagsFetchDelegate.swift; sourceTree = "<group>"; };
+		DD0305FA20CF4E2D00875F2E /* IncomeSwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomeSwitchCell.xib; sourceTree = "<group>"; };
+		DD0305FC20CF51CF00875F2E /* RecurrentSwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecurrentSwitchCell.xib; sourceTree = "<group>"; };
+		DD0305FE20D09ED000875F2E /* TransactionNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionNameCell.xib; sourceTree = "<group>"; };
+		DD03060020D0A2D500875F2E /* TransactionDateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDateCell.xib; sourceTree = "<group>"; };
 		DD03A695206BE50E00B4C639 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
 		DD0A91C72064256B006E7039 /* DatesFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesFilterVC.swift; sourceTree = "<group>"; };
 		DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceManager.swift; sourceTree = "<group>"; };
@@ -233,6 +241,10 @@
 			children = (
 				DD855FA420C22C9A002B0B7D /* Transaction.storyboard */,
 				DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */,
+				DD0305FA20CF4E2D00875F2E /* IncomeSwitchCell.xib */,
+				DD0305FC20CF51CF00875F2E /* RecurrentSwitchCell.xib */,
+				DD0305FE20D09ED000875F2E /* TransactionNameCell.xib */,
+				DD03060020D0A2D500875F2E /* TransactionDateCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -630,13 +642,17 @@
 				DD843EA01FF5D8D700EE3C0D /* LaunchScreen.storyboard in Resources */,
 				DD81C9A720C31FC1005DE1EC /* Wallet.storyboard in Resources */,
 				DD35724820C0D1400078D2B6 /* TagFlow.storyboard in Resources */,
+				DD0305FF20D09ED000875F2E /* TransactionNameCell.xib in Resources */,
 				DD855FA520C22C9A002B0B7D /* Transaction.storyboard in Resources */,
 				DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */,
 				DD4BE7EE20CCBBFF00033090 /* TagCellView.xib in Resources */,
+				DD0305FD20CF51CF00875F2E /* RecurrentSwitchCell.xib in Resources */,
 				DD843E9D1FF5D8D700EE3C0D /* Assets.xcassets in Resources */,
+				DD03060120D0A2D500875F2E /* TransactionDateCell.xib in Resources */,
 				DD855F9E20C227A0002B0B7D /* Calendar.storyboard in Resources */,
 				DD4331FC20BC7EED0081C3EF /* ProfileHeaderCell.xib in Resources */,
 				DD4736C820BCA3C8009B6D50 /* SideMenuCell.xib in Resources */,
+				DD0305FB20CF4E2D00875F2E /* IncomeSwitchCell.xib in Resources */,
 				DD843E981FF5D8D700EE3C0D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

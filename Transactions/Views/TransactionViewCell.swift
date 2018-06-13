@@ -17,3 +17,18 @@ class TransactionViewCell : UITableViewCell {
     @IBOutlet weak var newBalanceLabel: UILabel!
     
 }
+
+class IncomeSwitchCell : UITableViewCell {
+    
+    
+}
+
+
+class TransactionNameCell : UITableViewCell {
+    
+}
+
+
+class TransactionDateCell : UITableViewCell {
+    
+}
