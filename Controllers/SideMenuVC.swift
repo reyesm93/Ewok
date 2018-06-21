@@ -94,7 +94,7 @@ class SideMenuVC: UITableViewController {
                 break
             }
         
-        case 2: break
+        case 2:
             logOut()
         default:
             break

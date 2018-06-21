@@ -25,7 +25,6 @@ class LoginVC: UIViewController, GIDSignInUIDelegate {
             FirebaseApp.configure()
         }
         
-        
         GIDSignIn.sharedInstance().uiDelegate = self
         
         

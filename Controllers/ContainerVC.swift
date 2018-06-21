@@ -24,6 +24,10 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let nav = self.navigationController {
+            nav.makeTransparent()
+        }
+        
         print("childVCs ContainerVC: \(self.childViewControllers)")
         
         for child in self.childViewControllers {

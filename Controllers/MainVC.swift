@@ -56,6 +56,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // 1
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { (make) in
@@ -322,6 +323,20 @@ extension MainVC: SaveObjectDelegate {
 extension UIViewController {
     @objc func showSideMenu() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
+    }
+}
+
+extension UINavigationController {
+    
+    func makeTransparent() {
+        self.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationBar.shadowImage = UIImage()
+        self.navigationBar.backgroundColor = .clear
+        self.navigationBar.tintColor = .clear
+        self.navigationBar.isTranslucent = true
+        self.navigationBar.isOpaque = false
+        
+        
     }
 }
 
