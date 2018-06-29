@@ -138,9 +138,9 @@ class WalletVC: UIViewController {
     
     @IBAction func createTransaction(_ sender: Any) {
         
-        if let controller = UIStoryboard(name: "Transaction", bundle: nil).instantiateViewController(withIdentifier: "TransactionViewController") as? TransactionVC {
-            controller.saveDelegate = self
-            controller.walletVC = self
+        if let controller = UIStoryboard(name: "Transaction", bundle: nil).instantiateViewController(withIdentifier: "TransactionDetailTVC") as? TransactionDetailTVC {
+//            controller.saveDelegate = self
+//            controller.walletVC = self
             self.present(controller, animated: true, completion: nil)
         }
         
@@ -396,11 +396,11 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
         
         let transaction = fetchedResultsController?.object(at: indexPath)
         
-        if let controller = UIStoryboard(name: "Transaction", bundle: nil).instantiateViewController(withIdentifier: "TransactionViewController") as? TransactionVC {
-            controller.saveDelegate = self
-            controller.walletVC = self
+        if let controller = UIStoryboard(name: "Transaction", bundle: nil).instantiateViewController(withIdentifier: "TransactionDetailTVC") as? TransactionDetailTVC {
+//            controller.saveDelegate = self
+//            controller.walletVC = self
             controller.transaction = transaction
-            controller.itemIndex = indexPath
+//            controller.itemIndex = indexPath
             self.present(controller, animated: true, completion: nil)
         }
         

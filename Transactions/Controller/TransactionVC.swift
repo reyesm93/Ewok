@@ -263,6 +263,7 @@ class TransactionVC: UIViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tag = fetchedResultsController?.object(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell") as! TagCell
+
         cell.tagNameLabel.text = tag?.name
         
         return cell

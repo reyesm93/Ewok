@@ -18,17 +18,8 @@ class TransactionViewCell : UITableViewCell {
     
 }
 
-class IncomeSwitchCell : UITableViewCell {
+class AmountCell : UITableViewCell {
     
-    
-}
-
-
-class TransactionNameCell : UITableViewCell {
-    
-}
-
-
-class TransactionDateCell : UITableViewCell {
-    
+    @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var valueSegmentControl: UISegmentedControl!
 }
