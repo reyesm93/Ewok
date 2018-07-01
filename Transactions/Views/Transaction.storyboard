@@ -6,36 +6,64 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Transaction DetailTVC-->
-        <scene sceneID="hSb-4F-pSE">
+        <!--Transaction DetailVC-->
+        <scene sceneID="QDG-fy-QDc">
             <objects>
-                <tableViewController storyboardIdentifier="TransactionDetailTVC" id="YtE-4W-uHn" customClass="TransactionDetailTVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="reF-tP-Zt7">
+                <viewController storyboardIdentifier="TransactionDetailVC" id="tLW-1r-KQS" customClass="TransactionDetailVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZAO-NQ-7ig">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransacionDetailCell" id="Kxc-z8-E76">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kxc-z8-E76" id="x49-er-47D">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="YtE-4W-uHn" id="04B-7G-ty7"/>
-                            <outlet property="delegate" destination="YtE-4W-uHn" id="36o-a8-v4u"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w5e-cT-ca2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dUZ-aL-hIP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="730.66666666666663"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TransacionDetailCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransacionDetailCell" id="ryF-5P-zat">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ryF-5P-zat" id="OCB-MD-ylR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9l-BM-gJg">
+                                <rect key="frame" x="0.0" y="735" width="375" height="77"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <state key="normal" title="SAVE">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="tLW-1r-KQS" eventType="touchUpInside" id="BRQ-oi-EOG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="h9l-BM-gJg" firstAttribute="top" secondItem="dUZ-aL-hIP" secondAttribute="bottom" constant="4.3333333333333712" id="91G-Z6-K8H"/>
+                            <constraint firstItem="dUZ-aL-hIP" firstAttribute="leading" secondItem="2eL-Es-N5H" secondAttribute="leading" id="G68-I3-08D"/>
+                            <constraint firstItem="dUZ-aL-hIP" firstAttribute="top" secondItem="ZAO-NQ-7ig" secondAttribute="top" id="H0b-bG-oaL"/>
+                            <constraint firstItem="h9l-BM-gJg" firstAttribute="leading" secondItem="2eL-Es-N5H" secondAttribute="leading" id="Sfx-he-fUt"/>
+                            <constraint firstAttribute="bottom" secondItem="h9l-BM-gJg" secondAttribute="bottom" id="T4D-VF-2tD"/>
+                            <constraint firstItem="dUZ-aL-hIP" firstAttribute="trailing" secondItem="2eL-Es-N5H" secondAttribute="trailing" id="fpG-Sr-pND"/>
+                            <constraint firstItem="dUZ-aL-hIP" firstAttribute="height" secondItem="ZAO-NQ-7ig" secondAttribute="height" multiplier="0.9" id="hgZ-JK-d9n"/>
+                            <constraint firstItem="h9l-BM-gJg" firstAttribute="trailing" secondItem="2eL-Es-N5H" secondAttribute="trailing" id="loW-qr-02k"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2eL-Es-N5H"/>
+                    </view>
+                    <connections>
+                        <outlet property="detailsTableView" destination="dUZ-aL-hIP" id="ivp-cw-4Vh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7in-P2-WqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7" y="-712"/>
+            <point key="canvasLocation" x="-396" y="-772.16748768472905"/>
         </scene>
     </scenes>
 </document>

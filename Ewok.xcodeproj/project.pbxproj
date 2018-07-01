@@ -65,7 +65,7 @@
 		DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */; };
 		DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */; };
 		DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD95EF592022AC4E00C788D1 /* AddButton.swift */; };
-		DD9CFC2220E6801F001E2A81 /* TransactionDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9CFC2120E6801F001E2A81 /* TransactionDetailTVC.swift */; };
+		DD9CFC2220E6801F001E2A81 /* TransactionDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9CFC2120E6801F001E2A81 /* TransactionDetailVC.swift */; };
 		DD9CFC2420E6822A001E2A81 /* AmountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD9CFC2320E6822A001E2A81 /* AmountCell.xib */; };
 		DDB1F6EF2008223200C26E40 /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F6EE2008223200C26E40 /* TransactionVC.swift */; };
 		DDC3F1C92038D89900EFF9FE /* SaveObjectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC3F1C82038D89900EFF9FE /* SaveObjectDelegate.swift */; };
@@ -172,7 +172,7 @@
 		DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBalanceView.swift; sourceTree = "<group>"; };
 		DD95EF592022AC4E00C788D1 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
-		DD9CFC2120E6801F001E2A81 /* TransactionDetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailTVC.swift; sourceTree = "<group>"; };
+		DD9CFC2120E6801F001E2A81 /* TransactionDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailVC.swift; sourceTree = "<group>"; };
 		DD9CFC2320E6822A001E2A81 /* AmountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmountCell.xib; sourceTree = "<group>"; };
 		DDB1F6EE2008223200C26E40 /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
 		DDC3F1C82038D89900EFF9FE /* SaveObjectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveObjectDelegate.swift; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 			children = (
 				DD0305F520CDC8BC00875F2E /* TransactionTagsFetchDelegate.swift */,
 				DDB1F6EE2008223200C26E40 /* TransactionVC.swift */,
-				DD9CFC2120E6801F001E2A81 /* TransactionDetailTVC.swift */,
+				DD9CFC2120E6801F001E2A81 /* TransactionDetailVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -908,7 +908,7 @@
 				DDE0D9F62052190700F3A527 /* WalletFetchControllerDelegate.swift in Sources */,
 				DD35724A20C0D1700078D2B6 /* TagsVC.swift in Sources */,
 				DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */,
-				DD9CFC2220E6801F001E2A81 /* TransactionDetailTVC.swift in Sources */,
+				DD9CFC2220E6801F001E2A81 /* TransactionDetailVC.swift in Sources */,
 				DD0A91C82064256B006E7039 /* DatesFilterVC.swift in Sources */,
 				DD844049205DE73B003EF476 /* DateCell.swift in Sources */,
 				DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */,

@@ -8,13 +8,21 @@
 
 import UIKit
 
-class TransactionDetailTVC: UITableViewController {
+class TransactionDetailVC: UIViewController {
+    
+    // MARK: Outlets
+    
+    @IBOutlet weak var detailsTableView: UITableView!
+    
+    //MARK: Properties
     
     var mainHeight: CGFloat?
     var mainWidth: CGFloat?
     var transaction: Transaction?
     let cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
 
+    //MARK: Initializers
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainHeight = view.frame.height
@@ -24,37 +32,46 @@ class TransactionDetailTVC: UITableViewController {
         
     }
     
+    //MARK: Actions
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+    }
     // MARK: Methods
     
     private func setTableView() {
-        
-        tableView.register(UINib(nibName: "AmountCell", bundle: nil), forCellReuseIdentifier: "AmountCell")
+        detailsTableView.delegate = self
+        detailsTableView.dataSource = self
+        detailsTableView.register(UINib(nibName: "AmountCell", bundle: nil), forCellReuseIdentifier: "AmountCell")
 //        tableView.rowHeight = UITableViewAutomaticDimension
 //        tableView.estimatedRowHeight = 200
         
         let gradientView = GradientView()
         gradientView.FirstColor = UIColor.black
         gradientView.SecondColor = UIColor.darkGray
-        tableView.backgroundView = gradientView
+        detailsTableView.backgroundView = gradientView
     }
     
-    // MARK: - Table view data source
+}
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    // MARK: - Table view data source and delegate
+
+extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
 
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
         cell.backgroundView?.backgroundColor = .clear
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var cellHeight : CGFloat = 60
         
         if indexPath == IndexPath(row: 0, section: 0) {
@@ -63,7 +80,7 @@ class TransactionDetailTVC: UITableViewController {
         return cellHeight
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         
         switch indexPath.row {
@@ -84,7 +101,7 @@ class TransactionDetailTVC: UITableViewController {
     }
     
     private func loadAmountCell(_ cell: UITableViewCell) -> AmountCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AmountCell") as? AmountCell
+        let cell = detailsTableView.dequeueReusableCell(withIdentifier: "AmountCell") as? AmountCell
         cell?.amountTextField.delegate = self.cashDelegate
         cell?.amountTextField.adjustsFontSizeToFitWidth = false
         cell?.amountTextField.addDoneButtonOnKeyboard()
@@ -104,7 +121,7 @@ class TransactionDetailTVC: UITableViewController {
     
     private func loadNameCell() -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TransacionDetailCell")
+        let cell = detailsTableView.dequeueReusableCell(withIdentifier: "TransacionDetailCell")
         cell?.selectionStyle = .none
         let nameTextField = createTextField()
         nameTextField.attributedPlaceholder = NSAttributedString(string: "Enter transaction description here", attributes: [NSAttributedStringKey.foregroundColor:UIColor.lightGray])
@@ -126,7 +143,7 @@ class TransactionDetailTVC: UITableViewController {
     }
     
     private func loadDateCell() -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TransacionDetailCell")
+        let cell = detailsTableView.dequeueReusableCell(withIdentifier: "TransacionDetailCell")
         cell?.selectionStyle = .none
         cell?.textLabel?.textColor = .white
         cell?.textLabel?.font = UIFont.systemFont(ofSize: 18)
@@ -142,7 +159,7 @@ class TransactionDetailTVC: UITableViewController {
     }
     
     private func loadRecurrentCell() -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TransacionDetailCell")
+        let cell = detailsTableView.dequeueReusableCell(withIdentifier: "TransacionDetailCell")
         cell?.selectionStyle = .none
         cell?.textLabel?.textColor = .white
         cell?.textLabel?.font = UIFont.systemFont(ofSize: 18)
@@ -171,7 +188,7 @@ class TransactionDetailTVC: UITableViewController {
 
 }
 
-extension TransactionDetailTVC : UITextFieldDelegate {
+extension TransactionDetailVC : UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
