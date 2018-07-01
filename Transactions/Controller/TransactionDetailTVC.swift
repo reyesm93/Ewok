@@ -26,6 +26,8 @@ class TransactionDetailTVC: UITableViewController {
     private func setTableView() {
         
         tableView.register(UINib(nibName: "AmountCell", bundle: nil), forCellReuseIdentifier: "AmountCell")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 500
         
         let gradientView = GradientView()
         gradientView.FirstColor = UIColor.black
@@ -68,11 +70,13 @@ class TransactionDetailTVC: UITableViewController {
     func loadAmountCell(_ cell: UITableViewCell) -> AmountCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AmountCell") as? AmountCell
         cell?.amountTextField.delegate = self.cashDelegate
+        cell?.amountTextField.adjustsFontSizeToFitWidth = false
+        cell?.amountTextField.addDoneButtonOnKeyboard()
         cell?.selectionStyle = .none
         
         if transaction != nil {
             if let transactionAmount = transaction?.amount {
-                cell?.amountTextField.text = "\(transactionAmount)"
+                cell?.amountTextField.attributedText = "\(transactionAmount)0".cashAttributedString(color: .white, size: 52)
             }
             
         }

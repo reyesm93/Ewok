@@ -6,40 +6,48 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AmountCell" rowHeight="207" id="cde-IB-DHa" customClass="AmountCell" customModule="Ewok" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="416" height="207"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AmountCell" rowHeight="200" id="cde-IB-DHa" customClass="AmountCell" customModule="Ewok" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="416" height="193"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cde-IB-DHa" id="3aX-ly-490">
-                <rect key="frame" x="0.0" y="0.0" width="416" height="206.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="416" height="192.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$300.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G9b-KX-6oI">
-                        <rect key="frame" x="46.5" y="70" width="323" height="67"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="57"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g0P-bq-Qz6">
-                        <rect key="frame" x="184.5" y="157" width="47" height="26.5"/>
+                        <rect key="frame" x="173" y="132.5" width="70" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="AME-e3-SJM"/>
+                            <constraint firstAttribute="width" constant="70" id="Xnn-Jn-hYj"/>
+                        </constraints>
                         <segments>
                             <segment title="+"/>
                             <segment title="-"/>
                         </segments>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </segmentedControl>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$300.00" borderStyle="line" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="G9b-KX-6oI">
+                        <rect key="frame" x="42" y="30" width="333" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="90" id="2xT-RS-27U"/>
+                        </constraints>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                    </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="g0P-bq-Qz6" firstAttribute="top" secondItem="G9b-KX-6oI" secondAttribute="bottom" constant="20" id="4GZ-aw-NAo"/>
-                    <constraint firstItem="G9b-KX-6oI" firstAttribute="leading" secondItem="3aX-ly-490" secondAttribute="leading" constant="46.5" id="Bw7-rz-dj4"/>
-                    <constraint firstItem="G9b-KX-6oI" firstAttribute="centerY" secondItem="3aX-ly-490" secondAttribute="centerY" id="ScE-kc-cCg"/>
-                    <constraint firstAttribute="trailing" secondItem="G9b-KX-6oI" secondAttribute="trailing" constant="46.5" id="Tnf-qB-YhQ"/>
-                    <constraint firstAttribute="bottom" secondItem="g0P-bq-Qz6" secondAttribute="bottom" constant="24" id="dke-uz-TkM"/>
-                    <constraint firstItem="g0P-bq-Qz6" firstAttribute="centerX" secondItem="3aX-ly-490" secondAttribute="centerX" id="n5R-X6-zWt"/>
+                    <constraint firstItem="g0P-bq-Qz6" firstAttribute="top" secondItem="G9b-KX-6oI" secondAttribute="bottom" constant="12.5" id="Eba-nd-6cG"/>
+                    <constraint firstItem="G9b-KX-6oI" firstAttribute="top" secondItem="3aX-ly-490" secondAttribute="top" constant="30" id="Ejj-Ql-z7N"/>
+                    <constraint firstItem="g0P-bq-Qz6" firstAttribute="centerX" secondItem="3aX-ly-490" secondAttribute="centerX" id="Hlz-rj-atr"/>
+                    <constraint firstItem="G9b-KX-6oI" firstAttribute="centerX" secondItem="3aX-ly-490" secondAttribute="centerX" id="J0r-fw-8BW"/>
+                    <constraint firstItem="G9b-KX-6oI" firstAttribute="width" secondItem="3aX-ly-490" secondAttribute="width" multiplier="0.8" id="d8x-o0-lYJ"/>
+                    <constraint firstAttribute="bottom" secondItem="g0P-bq-Qz6" secondAttribute="bottom" constant="30" id="lpi-s9-cOS"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,7 +55,7 @@
                 <outlet property="amountTextField" destination="G9b-KX-6oI" id="XW3-Ha-4rv"/>
                 <outlet property="valueSegmentControl" destination="g0P-bq-Qz6" id="rBF-LH-ih8"/>
             </connections>
-            <point key="canvasLocation" x="19" y="117.5"/>
+            <point key="canvasLocation" x="6" y="-5.5"/>
         </tableViewCell>
     </objects>
 </document>

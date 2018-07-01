@@ -72,6 +72,7 @@
 		DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */; };
 		DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */; };
 		DDDE0C2920E6ADAD004EAAD3 /* CashTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE0C2820E6ADAD004EAAD3 /* CashTextFieldDelegate.swift */; };
+		DDDE0C2B20E8645E004EAAD3 /* TextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE0C2A20E8645E004EAAD3 /* TextField+Extension.swift */; };
 		DDE0D9F62052190700F3A527 /* WalletFetchControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0D9F52052190700F3A527 /* WalletFetchControllerDelegate.swift */; };
 		DDE3E6302051DAC700A13182 /* TransactionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE3E62F2051DAC700A13182 /* TransactionStruct.swift */; };
 /* End PBXBuildFile section */
@@ -178,6 +179,7 @@
 		DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DDDE0C2820E6ADAD004EAAD3 /* CashTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashTextFieldDelegate.swift; sourceTree = "<group>"; };
+		DDDE0C2A20E8645E004EAAD3 /* TextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extension.swift"; sourceTree = "<group>"; };
 		DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 4.xcdatamodel"; sourceTree = "<group>"; };
 		DDE0D9F52052190700F3A527 /* WalletFetchControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletFetchControllerDelegate.swift; sourceTree = "<group>"; };
 		DDE3E62F2051DAC700A13182 /* TransactionStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStruct.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			children = (
 				DD2507F320DB877A003B026A /* GradientView.swift */,
 				DD2507F720DBA3BB003B026A /* TransparentNavBar.swift */,
+				DDDE0C2A20E8645E004EAAD3 /* TextField+Extension.swift */,
 			);
 			name = Utils;
 			path = Ewok/Utils;
@@ -923,6 +926,7 @@
 				DD2D0C802023C44700077653 /* AddVC.swift in Sources */,
 				DD844047205DD232003EF476 /* CalendarView.swift in Sources */,
 				DDDE0C2920E6ADAD004EAAD3 /* CashTextFieldDelegate.swift in Sources */,
+				DDDE0C2B20E8645E004EAAD3 /* TextField+Extension.swift in Sources */,
 				DDE3E6302051DAC700A13182 /* TransactionStruct.swift in Sources */,
 				DD42BD21206ACA8C000518FA /* FilterContainerView.swift in Sources */,
 				DD4BE7EB20CCAA4C00033090 /* Transaction+CoreDataProperties.swift in Sources */,
