@@ -23,6 +23,7 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navControllerView.backgroundColor = .clear
         
         if let nav = self.navigationController {
             nav.makeTransparent()

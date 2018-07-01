@@ -13,3 +13,9 @@ func performUIUpdatesOnMain(_ updates: @escaping () -> Void) {
         updates()
     }
 }
+
+func performOnUserInteractive(_ updates: @escaping () -> Void) {
+    DispatchQueue.global(qos: .userInteractive).async {
+        updates()
+    }
+}

@@ -163,7 +163,7 @@ extension Date {
         return Calendar.current.date(from: Calendar.current.dateComponents([.year,.month], from: self))!
     }
     
-    var formattedString : String {
+    var shortFormatString : String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -171,6 +171,14 @@ extension Date {
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")
 
         return dateFormatter.string(from: self).uppercased()
+    }
+    
+    var longFormatString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.locale = Locale(identifier: "en_US")
+        
+        return dateFormatter.string(from: self)
     }
 }
 

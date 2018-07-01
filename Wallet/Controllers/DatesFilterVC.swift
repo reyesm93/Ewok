@@ -38,10 +38,10 @@ class DatesFilterVC : UIViewController {
         
         if !isDateFilterApplied {
             dateRange = [Date()]
-            datesButton.setTitle(dateRange![0].formattedString, for: .normal)
+            datesButton.setTitle(dateRange![0].shortFormatString, for: .normal)
         } else {
             if let dates = dateRange {
-                let datesString = (dates.count > 1) ? dates[0].formattedString + " - \n" + dates[1].formattedString : dates[0].formattedString
+                let datesString = (dates.count > 1) ? dates[0].shortFormatString + " - \n" + dates[1].shortFormatString : dates[0].shortFormatString
                 datesButton.setTitle(datesString, for: .normal)
             }
         }
@@ -72,9 +72,9 @@ class DatesFilterVC : UIViewController {
         if let dates = filterDates as [Date]? {
             dateRange = dates
             if dates.count > 1 {
-                datesString = dates[0].formattedString + " - \n" + dates[1].formattedString
+                datesString = dates[0].shortFormatString + " - \n" + dates[1].shortFormatString
             } else if dates.count == 1 {
-                datesString = dates[0].formattedString
+                datesString = dates[0].shortFormatString
             }
             
             datesButton.setTitle(datesString, for: .normal)
@@ -93,7 +93,7 @@ class DatesFilterVC : UIViewController {
     @objc func clearFilter(notification: Notification) {
         
         isDateFilterApplied = false
-        datesButton.setTitle(Date().formattedString, for: .normal)
+        datesButton.setTitle(Date().shortFormatString, for: .normal)
 
     }
     

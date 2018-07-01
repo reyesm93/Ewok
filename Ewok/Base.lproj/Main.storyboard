@@ -114,7 +114,7 @@
         <scene sceneID="Wxq-hO-1wj">
             <objects>
                 <viewController storyboardIdentifier="ContainerVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jr7-u9-lQ1" customClass="ContainerVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WWL-Ak-4Q4">
+                    <view key="view" contentMode="scaleToFill" id="WWL-Ak-4Q4" customClass="GradientView" customModule="Ewok" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -128,7 +128,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWe-IP-LuN" userLabel="NavigationControllerView">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <connections>
                                     <segue destination="Knc-Ma-T3i" kind="embed" id="wd6-fO-BB1"/>
                                 </connections>
@@ -140,12 +140,20 @@
                             <constraint firstAttribute="trailing" secondItem="PWe-IP-LuN" secondAttribute="trailing" id="BPK-ma-541"/>
                             <constraint firstItem="J8e-Q2-y4R" firstAttribute="top" secondItem="WWL-Ak-4Q4" secondAttribute="top" id="CFv-hx-PIb"/>
                             <constraint firstItem="PWe-IP-LuN" firstAttribute="leading" secondItem="aMX-YP-yTu" secondAttribute="leading" id="Fhr-OR-Afm"/>
-                            <constraint firstItem="PWe-IP-LuN" firstAttribute="bottom" secondItem="aMX-YP-yTu" secondAttribute="bottom" id="TgR-9A-OM8"/>
-                            <constraint firstItem="PWe-IP-LuN" firstAttribute="top" secondItem="aMX-YP-yTu" secondAttribute="top" id="asT-Ms-A5y"/>
+                            <constraint firstItem="PWe-IP-LuN" firstAttribute="bottom" secondItem="aMX-YP-yTu" secondAttribute="bottom" constant="34" id="TgR-9A-OM8"/>
+                            <constraint firstItem="PWe-IP-LuN" firstAttribute="top" secondItem="aMX-YP-yTu" secondAttribute="top" constant="-44" id="asT-Ms-A5y"/>
                             <constraint firstItem="J8e-Q2-y4R" firstAttribute="leading" secondItem="aMX-YP-yTu" secondAttribute="leading" constant="-250" id="gdg-3t-Kre"/>
                             <constraint firstAttribute="bottom" secondItem="J8e-Q2-y4R" secondAttribute="bottom" id="qfd-Mf-R8r"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aMX-YP-yTu"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="FirstColor">
+                                <color key="value" red="1" green="0.46451236639999999" blue="0.1357086136" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="SecondColor">
+                                <color key="value" red="1" green="0.62675790440000001" blue="0.18846813470000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="navControllerView" destination="PWe-IP-LuN" id="8Ji-Wf-BxX"/>
@@ -161,12 +169,12 @@
         <scene sceneID="F2G-Wy-pkj">
             <objects>
                 <viewController storyboardIdentifier="MainVC" id="mMP-2S-lXp" customClass="MainVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vVk-1L-onE" customClass="GradientView" customModule="Ewok" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
+                    <view key="view" contentMode="scaleToFill" id="vVk-1L-onE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CrD-YB-9MB" customClass="AddButton" customModule="Ewok" customModuleProvider="target">
-                                <rect key="frame" x="299" y="674" width="60" height="60"/>
+                                <rect key="frame" x="299" y="752" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="C4B-DR-syP"/>
                                     <constraint firstAttribute="width" constant="60" id="aa2-OG-VRU"/>

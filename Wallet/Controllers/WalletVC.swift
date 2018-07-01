@@ -141,7 +141,8 @@ class WalletVC: UIViewController {
         if let controller = UIStoryboard(name: "Transaction", bundle: nil).instantiateViewController(withIdentifier: "TransactionDetailTVC") as? TransactionDetailTVC {
 //            controller.saveDelegate = self
 //            controller.walletVC = self
-            self.present(controller, animated: true, completion: nil)
+            self.navigationController?.pushViewController(controller, animated: true)
+            //self.present(controller, animated: true, completion: nil)
         }
         
     }
@@ -386,7 +387,7 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.descriptionLabel.text = transaction?.title
         cell.amountLabel.text = transaction?.amount.currency
-        cell.dateLabel.text = (transaction!.date! as Date).formattedString
+        cell.dateLabel.text = (transaction!.date! as Date).shortFormatString
         cell.newBalanceLabel.text = transaction?.newBalance.currency
         return cell
     
@@ -400,8 +401,9 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
 //            controller.saveDelegate = self
 //            controller.walletVC = self
             controller.transaction = transaction
+            self.navigationController?.pushViewController(controller, animated: true)
 //            controller.itemIndex = indexPath
-            self.present(controller, animated: true, completion: nil)
+            //self.present(controller, animated: true, completion: nil)
         }
         
 

@@ -19,7 +19,7 @@ extension String {
         cashStringAttributes[NSAttributedStringKey.font] = UIFont(name: "KohinoorBangla-Light", size: size)
         
         var centStringAttributes = cashStringAttributes
-        centStringAttributes[NSAttributedStringKey.font] = UIFont(name: "KohinoorBangla-Light", size: round((size*0.75)))
+        centStringAttributes[NSAttributedStringKey.font] = UIFont(name: "KohinoorBangla-Light", size: round((size*0.7)))
         
         let dollarSign = NSAttributedString(string: "$", attributes: centStringAttributes)
         let period = NSAttributedString(string: ".", attributes: cashStringAttributes)
