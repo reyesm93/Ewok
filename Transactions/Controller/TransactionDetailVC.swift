@@ -19,7 +19,10 @@ class TransactionDetailVC: UIViewController {
     var mainHeight: CGFloat?
     var mainWidth: CGFloat?
     var transaction: Transaction?
-    let cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
+    var newTransaction: TransactionStruct?
+    var cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
+    var isNewTransaction: Bool = true
+    var amountColor: UIColor = UIColor.white
 
     //MARK: Initializers
     
@@ -27,6 +30,16 @@ class TransactionDetailVC: UIViewController {
         super.viewDidLoad()
         mainHeight = view.frame.height
         mainWidth = view.frame.width
+        
+        if transaction != nil {
+            isNewTransaction = false
+            guard let isIncome = transaction?.income else { return }
+            amountColor = isIncome ? UIColor.green : UIColor.red
+            cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: amountColor)
+        } else {
+            newTransaction = TransactionStruct(date: Date())
+            isNewTransaction = true
+        }
     
         setTableView()
         
@@ -35,6 +48,7 @@ class TransactionDetailVC: UIViewController {
     //MARK: Actions
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        
     }
     // MARK: Methods
     
@@ -49,6 +63,44 @@ class TransactionDetailVC: UIViewController {
         gradientView.FirstColor = UIColor.black
         gradientView.SecondColor = UIColor.darkGray
         detailsTableView.backgroundView = gradientView
+    }
+    
+    @objc func changeValue(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            setIncome(true)
+            updateAmountColor(true)
+            sender.tintColor = UIColor.green
+        case 1:
+            setIncome(false)
+            updateAmountColor(false)
+            sender.tintColor = UIColor.red
+        default:
+            break
+        }
+        
+        sender.setNeedsLayout()
+    }
+    
+    private func setIncome(_ bool: Bool) {
+        if isNewTransaction && newTransaction != nil {
+            newTransaction?.income = bool
+        } else if !isNewTransaction && transaction != nil {
+            transaction?.income = bool
+        }
+    }
+    
+    private func updateAmountColor(_ bool: Bool) {
+        detailsTableView.beginUpdates()
+        let cellIndex = IndexPath(row: 0, section: 0)
+        if let amountCell = detailsTableView.cellForRow(at: cellIndex) as? AmountCell {
+            amountColor = bool ? UIColor.green : UIColor.red
+            cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: amountColor)
+            amountCell.amountTextField.delegate = cashDelegate
+            let currentText = amountCell.amountTextField.attributedText?.string
+            amountCell.amountTextField.attributedText = currentText?.cashAttributedString(color: amountColor, size: 46)
+            detailsTableView.reloadRows(at: [cellIndex], with: .none)
+        }
     }
     
 }
@@ -75,7 +127,7 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         var cellHeight : CGFloat = 60
         
         if indexPath == IndexPath(row: 0, section: 0) {
-            cellHeight = 180
+            cellHeight = 160
         }
         return cellHeight
     }
@@ -102,18 +154,20 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
     
     private func loadAmountCell(_ cell: UITableViewCell) -> AmountCell {
         let cell = detailsTableView.dequeueReusableCell(withIdentifier: "AmountCell") as? AmountCell
-        cell?.amountTextField.delegate = self.cashDelegate
+        cell?.amountTextField.delegate = cashDelegate
         cell?.amountTextField.adjustsFontSizeToFitWidth = false
         cell?.amountTextField.addDoneButtonOnKeyboard()
+        cell?.valueSegmentControl.tintColor = amountColor
+        cell?.valueSegmentControl.addTarget(self, action: #selector(changeValue), for: UIControlEvents.valueChanged)
         cell?.selectionStyle = .none
         
         
         if transaction != nil {
             if let transactionAmount = transaction?.amount {
-                cell?.amountTextField.attributedText = "\(transactionAmount)0".cashAttributedString(color: .white, size: 46)
+                cell?.amountTextField.attributedText = "\(transactionAmount)0".cashAttributedString(color: amountColor, size: 46)
             }
         } else {
-            cell?.amountTextField.attributedText = "$0.00".cashAttributedString(color: .white, size: 46)
+            cell?.amountTextField.attributedText = "$0.00".cashAttributedString(color: amountColor, size: 46)
         }
         
         return cell!
@@ -197,6 +251,12 @@ extension TransactionDetailVC : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         transaction?.title = textField.text
+    }
+    
+    func resignIfFirstResponder(_ textField: UITextField) {
+        if textField.isFirstResponder {
+            textField.resignFirstResponder()
+        }
     }
 
 }

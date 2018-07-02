@@ -167,7 +167,7 @@ class TransactionVC: UIViewController {
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
         
         // Transaction date was changed to a later date
-        if oldTransaction?.date.compare(sender.date) == ComparisonResult.orderedAscending {
+        if oldTransaction?.date?.compare(sender.date) == ComparisonResult.orderedAscending {
             isLaterDate = true
         }
         
