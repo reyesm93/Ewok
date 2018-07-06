@@ -23,6 +23,7 @@ class TransactionDetailVC: UIViewController {
     var cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
     var isNewTransaction: Bool = true
     var amountColor: UIColor = UIColor.white
+    var nameTextField: UITextField?
 
     //MARK: Initializers
     
@@ -65,21 +66,31 @@ class TransactionDetailVC: UIViewController {
         detailsTableView.backgroundView = gradientView
     }
     
+    // MARK: Obj-C messages
+    
     @objc func changeValue(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             setIncome(true)
             updateAmountColor(true)
-            sender.tintColor = UIColor.green
+            //sender.tintColor = UIColor.green
         case 1:
             setIncome(false)
             updateAmountColor(false)
-            sender.tintColor = UIColor.red
+            //sender.tintColor = UIColor.red
         default:
             break
         }
+    }
+    
+    
+    @IBAction func userDidTapView(_ sender: Any) {
+        if nameTextField != nil {
+            if (nameTextField?.isFirstResponder)! {
+                nameTextField?.resignFirstResponder()
+            }
+        }
         
-        sender.setNeedsLayout()
     }
     
     private func setIncome(_ bool: Bool) {
@@ -91,7 +102,6 @@ class TransactionDetailVC: UIViewController {
     }
     
     private func updateAmountColor(_ bool: Bool) {
-        detailsTableView.beginUpdates()
         let cellIndex = IndexPath(row: 0, section: 0)
         if let amountCell = detailsTableView.cellForRow(at: cellIndex) as? AmountCell {
             amountColor = bool ? UIColor.green : UIColor.red
@@ -99,7 +109,6 @@ class TransactionDetailVC: UIViewController {
             amountCell.amountTextField.delegate = cashDelegate
             let currentText = amountCell.amountTextField.attributedText?.string
             amountCell.amountTextField.attributedText = currentText?.cashAttributedString(color: amountColor, size: 46)
-            detailsTableView.reloadRows(at: [cellIndex], with: .none)
         }
     }
     
@@ -131,6 +140,10 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         }
         return cellHeight
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        detailsTableView.reloadRows(at: [indexPath], with: .fade)
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
@@ -157,7 +170,7 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         cell?.amountTextField.delegate = cashDelegate
         cell?.amountTextField.adjustsFontSizeToFitWidth = false
         cell?.amountTextField.addDoneButtonOnKeyboard()
-        cell?.valueSegmentControl.tintColor = amountColor
+//        cell?.valueSegmentControl.tintColor = amountColor
         cell?.valueSegmentControl.addTarget(self, action: #selector(changeValue), for: UIControlEvents.valueChanged)
         cell?.selectionStyle = .none
         
@@ -177,18 +190,18 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         
         let cell = detailsTableView.dequeueReusableCell(withIdentifier: "TransacionDetailCell")
         cell?.selectionStyle = .none
-        let nameTextField = createTextField()
-        nameTextField.attributedPlaceholder = NSAttributedString(string: "Enter transaction description here", attributes: [NSAttributedStringKey.foregroundColor:UIColor.lightGray])
+        nameTextField = createTextField()
+        nameTextField?.attributedPlaceholder = NSAttributedString(string: "Enter transaction description here", attributes: [NSAttributedStringKey.foregroundColor:UIColor.lightGray])
 
         if let transactionName = transaction?.title {
-            nameTextField.text = transactionName
+            nameTextField?.text = transactionName
         }
         
-        cell?.contentView.addSubview(nameTextField)
+        cell?.contentView.addSubview(nameTextField!)
         
         if let cellBottom = cell?.contentView.bottomAnchor, let cellTop = cell?.contentView.topAnchor {
-            nameTextField.bottomAnchor.constraint(equalTo: cellBottom).isActive = true
-            nameTextField.topAnchor.constraint(equalTo: cellTop).isActive = true
+            nameTextField?.bottomAnchor.constraint(equalTo: cellBottom).isActive = true
+            nameTextField?.topAnchor.constraint(equalTo: cellTop).isActive = true
         }
         
         
@@ -250,7 +263,12 @@ extension TransactionDetailVC : UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        transaction?.title = textField.text
+        if transaction != nil {
+            transaction?.title = textField.text
+        } else {
+            newTransaction?.description = textField.text
+        }
+        
     }
     
     func resignIfFirstResponder(_ textField: UITextField) {
