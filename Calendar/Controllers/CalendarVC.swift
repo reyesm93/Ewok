@@ -10,11 +10,12 @@ import UIKit
 
 class CalendarVC : UIViewController {
     
+    // MARK: Outelts
     @IBOutlet weak var calendarView: CalendarView!
     @IBOutlet weak var completeDateButton: UIButton!
     
-    
-    var parentVC: WalletVC?
+    //MARK: Properties
+    weak var parentVC: WalletVC?
     var firstWeekDayOfMonth = 0   //(Sunday-Saturday 1-7)
     var startFilter: IndexPath?
     var endFilter: IndexPath?
@@ -28,10 +29,8 @@ class CalendarVC : UIViewController {
             completeDateButton.isEnabled = (selectedDateRange.count > 0) ? true : false
         }
     }
-    
 
-    
-    
+    //MARK: Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
         todayIndexPath = calendarData.todayIndexPath

@@ -21,10 +21,8 @@ class WalletVC: UIViewController {
     @IBOutlet weak var transactionTableView: UITableView!
     @IBOutlet weak var addButton: AddButton!
     @IBOutlet weak var mainScrollView: UIScrollView!
-    @IBOutlet weak var customBalanceView: CustomBalanceView!
     @IBOutlet weak var filterContainerView: FilterContainerView!
     @IBOutlet weak var filterBySC: UISegmentedControl!
-    @IBOutlet weak var tagScrollView: UIScrollView!
     
     // MARK: - Properties
     
@@ -92,9 +90,6 @@ class WalletVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          self.automaticallyAdjustsScrollViewInsets = false
-        customBalanceView.layer.shadowRadius = 5
-        customBalanceView.layer.shadowOpacity = 0.8
-        customBalanceView.layer.cornerRadius = 5
         
         print("childVCs WalletVC: \(self.childViewControllers)")
         
@@ -109,8 +104,6 @@ class WalletVC: UIViewController {
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
         mainScrollView.delegate = self
-        
-        customBalanceView.wallet = wallet
         
         staticFetchRequest.predicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
         staticFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]

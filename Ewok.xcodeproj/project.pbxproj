@@ -17,7 +17,7 @@
 		DD0A91C82064256B006E7039 /* DatesFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0A91C72064256B006E7039 /* DatesFilterVC.swift */; };
 		DD2134FD2049FC6B0058AD08 /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2134FC2049FC6B0058AD08 /* BalanceManager.swift */; };
 		DD2507F420DB877A003B026A /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2507F320DB877A003B026A /* GradientView.swift */; };
-		DD2507F820DBA3BB003B026A /* TransparentNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2507F720DBA3BB003B026A /* TransparentNavBar.swift */; };
+		DD2507F820DBA3BB003B026A /* TransparentNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2507F720DBA3BB003B026A /* TransparentNavController.swift */; };
 		DD2D0C7E2023BA8300077653 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2D0C7D2023BA8300077653 /* GCDBlackBox.swift */; };
 		DD2D0C802023C44700077653 /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2D0C7F2023C44700077653 /* AddVC.swift */; };
 		DD342542206984BC00B664C3 /* MonthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD342541206984BC00B664C3 /* MonthHeader.swift */; };
@@ -113,7 +113,7 @@
 		DD213500204A13D30058AD08 /* Ewok 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 6.xcdatamodel"; sourceTree = "<group>"; };
 		DD213503204A1E420058AD08 /* Ewok 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 6.xcdatamodel"; sourceTree = "<group>"; };
 		DD2507F320DB877A003B026A /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		DD2507F720DBA3BB003B026A /* TransparentNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentNavBar.swift; sourceTree = "<group>"; };
+		DD2507F720DBA3BB003B026A /* TransparentNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentNavController.swift; sourceTree = "<group>"; };
 		DD2B9A652013C81B001E3AE1 /* Ewok 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 5.xcdatamodel"; sourceTree = "<group>"; };
 		DD2D0C7D2023BA8300077653 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		DD2D0C7F2023C44700077653 /* AddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				DD2507F320DB877A003B026A /* GradientView.swift */,
-				DD2507F720DBA3BB003B026A /* TransparentNavBar.swift */,
+				DD2507F720DBA3BB003B026A /* TransparentNavController.swift */,
 				DDDE0C2A20E8645E004EAAD3 /* TextField+Extension.swift */,
 			);
 			name = Utils;
@@ -946,7 +946,7 @@
 				DD7A13551FF7340A00943E6C /* Tag+CoreDataClass.swift in Sources */,
 				DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */,
 				DD843E9B1FF5D8D700EE3C0D /* Ewok.xcdatamodeld in Sources */,
-				DD2507F820DBA3BB003B026A /* TransparentNavBar.swift in Sources */,
+				DD2507F820DBA3BB003B026A /* TransparentNavController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

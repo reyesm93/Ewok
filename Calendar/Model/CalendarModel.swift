@@ -64,7 +64,7 @@ struct Month {
 
 class CalendarModel : NSObject {
     
-    var today = Date()
+    let today = Date()
     let secondsInYear = 31536000.0
     let years = 1.0
     var yearsAgo : Date?

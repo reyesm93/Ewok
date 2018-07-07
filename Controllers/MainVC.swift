@@ -22,7 +22,6 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     var newWallet: Wallet?
     var bottomConstraint: Constraint? = nil
     var menuButton = UIBarButtonItem()
-    var mainNavController : UINavigationController?
     //let colors = [UIColor.green, UIColor.blue, UIColor.red, UIColor.orange]
     //var blockOperations: [BlockOperation] = []
     
@@ -56,16 +55,14 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
-        navigationController?.navigationBar.tintColor = .white
         // 1
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
         
-        mainNavController = self.navigationController
         menuButton = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.plain, target: self, action: #selector(showSideMenu))
-        self.navigationItem.leftBarButtonItem = menuButton
+        self.navigationController?.navigationItem.leftBarButtonItem = menuButton
         
         view.bringSubview(toFront: addWalletButton)
         
@@ -185,7 +182,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
         if let controller = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletVC") as? WalletVC {
             controller.wallet = wallet
             controller.navigationItem.leftBarButtonItem = menuButton
-            mainNavController?.pushViewController(controller, animated: true)
+            self.navigationController?.pushViewController(controller, animated: true)
             
         }
 
@@ -313,7 +310,7 @@ extension MainVC: SaveObjectDelegate {
         if let controller = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletVC") as? WalletVC {
             controller.wallet = saveObject as? Wallet
             controller.navigationItem.leftBarButtonItem = menuButton
-            mainNavController?.pushViewController(controller, animated: true)
+            self.navigationController?.pushViewController(controller, animated: true)
             
         }
     }

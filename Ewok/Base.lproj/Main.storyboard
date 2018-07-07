@@ -231,10 +231,10 @@
             </objects>
             <point key="canvasLocation" x="-2550" y="778"/>
         </scene>
-        <!--Transparent Nav Bar-->
+        <!--Transparent Nav Controller-->
         <scene sceneID="9br-a4-QTl">
             <objects>
-                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Knc-Ma-T3i" customClass="TransparentNavBar" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Knc-Ma-T3i" customClass="TransparentNavController" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Agw-5e-bUa">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
