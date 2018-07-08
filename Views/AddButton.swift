@@ -31,8 +31,8 @@ class AddButton: UIButton {
         layer.shadowRadius = 5
         layer.shadowOpacity = 1
         layer.cornerRadius = self.frame.width / 2
-        setImage(UIImage(named: "icon_addpin.png"), for: .normal)
         backgroundColor = UIColor.white
+        titleLabel?.removeFromSuperview()
         setTitleColor(.white, for: UIControlState())
     }
 }

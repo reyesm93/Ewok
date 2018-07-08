@@ -1,5 +1,5 @@
 //
-//  MainVC.swift
+//  HomeVC.swift
 //  Ewok
 //
 //  Created by Arturo Reyes on 1/19/18.
@@ -11,7 +11,7 @@ import SnapKit
 import CoreData
 import Firebase
 
-class MainVC: UIViewController, UIGestureRecognizerDelegate  {
+class HomeVC: UIViewController, UIGestureRecognizerDelegate  {
     
     // MARK: Properties
     
@@ -21,7 +21,6 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     var subViews = [WalletView]()
     var newWallet: Wallet?
     var bottomConstraint: Constraint? = nil
-    var menuButton = UIBarButtonItem()
     //let colors = [UIColor.green, UIColor.blue, UIColor.red, UIColor.orange]
     //var blockOperations: [BlockOperation] = []
     
@@ -49,7 +48,6 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
     
     @IBOutlet weak var addWalletButton: AddButton!
     
-    
     // MARK : View Cycle
     
     override func viewDidLoad() {
@@ -61,14 +59,13 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
             make.edges.equalTo(view)
         }
         
-        menuButton = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.plain, target: self, action: #selector(showSideMenu))
-        self.navigationController?.navigationItem.leftBarButtonItem = menuButton
-        
         view.bringSubview(toFront: addWalletButton)
         
         //context = stack.context
         fetchedResultsController.delegate = self
     
+        let menuButton = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.plain, target: self, action: #selector(showSideMenu))
+        navigationController?.navigationItem.setLeftBarButton(menuButton, animated: true)
         
         if fetchWallets().isEmpty {
             print("No wallets")
@@ -181,7 +178,6 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
         
         if let controller = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletVC") as? WalletVC {
             controller.wallet = wallet
-            controller.navigationItem.leftBarButtonItem = menuButton
             self.navigationController?.pushViewController(controller, animated: true)
             
         }
@@ -247,7 +243,7 @@ class MainVC: UIViewController, UIGestureRecognizerDelegate  {
 
 }
 
-extension MainVC: NSFetchedResultsControllerDelegate {
+extension HomeVC: NSFetchedResultsControllerDelegate {
 
 //    func sendProperties(name: String, balance: Float) {
 //        self.stack.context.performAndWait {
@@ -299,7 +295,7 @@ extension MainVC: NSFetchedResultsControllerDelegate {
     }
 }
 
-extension MainVC: SaveObjectDelegate {
+extension HomeVC: SaveObjectDelegate {
     
     func saveObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
         self.stack.context.performAndWait {
@@ -309,7 +305,6 @@ extension MainVC: SaveObjectDelegate {
         
         if let controller = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletVC") as? WalletVC {
             controller.wallet = saveObject as? Wallet
-            controller.navigationItem.leftBarButtonItem = menuButton
             self.navigationController?.pushViewController(controller, animated: true)
             
         }

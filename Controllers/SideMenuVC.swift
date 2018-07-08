@@ -13,10 +13,11 @@ import Firebase
 
 class SideMenuVC: UITableViewController {
     
-    var mainNavController : UINavigationController?
+    let appDelegate = UIApplication.shared.delegate
+    var sectionDelegate: SelectedSectionDelegate? = nil
     
     override func viewDidLoad() {
-        
+    
         tableView.register(UINib(nibName: "ProfileHeaderCell", bundle: nil), forCellReuseIdentifier: "ProfileHeaderCell")
         tableView.register(UINib(nibName: "SideMenuCell", bundle: nil), forCellReuseIdentifier: "SideMenuCell")
         tableView.isScrollEnabled = false
@@ -41,8 +42,9 @@ class SideMenuVC: UITableViewController {
     
     func userDidLogOut() {
         
-        let controller = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
-        present(controller, animated: true, completion: nil)
+        let initialViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+        appDelegate?.window??.rootViewController = initialViewController
+        appDelegate?.window??.makeKeyAndVisible()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,12 +68,6 @@ class SideMenuVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let parentVC = self.parent as? ContainerVC {
-            if let nav = parentVC.mainNavController {
-                mainNavController = nav
-            }
-        }
-        
         let section = indexPath.section
         
         switch section {
@@ -80,13 +76,13 @@ class SideMenuVC: UITableViewController {
         case 1:
             switch indexPath.row {
             case 0:
-                if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainVC") as? MainVC {
-                    mainNavController?.pushViewController(controller, animated: true)
+                if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC") as? HomeVC {
+                    sectionDelegate?.selectedSection(viewController: controller)
                     showSideMenu()
                 }
             case 1:
-                if let controller = UIStoryboard(name: "TagFlow", bundle: nil).instantiateViewController(withIdentifier: "TagsVC") as? TagsVC {
-                    mainNavController?.pushViewController(controller, animated: true)
+                if let controller = UIStoryboard(name: "Tags", bundle: nil).instantiateViewController(withIdentifier: "TagsVC") as? TagsVC {
+                    sectionDelegate?.selectedSection(viewController: controller)
                     showSideMenu()
                 }
                 
@@ -116,7 +112,7 @@ class SideMenuVC: UITableViewController {
             let sectionCell = tableView.dequeueReusableCell(withIdentifier: "SideMenuCell", for: indexPath) as! SideMenuCell
             switch indexPath.row {
             case 0:
-                sectionCell.sectionCellLabel?.text = "Wallet"
+                sectionCell.sectionCellLabel?.text = "Home"
                 return sectionCell
             case 1:
                 sectionCell.sectionCellLabel?.text = "Tags"

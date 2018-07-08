@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -188,8 +189,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loR-Yn-u7b" customClass="AddButton" customModule="Ewok" customModuleProvider="target">
                                 <rect key="frame" x="305" y="713" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="Fc6-Fs-D0r"/>
-                                    <constraint firstAttribute="height" constant="60" id="Wh1-Gy-vfR"/>
+                                    <constraint firstAttribute="width" secondItem="loR-Yn-u7b" secondAttribute="height" multiplier="1:1" id="RV4-O7-fDx"/>
                                 </constraints>
                                 <state key="normal" title="Add"/>
                                 <connections>
@@ -202,6 +202,7 @@
                             <constraint firstItem="rrZ-Xd-vl7" firstAttribute="bottom" secondItem="loR-Yn-u7b" secondAttribute="bottom" constant="5" id="04U-ic-nvT"/>
                             <constraint firstAttribute="trailing" secondItem="AlW-Cg-sF7" secondAttribute="trailing" id="1Pt-aQ-eLr"/>
                             <constraint firstItem="AlW-Cg-sF7" firstAttribute="leading" secondItem="G8n-WK-mYJ" secondAttribute="leading" id="CmI-58-jky"/>
+                            <constraint firstItem="loR-Yn-u7b" firstAttribute="width" secondItem="G8n-WK-mYJ" secondAttribute="width" multiplier="0.16" id="Mi6-PU-Oov"/>
                             <constraint firstItem="4J5-xz-7pS" firstAttribute="height" secondItem="G8n-WK-mYJ" secondAttribute="height" multiplier="0.16" id="V9v-KF-fGo"/>
                             <constraint firstAttribute="bottom" secondItem="AlW-Cg-sF7" secondAttribute="bottom" id="VTB-ab-rGB"/>
                             <constraint firstItem="AlW-Cg-sF7" firstAttribute="height" secondItem="G8n-WK-mYJ" secondAttribute="height" id="Xvb-Cf-QYc"/>

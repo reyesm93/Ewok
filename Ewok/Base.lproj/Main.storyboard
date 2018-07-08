@@ -7,6 +7,8 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -108,42 +110,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsQ-IR-bub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3002.4000000000001" y="51.724137931034484"/>
+            <point key="canvasLocation" x="-3788" y="41"/>
         </scene>
-        <!--ContainerVC-->
+        <!--Transparent Nav Controller-->
+        <scene sceneID="rq1-8r-PEq">
+            <objects>
+                <navigationController storyboardIdentifier="MainNavController" id="AkG-Dp-jG1" customClass="TransparentNavController" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dQe-wh-by5">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="u0V-xl-MV2" kind="relationship" relationship="rootViewController" id="M6L-aF-ZCs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0fK-0O-knt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2039" y="52"/>
+        </scene>
+        <!--Menu ContainerVC-->
         <scene sceneID="Wxq-hO-1wj">
             <objects>
-                <viewController storyboardIdentifier="ContainerVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jr7-u9-lQ1" customClass="ContainerVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuContainerVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jr7-u9-lQ1" customClass="MenuContainerVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WWL-Ak-4Q4" customClass="GradientView" customModule="Ewok" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8e-Q2-y4R" userLabel="SideMenuView">
-                                <rect key="frame" x="-250" y="0.0" width="250" height="812"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="Ojn-BB-IW3"/>
-                                </constraints>
+                                <rect key="frame" x="-281.33333333333331" y="0.0" width="281.33333333333331" height="812"/>
                                 <connections>
                                     <segue destination="qKn-66-eO8" kind="embed" id="c3n-io-IIx"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWe-IP-LuN" userLabel="NavigationControllerView">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9v-Mf-LeA">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <connections>
-                                    <segue destination="Knc-Ma-T3i" kind="embed" id="wd6-fO-BB1"/>
+                                    <segue destination="AkG-Dp-jG1" kind="embed" id="tBo-sw-Upr"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="PWe-IP-LuN" secondAttribute="trailing" id="BPK-ma-541"/>
+                            <constraint firstAttribute="bottom" secondItem="m9v-Mf-LeA" secondAttribute="bottom" id="0Tt-ZE-2bc"/>
+                            <constraint firstItem="m9v-Mf-LeA" firstAttribute="leading" secondItem="aMX-YP-yTu" secondAttribute="leading" id="13P-yd-PWs"/>
+                            <constraint firstItem="m9v-Mf-LeA" firstAttribute="top" secondItem="WWL-Ak-4Q4" secondAttribute="top" id="1sO-8g-BIh"/>
+                            <constraint firstItem="J8e-Q2-y4R" firstAttribute="width" secondItem="WWL-Ak-4Q4" secondAttribute="width" multiplier="0.75" id="4vD-3u-7PX"/>
                             <constraint firstItem="J8e-Q2-y4R" firstAttribute="top" secondItem="WWL-Ak-4Q4" secondAttribute="top" id="CFv-hx-PIb"/>
-                            <constraint firstItem="PWe-IP-LuN" firstAttribute="leading" secondItem="aMX-YP-yTu" secondAttribute="leading" id="Fhr-OR-Afm"/>
-                            <constraint firstItem="PWe-IP-LuN" firstAttribute="bottom" secondItem="aMX-YP-yTu" secondAttribute="bottom" constant="34" id="TgR-9A-OM8"/>
-                            <constraint firstItem="PWe-IP-LuN" firstAttribute="top" secondItem="aMX-YP-yTu" secondAttribute="top" constant="-44" id="asT-Ms-A5y"/>
-                            <constraint firstItem="J8e-Q2-y4R" firstAttribute="leading" secondItem="aMX-YP-yTu" secondAttribute="leading" constant="-250" id="gdg-3t-Kre"/>
+                            <constraint firstItem="J8e-Q2-y4R" firstAttribute="leading" secondItem="aMX-YP-yTu" secondAttribute="leading" constant="-281.32999999999998" id="gdg-3t-Kre"/>
                             <constraint firstAttribute="bottom" secondItem="J8e-Q2-y4R" secondAttribute="bottom" id="qfd-Mf-R8r"/>
+                            <constraint firstItem="m9v-Mf-LeA" firstAttribute="trailing" secondItem="aMX-YP-yTu" secondAttribute="trailing" id="zNm-hk-fil"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aMX-YP-yTu"/>
                         <userDefinedRuntimeAttributes>
@@ -155,69 +171,56 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <navigationItem key="navigationItem" id="dhw-9l-gBf"/>
                     <connections>
-                        <outlet property="navControllerView" destination="PWe-IP-LuN" id="8Ji-Wf-BxX"/>
+                        <outlet property="navControllerView" destination="m9v-Mf-LeA" id="uyX-VI-A8L"/>
                         <outlet property="sideMenuConstraint" destination="gdg-3t-Kre" id="lnb-Ep-ion"/>
                         <outlet property="sideMenuView" destination="J8e-Q2-y4R" id="Law-3y-oQN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhw-Kz-hat" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2111.1999999999998" y="52.463054187192121"/>
+            <point key="canvasLocation" x="-2887" y="52"/>
         </scene>
-        <!--MainVC-->
-        <scene sceneID="F2G-Wy-pkj">
+        <!--HomeVC-->
+        <scene sceneID="CJa-bp-s6A">
             <objects>
-                <viewController storyboardIdentifier="MainVC" id="mMP-2S-lXp" customClass="MainVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vVk-1L-onE">
+                <viewController storyboardIdentifier="HomeVC" id="u0V-xl-MV2" customClass="HomeVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hQ5-yR-k8Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CrD-YB-9MB" customClass="AddButton" customModule="Ewok" customModuleProvider="target">
-                                <rect key="frame" x="299" y="752" width="60" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyl-s5-aU9" customClass="AddButton" customModule="Ewok" customModuleProvider="target">
+                                <rect key="frame" x="299" y="723" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="C4B-DR-syP"/>
-                                    <constraint firstAttribute="width" constant="60" id="aa2-OG-VRU"/>
+                                    <constraint firstAttribute="width" secondItem="Xyl-s5-aU9" secondAttribute="height" multiplier="1:1" id="76L-7X-m5A"/>
                                 </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle"/>
-                                </state>
-                                <connections>
-                                    <action selector="addWallet:" destination="mMP-2S-lXp" eventType="touchUpInside" id="YZS-Dl-Nyt"/>
-                                </connections>
+                                <state key="normal" title="Button" image="icon_addpin"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="CrD-YB-9MB" secondAttribute="bottom" id="lso-YM-NUb"/>
-                            <constraint firstItem="puD-xd-SPG" firstAttribute="trailing" secondItem="CrD-YB-9MB" secondAttribute="trailing" constant="16" id="wtC-2S-cWS"/>
-                            <constraint firstAttribute="bottom" secondItem="CrD-YB-9MB" secondAttribute="bottom" id="zYt-X1-dGg"/>
+                            <constraint firstItem="Xyl-s5-aU9" firstAttribute="width" secondItem="hQ5-yR-k8Y" secondAttribute="width" multiplier="0.16" id="4MI-Gi-OB2"/>
+                            <constraint firstItem="Dzg-dh-HHC" firstAttribute="trailing" secondItem="Xyl-s5-aU9" secondAttribute="trailing" constant="16" id="87l-tV-3KZ"/>
+                            <constraint firstItem="Xyl-s5-aU9" firstAttribute="bottom" secondItem="Dzg-dh-HHC" secondAttribute="bottom" constant="5" id="93p-Pz-9qL"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="puD-xd-SPG"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="FirstColor">
-                                <color key="value" red="0.92881503809999999" green="0.51092324779999998" blue="0.14484451479999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="SecondColor">
-                                <color key="value" red="0.92881503809999999" green="0.66020407699999994" blue="0.10201522709999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
+                        <viewLayoutGuide key="safeArea" id="Dzg-dh-HHC"/>
                     </view>
-                    <navigationItem key="navigationItem" id="HQF-5J-nfr"/>
+                    <navigationItem key="navigationItem" id="LIo-DA-OJu"/>
                     <connections>
-                        <outlet property="addWalletButton" destination="CrD-YB-9MB" id="sll-0G-4u5"/>
+                        <outlet property="addWalletButton" destination="Xyl-s5-aU9" id="aOt-5g-KKG"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Yy-HE-emo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D9g-Ts-KVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-618.39999999999998" y="793.5960591133005"/>
+            <point key="canvasLocation" x="-1156" y="51"/>
         </scene>
         <!--Side MenuVC-->
         <scene sceneID="DJY-lC-qYb">
             <objects>
                 <tableViewController id="qKn-66-eO8" customClass="SideMenuVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="alP-Ss-Ce6">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="281.33333333333331" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections/>
@@ -229,26 +232,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHw-TZ-DHn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2550" y="778"/>
-        </scene>
-        <!--Transparent Nav Controller-->
-        <scene sceneID="9br-a4-QTl">
-            <objects>
-                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Knc-Ma-T3i" customClass="TransparentNavController" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Agw-5e-bUa">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="mMP-2S-lXp" kind="relationship" relationship="rootViewController" id="IKZ-F5-gqu"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SvJ-2v-tGE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1450" y="795"/>
+            <point key="canvasLocation" x="-3352" y="804"/>
         </scene>
         <!--AddVC-->
         <scene sceneID="ySu-33-iTb">
@@ -313,7 +297,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5qD-or-pr3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2111.1999999999998" y="-738.17733990147781"/>
+            <point key="canvasLocation" x="-3084" y="-814"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_addpin" width="24" height="24"/>
+    </resources>
 </document>

@@ -6,7 +6,6 @@
 //  Copyright © 2018 Arturo Reyes. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 protocol  FiltersDelegate : class {

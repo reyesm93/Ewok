@@ -47,8 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func userDidLogIn() {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "ContainerVC") as! ContainerVC
+        let initialViewController =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuContainerVC") as! MenuContainerVC
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
     }

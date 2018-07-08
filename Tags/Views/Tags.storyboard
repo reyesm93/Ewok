@@ -13,7 +13,7 @@
         <!--TagsVC-->
         <scene sceneID="LSX-Hn-JhT">
             <objects>
-                <viewController restorationIdentifier="TagsVC" storyboardIdentifier="TagsVC" id="yPj-PA-t5b" customClass="TagsVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TagsVC" id="yPj-PA-t5b" customClass="TagsVC" customModule="Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rqP-AT-ETs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

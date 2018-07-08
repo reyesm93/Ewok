@@ -17,6 +17,7 @@ class TransparentNavController: UINavigationController {
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.isTranslucent = true
         self.view.backgroundColor = .clear
+
     }
 
 

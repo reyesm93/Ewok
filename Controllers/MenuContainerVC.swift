@@ -1,5 +1,5 @@
 //
-//  ContainerVC.swift
+//  MenuContainerVC.swift
 //  Ewok
 //
 //  Created by Arturo Reyes on 1/19/18.
@@ -10,40 +10,57 @@ import UIKit
 import SnapKit
 import CoreData
 
-class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
+class MenuContainerVC: UIViewController, UIGestureRecognizerDelegate {
     
-    var sideMenuOpen = false
-    var coverView: UIView? = nil
-    var mainNavController: UINavigationController?
+    // MARK: Outlets
     
+    @IBOutlet weak var navControllerView: UIView!
     @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
     @IBOutlet weak var sideMenuView: UIView!
-    @IBOutlet weak var navControllerView: UIView!
     
+    // MARK: Properties
+    var sideMenuOpen = false
+    var coverView: UIView? = nil
+    var sectionController: SectionContainerVC?
+    var sideMenuController: SideMenuVC?
 
+    // MARK: Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
-        navControllerView.backgroundColor = .clear
         
-        if let nav = self.navigationController {
-            nav.makeTransparent()
-        }
-        
-        print("childVCs ContainerVC: \(self.childViewControllers)")
-        
-        for child in self.childViewControllers {
-            if child is UINavigationController {
-                mainNavController = child as? UINavigationController
-            }
-        }
-        
-        let navRect = navControllerView.bounds
-        coverView = UIView(frame: navRect)
-        //coverView!.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        setUpView()
+        setUpDelegates()
 
         NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
     }
     
+    // MARK: Methods
+    private func setUpView() {
+        navControllerView.backgroundColor = .clear
+        sideMenuConstraint.constant = view.frame.width * -0.8
+        
+        let navRect = navControllerView.bounds
+        coverView = UIView(frame: navRect)
+        //coverView!.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+    }
+    
+    private func setUpDelegates() {
+        
+        for child in childViewControllers {
+            if child is SectionContainerVC {
+                sectionController = child as! SectionContainerVC
+            } else if child is SideMenuVC {
+                sideMenuController = child as! SideMenuVC
+            }
+        }
+        
+        guard sectionController != nil else { return }
+        guard sideMenuController != nil else { return }
+        
+        sideMenuController?.sectionDelegate = sectionController
+    }
+    
+    // MARK: Obj-C Messages
     @objc func toggleSideMenu() {
         
         performUIUpdatesOnMain {
@@ -76,7 +93,7 @@ class ContainerVC: UIViewController, UIGestureRecognizerDelegate {
             
             if self.sideMenuOpen {
                 self.coverView!.removeFromSuperview()
-                self.sideMenuConstraint.constant = -260
+                self.sideMenuConstraint.constant = -1 * self.view.frame.width * 0.8
                 self.sideMenuOpen = !self.sideMenuOpen
                 
                 UIView.animate(withDuration: 0.5, animations: {
