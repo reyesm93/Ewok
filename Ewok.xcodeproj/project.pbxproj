@@ -274,7 +274,6 @@
 			isa = PBXGroup;
 			children = (
 				DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */,
-				DD95EF592022AC4E00C788D1 /* AddButton.swift */,
 				DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */,
 				DD4331FB20BC7EED0081C3EF /* ProfileHeaderCell.xib */,
 				DD4331FD20BC7F080081C3EF /* SideMenuCells.swift */,
@@ -316,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				DD2507F320DB877A003B026A /* GradientView.swift */,
+				DD95EF592022AC4E00C788D1 /* AddButton.swift */,
 				DD2507F720DBA3BB003B026A /* TransparentNavController.swift */,
 				DDDE0C2A20E8645E004EAAD3 /* TextField+Extension.swift */,
 				DDCE8DD820F1299C00A2D081 /* FlowPresentationManager.swift */,

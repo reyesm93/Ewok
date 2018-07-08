@@ -211,7 +211,10 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Xyl-s5-aU9" secondAttribute="height" multiplier="1:1" id="76L-7X-m5A"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="icon_addpin"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -316,7 +319,4 @@
             <point key="canvasLocation" x="-3084" y="-814"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="icon_addpin" width="24" height="24"/>
-    </resources>
 </document>

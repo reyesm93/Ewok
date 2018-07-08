@@ -22,7 +22,7 @@ class WalletVC: UIViewController {
     @IBOutlet weak var addButton: AddButton!
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var filterContainerView: FilterContainerView!
-    @IBOutlet weak var filterBySC: UISegmentedControl!
+//    @IBOutlet weak var filterBySC: UISegmentedControl!
     
     // MARK: - Properties
     
@@ -108,7 +108,7 @@ class WalletVC: UIViewController {
         staticFetchRequest.predicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
         staticFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
-        setFilterBySC()
+//        setFilterBySC()
         updatePredicates()
         setCalendarDateLimits()
     }
@@ -169,14 +169,14 @@ class WalletVC: UIViewController {
         return tags
     }
     
-    func setFilterBySC() {
-        
-        filterBySC.setTitle("Date", forSegmentAt: Filters.dates.rawValue)
-        filterBySC.setTitle("Tags", forSegmentAt: Filters.tags.rawValue)
-        filterBySC.setTitle("Search", forSegmentAt: Filters.search.rawValue)
-        filterBySC.addTarget(self, action: #selector(changeFilter), for: UIControlEvents.valueChanged)
-        
-    }
+//    func setFilterBySC() {
+//
+//        filterBySC.setTitle("Date", forSegmentAt: Filters.dates.rawValue)
+//        filterBySC.setTitle("Tags", forSegmentAt: Filters.tags.rawValue)
+//        filterBySC.setTitle("Search", forSegmentAt: Filters.search.rawValue)
+//        filterBySC.addTarget(self, action: #selector(changeFilter), for: UIControlEvents.valueChanged)
+//
+//    }
     
     func setFetchRequest() {
         // create cases for different predicate arguments
