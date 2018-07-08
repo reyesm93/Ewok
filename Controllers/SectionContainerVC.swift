@@ -37,6 +37,10 @@ class SectionContainerVC: UIViewController, SelectedSectionDelegate {
     // MARK: Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let menuButton = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.plain, target: self, action: #selector(showSideMenu))
+        navigationItem.setLeftBarButton(menuButton, animated: true)
+        
         currentViewController = homeViewController
         addViewController(asChildVC: currentViewController!)
         

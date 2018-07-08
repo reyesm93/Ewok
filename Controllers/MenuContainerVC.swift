@@ -47,8 +47,10 @@ class MenuContainerVC: UIViewController, UIGestureRecognizerDelegate {
     private func setUpDelegates() {
         
         for child in childViewControllers {
-            if child is SectionContainerVC {
-                sectionController = child as! SectionContainerVC
+            if let navCotroller = child as? TransparentNavController {
+                if let topController = navCotroller.topViewController as? SectionContainerVC {
+                    sectionController = topController
+                }
             } else if child is SideMenuVC {
                 sideMenuController = child as! SideMenuVC
             }

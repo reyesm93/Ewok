@@ -53,20 +53,14 @@ class HomeVC: UIViewController, UIGestureRecognizerDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
-        // 1
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
         
         view.bringSubview(toFront: addWalletButton)
-        
-        //context = stack.context
         fetchedResultsController.delegate = self
     
-        let menuButton = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.plain, target: self, action: #selector(showSideMenu))
-        navigationController?.navigationItem.setLeftBarButton(menuButton, animated: true)
-        
         if fetchWallets().isEmpty {
             print("No wallets")
         } else {
