@@ -30,7 +30,7 @@ class WalletVC: UIViewController {
     var wallet : Wallet?
     var placeholder: Transaction?
     var transactionsDelegate : SaveObjectDelegate?
-    var scrollPosition: CGFloat?
+    var scrollPosition: CGFloat = 0
     var fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
     let staticFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
     var compoundPredicate : NSCompoundPredicate?
@@ -89,7 +89,7 @@ class WalletVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-         self.automaticallyAdjustsScrollViewInsets = false
+        self.automaticallyAdjustsScrollViewInsets = false
         
         print("childVCs WalletVC: \(self.childViewControllers)")
         
@@ -121,12 +121,13 @@ class WalletVC: UIViewController {
             topTransaction = setTopTransaction()
         }
         
+        mainScrollView.isHidden = fetchTransactions().isEmpty
 
-        if fetchTransactions().isEmpty {
-            mainScrollView.isHidden = true
-        } else {
-            mainScrollView.isHidden = false
-        }
+//        if fetchTransactions().isEmpty {
+//            mainScrollView.isHidden = true
+//        } else {
+//            mainScrollView.isHidden = false
+//        }
     }
     
     @IBAction func createTransaction(_ sender: Any) {
@@ -336,34 +337,61 @@ class WalletVC: UIViewController {
 
 extension WalletVC : UIScrollViewDelegate {
     
-//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        scrollPosition = scrollView.contentOffset.y
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        scrollPosition = scrollView.contentOffset.y
+    }
+
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        if scrollView.contentOffset.y < 0 {
+//            UIView.animate(withDuration: 0.5, animations: {
+//                scrollView.contentOffset.y = 0
+//                return
+//            })
+//        }
 //    }
-//
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//
-//        let newPosition = scrollView.contentOffset.y
+    
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        if scrollView.contentOffset.y < 0 {
+//            UIView.animate(withDuration: 0.5, animations: {
+//                scrollView.contentOffset.y = 0
+//                return
+//            })
+//        }
+//    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        let newPosition = scrollView.contentOffset.y
 //        let customViewHeight = customBalanceView.frame.height
 //        let relativeFrame = view.convert(customBalanceView.frame, from: mainScrollView)
 //        let subViewTop = relativeFrame.origin.y
 //        let viewTop = mainScrollView.frame.origin.y
-//
-//
-//        if scrollPosition! < newPosition {
-//            // User is dragging scrollview downwards
-//
+
+
+        if scrollPosition > newPosition {
+            // User is dragging scrollview downwards
+            
+//            if newPosition < -20 {
+//                performUIUpdatesOnMain {
+//                    UIView.animate(withDuration: 0.5, animations: {
+//                        scrollView.setContentOffset(CGPoint(x: 0, y: -20), animated: true)
+//                        return
+//                    })
+//                }
+//            }
+
 //            if (subViewTop == viewTop) {
 //                mainScrollView.isScrollEnabled = false
 //            }
-//        } else {
-//            // User is dragging scrollview upwards
-//
-//            let tablePosition = transactionTableView.contentOffset.y
-//            if tablePosition == 0 {
-//                mainScrollView.isScrollEnabled = true
-//            }
-//        }
-//    }
+        } else {
+            // User is dragging scrollview upwards
+
+            let tablePosition = transactionTableView.contentOffset.y
+            if tablePosition == 0 {
+                mainScrollView.isScrollEnabled = true
+            }
+        }
+    }
 }
 
 extension WalletVC : UITableViewDelegate, UITableViewDataSource {
