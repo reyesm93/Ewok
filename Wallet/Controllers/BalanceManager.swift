@@ -196,4 +196,34 @@ extension WalletVC: SaveObjectDelegate {
         }
     
     }
+    
+    func calculateDateBalances() {
+        var sum : Double = 0.0
+        var minus : Double = 0.0
+        var total : Double = 0.0
+        
+        if let filteredTransactions = fetchedResultsController?.fetchedObjects {
+            if filteredTransactions.count > 0 {
+                for transaction in filteredTransactions {
+                    if transaction.amount > 0 {
+                        sum += transaction.amount
+                    } else if transaction.amount < 0 {
+                        minus += transaction.amount
+                    }
+                }
+            } else {
+                // send notification and show message saying that there are not any transactions in the requested date(s)
+            }
+        }
+        
+        total = sum + minus
+        
+        earningsLabel.text = "\(sum.currency!)"
+        expensesLabel.text = "\(minus.currency!)"
+        totalBalanceLabel.text = "\(total.currency!)"
+        
+        earningsLabel.setNeedsDisplay()
+        expensesLabel.setNeedsDisplay()
+        totalBalanceLabel.setNeedsDisplay()
+    }
 }

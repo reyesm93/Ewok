@@ -22,7 +22,10 @@ class WalletVC: UIViewController {
     @IBOutlet weak var addButton: AddButton!
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var filterContainerView: FilterContainerView!
-//    @IBOutlet weak var filterBySC: UISegmentedControl!
+    @IBOutlet weak var earningsLabel: UILabel!
+    @IBOutlet weak var expensesLabel: UILabel!
+    @IBOutlet weak var totalBalanceLabel: UILabel!
+    //    @IBOutlet weak var filterBySC: UISegmentedControl!
     
     // MARK: - Properties
     
@@ -236,7 +239,7 @@ class WalletVC: UIViewController {
             }
             
             if fromDate == nil {
-                mainBalance.text = scrollTo.newBalance.currency
+                mainBalance.attributedText = "\(scrollTo.newBalance)0".cashAttributedString(color: .green, size: 52)
             }
             
             updateSingleDateBalances(scrollTo)
@@ -311,7 +314,7 @@ class WalletVC: UIViewController {
                 
                 if dates.count == 2 {
                     updatePredicates(withPredicate: createPredicateWithDates(dates), filterType: .dates)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DateBalances"), object: nil) // this should probably be a delegate
+                    // Update earnings/expenses label
                 }
                 
                 topTransaction = setTopTransaction(fromDate: dates)

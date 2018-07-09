@@ -9,27 +9,22 @@ import UIKit
 
 class DatesFilterVC : UIViewController {
     
+    // MARK: Outlets
+    @IBOutlet weak var datesButton: UIButton!
+    @IBOutlet weak var clearFilterButton: UIButton!
+    
+    // MARK: Properties
     weak var parentVC: WalletVC?
     var dateRange : [Date]?
     var isDateFilterApplied: Bool = false
     
- 
-    @IBOutlet weak var datesButton: UIButton!
-    @IBOutlet weak var earningsTextLabel: UILabel!
-    @IBOutlet weak var earningsLabel: UILabel!
-    @IBOutlet weak var expensesTextLabel: UILabel!
-    @IBOutlet weak var expensesLabel: UILabel!
-    @IBOutlet weak var totalBalanceTextLabel: UILabel!
-    @IBOutlet weak var totalBalanceLabel: UILabel!
-    @IBOutlet weak var clearFilterButton: UIButton!
-    
+    // MARK: Initializers
     
     override func viewDidLoad() {
         super.viewDidLoad()
         datesButton.titleLabel?.lineBreakMode = .byWordWrapping
         NotificationCenter.default.addObserver(self, selector: #selector(applyFilter), name: NSNotification.Name(rawValue: "ApplyDateFilter"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(clearFilter), name: NSNotification.Name(rawValue: "ClearFilter"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setDateBalances), name: NSNotification.Name(rawValue: "DateBalances"), object: nil)
         
     }
     
@@ -49,6 +44,7 @@ class DatesFilterVC : UIViewController {
         datesButton.setNeedsDisplay()
     }
     
+    // MARK: Actions
     @IBAction func showCalendar(_ sender: Any) {
         
         if let vc = UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(withIdentifier: "CalendarVC") as? CalendarVC {
@@ -60,7 +56,14 @@ class DatesFilterVC : UIViewController {
         }
     }
     
+    @IBAction func didTapClearFilter(_ sender: Any) {
+        
+        let userInfo: [String:Any] = ["filterType" : Filters.dates]
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ClearFilter"), object: nil, userInfo: userInfo)
+    }
     
+    // MARK: Obj-C Messages
     
     @objc func applyFilter(notification: Notification) {
         
@@ -82,53 +85,11 @@ class DatesFilterVC : UIViewController {
         }
 
     }
-    
-    @IBAction func didTapClearFilter(_ sender: Any) {
-        
-        let userInfo: [String:Any] = ["filterType" : Filters.dates]
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ClearFilter"), object: nil, userInfo: userInfo)
-    }
-    
     @objc func clearFilter(notification: Notification) {
         
         isDateFilterApplied = false
         datesButton.setTitle(Date().shortFormatString, for: .normal)
 
-    }
-    
-    fileprivate func calculateDateBalances() {
-        var sum : Double = 0.0
-        var minus : Double = 0.0
-        var total : Double = 0.0
-        
-        if let filteredTransactions = parentVC?.fetchedResultsController?.fetchedObjects {
-            if filteredTransactions.count > 0 {
-                for transaction in filteredTransactions {
-                    if transaction.amount > 0 {
-                        sum += transaction.amount
-                    } else if transaction.amount < 0 {
-                        minus += transaction.amount
-                    }
-                }
-            } else {
-                // send notification and show message saying that there are not any transactions in the requested date(s)
-            }
-        }
-        
-        total = sum + minus
-        
-        earningsLabel.text = "\(sum.currency!)"
-        expensesLabel.text = "\(minus.currency!)"
-        totalBalanceLabel.text = "\(total.currency!)"
-        
-        earningsLabel.setNeedsDisplay()
-        expensesLabel.setNeedsDisplay()
-        totalBalanceLabel.setNeedsDisplay()
-    }
-    
-    @objc func setDateBalances(notification: Notification) {
-        calculateDateBalances()
     }
     
     func setSingleDayBalances() {
