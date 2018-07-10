@@ -19,7 +19,7 @@ class TransactionDetailVC: UIViewController {
     // MARK: Outlets
     
     @IBOutlet weak var detailsTableView: UITableView!
-//    @IBOutlet var dismissGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet var dismissGestureRecognizer: UITapGestureRecognizer!
     
     //MARK: Properties
     
@@ -39,8 +39,7 @@ class TransactionDetailVC: UIViewController {
         super.viewDidLoad()
         mainHeight = view.frame.height
         mainWidth = view.frame.width
-//        dismissGestureRecognizer.addTarget(self, action: #selector(dismissTextField))
-//        dismissGestureRecognizer.isEnabled = false
+        dismissGestureRecognizer.isEnabled = false
         
         if transaction != nil {
             isNewTransaction = false
@@ -123,12 +122,6 @@ class TransactionDetailVC: UIViewController {
             resignIfFirstResponder(nameTextField!)
         }
     }
-    
-//    @objc func dismissTextField(_ sender: Any) {
-//        if nameTextField != nil {
-//            resignIfFirstResponder(nameTextField!)
-//        }
-//    }
     
     private func setIncome(_ bool: Bool) {
         if isNewTransaction && newTransaction != nil {
@@ -299,7 +292,7 @@ extension TransactionDetailVC : UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-//        dismissGestureRecognizer.isEnabled = false
+        dismissGestureRecognizer.isEnabled = false
         return true
     }
     
@@ -312,14 +305,14 @@ extension TransactionDetailVC : UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        dismissGestureRecognizer.isEnabled = true
+        dismissGestureRecognizer.isEnabled = true
         return true
     }
     
     func resignIfFirstResponder(_ textField: UITextField) {
         if textField.isFirstResponder {
             textField.resignFirstResponder()
-//            dismissGestureRecognizer.isEnabled = false
+            dismissGestureRecognizer.isEnabled = false
         }
     }
 

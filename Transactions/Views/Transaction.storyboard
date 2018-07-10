@@ -57,9 +57,13 @@
                             <constraint firstItem="h9l-BM-gJg" firstAttribute="trailing" secondItem="2eL-Es-N5H" secondAttribute="trailing" id="loW-qr-02k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2eL-Es-N5H"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="0VK-0O-bnr" appends="YES" id="WSU-4A-A7a"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="detailsTableView" destination="dUZ-aL-hIP" id="ivp-cw-4Vh"/>
+                        <outlet property="dismissGestureRecognizer" destination="0VK-0O-bnr" id="BE0-tq-h82"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7in-P2-WqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
