@@ -57,18 +57,15 @@
                             <constraint firstItem="h9l-BM-gJg" firstAttribute="trailing" secondItem="2eL-Es-N5H" secondAttribute="trailing" id="loW-qr-02k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2eL-Es-N5H"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="PSG-ew-t6U" appends="YES" id="iMh-fk-FUk"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="detailsTableView" destination="dUZ-aL-hIP" id="ivp-cw-4Vh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7in-P2-WqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="PSG-ew-t6U">
+                <tapGestureRecognizer id="0VK-0O-bnr">
                     <connections>
-                        <action selector="userDidTapView:" destination="tLW-1r-KQS" id="KGQ-Ht-2Nb"/>
+                        <action selector="userDidTapView:" destination="tLW-1r-KQS" id="daZ-84-K8V"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

@@ -47,22 +47,24 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
             var isBefore = Bool()
             var isAfter = Bool()
             
-            if (limitsIndexPath?.count)! > 1 {
-                let firstTransaction = limitsIndexPath![0]
-                let lastTransaction = limitsIndexPath![1]
-                isBefore = indexPath < firstTransaction
-                isAfter = indexPath > lastTransaction
+            if limitsIndexPath != nil {
+                if (limitsIndexPath?.count)! > 1 {
+                    let firstTransaction = limitsIndexPath![0]
+                    let lastTransaction = limitsIndexPath![1]
+                    isBefore = indexPath < firstTransaction
+                    isAfter = indexPath > lastTransaction
+                    
+                } else if limitsIndexPath?.count == 1 {
+                    let onlyTransaction = limitsIndexPath![0]
+                    isBefore = indexPath < onlyTransaction
+                    isAfter = indexPath > onlyTransaction
+                    
+                }
                 
-            } else if limitsIndexPath?.count == 1 {
-                let onlyTransaction = limitsIndexPath![0]
-                isBefore = indexPath < onlyTransaction
-                isAfter = indexPath > onlyTransaction
-                
-            }
-            
-            if isBefore || isAfter {
-                cell.isUserInteractionEnabled = false
-                cell.lbl.textColor = .gray
+                if isBefore || isAfter {
+                    cell.isUserInteractionEnabled = false
+                    cell.lbl.textColor = .gray
+                }
             }
             
             if indexPath == todayIndexPath {
@@ -93,22 +95,27 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if startFilter != nil {
-            if endFilter != nil {
-                restartRange(collectionView, indexPath)
-                endFilter = nil
-            } else {
-                if indexPath < startFilter! {
+        if allowsMultipleDates {
+            if startDate != nil {
+                if endDate != nil {
                     restartRange(collectionView, indexPath)
-                } else if indexPath > startFilter! {
-                    selectedDateRange.removeAll()
-                    endFilter = indexPath
-                    setDateRange(collectionView)
+                    endDate = nil
+                } else {
+                    if indexPath < startDate! {
+                        restartRange(collectionView, indexPath)
+                    } else if indexPath > startDate! {
+                        selectedDateRange.removeAll()
+                        endDate = indexPath
+                        appendDateRange(collectionView)
+                    }
                 }
+            } else {
+                startDate = indexPath
+                selectedDateRange.append(startDate!)
             }
         } else {
-            startFilter = indexPath
-            selectedDateRange.append(startFilter!)
+            selectedDateRange.removeAll()
+            selectedDateRange.append(indexPath)
         }
         
         collectionView.reloadData()
@@ -157,13 +164,13 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     fileprivate func restartRange(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
         selectedDateRange.removeAll()
-        startFilter = indexPath
-        selectedDateRange.append(startFilter!)
+        startDate = indexPath
+        selectedDateRange.append(startDate!)
     }
     
-    fileprivate func setDateRange(_ collectionView: UICollectionView) {
-        let from = IndexPath(item: (startFilter?.item)!, section: (startFilter?.section)!)
-        let to = IndexPath(item: (endFilter?.item)!, section: (endFilter?.section)!)
+    fileprivate func appendDateRange(_ collectionView: UICollectionView) {
+        let from = IndexPath(item: (startDate?.item)!, section: (startDate?.section)!)
+        let to = IndexPath(item: (endDate?.item)!, section: (endDate?.section)!)
         
         for month in (from.section)...(to.section) {
             

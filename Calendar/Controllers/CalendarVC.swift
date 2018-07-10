@@ -17,13 +17,13 @@ class CalendarVC : UIViewController {
     //MARK: Properties
     weak var parentVC: WalletVC?
     var firstWeekDayOfMonth = 0   //(Sunday-Saturday 1-7)
-    var startFilter: IndexPath?
-    var endFilter: IndexPath?
+    var startDate: IndexPath?
+    var endDate: IndexPath?
     var todayIndexPath : IndexPath?
     var dateLimits : [Date]?
     var limitsIndexPath : [IndexPath]?
     let calendarData = CalendarModel()
-    var filtersDelegate: FiltersDelegate?
+    var allowsMultipleDates: Bool = false
     var selectedDateRange = [IndexPath]() {
         didSet {
             completeDateButton.isEnabled = (selectedDateRange.count > 0) ? true : false
@@ -72,9 +72,10 @@ class CalendarVC : UIViewController {
         
         var userInfo = [String:Any]()
         userInfo["dates"] = dates
-        userInfo["filterType"] = Filters.dates
+        userInfo["filterType"] = FilterType.dates
+        userInfo["shouldApplyFilter"] = allowsMultipleDates
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ApplyDateFilter"), object: nil, userInfo: userInfo)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SendDates"), object: nil, userInfo: userInfo)
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -108,9 +109,6 @@ class CalendarVC : UIViewController {
 //            //range not wide enough alert
 //        }
 //
-//        performUIUpdatesOnMain {
-//            self.filtersDelegate?.applyFilter(controller: self, filterType: Filters.dates, filterArgument: dates)
-//        }
 //
 //        dismiss(animated: true, completion: nil)
 //    }

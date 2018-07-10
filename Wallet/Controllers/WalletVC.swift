@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-enum Filters : Int {
+enum FilterType : Int {
     case dates = 0, tags, search
 }
 
@@ -25,6 +25,8 @@ class WalletVC: UIViewController {
     @IBOutlet weak var earningsLabel: UILabel!
     @IBOutlet weak var expensesLabel: UILabel!
     @IBOutlet weak var totalBalanceLabel: UILabel!
+    @IBOutlet weak var earningsExpensesView: UIView!
+    @IBOutlet weak var filterContainerViewHeight: NSLayoutConstraint!
     //    @IBOutlet weak var filterBySC: UISegmentedControl!
     
     // MARK: - Properties
@@ -63,7 +65,6 @@ class WalletVC: UIViewController {
     
     var topTransaction : IndexPath? {
         didSet {
-            
             //Update table view
             if fetchTransactions().count > 0 {
                 guard let top = self.topTransaction else { return }
@@ -72,8 +73,6 @@ class WalletVC: UIViewController {
                     self.transactionTableView.reloadData()
                 }
             }
-            
-            
         }
     }
     
@@ -98,9 +97,16 @@ class WalletVC: UIViewController {
         
         if let filterVC = self.childViewControllers[0] as? DatesFilterVC {
             filterVC.parentVC = self
+//            filterVC.view.heightAnchor.constraint(equalToConstant: 0)
+//            filterVC.datesButton.isHidden = false
         }
+//        earningsExpensesView.heightAnchor.constraint(equalToConstant: 0).isActive = true
+//        filterContainerViewHeight.isActive = false
+//        filterContainerView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(applyFilter), name: NSNotification.Name(rawValue: "ApplyDateFilter"), object: nil)
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applyFilter), name: NSNotification.Name(rawValue: "SendDates"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(clearFilter), name: NSNotification.Name(rawValue: "ClearFilter"), object: nil)
         
         // Set delegates and datasources
@@ -195,7 +201,7 @@ class WalletVC: UIViewController {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil) as? NSFetchedResultsController<Transaction>
     }
     
-    func updatePredicates(withPredicate: NSPredicate? = nil, filterType: Filters? = nil) {
+    func updatePredicates(withPredicate: NSPredicate? = nil, filterType: FilterType? = nil) {
         predicates.removeAll()
         let walletPredicate = NSPredicate(format: "wallet = %@", argumentArray: [wallet!])
         predicates.append(walletPredicate)
@@ -303,34 +309,36 @@ class WalletVC: UIViewController {
     
     @objc func applyFilter(notification: Notification) {
         
-        guard let filterDates = notification.userInfo?["dates"] as! [Date]? else { return }
-        guard let filterType = notification.userInfo?["filterType"] as! Filters? else { return }
+        guard let filterDates = notification.userInfo?["dates"] as? [Date] else { return }
+        guard let filterType = notification.userInfo?["filterType"] as? FilterType else { return }
+        guard let shouldApplyFilter = notification.userInfo?["shouldApplyFilter"] as? Bool else { return }
         
-        isFilterApplied[filterType.rawValue] = true
-        
-        switch filterType {
-        case .dates:
-            if let dates = filterDates as [Date]? {
-                
-                if dates.count == 2 {
-                    updatePredicates(withPredicate: createPredicateWithDates(dates), filterType: .dates)
-                    // Update earnings/expenses label
+        if shouldApplyFilter {
+            isFilterApplied[filterType.rawValue] = true
+            
+            switch filterType {
+            case .dates:
+                if let dates = filterDates as [Date]? {
+                    
+                    if dates.count == 2 {
+                        updatePredicates(withPredicate: createPredicateWithDates(dates), filterType: .dates)
+                        // Update earnings/expenses label
+                    }
+                    
+                    topTransaction = setTopTransaction(fromDate: dates)
+                    
                 }
-                
-                topTransaction = setTopTransaction(fromDate: dates)
-                
+            case .tags:
+                print("S")
+            case .search:
+                print("S")
             }
-        case .tags:
-            print("S")
-        case .search:
-            print("S")
         }
-    
     }
     
     @objc func clearFilter(notification: Notification) {
         
-        guard let filterType = notification.userInfo?["filterType"] as! Filters? else { return }
+        guard let filterType = notification.userInfo?["filterType"] as! FilterType? else { return }
         
         isFilterApplied[filterType.rawValue] = false
         updatePredicates()

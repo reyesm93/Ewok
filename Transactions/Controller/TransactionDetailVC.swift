@@ -8,22 +8,30 @@
 
 import UIKit
 
+enum CellTypeIndex: Int {
+    case amount, name, date, recurring
+    
+    
+}
+
 class TransactionDetailVC: UIViewController {
     
     // MARK: Outlets
     
     @IBOutlet weak var detailsTableView: UITableView!
+//    @IBOutlet var dismissGestureRecognizer: UITapGestureRecognizer!
     
     //MARK: Properties
     
     var mainHeight: CGFloat?
     var mainWidth: CGFloat?
-    var transaction: Transaction?
+    weak var transaction: Transaction?
     var newTransaction: TransactionStruct?
     var cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
     var isNewTransaction: Bool = true
     var amountColor: UIColor = UIColor.white
     var nameTextField: UITextField?
+    let dateCellIndex = IndexPath(row: 2, section: 0)
 
     //MARK: Initializers
     
@@ -31,6 +39,8 @@ class TransactionDetailVC: UIViewController {
         super.viewDidLoad()
         mainHeight = view.frame.height
         mainWidth = view.frame.width
+//        dismissGestureRecognizer.addTarget(self, action: #selector(dismissTextField))
+//        dismissGestureRecognizer.isEnabled = false
         
         if transaction != nil {
             isNewTransaction = false
@@ -43,7 +53,7 @@ class TransactionDetailVC: UIViewController {
         }
     
         setTableView()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDate(notification:)), name: NSNotification.Name(rawValue: "SendDates"), object: nil)
     }
     
     //MARK: Actions
@@ -66,6 +76,16 @@ class TransactionDetailVC: UIViewController {
         detailsTableView.backgroundView = gradientView
     }
     
+    private func showCalendar() {
+        if let vc = UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(withIdentifier: "CalendarVC") as? CalendarVC {
+            vc.definesPresentationContext = true
+            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            vc.allowsMultipleDates = false
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: Obj-C messages
     
     @objc func changeValue(_ sender: UISegmentedControl) {
@@ -83,15 +103,32 @@ class TransactionDetailVC: UIViewController {
         }
     }
     
+    @objc func updateDate(notification: Notification) {
+        guard let chosenDate = notification.userInfo?["dates"] as! [Date]? else { return }
+        
+        if isNewTransaction && newTransaction != nil {
+            newTransaction?.date = chosenDate[0]
+        } else if !isNewTransaction && transaction != nil {
+            transaction?.date = chosenDate[0] as NSDate
+        }
+        
+        if let dateCell = detailsTableView.cellForRow(at: dateCellIndex) {
+            dateCell.textLabel?.text = chosenDate[0].longFormatString
+            detailsTableView.reloadRows(at: [dateCellIndex], with: .fade)
+        }
+    }
     
     @IBAction func userDidTapView(_ sender: Any) {
         if nameTextField != nil {
-            if (nameTextField?.isFirstResponder)! {
-                nameTextField?.resignFirstResponder()
-            }
+            resignIfFirstResponder(nameTextField!)
         }
-        
     }
+    
+//    @objc func dismissTextField(_ sender: Any) {
+//        if nameTextField != nil {
+//            resignIfFirstResponder(nameTextField!)
+//        }
+//    }
     
     private func setIncome(_ bool: Bool) {
         if isNewTransaction && newTransaction != nil {
@@ -142,7 +179,10 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        detailsTableView.reloadRows(at: [indexPath], with: .fade)
+        if indexPath == dateCellIndex {
+            showCalendar()
+        }
+        //detailsTableView.reloadRows(at: [indexPath], with: .fade)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -259,6 +299,7 @@ extension TransactionDetailVC : UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+//        dismissGestureRecognizer.isEnabled = false
         return true
     }
     
@@ -268,12 +309,17 @@ extension TransactionDetailVC : UITextFieldDelegate {
         } else {
             newTransaction?.description = textField.text
         }
-        
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        dismissGestureRecognizer.isEnabled = true
+        return true
     }
     
     func resignIfFirstResponder(_ textField: UITextField) {
         if textField.isFirstResponder {
             textField.resignFirstResponder()
+//            dismissGestureRecognizer.isEnabled = false
         }
     }
 

@@ -33,7 +33,6 @@
 		DD4BE7EB20CCAA4C00033090 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4BE7EA20CCAA4C00033090 /* Transaction+CoreDataProperties.swift */; };
 		DD4BE7EE20CCBBFF00033090 /* TagCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4BE7ED20CCBBFF00033090 /* TagCellView.xib */; };
 		DD4BE7F320CCBCE500033090 /* TagViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4BE7F220CCBCE500033090 /* TagViews.swift */; };
-		DD5DD042209FB15C009F2041 /* FiltersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DD041209FB15C009F2041 /* FiltersDelegate.swift */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* MenuContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* MenuContainerVC.swift */; };
 		DD60A38F2012C3F50019675C /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38E2012C3F50019675C /* HomeVC.swift */; };
@@ -135,7 +134,6 @@
 		DD4BE7EC20CCABE800033090 /* Ewok 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 8.xcdatamodel"; sourceTree = "<group>"; };
 		DD4BE7ED20CCBBFF00033090 /* TagCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCellView.xib; sourceTree = "<group>"; };
 		DD4BE7F220CCBCE500033090 /* TagViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViews.swift; sourceTree = "<group>"; };
-		DD5DD041209FB15C009F2041 /* FiltersDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersDelegate.swift; sourceTree = "<group>"; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* MenuContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContainerVC.swift; sourceTree = "<group>"; };
 		DD60A38E2012C3F50019675C /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -455,7 +453,6 @@
 				DD855FA120C227BE002B0B7D /* Views */,
 				DD855FA020C227B7002B0B7D /* Controllers */,
 				DD855F9F20C227AF002B0B7D /* Model */,
-				DD855F9D20C227A0002B0B7D /* Calendar.storyboard */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -480,6 +477,7 @@
 		DD855FA120C227BE002B0B7D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DD855F9D20C227A0002B0B7D /* Calendar.storyboard */,
 				DD844044205DD21B003EF476 /* WeedaysView.swift */,
 				DD844048205DE73B003EF476 /* DateCell.swift */,
 				DD844042205DD1F9003EF476 /* YearView.swift */,
@@ -529,7 +527,6 @@
 			isa = PBXGroup;
 			children = (
 				DDC3F1C82038D89900EFF9FE /* SaveObjectDelegate.swift */,
-				DD5DD041209FB15C009F2041 /* FiltersDelegate.swift */,
 				DDDE0C2820E6ADAD004EAAD3 /* CashTextFieldDelegate.swift */,
 				DDCE8DDC20F19C6900A2D081 /* SelectedSectionDelegate.swift */,
 			);
@@ -911,7 +908,6 @@
 				DD855F9C20C22123002B0B7D /* TagDetailVC.swift in Sources */,
 				DD4331FE20BC7F080081C3EF /* SideMenuCells.swift in Sources */,
 				DD342542206984BC00B664C3 /* MonthHeader.swift in Sources */,
-				DD5DD042209FB15C009F2041 /* FiltersDelegate.swift in Sources */,
 				DD60A38F2012C3F50019675C /* HomeVC.swift in Sources */,
 				DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */,
 				DDE0D9F62052190700F3A527 /* WalletFetchControllerDelegate.swift in Sources */,

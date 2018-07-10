@@ -23,7 +23,7 @@ class DatesFilterVC : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         datesButton.titleLabel?.lineBreakMode = .byWordWrapping
-        NotificationCenter.default.addObserver(self, selector: #selector(applyFilter), name: NSNotification.Name(rawValue: "ApplyDateFilter"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applyFilter), name: NSNotification.Name(rawValue: "SendDates"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(clearFilter), name: NSNotification.Name(rawValue: "ClearFilter"), object: nil)
         
     }
@@ -51,6 +51,7 @@ class DatesFilterVC : UIViewController {
             vc.definesPresentationContext = true
             vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            vc.allowsMultipleDates = true
             vc.parentVC = parentVC
             self.present(vc, animated: true, completion: nil)
         }
@@ -58,7 +59,7 @@ class DatesFilterVC : UIViewController {
     
     @IBAction func didTapClearFilter(_ sender: Any) {
         
-        let userInfo: [String:Any] = ["filterType" : Filters.dates]
+        let userInfo: [String:Any] = ["filterType" : FilterType.dates]
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ClearFilter"), object: nil, userInfo: userInfo)
     }
