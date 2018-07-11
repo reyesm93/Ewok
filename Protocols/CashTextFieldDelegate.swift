@@ -29,13 +29,20 @@ class CashTextFieldDelegate: NSObject, UITextFieldDelegate {
         if let color = fontColor, let size = fontSize {
             textField.attributedText = newText.cashAttributedString(color: color, size: size)
         }
+        
+        if textField.text!.isEmpty || textField.attributedText?.string == "$0.00" || textField.attributedText?.string == "-$0.00" {
+            if let size = fontSize {
+                textField.attributedText = "$0.00".cashAttributedString(color: UIColor.white, size: size)
+            }
+        }
+        
         return false
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text!.isEmpty {
-            if let color = fontColor, let size = fontSize {
-                textField.attributedText = "$0.00".cashAttributedString(color: color, size: size)
+            if let size = fontSize {
+                textField.attributedText = "$0.00".cashAttributedString(color: UIColor.white, size: size)
             }
         }
     }
@@ -46,8 +53,13 @@ class CashTextFieldDelegate: NSObject, UITextFieldDelegate {
         return true
     }
     
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        <#code#>
-//    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let updatedAmount = textField.text {
+            let userInfo: [String:String] = ["updatedAmount" : updatedAmount]
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateAmountTransaction"), object: nil, userInfo: userInfo)
+        }
+    }
+    
+     
 }
 

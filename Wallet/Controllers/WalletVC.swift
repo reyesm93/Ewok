@@ -142,8 +142,9 @@ class WalletVC: UIViewController {
     @IBAction func createTransaction(_ sender: Any) {
         
         if let controller = UIStoryboard(name: "Transaction", bundle: nil).instantiateViewController(withIdentifier: "TransactionDetailVC") as? TransactionDetailVC {
-//            controller.saveDelegate = self
-//            controller.walletVC = self
+            controller.saveDelegate = self
+            //controller.walletVC = self
+            controller.isNewTransaction = true
             self.navigationController?.pushViewController(controller, animated: true)
             //self.present(controller, animated: true, completion: nil)
         }
@@ -245,7 +246,7 @@ class WalletVC: UIViewController {
             }
             
             if fromDate == nil {
-                mainBalance.attributedText = "\(scrollTo.newBalance)0".cashAttributedString(color: .green, size: 52)
+                mainBalance.attributedText = "\(scrollTo.newBalance)0".cashAttributedString(color: .blue, size: 52)
             }
             
             updateSingleDateBalances(scrollTo)
@@ -427,12 +428,12 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let transaction = fetchedResultsController?.object(at: indexPath)
+        let chosenTransaction = fetchedResultsController?.object(at: indexPath)
         
         if let controller = UIStoryboard(name: "Transaction", bundle: nil).instantiateViewController(withIdentifier: "TransactionDetailVC") as? TransactionDetailVC {
-//            controller.saveDelegate = self
-//            controller.walletVC = self
-            controller.transaction = transaction
+            controller.saveDelegate = self
+            controller.walletVC = self
+            controller.existingTransaction = chosenTransaction
             self.navigationController?.pushViewController(controller, animated: true)
 //            controller.itemIndex = indexPath
             //self.present(controller, animated: true, completion: nil)

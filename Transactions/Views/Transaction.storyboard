@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,9 +32,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9l-BM-gJg">
-                                <rect key="frame" x="0.0" y="735" width="375" height="77"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9l-BM-gJg">
+                                <rect key="frame" x="0.0" y="731" width="375" height="81"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="81" id="urc-dw-nc6"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="35"/>
                                 <state key="normal" title="SAVE">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -47,13 +50,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="h9l-BM-gJg" firstAttribute="top" secondItem="dUZ-aL-hIP" secondAttribute="bottom" constant="4.3333333333333712" id="91G-Z6-K8H"/>
+                            <constraint firstItem="h9l-BM-gJg" firstAttribute="top" secondItem="dUZ-aL-hIP" secondAttribute="bottom" id="91G-Z6-K8H"/>
                             <constraint firstItem="dUZ-aL-hIP" firstAttribute="leading" secondItem="2eL-Es-N5H" secondAttribute="leading" id="G68-I3-08D"/>
                             <constraint firstItem="dUZ-aL-hIP" firstAttribute="top" secondItem="ZAO-NQ-7ig" secondAttribute="top" id="H0b-bG-oaL"/>
+                            <constraint firstAttribute="bottom" secondItem="h9l-BM-gJg" secondAttribute="bottom" id="HNh-9W-Alc"/>
                             <constraint firstItem="h9l-BM-gJg" firstAttribute="leading" secondItem="2eL-Es-N5H" secondAttribute="leading" id="Sfx-he-fUt"/>
-                            <constraint firstAttribute="bottom" secondItem="h9l-BM-gJg" secondAttribute="bottom" id="T4D-VF-2tD"/>
                             <constraint firstItem="dUZ-aL-hIP" firstAttribute="trailing" secondItem="2eL-Es-N5H" secondAttribute="trailing" id="fpG-Sr-pND"/>
-                            <constraint firstItem="dUZ-aL-hIP" firstAttribute="height" secondItem="ZAO-NQ-7ig" secondAttribute="height" multiplier="0.9" id="hgZ-JK-d9n"/>
                             <constraint firstItem="h9l-BM-gJg" firstAttribute="trailing" secondItem="2eL-Es-N5H" secondAttribute="trailing" id="loW-qr-02k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2eL-Es-N5H"/>
@@ -64,6 +66,8 @@
                     <connections>
                         <outlet property="detailsTableView" destination="dUZ-aL-hIP" id="ivp-cw-4Vh"/>
                         <outlet property="dismissGestureRecognizer" destination="0VK-0O-bnr" id="BE0-tq-h82"/>
+                        <outlet property="saveButton" destination="h9l-BM-gJg" id="H7d-2g-Xkq"/>
+                        <outlet property="saveButtonBottomConstraint" destination="HNh-9W-Alc" id="k5d-3R-wsj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7in-P2-WqW" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,59 +8,115 @@
 
 import UIKit
 
-enum CellTypeIndex: Int {
-    case amount, name, date, recurring
-    
-    
-}
-
 class TransactionDetailVC: UIViewController {
     
     // MARK: Outlets
     
     @IBOutlet weak var detailsTableView: UITableView!
     @IBOutlet var dismissGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButtonBottomConstraint: NSLayoutConstraint!
     
     //MARK: Properties
     
     var mainHeight: CGFloat?
     var mainWidth: CGFloat?
-    weak var transaction: Transaction?
+    weak var existingTransaction: Transaction?
+    weak var walletVC: WalletVC?
+    let stack = CoreDataStack.sharedInstance
     var newTransaction: TransactionStruct?
+    var transactionCopy: TransactionStruct?
     var cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
-    var isNewTransaction: Bool = true
+    var saveDelegate: SaveObjectDelegate?
+    var isNewTransaction: Bool = false
     var amountColor: UIColor = UIColor.white
-    var nameTextField: UITextField?
+    var descriptionTextField: UITextField?
     let dateCellIndex = IndexPath(row: 2, section: 0)
+    var isLaterDate: Bool = false
+    var shouldShowSaveButton = false {
+        didSet {
+            if shouldShowSaveButton {
+                saveButton.isEnabled = true
+                UIView.animate(withDuration: 1) {
+                    self.saveButtonBottomConstraint.constant = 0
+                }
+                
+            } else {
+                saveButton.isEnabled = false
+                UIView.animate(withDuration: 1) {
+                    self.saveButtonBottomConstraint.constant = -1 * self.saveButton.frame.height
+                }
+                
+            }
+        }
+    }
 
     //MARK: Initializers
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainHeight = view.frame.height
-        mainWidth = view.frame.width
-        dismissGestureRecognizer.isEnabled = false
-        
-        if transaction != nil {
-            isNewTransaction = false
-            guard let isIncome = transaction?.income else { return }
-            amountColor = isIncome ? UIColor.green : UIColor.red
-            cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: amountColor)
-        } else {
-            newTransaction = TransactionStruct(date: Date())
-            isNewTransaction = true
-        }
-    
+        setTransactionCopies()
+        setUI()
         setTableView()
         NotificationCenter.default.addObserver(self, selector: #selector(updateDate(notification:)), name: NSNotification.Name(rawValue: "SendDates"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTransactionAmount(notification:)), name: NSNotification.Name(rawValue: "UpdateAmountTransaction"), object: nil)
     }
     
     //MARK: Actions
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        if isTransactionReadyToSave() {
+            
+            if existingTransaction != nil && !isNewTransaction && transactionCopy != nil {
+                existingTransaction?.updateWithStructCopy(transactionCopy!)
+                if isLaterDate {
+                    walletVC?.getNextTransaction(fromTransaction: existingTransaction!) { (result) in
+                        // check what happens if you only have one transaction and you change to a later date
+                        self.saveDelegate?.saveObject(controller: self, saveObject: result!, isNew: false)
+                    }
+                } else {
+                    saveDelegate?.saveObject(controller: self, saveObject: existingTransaction!, isNew: false)
+                }
+            } else if newTransaction != nil && isNewTransaction {
+                guard let newName = newTransaction?.description, let newAmount = newTransaction?.amount, let newIncome = newTransaction?.income, let newDate = newTransaction?.date as NSDate? else { return }
+                let createTransaction = Transaction(title: newName, amount: newAmount, income: newIncome, date: newDate, context: stack.context)
+                saveDelegate?.saveObject(controller: self, saveObject: createTransaction, isNew: true)
+            }
+        }
         
+        navigationController?.popViewController(animated: true)
     }
+    
+    
+    @IBAction func userDidTapView(_ sender: Any) {
+        if descriptionTextField != nil {
+            resignIfFirstResponder(descriptionTextField!)
+        }
+    }
+    
     // MARK: Methods
+    
+    fileprivate func setUI() {
+        mainHeight = view.frame.height
+        mainWidth = view.frame.width
+        dismissGestureRecognizer.isEnabled = false
+        shouldShowSaveButton = isTransactionReadyToSave()
+        //        detailsTableView.heightAnchor.constraint(equalToConstant: mainHeight!)
+    }
+    
+    fileprivate func setTransactionCopies() {
+        if existingTransaction != nil {
+            isNewTransaction = false
+            transactionCopy = TransactionStruct(with: existingTransaction!)
+            guard let isIncome = transactionCopy?.income else { return }
+            amountColor = isIncome ? UIColor.white : UIColor.red
+            cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: amountColor)
+        } else {
+            newTransaction = TransactionStruct(date: Date(), income: true)
+            isNewTransaction = true
+            cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
+        }
+    }
     
     private func setTableView() {
         detailsTableView.delegate = self
@@ -85,21 +141,104 @@ class TransactionDetailVC: UIViewController {
         }
     }
     
+    
+    private func setIncome(_ bool: Bool) {
+        if isNewTransaction && newTransaction != nil {
+            newTransaction?.income = bool
+            if var currentAmount = newTransaction?.amount {
+                if (bool && currentAmount < 0) || (!bool && currentAmount > 0) {
+                    currentAmount *= -1
+                    newTransaction?.amount = currentAmount
+                }
+            }
+        } else if !isNewTransaction && existingTransaction != nil {
+            transactionCopy?.income = bool
+            if var currentAmount = transactionCopy?.amount {
+                if (bool && currentAmount < 0) || (!bool && currentAmount > 0) {
+                    currentAmount *= -1
+                    transactionCopy?.amount = currentAmount
+                }
+            }
+        }
+    }
+    
+    fileprivate func setOrRemoveNegativeSign(_ isPositive: Bool, _ updatedText: inout String?) {
+        if isPositive && (updatedText?.hasPrefix("-"))! {
+            updatedText = String((updatedText?.dropFirst())!)
+        } else if !isPositive && !(updatedText?.hasPrefix("-"))! && updatedText != "$0.00" {
+            updatedText = "-" + updatedText!
+        }
+    }
+    
+    fileprivate func setSignPrefix(_ updatedText: inout String?) {
+        if isNewTransaction, let isPositive = newTransaction?.income {
+            setOrRemoveNegativeSign(isPositive, &updatedText)
+        } else if !isNewTransaction, let isPositive = transactionCopy?.income {
+            setOrRemoveNegativeSign(isPositive, &updatedText)
+        }
+    }
+    
+    private func updateAmountTextField(updatedText: String? = nil, isIncome: Bool? = nil) {
+        var updatedText = updatedText
+        let cellIndex = IndexPath(row: 0, section: 0)
+        if let amountCell = detailsTableView.cellForRow(at: cellIndex) as? AmountCell {
+            
+            if isIncome != nil {
+                amountColor = isIncome! ? UIColor.white : UIColor.red
+            }
+            
+            if updatedText == "$0.00" {
+                amountColor = UIColor.white
+            }
+            
+            cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: amountColor)
+            amountCell.amountTextField.delegate = cashDelegate
+            
+            if updatedText != nil {
+                setSignPrefix(&updatedText)
+                amountCell.amountTextField.attributedText = updatedText?.cashAttributedString(color: amountColor, size: 46)
+            } else {
+                var currentText = amountCell.amountTextField.attributedText?.string
+                setSignPrefix(&currentText)
+                amountCell.amountTextField.attributedText = currentText?.cashAttributedString(color: amountColor, size: 46)
+            }
+            
+        }
+    }
+    
+    private func isTransactionReadyToSave() -> Bool {
+        if existingTransaction != nil && !isNewTransaction {
+            if transactionCopy?.amount != 0.0  && transactionCopy?.description != "" {
+                let updatedTransaction = TransactionStruct(with: existingTransaction!)
+                return updatedTransaction != transactionCopy
+            }
+        } else if newTransaction != nil && isNewTransaction {
+            if newTransaction?.amount != 0.0 && newTransaction?.amount != nil && newTransaction?.description != nil && newTransaction?.description != "" {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    
     // MARK: Obj-C messages
     
     @objc func changeValue(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             setIncome(true)
-            updateAmountColor(true)
-            //sender.tintColor = UIColor.green
+            updateAmountTextField(isIncome: true)
+            //sender.tintColor = UIColor.blue
         case 1:
             setIncome(false)
-            updateAmountColor(false)
+            updateAmountTextField(isIncome: false)
             //sender.tintColor = UIColor.red
         default:
             break
         }
+        
+        shouldShowSaveButton = isTransactionReadyToSave()
     }
     
     @objc func updateDate(notification: Notification) {
@@ -107,41 +246,34 @@ class TransactionDetailVC: UIViewController {
         
         if isNewTransaction && newTransaction != nil {
             newTransaction?.date = chosenDate[0]
-        } else if !isNewTransaction && transaction != nil {
-            transaction?.date = chosenDate[0] as NSDate
+        } else if !isNewTransaction && existingTransaction != nil {
+            isLaterDate = transactionCopy?.date?.compare(chosenDate[0]) == ComparisonResult.orderedAscending
+            transactionCopy?.date = chosenDate[0]
         }
         
         if let dateCell = detailsTableView.cellForRow(at: dateCellIndex) {
             dateCell.textLabel?.text = chosenDate[0].longFormatString
             detailsTableView.reloadRows(at: [dateCellIndex], with: .fade)
         }
+        
+        shouldShowSaveButton = isTransactionReadyToSave()
     }
     
-    @IBAction func userDidTapView(_ sender: Any) {
-        if nameTextField != nil {
-            resignIfFirstResponder(nameTextField!)
+    @objc func updateTransactionAmount(notification: Notification) {
+        guard let updatedAmount = notification.userInfo?["updatedAmount"] as! String? else { return }
+        guard var numberAmount = updatedAmount.convertCurrencytoDouble() as Double?  else { return }
+        updateAmountTextField(updatedText: updatedAmount)
+    
+        if existingTransaction != nil, let isPositive = transactionCopy?.income {
+            if !isPositive {
+                numberAmount *= -1
+            }
+            transactionCopy?.amount = numberAmount
+        } else {
+            newTransaction?.amount = numberAmount
         }
+        shouldShowSaveButton = isTransactionReadyToSave()
     }
-    
-    private func setIncome(_ bool: Bool) {
-        if isNewTransaction && newTransaction != nil {
-            newTransaction?.income = bool
-        } else if !isNewTransaction && transaction != nil {
-            transaction?.income = bool
-        }
-    }
-    
-    private func updateAmountColor(_ bool: Bool) {
-        let cellIndex = IndexPath(row: 0, section: 0)
-        if let amountCell = detailsTableView.cellForRow(at: cellIndex) as? AmountCell {
-            amountColor = bool ? UIColor.green : UIColor.red
-            cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: amountColor)
-            amountCell.amountTextField.delegate = cashDelegate
-            let currentText = amountCell.amountTextField.attributedText?.string
-            amountCell.amountTextField.attributedText = currentText?.cashAttributedString(color: amountColor, size: 46)
-        }
-    }
-    
 }
 
     // MARK: - Table view data source and delegate
@@ -166,7 +298,7 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         var cellHeight : CGFloat = 60
         
         if indexPath == IndexPath(row: 0, section: 0) {
-            cellHeight = 160
+            cellHeight = 130
         }
         return cellHeight
     }
@@ -193,8 +325,7 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         default:
             break
         }
-
-
+        
         return cell
     }
     
@@ -208,12 +339,15 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         cell?.selectionStyle = .none
         
         
-        if transaction != nil {
-            if let transactionAmount = transaction?.amount {
-                cell?.amountTextField.attributedText = "\(transactionAmount)0".cashAttributedString(color: amountColor, size: 46)
+        if existingTransaction != nil {
+            if let transactionAmount = transactionCopy?.amount, let isIncome = transactionCopy?.income {
+                cell?.valueSegmentControl.selectedSegmentIndex = isIncome ? 0 : 1
+                let amountString = "\(transactionAmount)0"
+                
+                cell?.amountTextField.attributedText = amountString.cashAttributedString(color: amountColor, size: 46)
             }
         } else {
-            cell?.amountTextField.attributedText = "$0.00".cashAttributedString(color: amountColor, size: 46)
+            cell?.amountTextField.attributedText = "$0.00".cashAttributedString(color: UIColor.white, size: 46)
         }
         
         return cell!
@@ -223,18 +357,18 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         
         let cell = detailsTableView.dequeueReusableCell(withIdentifier: "TransacionDetailCell")
         cell?.selectionStyle = .none
-        nameTextField = createTextField()
-        nameTextField?.attributedPlaceholder = NSAttributedString(string: "Enter transaction description here", attributes: [NSAttributedStringKey.foregroundColor:UIColor.lightGray])
+        descriptionTextField = createTextField()
+        descriptionTextField?.attributedPlaceholder = NSAttributedString(string: "Enter transaction description here", attributes: [NSAttributedStringKey.foregroundColor:UIColor.lightGray])
 
-        if let transactionName = transaction?.title {
-            nameTextField?.text = transactionName
+        if let transactionName = transactionCopy?.description {
+            descriptionTextField?.text = transactionName
         }
         
-        cell?.contentView.addSubview(nameTextField!)
+        cell?.contentView.addSubview(descriptionTextField!)
         
         if let cellBottom = cell?.contentView.bottomAnchor, let cellTop = cell?.contentView.topAnchor {
-            nameTextField?.bottomAnchor.constraint(equalTo: cellBottom).isActive = true
-            nameTextField?.topAnchor.constraint(equalTo: cellTop).isActive = true
+            descriptionTextField?.bottomAnchor.constraint(equalTo: cellBottom).isActive = true
+            descriptionTextField?.topAnchor.constraint(equalTo: cellTop).isActive = true
         }
         
         
@@ -248,10 +382,14 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         cell?.textLabel?.textColor = .white
         cell?.textLabel?.font = UIFont.systemFont(ofSize: 18)
         
-        if let transactionDate = transaction?.date as? Date {
+        if let transactionDate = transactionCopy?.date as Date? {
             cell?.textLabel?.text = transactionDate.longFormatString
         } else {
-            cell?.textLabel?.text = Date().longFormatString
+            if let newDate = newTransaction?.date {
+               cell?.textLabel?.text = newDate.longFormatString
+            } else {
+                cell?.textLabel?.text = Date().longFormatString
+            }
         }
         
         guard let dateCell = cell else { return UITableViewCell() }
@@ -297,11 +435,12 @@ extension TransactionDetailVC : UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if transaction != nil {
-            transaction?.title = textField.text
+        if existingTransaction != nil {
+            transactionCopy?.description = textField.text
         } else {
             newTransaction?.description = textField.text
         }
+        shouldShowSaveButton = isTransactionReadyToSave()
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {

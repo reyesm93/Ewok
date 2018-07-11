@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TransactionStruct {
+struct TransactionStruct : Equatable {
     
     var description: String?
     var amount: Double?
@@ -22,5 +22,16 @@ struct TransactionStruct {
         self.date = date
         self.income = income
         self.recurrent = recurrent
+    }
+    
+    init(with transaction: Transaction) {
+        self.description = transaction.title
+        self.amount = transaction.amount
+        self.date = transaction.date as Date?
+        self.income = transaction.income
+    }
+    
+    static func == (lhs: TransactionStruct, rhs: TransactionStruct) -> Bool {
+        return (lhs.description == rhs.description) && (lhs.amount == rhs.amount) && (lhs.date == rhs.date) && (lhs.income == rhs.income)
     }
 }

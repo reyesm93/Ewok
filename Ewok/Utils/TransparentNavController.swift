@@ -22,3 +22,15 @@ class TransparentNavController: UINavigationController {
 
 
 }
+
+extension UIViewController {
+    
+    func postSimpleAlert(_ title: String) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        let dismiss = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil)
+        alert.addAction(dismiss)
+        self.present(alert, animated: true, completion: nil)
+    }
+        
+}
+

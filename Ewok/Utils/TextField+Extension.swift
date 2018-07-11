@@ -13,9 +13,10 @@ extension String {
     
     func cashAttributedString(color: UIColor, size: CGFloat) -> NSAttributedString {
         
+        let isNegative = self.hasPrefix("-")
         let attributedText = NSMutableAttributedString()
         var cashStringAttributes = [NSAttributedStringKey:Any]()
-        cashStringAttributes[NSAttributedStringKey.foregroundColor] = color
+        cashStringAttributes[NSAttributedStringKey.foregroundColor] = isNegative ? UIColor.red : color
         cashStringAttributes[NSAttributedStringKey.font] = UIFont(name: "KohinoorBangla-Light", size: size)
         
         var centStringAttributes = cashStringAttributes
@@ -23,6 +24,7 @@ extension String {
         
         let dollarSign = NSAttributedString(string: "$", attributes: centStringAttributes)
         let period = NSAttributedString(string: ".", attributes: cashStringAttributes)
+        let negativeSign = NSAttributedString(string: "-", attributes: centStringAttributes)
         
         let digits = CharacterSet.decimalDigits
         var digitText = ""
@@ -34,6 +36,9 @@ extension String {
         
         // Format the new string
         if let numOfPennies = Int(digitText) {
+            if isNegative {
+                attributedText.append(negativeSign)
+            }
             attributedText.append(dollarSign)
             attributedText.append(dollarStringFromInt(numOfPennies, attributes: cashStringAttributes))
             attributedText.append(period)
@@ -62,6 +67,19 @@ extension String {
         }
         
         return NSAttributedString(string: centsString, attributes: attributes)
+    }
+    
+    func convertCurrencytoDouble() -> Double? {
+        var copy = self
+        if self.hasPrefix("$") {
+            copy.removeFirst()
+        }
+        
+        if let doubleType = Double(copy) {
+            return doubleType
+        }
+        
+        return nil
     }
 }
 

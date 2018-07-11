@@ -69,22 +69,24 @@ class DatesFilterVC : UIViewController {
     @objc func applyFilter(notification: Notification) {
         
         guard let filterDates = notification.userInfo?["dates"] as! [Date]? else { return }
+        guard let shouldApplyFilter = notification.userInfo?["shouldApplyFilter"] as! Bool? else { return }
         
-        isDateFilterApplied = true
-        var datesString: String = ""
-        
-        if let dates = filterDates as [Date]? {
-            dateRange = dates
-            if dates.count > 1 {
-                datesString = dates[0].shortFormatString + " - \n" + dates[1].shortFormatString
-            } else if dates.count == 1 {
-                datesString = dates[0].shortFormatString
-            }
+        if shouldApplyFilter {
+            isDateFilterApplied = true
+            var datesString: String = ""
             
-            datesButton.setTitle(datesString, for: .normal)
-            datesButton.setNeedsDisplay()
+            if let dates = filterDates as [Date]? {
+                dateRange = dates
+                if dates.count > 1 {
+                    datesString = dates[0].shortFormatString + " - \n" + dates[1].shortFormatString
+                } else if dates.count == 1 {
+                    datesString = dates[0].shortFormatString
+                }
+                
+                datesButton.setTitle(datesString, for: .normal)
+                datesButton.setNeedsDisplay()
+            }
         }
-
     }
     @objc func clearFilter(notification: Notification) {
         

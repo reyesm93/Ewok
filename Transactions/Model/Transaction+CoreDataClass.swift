@@ -24,5 +24,12 @@ public class Transaction: NSManagedObject {
             fatalError("Unable to find Entity name!")
         }
     }
+    
+    func updateWithStructCopy(_ copy: TransactionStruct) {
+        self.title = copy.description
+        self.amount = copy.amount ?? self.amount
+        self.income = copy.income ?? self.income
+        self.date = copy.date as? NSDate
+    }
 
 }
