@@ -342,8 +342,7 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         if existingTransaction != nil {
             if let transactionAmount = transactionCopy?.amount, let isIncome = transactionCopy?.income {
                 cell?.valueSegmentControl.selectedSegmentIndex = isIncome ? 0 : 1
-                let amountString = "\(transactionAmount)0"
-                
+                let amountString = transactionAmount.hasTwoDecimals ? "\(transactionAmount)" : "\(transactionAmount)0"
                 cell?.amountTextField.attributedText = amountString.cashAttributedString(color: amountColor, size: 46)
             }
         } else {

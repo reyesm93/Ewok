@@ -246,7 +246,8 @@ class WalletVC: UIViewController {
             }
             
             if fromDate == nil {
-                mainBalance.attributedText = "\(scrollTo.newBalance)0".cashAttributedString(color: .blue, size: 52)
+                let mainBalanceString = scrollTo.newBalance.hasTwoDecimals ? "\(scrollTo.newBalance)" : "\(scrollTo.newBalance)0"
+                mainBalance.attributedText = mainBalanceString.cashAttributedString(color: .blue, size: 52)
             }
             
             updateSingleDateBalances(scrollTo)
@@ -477,6 +478,14 @@ extension Double {
     
     var currency: String? {
         return Double.currencyFormatter.string(from: self as NSNumber)
+    }
+    
+    var hasTwoDecimals: Bool {
+        let decimals = self.truncatingRemainder(dividingBy: 1)
+        if decimals == 0 || "\(decimals)".count <= 3 {
+            return false
+        }
+        return true
     }
 }
 

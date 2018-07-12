@@ -12,15 +12,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AmountCell" rowHeight="161" id="cde-IB-DHa" customClass="AmountCell" customModule="Ewok" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="416" height="161"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AmountCell" rowHeight="145" id="cde-IB-DHa" customClass="AmountCell" customModule="Ewok" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="420" height="160"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cde-IB-DHa" id="3aX-ly-490">
-                <rect key="frame" x="0.0" y="0.0" width="416" height="160.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="420" height="159.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g0P-bq-Qz6">
-                        <rect key="frame" x="148" y="114" width="120" height="31"/>
+                        <rect key="frame" x="150" y="114" width="120" height="31"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="AME-e3-SJM"/>
                             <constraint firstAttribute="width" constant="120" id="Xnn-Jn-hYj"/>
@@ -32,7 +32,7 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </segmentedControl>
                     <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="$300.00" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="G9b-KX-6oI">
-                        <rect key="frame" x="42" y="0.0" width="333" height="101"/>
+                        <rect key="frame" x="42" y="0.0" width="336" height="101"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="pFv-Mb-1Ul"/>
                         </constraints>
@@ -55,7 +55,7 @@
                 <outlet property="amountTextField" destination="G9b-KX-6oI" id="XW3-Ha-4rv"/>
                 <outlet property="valueSegmentControl" destination="g0P-bq-Qz6" id="rBF-LH-ih8"/>
             </connections>
-            <point key="canvasLocation" x="6" y="-7.5"/>
+            <point key="canvasLocation" x="4" y="1"/>
         </tableViewCell>
     </objects>
 </document>

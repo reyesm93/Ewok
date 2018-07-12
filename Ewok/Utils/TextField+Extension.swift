@@ -45,8 +45,7 @@ extension String {
             attributedText.append(centsStringFromInt(numOfPennies, attributes: centStringAttributes))
         } else {
             attributedText.append(dollarSign)
-            attributedText.append(NSAttributedString(string: "0.", attributes: cashStringAttributes))
-            attributedText.append(NSAttributedString(string: "00", attributes: centStringAttributes))
+            attributedText.append(NSAttributedString(string: "0.00", attributes: cashStringAttributes))
         }
         
         
