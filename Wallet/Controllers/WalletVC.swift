@@ -91,7 +91,7 @@ class WalletVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.automaticallyAdjustsScrollViewInsets = false
+        //self.automaticallyAdjustsScrollViewInsets = false
         
         print("childVCs WalletVC: \(self.childViewControllers)")
         
