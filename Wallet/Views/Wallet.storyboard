@@ -60,13 +60,13 @@
                                                                 <rect key="frame" x="0.0" y="27" width="337.66666666666669" height="20.666666666666671"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajd-XZ-ohi" userLabel="Expenses">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="302.66666666666669" height="20.666666666666668"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="303" height="20.666666666666668"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSb-es-Hxi">
-                                                                        <rect key="frame" x="302.66666666666669" y="0.0" width="35" height="20.666666666666668"/>
+                                                                        <rect key="frame" x="303" y="0.0" width="34.666666666666686" height="20.666666666666668"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -309,42 +309,50 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="8Bu-SY-UC0"/>
                                 </constraints>
-                                <state key="normal" title="Clear"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="didTapClearFilter:" destination="Ot3-Qt-65P" eventType="touchUpInside" id="zjF-5q-GfK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="piu-bP-WZG">
-                                <rect key="frame" x="56.333333333333343" y="40.000000000000007" width="262.33333333333326" height="69.666666666666686"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="Dates"/>
-                                <connections>
-                                    <action selector="showCalendar:" destination="Ot3-Qt-65P" eventType="touchUpInside" id="10a-Tv-tLM"/>
-                                </connections>
-                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7Gp-24-9F7">
-                                <rect key="frame" x="133" y="8" width="109" height="25"/>
+                                <rect key="frame" x="133" y="104" width="109" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
                                     <segment title="Before"/>
                                     <segment title="After"/>
                                 </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="piu-bP-WZG">
+                                <rect key="frame" x="93.999999999999986" y="26" width="187.66666666666663" height="69.666666666666671"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="Dates">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="showCalendar:" destination="Ot3-Qt-65P" eventType="touchUpInside" id="10a-Tv-tLM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="piu-bP-WZG" firstAttribute="centerY" secondItem="fmI-ho-bTF" secondAttribute="centerY" id="4sB-oo-Mf3"/>
                             <constraint firstItem="7Gp-24-9F7" firstAttribute="centerX" secondItem="fmI-ho-bTF" secondAttribute="centerX" id="9mF-uu-gb8"/>
                             <constraint firstAttribute="trailing" secondItem="w4w-Zz-h5h" secondAttribute="trailing" constant="13" id="BSw-rC-FZP"/>
                             <constraint firstItem="w4w-Zz-h5h" firstAttribute="top" secondItem="WdZ-Vi-U1h" secondAttribute="top" id="Jti-fL-XB9"/>
-                            <constraint firstItem="7Gp-24-9F7" firstAttribute="top" secondItem="WdZ-Vi-U1h" secondAttribute="top" constant="8" id="RQk-PI-tNe"/>
-                            <constraint firstItem="piu-bP-WZG" firstAttribute="width" secondItem="WdZ-Vi-U1h" secondAttribute="width" multiplier="0.7" id="XSM-Gj-8gZ"/>
+                            <constraint firstItem="7Gp-24-9F7" firstAttribute="top" secondItem="piu-bP-WZG" secondAttribute="bottom" constant="8.3300000000000001" id="SvW-NU-a70"/>
+                            <constraint firstItem="piu-bP-WZG" firstAttribute="width" secondItem="WdZ-Vi-U1h" secondAttribute="width" multiplier="0.5" id="XSM-Gj-8gZ"/>
+                            <constraint firstItem="piu-bP-WZG" firstAttribute="top" secondItem="WdZ-Vi-U1h" secondAttribute="top" constant="26" id="XmO-JL-YSK"/>
                             <constraint firstItem="piu-bP-WZG" firstAttribute="centerX" secondItem="fmI-ho-bTF" secondAttribute="centerX" id="d8X-QO-fhQ"/>
-                            <constraint firstItem="piu-bP-WZG" firstAttribute="top" secondItem="7Gp-24-9F7" secondAttribute="bottom" constant="8" id="osX-U8-qq6"/>
                             <constraint firstItem="piu-bP-WZG" firstAttribute="height" secondItem="WdZ-Vi-U1h" secondAttribute="height" multiplier="0.5" id="s3S-sX-GIf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fmI-ho-bTF"/>
                     </view>
                     <connections>
+                        <outlet property="beforeOrAfterControl" destination="7Gp-24-9F7" id="ocG-OA-hO5"/>
                         <outlet property="clearFilterButton" destination="w4w-Zz-h5h" id="1tJ-es-Bbo"/>
                         <outlet property="datesButton" destination="piu-bP-WZG" id="80g-XO-jjq"/>
                     </connections>

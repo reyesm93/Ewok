@@ -42,7 +42,7 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
         } else {
             cell.isHidden = false
             let day = indexPath.item - month.firstWeekDay + 2
-            cell.lbl.text="\(day)"
+            cell.dayLabel.text="\(day)"
             
             var isBefore = Bool()
             var isAfter = Bool()
@@ -60,26 +60,25 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
                     isAfter = indexPath > onlyTransaction
                     
                 }
-                
-                if isBefore || isAfter {
-                    cell.isUserInteractionEnabled = false
-                    cell.lbl.textColor = .gray
-                }
+            
             }
             
             if indexPath == todayIndexPath {
-                cell.lbl.font = cell.lbl.font.bold
+                cell.dayLabel.font = cell.dayLabel.font.bold
             }
             
             if selectedDateRange.contains(indexPath) {
                 cell.backgroundColor = .black
-                cell.lbl.textColor = .white
+                cell.dayLabel.textColor = .white
             } else {
                 cell.backgroundColor = .white
-                cell.lbl.textColor = .black
+                cell.dayLabel.textColor = .black
             }
             
-            
+            if isBefore || isAfter {
+                cell.isUserInteractionEnabled = false
+                cell.dayLabel.textColor = .gray
+            }
             
         }
         return cell
@@ -120,9 +119,6 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
         collectionView.reloadData()
         
-        print("item: \(indexPath.item)")
-        print("section: \(indexPath.section)")
-        
         
     }
     
@@ -150,7 +146,7 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
         if cell.isHidden == false {
             cell.backgroundColor = .black
-            cell.lbl.textColor = .white
+            cell.dayLabel.textColor = .white
         }
     }
     
@@ -158,7 +154,7 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
         let cell = collectionView.cellForItem(at: indexPath) as! DateCell
         if cell.isHidden == false {
             cell.backgroundColor = .clear
-            cell.lbl.textColor = .black
+            cell.dayLabel.textColor = .black
         }
     }
     

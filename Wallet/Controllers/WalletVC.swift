@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 enum FilterType : Int {
-    case dates = 0, tags, search
+    case dates = 0, tags, search, noFilter
 }
 
 class WalletVC: UIViewController {
@@ -40,8 +40,9 @@ class WalletVC: UIViewController {
     let staticFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
     var compoundPredicate : NSCompoundPredicate?
     var predicates = [NSPredicate]()
-    var isFilterApplied : [Bool] = [false, false, false]
-    var calendarDateLimits = [Date]()
+    var isFilterApplied : [Bool] = [false, false, false, true]
+    var transactionsDateLimits = [Date]()
+    var sortByAscendingDates = false
     
     var fetchedResultsController : NSFetchedResultsController<Transaction>? {
         didSet {
@@ -78,17 +79,6 @@ class WalletVC: UIViewController {
     
     // MARK: - Initializers
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-//    init(fetchedResultsController fc : NSFetchedResultsController<Transaction>) {
-//        fetchedResultsController = fc
-//        super.init(nibName: nil, bundle: nil)
-//    }
-    
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.automaticallyAdjustsScrollViewInsets = false
@@ -118,8 +108,9 @@ class WalletVC: UIViewController {
         staticFetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
 //        setFilterBySC()
-        updatePredicates()
-        setCalendarDateLimits()
+        setTransactionDateLimits()
+        updatePredicates(withPredicate: createPredicateWithDates([transactionsDateLimits[0], Date()]), filterType: .noFilter)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,7 +118,8 @@ class WalletVC: UIViewController {
         
 //      mainBalance.text = wallet?.balance.currency
         if fetchTransactions().count > 0 {
-            topTransaction = setTopTransaction()
+            updateMainBalance()
+            
         }
         
         mainScrollView.isHidden = fetchTransactions().isEmpty
@@ -195,7 +187,7 @@ class WalletVC: UIViewController {
         
         compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: sortByAscendingDates)]
         fetchRequest.predicate = compoundPredicate
         fetchRequest.includesPendingChanges = true
         
@@ -216,56 +208,33 @@ class WalletVC: UIViewController {
 
     }
     
-    // Assure that when called the first transaction in array is the later date
-    func setTopTransaction(fromDate: [Date]? = nil) -> IndexPath? {
-        
-        // Need to assure that predicate is set for all existing transactions so
-        // that the fetch returns all
-        // updatePredicates()
-        
-        var dates = [Date]()
-        
-        if fromDate != nil {
-            dates = fromDate!
-        } else {
-            dates = [Date()]
-        }
-        
-        if fetchTransactions().count > 0 {
-            let date = (dates.count > 1) ? dates[1] : dates[0]
-            let transactions = fetchTransactions()
-            var count : Int = 0
-            var scrollTo: Transaction = transactions[count]
-            var scrollToIndexPath: IndexPath?
-            
-            while (scrollTo.date! as Date) > date && count < transactions.count {
-                
-                // consider scenario where it's the same day but later
-                scrollTo = transactions[count]
-                count += 1
-            }
-            
-            if fromDate == nil {
-                let mainBalanceString = scrollTo.newBalance.hasTwoDecimals ? "\(scrollTo.newBalance)" : "\(scrollTo.newBalance)0"
-                mainBalance.attributedText = mainBalanceString.cashAttributedString(color: .blue, size: 52)
-            }
-            
-            updateSingleDateBalances(scrollTo)
-            scrollToIndexPath = IndexPath(item: (transactions.index(of: scrollTo))!, section: 0)
-            return scrollToIndexPath!
-        }
-        
-        return nil
-        
+    func createPredicateWithDates(_ dates: [Date]) -> NSPredicate {
+        return NSPredicate(format: "date >= %@ && date <= %@", argumentArray: [dates[0], dates[1]])
     }
     
-    func updateSingleDateBalances(_ transaction : Transaction) {
+    // Assure that when called the first transaction in array is the later date
+    
+    func updateMainBalance(fromDate: [Date]? = nil) {
+
+
+        let transactions = fetchTransactions()
+        
+        if transactions.count > 0 {
+            let transactions = fetchTransactions()
+            let lastTransaction: Transaction = sortByAscendingDates ? transactions[transactions.count-1] : transactions[0]
+
+            
+            let mainBalanceString = lastTransaction.newBalance.hasTwoDecimals ? "\(lastTransaction.newBalance)" : "\(lastTransaction.newBalance)0"
+            mainBalance.attributedText = mainBalanceString.cashAttributedString(color: .blue, size: 52)
+
+        }
         
     }
+
     
     // Update date limits to show in calendar for date range of existing transactions
-    func setCalendarDateLimits() {
-        calendarDateLimits.removeAll()
+    func setTransactionDateLimits() {
+        transactionsDateLimits.removeAll()
         var firstDate : Date?
         var lastDate : Date?
         
@@ -275,12 +244,12 @@ class WalletVC: UIViewController {
                 if let transactionList = result {
                     if !transactionList.isEmpty {
                         if transactionList.count > 1 {
-                            lastDate = transactionList[transactionList.count-1].date! as Date
-                            self.calendarDateLimits.append(lastDate!)
+                            firstDate = transactionList[transactionList.count-1].date! as Date
+                            self.transactionsDateLimits.append(firstDate!)
                         }
                         
-                        firstDate = transactionList[0].date! as Date
-                        self.calendarDateLimits.append(firstDate!)
+                        lastDate = transactionList[0].date! as Date
+                        self.transactionsDateLimits.append(lastDate!)
                         
                     }
                 }
@@ -288,10 +257,6 @@ class WalletVC: UIViewController {
                 // handle error
             }
         }
-    }
-    
-    func scrollToTransaction() {
-        
     }
     
     @objc func changeFilter(_ sender: UISegmentedControl) {
@@ -311,28 +276,31 @@ class WalletVC: UIViewController {
     
     @objc func applyFilter(notification: Notification) {
         
-        guard let filterDates = notification.userInfo?["dates"] as? [Date] else { return }
-        guard let filterType = notification.userInfo?["filterType"] as? FilterType else { return }
-        guard let shouldApplyFilter = notification.userInfo?["shouldApplyFilter"] as? Bool else { return }
+        guard let filterDates = notification.userInfo?["dates"] as? [Date], let filterType = notification.userInfo?["filterType"] as? FilterType, let shouldApplyFilter = notification.userInfo?["shouldApplyFilter"] as? Bool else { return }
         
         if shouldApplyFilter {
             isFilterApplied[filterType.rawValue] = true
             
             switch filterType {
             case .dates:
-                if let dates = filterDates as [Date]? {
-                    
-                    if dates.count == 2 {
-                        updatePredicates(withPredicate: createPredicateWithDates(dates), filterType: .dates)
-                        // Update earnings/expenses label
+                if filterDates.count == 2 {
+                    updatePredicates(withPredicate: createPredicateWithDates(filterDates), filterType: .dates)
+                    updateMainBalance()
+                    // Update earnings/expenses label
+                } else if filterDates.count == 1 {
+                    if let filterAfterDate = notification.userInfo?["afterDate"] as? Bool {
+                        sortByAscendingDates = filterAfterDate
                     }
-                    
-                    topTransaction = setTopTransaction(fromDate: dates)
-                    
+                    setTransactionDateLimits()
+                    let dates = sortByAscendingDates ? [filterDates[0], transactionsDateLimits[1]] : [transactionsDateLimits[0], filterDates[0]]
+                    updatePredicates(withPredicate: createPredicateWithDates(dates), filterType: .dates)
+                    updateMainBalance()
                 }
             case .tags:
                 print("S")
             case .search:
+                print("S")
+            case .noFilter:
                 print("S")
             }
         }
@@ -344,7 +312,7 @@ class WalletVC: UIViewController {
         
         isFilterApplied[filterType.rawValue] = false
         updatePredicates()
-        topTransaction = setTopTransaction()
+        updateMainBalance()
     }
 }
 
@@ -462,9 +430,6 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
-    func createPredicateWithDates(_ dates: [Date]) -> NSPredicate {
-        return NSPredicate(format: "date >= %@ && date <= %@", argumentArray: [dates[0], dates[1]])
-    }
 }
 
 extension Double {

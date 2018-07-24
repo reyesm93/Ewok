@@ -35,7 +35,7 @@ class CalendarVC : UIViewController {
         super.viewDidLoad()
         todayIndexPath = calendarData.todayIndexPath
         
-        if let dateLimits = parentVC?.calendarDateLimits {
+        if let dateLimits = parentVC?.transactionsDateLimits {
             limitsIndexPath = getTransactionIndexLimits(dateLimits)
         }
         

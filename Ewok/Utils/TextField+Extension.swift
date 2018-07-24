@@ -70,12 +70,19 @@ extension String {
     
     func convertCurrencytoDouble() -> Double? {
         var copy = self
-        if self.hasPrefix("$") {
+        var isNegative = false
+        
+        if copy.hasPrefix("-") {
+            isNegative = true
+            copy.removeFirst()
+        }
+        
+        if copy.hasPrefix("$") {
             copy.removeFirst()
         }
         
         if let doubleType = Double(copy) {
-            return doubleType
+            return isNegative ? doubleType * -1.0 : doubleType
         }
         
         return nil

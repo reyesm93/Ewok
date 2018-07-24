@@ -14,7 +14,6 @@ class DateCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor=UIColor.clear
-        layer.cornerRadius=5
         layer.masksToBounds=true
         self.isUserInteractionEnabled = true
    
@@ -28,15 +27,15 @@ class DateCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.lbl.font = self.lbl.font.removeBold()
-        self.lbl.textColor = .black
+        self.dayLabel.font = self.dayLabel.font.removeBold()
+        self.dayLabel.textColor = .black
         self.backgroundColor = .white
         self.isUserInteractionEnabled = true
 
     }
     
     
-    let lbl: UILabel = {
+    var dayLabel: UILabel = {
         let label = UILabel()
         label.text = "00"
         label.textAlignment = .center
@@ -47,11 +46,11 @@ class DateCell: UICollectionViewCell {
     }()
     
     func setupViews() {
-        addSubview(lbl)
-        lbl.topAnchor.constraint(equalTo: topAnchor).isActive=true
-        lbl.leftAnchor.constraint(equalTo: leftAnchor).isActive=true
-        lbl.rightAnchor.constraint(equalTo: rightAnchor).isActive=true
-        lbl.bottomAnchor.constraint(equalTo: bottomAnchor).isActive=true
+        contentView.addSubview(dayLabel)
+        dayLabel.topAnchor.constraint(equalTo: topAnchor).isActive=true
+        dayLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive=true
+        dayLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive=true
+        dayLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive=true
     }
     
     

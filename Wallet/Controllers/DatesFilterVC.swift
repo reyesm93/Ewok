@@ -12,17 +12,23 @@ class DatesFilterVC : UIViewController {
     // MARK: Outlets
     @IBOutlet weak var datesButton: UIButton!
     @IBOutlet weak var clearFilterButton: UIButton!
+    @IBOutlet weak var beforeOrAfterControl: UISegmentedControl!
     
     // MARK: Properties
     weak var parentVC: WalletVC?
-    var dateRange : [Date]?
     var isDateFilterApplied: Bool = false
+    var dateRange : [Date]? {
+        didSet {
+            self.beforeOrAfterControl.isHidden = dateRange?.count != 1
+        }
+    }
     
     // MARK: Initializers
     
     override func viewDidLoad() {
         super.viewDidLoad()
         datesButton.titleLabel?.lineBreakMode = .byWordWrapping
+        beforeOrAfterControl.addTarget(self, action: #selector(filterWithSingleDate), for: UIControlEvents.valueChanged)
         NotificationCenter.default.addObserver(self, selector: #selector(applyFilter), name: NSNotification.Name(rawValue: "SendDates"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(clearFilter), name: NSNotification.Name(rawValue: "ClearFilter"), object: nil)
         
@@ -88,11 +94,34 @@ class DatesFilterVC : UIViewController {
             }
         }
     }
+    
     @objc func clearFilter(notification: Notification) {
         
         isDateFilterApplied = false
         datesButton.setTitle(Date().shortFormatString, for: .normal)
 
+    }
+    
+    @objc func filterWithSingleDate(_ sender: UISegmentedControl) {
+        
+        var userInfo = [String:Any]()
+        
+        guard dateRange?.count == 1 else { return }
+        userInfo["dates"] = dateRange
+        userInfo["filterType"] = FilterType.dates
+        userInfo["shouldApplyFilter"] = true
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            userInfo["afterDate"] = false
+        case 1:
+            userInfo["afterDate"] = true
+        default:
+            print("S")
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SendDates"), object: nil, userInfo: userInfo)
+        
     }
     
     func setSingleDayBalances() {
