@@ -109,7 +109,7 @@ class WalletVC: UIViewController {
         
 //        setFilterBySC()
         setTransactionDateLimits()
-        updatePredicates(withPredicate: createPredicateWithDates([transactionsDateLimits[0], Date()]), filterType: .noFilter)
+        updatePredicates(withPredicate: createPredicateWithDates([transactionsDateLimits[0], Date().simpleFormat]), filterType: .noFilter)
         
     }
     

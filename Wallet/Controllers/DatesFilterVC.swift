@@ -38,7 +38,7 @@ class DatesFilterVC : UIViewController {
         super.viewWillAppear(animated)
         
         if !isDateFilterApplied {
-            dateRange = [Date()]
+            dateRange = [Date().simpleFormat]
             datesButton.setTitle(dateRange![0].shortFormatString, for: .normal)
         } else {
             if let dates = dateRange {
@@ -98,7 +98,7 @@ class DatesFilterVC : UIViewController {
     @objc func clearFilter(notification: Notification) {
         
         isDateFilterApplied = false
-        datesButton.setTitle(Date().shortFormatString, for: .normal)
+        datesButton.setTitle(Date().simpleFormat.shortFormatString, for: .normal)
 
     }
     

@@ -211,7 +211,7 @@ class TransactionVC: UIViewController {
             
         } else {
             
-            transactionDate = Date()
+            transactionDate = Date().simpleFormat
             datePicker.date = transactionDate!
             incomeSwitch.isOn = false
         }

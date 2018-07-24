@@ -100,7 +100,7 @@ class AddVC: UIViewController, UIGestureRecognizerDelegate {
             var object: NSManagedObject?
             switch objectType {
             case .wallet:
-                object = Wallet(walletName: objectName, balance: 0.0, dateCreated: NSDate(), context: self.stack.context)
+                object = Wallet(walletName: objectName, balance: 0.0, dateCreated: Date().simpleFormat as NSDate, context: self.stack.context)
             case .tag:
                 object = Tag(name: objectName, context: self.stack.context)
             }

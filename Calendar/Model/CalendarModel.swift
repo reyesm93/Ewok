@@ -64,7 +64,7 @@ struct Month {
 
 class CalendarModel : NSObject {
     
-    let today = Date()
+    let today = Date().simpleFormat
     let secondsInYear = 31536000.0
     let years = 1.0
     var yearsAgo : Date?
@@ -76,7 +76,7 @@ class CalendarModel : NSObject {
     override init() {
         super.init()
         self.createCalendar()
-        todayIndexPath = getIndexPath(fromDate: Date())
+        todayIndexPath = getIndexPath(fromDate: Date().simpleFormat)
     }
     
     func setCalendarYears() {
@@ -161,6 +161,10 @@ extension Date {
     
     var firstDayOfTheMonth: Date {
         return Calendar.current.date(from: Calendar.current.dateComponents([.year,.month], from: self))!
+    }
+    
+    var simpleFormat: Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year,.month,.day], from: self))!
     }
     
     var shortFormatString : String {

@@ -112,7 +112,7 @@ class TransactionDetailVC: UIViewController {
             amountColor = isIncome ? UIColor.white : UIColor.red
             cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: amountColor)
         } else {
-            newTransaction = TransactionStruct(date: Date(), income: true)
+            newTransaction = TransactionStruct(date: Date().simpleFormat, income: true)
             isNewTransaction = true
             cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
         }
@@ -387,7 +387,7 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
             if let newDate = newTransaction?.date {
                cell?.textLabel?.text = newDate.longFormatString
             } else {
-                cell?.textLabel?.text = Date().longFormatString
+                cell?.textLabel?.text = Date().simpleFormat.longFormatString
             }
         }
         
