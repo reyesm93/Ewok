@@ -60,6 +60,7 @@
 		DD855F9C20C22123002B0B7D /* TagDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD855F9B20C22123002B0B7D /* TagDetailVC.swift */; };
 		DD855F9E20C227A0002B0B7D /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD855F9D20C227A0002B0B7D /* Calendar.storyboard */; };
 		DD855FA520C22C9A002B0B7D /* Transaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD855FA420C22C9A002B0B7D /* Transaction.storyboard */; };
+		DD8A53B521122B4100E60FD3 /* Ewok8to9MappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = DD8A53B421122B4100E60FD3 /* Ewok8to9MappingModel.xcmappingmodel */; };
 		DD8D1AB720375E5E00C52EC9 /* PlaidClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8D1AB620375E5E00C52EC9 /* PlaidClient.swift */; };
 		DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */; };
 		DD9161F5202FBEA40032E753 /* CustomBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */; };
@@ -169,6 +170,8 @@
 		DD855F9B20C22123002B0B7D /* TagDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailVC.swift; sourceTree = "<group>"; };
 		DD855F9D20C227A0002B0B7D /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		DD855FA420C22C9A002B0B7D /* Transaction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transaction.storyboard; sourceTree = "<group>"; };
+		DD8A53B3210F9AD100E60FD3 /* Ewok 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 9.xcdatamodel"; sourceTree = "<group>"; };
+		DD8A53B421122B4100E60FD3 /* Ewok8to9MappingModel.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Ewok8to9MappingModel.xcmappingmodel; sourceTree = "<group>"; };
 		DD8D1AB620375E5E00C52EC9 /* PlaidClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidClient.swift; sourceTree = "<group>"; };
 		DD8DD4A2202E74B900FDF3B6 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		DD9161F4202FBEA40032E753 /* CustomBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBalanceView.swift; sourceTree = "<group>"; };
@@ -425,6 +428,7 @@
 				DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */,
 				DD7A13571FF734DC00943E6C /* CoreDataStack.swift */,
 				DD2D0C7D2023BA8300077653 /* GCDBlackBox.swift */,
+				DD8A53B421122B4100E60FD3 /* Ewok8to9MappingModel.xcmappingmodel */,
 			);
 			path = Ewok;
 			sourceTree = "<group>";
@@ -904,6 +908,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD844043205DD1F9003EF476 /* YearView.swift in Sources */,
+				DD8A53B521122B4100E60FD3 /* Ewok8to9MappingModel.xcmappingmodel in Sources */,
 				DD6A7EEB20421ACB00B15C3D /* Constants.swift in Sources */,
 				DD855F9C20C22123002B0B7D /* TagDetailVC.swift in Sources */,
 				DD4331FE20BC7F080081C3EF /* SideMenuCells.swift in Sources */,
@@ -1124,6 +1129,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L49JS5X5VY;
 				INFOPLIST_FILE = Ewok/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = arturoreyes.Ewok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1140,6 +1146,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L49JS5X5VY;
 				INFOPLIST_FILE = Ewok/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = arturoreyes.Ewok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1263,6 +1270,7 @@
 		DD843E991FF5D8D700EE3C0D /* Ewok.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DD8A53B3210F9AD100E60FD3 /* Ewok 9.xcdatamodel */,
 				DD4BE7EC20CCABE800033090 /* Ewok 8.xcdatamodel */,
 				DD4BE7E920CCA8E500033090 /* Ewok 7.xcdatamodel */,
 				DD213503204A1E420058AD08 /* Ewok 6.xcdatamodel */,

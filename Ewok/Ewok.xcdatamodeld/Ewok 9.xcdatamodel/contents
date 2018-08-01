@@ -2,7 +2,14 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Tag" representedClassName="Tag" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="tagInfo" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TagInfo" inverseName="sourceTag" inverseEntity="TagInfo" syncable="YES"/>
         <relationship name="transaction" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transaction" inverseName="tags" inverseEntity="Transaction" syncable="YES"/>
+    </entity>
+    <entity name="TagInfo" representedClassName="TagInfo" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="frequency" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="sourceTag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="tagInfo" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="taggedTransaction" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="tagsInfo" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <entity name="Transaction" representedClassName="Transaction" syncable="YES">
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -12,7 +19,10 @@
         <attribute name="recurrent" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="variable" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="futureTransactions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transaction" inverseName="rootTransaction" inverseEntity="Transaction" syncable="YES"/>
+        <relationship name="rootTransaction" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="futureTransactions" inverseEntity="Transaction" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tag" inverseName="transaction" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="tagsInfo" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TagInfo" inverseName="taggedTransaction" inverseEntity="TagInfo" syncable="YES"/>
         <relationship name="wallet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Wallet" inverseName="transactions" inverseEntity="Wallet" syncable="YES"/>
     </entity>
     <entity name="Wallet" representedClassName="Wallet" syncable="YES">
@@ -22,8 +32,9 @@
         <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Transaction" inverseName="wallet" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Tag" positionX="727" positionY="-489" width="128" height="73"/>
-        <element name="Transaction" positionX="513" positionY="-567" width="128" height="180"/>
-        <element name="Wallet" positionX="313" positionY="-531" width="128" height="105"/>
+        <element name="Tag" positionX="763" positionY="-567" width="128" height="88"/>
+        <element name="Transaction" positionX="513" positionY="-567" width="128" height="223"/>
+        <element name="Wallet" positionX="252" positionY="-564" width="128" height="105"/>
+        <element name="TagInfo" positionX="810" positionY="-399" width="128" height="103"/>
     </elements>
 </model>
