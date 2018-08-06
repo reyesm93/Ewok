@@ -32,6 +32,7 @@ class TransactionDetailVC: UIViewController {
     var amountColor: UIColor = UIColor.white
     var descriptionTextField: UITextField?
     let dateCellIndex = IndexPath(row: 2, section: 0)
+    let recurrentCellIndex = IndexPath(row: 3, section: 0)
     var isLaterDate: Bool = false
     var shouldShowSaveButton = false {
         didSet {
@@ -122,8 +123,9 @@ class TransactionDetailVC: UIViewController {
         detailsTableView.delegate = self
         detailsTableView.dataSource = self
         detailsTableView.register(UINib(nibName: "AmountCell", bundle: nil), forCellReuseIdentifier: "AmountCell")
-//        tableView.rowHeight = UITableViewAutomaticDimension
-//        tableView.estimatedRowHeight = 200
+        detailsTableView.register(UINib(nibName: "RecurrentCell", bundle: nil), forCellReuseIdentifier: "RecurrentCell")
+        detailsTableView.rowHeight = UITableViewAutomaticDimension
+        detailsTableView.estimatedRowHeight = 200
         
         let gradientView = GradientView()
         gradientView.FirstColor = UIColor.black
@@ -274,6 +276,16 @@ class TransactionDetailVC: UIViewController {
         }
         shouldShowSaveButton = isTransactionReadyToSave()
     }
+    
+    @objc func recurrentValueChanged(_ sender: UISwitch) {
+        if existingTransaction != nil && !isNewTransaction {
+            transactionCopy?.recurrent = sender.isOn
+        } else {
+            newTransaction?.recurrent = sender.isOn
+        }
+        
+        detailsTableView.reloadRows(at: [recurrentCellIndex], with: .automatic)
+    }
 }
 
     // MARK: - Table view data source and delegate
@@ -294,14 +306,14 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         cell.backgroundView?.backgroundColor = .clear
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var cellHeight : CGFloat = 60
-        
-        if indexPath == IndexPath(row: 0, section: 0) {
-            cellHeight = 130
-        }
-        return cellHeight
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        var cellHeight : CGFloat = 60
+//
+//        if indexPath == IndexPath(row: 0, section: 0) {
+//            cellHeight = 130
+//        }
+//        return cellHeight
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == dateCellIndex {
@@ -396,13 +408,25 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     private func loadRecurrentCell() -> UITableViewCell {
-        let cell = detailsTableView.dequeueReusableCell(withIdentifier: "TransacionDetailCell")
+        let cell = detailsTableView.dequeueReusableCell(withIdentifier: "RecurrentCell") as? RecurrentCell
         cell?.selectionStyle = .none
-        cell?.textLabel?.textColor = .white
-        cell?.textLabel?.font = UIFont.systemFont(ofSize: 18)
-        cell?.textLabel?.text = "Recurrent"
-        let recurrentSwitch = UISwitch(frame: CGRect(x: 0, y: 0, width: 30, height: 40))
-        cell?.accessoryView = recurrentSwitch
+        cell?.recurrentLabel.textColor = .white
+        cell?.recurrentSwitch.addTarget(self, action: #selector(recurrentValueChanged), for: UIControlEvents.valueChanged)
+
+        if let isRecurrent = transactionCopy?.recurrent {
+            cell?.recurrentSwitch.isOn = isRecurrent
+            cell?.state = isRecurrent ? .expanded : .collapsed
+        } else {
+            if let isRecurrent = newTransaction?.recurrent {
+                cell?.recurrentSwitch.isOn = isRecurrent
+                cell?.state = isRecurrent ? .expanded : .collapsed
+            }
+        }
+        
+        if cell?.state == .expanded {
+            cell?.frequencyLabel.textColor = .white
+            cell?.fixedOrVariableControl.selectedSegmentIndex
+        }
         
         guard let recurrentCell = cell else { return UITableViewCell() }
         return recurrentCell
