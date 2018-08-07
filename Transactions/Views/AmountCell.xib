@@ -32,7 +32,7 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </segmentedControl>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="$300.00" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="G9b-KX-6oI">
-                        <rect key="frame" x="42" y="0.0" width="336" height="96.5"/>
+                        <rect key="frame" x="42" y="0.0" width="336" height="92.5"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="pFv-Mb-1Ul"/>
                         </constraints>
@@ -43,7 +43,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="G9b-KX-6oI" firstAttribute="top" secondItem="3aX-ly-490" secondAttribute="top" priority="999" id="6jk-lX-TWd"/>
-                    <constraint firstItem="g0P-bq-Qz6" firstAttribute="top" secondItem="G9b-KX-6oI" secondAttribute="bottom" constant="18" id="Eba-nd-6cG"/>
+                    <constraint firstItem="g0P-bq-Qz6" firstAttribute="top" secondItem="G9b-KX-6oI" secondAttribute="bottom" constant="22" id="Eba-nd-6cG"/>
                     <constraint firstItem="g0P-bq-Qz6" firstAttribute="centerX" secondItem="3aX-ly-490" secondAttribute="centerX" id="Hlz-rj-atr"/>
                     <constraint firstItem="G9b-KX-6oI" firstAttribute="centerX" secondItem="3aX-ly-490" secondAttribute="centerX" id="J0r-fw-8BW"/>
                     <constraint firstItem="G9b-KX-6oI" firstAttribute="width" secondItem="3aX-ly-490" secondAttribute="width" multiplier="0.8" id="d8x-o0-lYJ"/>

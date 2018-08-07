@@ -8,6 +8,9 @@
 
 import UIKit
 
+private let fixedString = "The amount of a fixed transaction is always the same."
+private let variableString = "The amount of a variable transaction can vary so an average is calculated from every posted amount to calculate further budget predictions."
+
 class TransactionDetailVC: UIViewController {
     
     // MARK: Outlets
@@ -28,6 +31,8 @@ class TransactionDetailVC: UIViewController {
     var transactionCopy: TransactionStruct?
     var cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
     var saveDelegate: SaveObjectDelegate?
+    let monthDayPickerProtocol = MonthDayPickerDataSource()
+    let periodPickerProtocol = PeriodPickerDataSource()
     var isNewTransaction: Bool = false
     var amountColor: UIColor = UIColor.white
     var descriptionTextField: UITextField?
@@ -52,6 +57,7 @@ class TransactionDetailVC: UIViewController {
         }
     }
 
+
     //MARK: Initializers
     
     override func viewDidLoad() {
@@ -61,6 +67,10 @@ class TransactionDetailVC: UIViewController {
         setTableView()
         NotificationCenter.default.addObserver(self, selector: #selector(updateDate(notification:)), name: NSNotification.Name(rawValue: "SendDates"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTransactionAmount(notification:)), name: NSNotification.Name(rawValue: "UpdateAmountTransaction"), object: nil)
+        
+        monthDayPickerProtocol.selectionDelegate = self
+        periodPickerProtocol.selectionDelegate = self
+        
     }
     
     //MARK: Actions
@@ -112,10 +122,15 @@ class TransactionDetailVC: UIViewController {
             guard let isIncome = transactionCopy?.income else { return }
             amountColor = isIncome ? UIColor.white : UIColor.red
             cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: amountColor)
+            periodPickerProtocol.currentFrequency = transactionCopy?.frequencyInfo
+            monthDayPickerProtocol.currentFrequency = transactionCopy?.frequencyInfo
         } else {
-            newTransaction = TransactionStruct(date: Date().simpleFormat, income: true)
+            let frequency = FrequencyInfo(frequencyType: .byMonthDay)
+            newTransaction = TransactionStruct(date: Date().simpleFormat, income: true, recurrent: false, variable: false, frequencyInfo: frequency)
             isNewTransaction = true
             cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
+            periodPickerProtocol.currentFrequency = newTransaction?.frequencyInfo
+            monthDayPickerProtocol.currentFrequency = newTransaction?.frequencyInfo
         }
     }
     
@@ -161,6 +176,14 @@ class TransactionDetailVC: UIViewController {
                     transactionCopy?.amount = currentAmount
                 }
             }
+        }
+    }
+    
+    private func setVariable(_ bool: Bool) {
+        if isNewTransaction && newTransaction != nil {
+            newTransaction?.variable = bool
+        } else if !isNewTransaction && existingTransaction != nil {
+            transactionCopy?.variable = bool
         }
     }
     
@@ -229,11 +252,11 @@ class TransactionDetailVC: UIViewController {
     @objc func changeValue(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            setIncome(true)
+            setIncome(false)
             updateAmountTextField(isIncome: true)
             //sender.tintColor = UIColor.blue
         case 1:
-            setIncome(false)
+            setIncome(true)
             updateAmountTextField(isIncome: false)
             //sender.tintColor = UIColor.red
         default:
@@ -285,6 +308,47 @@ class TransactionDetailVC: UIViewController {
         }
         
         detailsTableView.reloadRows(at: [recurrentCellIndex], with: .automatic)
+        shouldShowSaveButton = isTransactionReadyToSave()
+    }
+    
+    @objc func variableValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            setVariable(false)
+        case 1:
+            setVariable(true)
+        default:
+            break
+        }
+        detailsTableView.reloadRows(at: [recurrentCellIndex], with: .automatic)
+        shouldShowSaveButton = isTransactionReadyToSave()
+    
+    }
+    
+    fileprivate func setFrequencyType(_ type: FrequencyType) {
+        if existingTransaction != nil && !isNewTransaction {
+            transactionCopy?.frequencyInfo?.frequencyType = .byMonthDay
+        } else {
+            newTransaction?.frequencyInfo?.frequencyType = .byMonthDay
+        }
+    }
+    
+    @objc func selectMonthDay(_ sender: UITapGestureRecognizer) {
+        let cell = detailsTableView.cellForRow(at: recurrentCellIndex) as? RecurrentCell
+        cell?.frequencyType = .byMonthDay
+        setFrequencyType(.byMonthDay)
+    }
+    
+    @objc func selectByPeriod(_ sender: UITapGestureRecognizer) {
+        let cell = detailsTableView.cellForRow(at: recurrentCellIndex) as? RecurrentCell
+        cell?.frequencyType = .byPeriod
+        setFrequencyType(.byPeriod)
+    }
+    
+    @objc func selectByDates(_ sender: UITapGestureRecognizer) {
+        let cell = detailsTableView.cellForRow(at: recurrentCellIndex) as? RecurrentCell
+        cell?.frequencyType = .byDates
+        setFrequencyType(.byDates)
     }
 }
 
@@ -409,24 +473,33 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
     
     private func loadRecurrentCell() -> UITableViewCell {
         let cell = detailsTableView.dequeueReusableCell(withIdentifier: "RecurrentCell") as? RecurrentCell
-        cell?.selectionStyle = .none
-        cell?.recurrentLabel.textColor = .white
         cell?.recurrentSwitch.addTarget(self, action: #selector(recurrentValueChanged), for: UIControlEvents.valueChanged)
+        cell?.fixedOrVariableControl.addTarget(self, action: #selector(variableValueChanged), for: UIControlEvents.valueChanged)
+        setFrequencyOptionsRecognizers(cell)
 
-        if let isRecurrent = transactionCopy?.recurrent {
+        cell?.monthDayPicker.dataSource = monthDayPickerProtocol
+        cell?.monthDayPicker.delegate = monthDayPickerProtocol
+        cell?.byPeriodPicker.dataSource = periodPickerProtocol
+        cell?.byPeriodPicker.delegate = periodPickerProtocol
+        
+        let currentTransaction = isNewTransaction ? newTransaction : transactionCopy
+
+        if let isRecurrent = currentTransaction?.recurrent {
             cell?.recurrentSwitch.isOn = isRecurrent
             cell?.state = isRecurrent ? .expanded : .collapsed
-        } else {
-            if let isRecurrent = newTransaction?.recurrent {
-                cell?.recurrentSwitch.isOn = isRecurrent
-                cell?.state = isRecurrent ? .expanded : .collapsed
-            }
         }
         
-        if cell?.state == .expanded {
-            cell?.frequencyLabel.textColor = .white
-            cell?.fixedOrVariableControl.selectedSegmentIndex
+        if let isVariable = currentTransaction?.variable {
+            cell?.fixedOrVariableControl.selectedSegmentIndex = isVariable ? 1 : 0
+            cell?.fixedOrVariableDescriptionLabel.text = isVariable ? variableString : fixedString
         }
+        
+        if let freqInfo = currentTransaction?.frequencyInfo {
+            cell?.frequencyType = freqInfo.frequencyType
+            
+        }
+        
+        
         
         guard let recurrentCell = cell else { return UITableViewCell() }
         return recurrentCell
@@ -445,6 +518,16 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         textField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
         textField.delegate = self
         return textField
+    }
+    
+    fileprivate func setFrequencyOptionsRecognizers(_ cell: RecurrentCell?) {
+        let monthDayRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectMonthDay(_:)))
+        let periodRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectByPeriod(_:)))
+        let datesRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectByDates(_:)))
+        
+        cell?.monthDayView.addGestureRecognizer(monthDayRecognizer)
+        cell?.byPeriodView.addGestureRecognizer(periodRecognizer)
+        cell?.specificDatesView.addGestureRecognizer(datesRecognizer)
     }
 
 }
@@ -478,4 +561,20 @@ extension TransactionDetailVC : UITextFieldDelegate {
         }
     }
 
+}
+
+extension TransactionDetailVC: PickerDidSelectDelegate {
+    func pickerDidSelect(frequencyInfo: FrequencyInfo) {
+        if existingTransaction != nil && !isNewTransaction {
+            transactionCopy?.frequencyInfo = frequencyInfo
+        } else {
+            newTransaction?.frequencyInfo = frequencyInfo
+        }
+        
+        periodPickerProtocol.currentFrequency = frequencyInfo
+        monthDayPickerProtocol.currentFrequency = frequencyInfo
+        //detailsTableView.reloadRows(at: [recurrentCellIndex], with: .none)
+        shouldShowSaveButton = isTransactionReadyToSave()
+    }
+        
 }

@@ -33,6 +33,7 @@
 		DD4BE7EB20CCAA4C00033090 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4BE7EA20CCAA4C00033090 /* Transaction+CoreDataProperties.swift */; };
 		DD4BE7EE20CCBBFF00033090 /* TagCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4BE7ED20CCBBFF00033090 /* TagCellView.xib */; };
 		DD4BE7F320CCBCE500033090 /* TagViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4BE7F220CCBCE500033090 /* TagViews.swift */; };
+		DD53B39B2118E941000065CA /* UIPickerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD53B39A2118E941000065CA /* UIPickerProtocols.swift */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* MenuContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* MenuContainerVC.swift */; };
 		DD60A38F2012C3F50019675C /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38E2012C3F50019675C /* HomeVC.swift */; };
@@ -136,6 +137,7 @@
 		DD4BE7EC20CCABE800033090 /* Ewok 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 8.xcdatamodel"; sourceTree = "<group>"; };
 		DD4BE7ED20CCBBFF00033090 /* TagCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCellView.xib; sourceTree = "<group>"; };
 		DD4BE7F220CCBCE500033090 /* TagViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViews.swift; sourceTree = "<group>"; };
+		DD53B39A2118E941000065CA /* UIPickerProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerProtocols.swift; sourceTree = "<group>"; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* MenuContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContainerVC.swift; sourceTree = "<group>"; };
 		DD60A38E2012C3F50019675C /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				DD2507F720DBA3BB003B026A /* TransparentNavController.swift */,
 				DDDE0C2A20E8645E004EAAD3 /* TextField+Extension.swift */,
 				DDCE8DD820F1299C00A2D081 /* FlowPresentationManager.swift */,
+				DD53B39A2118E941000065CA /* UIPickerProtocols.swift */,
 			);
 			name = Utils;
 			path = Ewok/Utils;
@@ -947,6 +950,7 @@
 				DDE3E6302051DAC700A13182 /* TransactionStruct.swift in Sources */,
 				DD42BD21206ACA8C000518FA /* FilterContainerView.swift in Sources */,
 				DD4BE7EB20CCAA4C00033090 /* Transaction+CoreDataProperties.swift in Sources */,
+				DD53B39B2118E941000065CA /* UIPickerProtocols.swift in Sources */,
 				DD60A38B2012B4380019675C /* MenuContainerVC.swift in Sources */,
 				DD34C761201D20240088CEBB /* SideMenuVC.swift in Sources */,
 				DD2D0C7E2023BA8300077653 /* GCDBlackBox.swift in Sources */,

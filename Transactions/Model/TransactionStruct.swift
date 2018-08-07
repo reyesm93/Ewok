@@ -14,6 +14,15 @@ enum FrequencyType : Int {
 
 enum PeriodType: Int {
     case days = 0, weeks, months, years
+    
+    var description: String {
+        switch self {
+        case .days: return "days"
+        case .weeks: return "weeks"
+        case .months: return "months"
+        case .years: return "years"
+        }
+    }
 }
 
 
@@ -43,14 +52,18 @@ struct TransactionStruct : Equatable {
         self.date = transaction.date as Date?
         self.income = transaction.income
         self.variable = transaction.variable
+        self.recurrent = transaction.recurrent
+        self.variable = transaction.variable
+        self.frequencyInfo = transaction.frequencyInfo as? FrequencyInfo
     }
     
     static func == (lhs: TransactionStruct, rhs: TransactionStruct) -> Bool {
-        return (lhs.description == rhs.description) && (lhs.amount == rhs.amount) && (lhs.date == rhs.date) && (lhs.income == rhs.income)
+        return (lhs.description == rhs.description) && (lhs.amount == rhs.amount) && (lhs.date == rhs.date) && (lhs.income == rhs.income) && (lhs.recurrent == rhs.recurrent) && (lhs.variable == rhs.variable) && (lhs.frequencyInfo == rhs.frequencyInfo)
     }
 }
 
-struct FrequencyInfo {
+final class FrequencyInfo : NSObject {
+    
     var frequencyType: FrequencyType
     var monthDay: Int?
     var period: FrequencyPeriod?
@@ -63,9 +76,13 @@ struct FrequencyInfo {
         self.dates = dates
         
     }
+    
+    static func == (lhs: FrequencyInfo, rhs: FrequencyInfo) -> Bool {
+        return (lhs.frequencyType == rhs.frequencyType) && (lhs.monthDay == rhs.monthDay) && (lhs.period == rhs.period) && (lhs.dates == rhs.dates)
+    }
 }
 
-struct FrequencyPeriod {
+struct FrequencyPeriod: Equatable {
     var value: Int
     var periodType: PeriodType
     
