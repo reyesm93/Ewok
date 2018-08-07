@@ -18,71 +18,80 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pct-hN-SIZ">
-                                <rect key="frame" x="40" y="204" width="294.66666666666669" height="408"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMl-sb-oXY">
-                                        <rect key="frame" x="0.0" y="356" width="147.66666666666666" height="52"/>
-                                        <color key="backgroundColor" red="0.46847921850000002" green="1" blue="0.5555262447" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="52" id="7Ax-Hn-fJd"/>
-                                        </constraints>
-                                        <state key="normal" title="Done">
-                                            <color key="titleColor" red="0.9718124507" green="1" blue="0.98048946830000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <color key="titleShadowColor" red="0.46847921850000002" green="1" blue="0.5555262447" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQ5-J5-QVC">
-                                        <rect key="frame" x="147.66666666666666" y="356" width="146.99999999999997" height="52"/>
-                                        <color key="backgroundColor" red="1" green="0.36307599699999998" blue="0.3973241079" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="52" id="yaY-1E-aYc"/>
-                                        </constraints>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleColor" red="0.97605178039999996" green="0.98077108189999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <color key="titleShadowColor" red="1" green="0.36307599699999998" blue="0.3973241079" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="cancelDate:" destination="BJl-m9-c63" eventType="touchUpInside" id="Mdn-Ck-sIn"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cr0-l8-ylj" customClass="CalendarView" customModule="Ewok" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="294.66666666666669" height="356"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cr0-l8-ylj" customClass="CalendarView" customModule="Ewok" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="87" width="375" height="645"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="cr0-l8-ylj" firstAttribute="top" secondItem="Pct-hN-SIZ" secondAttribute="top" id="7Ig-pD-apM"/>
-                                    <constraint firstItem="BQ5-J5-QVC" firstAttribute="leading" secondItem="gMl-sb-oXY" secondAttribute="trailing" id="A3l-Qj-esk"/>
-                                    <constraint firstAttribute="trailing" secondItem="BQ5-J5-QVC" secondAttribute="trailing" id="Fbc-GD-h9f"/>
-                                    <constraint firstAttribute="bottom" secondItem="BQ5-J5-QVC" secondAttribute="bottom" id="QQH-CO-AiI"/>
-                                    <constraint firstItem="gMl-sb-oXY" firstAttribute="leading" secondItem="Pct-hN-SIZ" secondAttribute="leading" id="TND-Do-5l0"/>
-                                    <constraint firstItem="gMl-sb-oXY" firstAttribute="width" secondItem="BQ5-J5-QVC" secondAttribute="width" id="Xzg-Hy-Q19"/>
-                                    <constraint firstItem="gMl-sb-oXY" firstAttribute="top" secondItem="cr0-l8-ylj" secondAttribute="bottom" id="lU8-cC-A5e"/>
-                                    <constraint firstAttribute="trailing" secondItem="cr0-l8-ylj" secondAttribute="trailing" id="m7q-zw-ye9"/>
-                                    <constraint firstAttribute="bottom" secondItem="gMl-sb-oXY" secondAttribute="bottom" id="tm6-5u-xZs"/>
-                                    <constraint firstItem="cr0-l8-ylj" firstAttribute="leading" secondItem="Pct-hN-SIZ" secondAttribute="leading" id="xpK-Nk-nSs"/>
-                                </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="381-Dn-yZM">
+                                <rect key="frame" x="0.0" y="732" width="375" height="80"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="tQl-fv-Utd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="35"/>
+                                <state key="normal" title="DONE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8R-6P-Q5E">
+                                <rect key="frame" x="314" y="46" width="45" height="33"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wC-vn-0Gz">
+                                <rect key="frame" x="61" y="52.000000000000007" width="253" height="26.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNL-wj-O0h">
+                                <rect key="frame" x="16" y="52" width="23" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="ZDw-EO-rqU"/>
+                                    <constraint firstAttribute="width" constant="23" id="kqy-PA-iaP"/>
+                                </constraints>
+                                <state key="normal" image="delete-icon">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelDate:" destination="BJl-m9-c63" eventType="touchUpInside" id="DcF-VJ-hTh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Pct-hN-SIZ" firstAttribute="top" secondItem="zA5-hR-Bm2" secondAttribute="top" constant="160" id="JyE-0e-Wb3"/>
-                            <constraint firstItem="zA5-hR-Bm2" firstAttribute="trailing" secondItem="Pct-hN-SIZ" secondAttribute="trailing" constant="40.5" id="TU0-e6-BJj"/>
-                            <constraint firstItem="zA5-hR-Bm2" firstAttribute="bottom" secondItem="Pct-hN-SIZ" secondAttribute="bottom" constant="166" id="dzI-f0-8Zb"/>
-                            <constraint firstItem="Pct-hN-SIZ" firstAttribute="leading" secondItem="zA5-hR-Bm2" secondAttribute="leading" constant="40.5" id="wdM-fu-h6q"/>
+                            <constraint firstItem="cr0-l8-ylj" firstAttribute="leading" secondItem="zA5-hR-Bm2" secondAttribute="leading" id="1Cc-Ne-MHs"/>
+                            <constraint firstItem="A8R-6P-Q5E" firstAttribute="leading" secondItem="0wC-vn-0Gz" secondAttribute="trailing" id="1wb-04-czG"/>
+                            <constraint firstItem="381-Dn-yZM" firstAttribute="trailing" secondItem="zA5-hR-Bm2" secondAttribute="trailing" id="5AC-NT-TWE"/>
+                            <constraint firstItem="zA5-hR-Bm2" firstAttribute="trailing" secondItem="A8R-6P-Q5E" secondAttribute="trailing" constant="16" id="DN8-XC-cQx"/>
+                            <constraint firstItem="0wC-vn-0Gz" firstAttribute="leading" secondItem="XNL-wj-O0h" secondAttribute="trailing" constant="22" id="Ijl-iz-sin"/>
+                            <constraint firstItem="0wC-vn-0Gz" firstAttribute="top" secondItem="zA5-hR-Bm2" secondAttribute="top" constant="8" id="Ox6-sw-Xtf"/>
+                            <constraint firstItem="381-Dn-yZM" firstAttribute="top" secondItem="cr0-l8-ylj" secondAttribute="bottom" id="VfZ-kr-9kw"/>
+                            <constraint firstItem="XNL-wj-O0h" firstAttribute="top" secondItem="zA5-hR-Bm2" secondAttribute="top" constant="8" id="X4p-AO-f2f"/>
+                            <constraint firstItem="0wC-vn-0Gz" firstAttribute="centerX" secondItem="zA5-hR-Bm2" secondAttribute="centerX" id="XsN-K5-bAW"/>
+                            <constraint firstItem="A8R-6P-Q5E" firstAttribute="top" secondItem="zA5-hR-Bm2" secondAttribute="top" constant="2" id="ars-cd-xLI"/>
+                            <constraint firstItem="XNL-wj-O0h" firstAttribute="leading" secondItem="zA5-hR-Bm2" secondAttribute="leading" constant="16" id="g4D-rr-8pS"/>
+                            <constraint firstItem="381-Dn-yZM" firstAttribute="leading" secondItem="zA5-hR-Bm2" secondAttribute="leading" id="ihj-Wg-i4b"/>
+                            <constraint firstItem="cr0-l8-ylj" firstAttribute="trailing" secondItem="zA5-hR-Bm2" secondAttribute="trailing" id="nVW-x7-dHb"/>
+                            <constraint firstItem="cr0-l8-ylj" firstAttribute="top" secondItem="A8R-6P-Q5E" secondAttribute="bottom" constant="8" id="pvd-5H-kZQ"/>
+                            <constraint firstAttribute="bottom" secondItem="381-Dn-yZM" secondAttribute="bottom" id="t8e-XR-sLJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zA5-hR-Bm2"/>
                     </view>
                     <connections>
                         <outlet property="calendarView" destination="cr0-l8-ylj" id="Uur-Rv-fQ0"/>
-                        <outlet property="completeDateButton" destination="gMl-sb-oXY" id="lER-En-mas"/>
+                        <outlet property="completeDateButton" destination="381-Dn-yZM" id="9HJ-ZK-EDc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVW-2I-oTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-103" y="1035"/>
+            <point key="canvasLocation" x="-103.2" y="1034.4827586206898"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="delete-icon" width="50" height="50"/>
+    </resources>
 </document>

@@ -81,9 +81,7 @@ class CalendarVC : UIViewController {
     }
     
     func setUpView() {
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         self.view.layoutIfNeeded()
-        
         calendarView.scrollTo = todayIndexPath
         calendarView.myCollectionView.delegate = self
         calendarView.myCollectionView.dataSource = self
