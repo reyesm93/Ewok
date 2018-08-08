@@ -11,6 +11,12 @@ import UIKit
 
 protocol SaveObjectDelegate: class {
     func saveObject(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool)
-    
 }
 
+protocol SelectedSectionDelegate: class {
+    func selectedSection(viewController: UIViewController)
+}
+
+protocol SelectedDatesDelegate: class {
+    func selectedDates(viewController: UIViewController, dates: [Date], rangeType: DateRangeType, afterDate: Bool?)
+}

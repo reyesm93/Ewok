@@ -94,7 +94,13 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if allowsMultipleDates {
+        guard let dateRangeType = dateRangeType else { return }
+        
+        switch dateRangeType {
+        case .single:
+            selectedDateRange.removeAll()
+            selectedDateRange.append(indexPath)
+        case .continuous:
             if startDate != nil {
                 if endDate != nil {
                     restartRange(collectionView, indexPath)
@@ -112,9 +118,14 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
                 startDate = indexPath
                 selectedDateRange.append(startDate!)
             }
-        } else {
-            selectedDateRange.removeAll()
-            selectedDateRange.append(indexPath)
+        case .specific:
+            if selectedDateRange.contains(indexPath) {
+                if let index = selectedDateRange.index(of: indexPath) {
+                    selectedDateRange.remove(at: index)
+                }
+            } else {
+                selectedDateRange.append(indexPath)
+            }
         }
         
         collectionView.reloadData()

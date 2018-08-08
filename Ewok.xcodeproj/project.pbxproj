@@ -70,11 +70,10 @@
 		DD9CFC2420E6822A001E2A81 /* AmountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD9CFC2320E6822A001E2A81 /* AmountCell.xib */; };
 		DDA8B34B2118944F006CFE21 /* Ewok8to9MappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = DDA8B34A2118944F006CFE21 /* Ewok8to9MappingModel.xcmappingmodel */; };
 		DDB1F6EF2008223200C26E40 /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1F6EE2008223200C26E40 /* TransactionVC.swift */; };
-		DDC3F1C92038D89900EFF9FE /* SaveObjectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC3F1C82038D89900EFF9FE /* SaveObjectDelegate.swift */; };
+		DDC3F1C92038D89900EFF9FE /* ClassProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC3F1C82038D89900EFF9FE /* ClassProtocols.swift */; };
 		DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */; };
 		DDCE8DD920F1299C00A2D081 /* FlowPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE8DD820F1299C00A2D081 /* FlowPresentationManager.swift */; };
 		DDCE8DDB20F14CE300A2D081 /* SectionContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE8DDA20F14CE300A2D081 /* SectionContainerVC.swift */; };
-		DDCE8DDD20F19C6900A2D081 /* SelectedSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE8DDC20F19C6900A2D081 /* SelectedSectionDelegate.swift */; };
 		DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */; };
 		DDDE0C2920E6ADAD004EAAD3 /* CashTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE0C2820E6ADAD004EAAD3 /* CashTextFieldDelegate.swift */; };
 		DDDE0C2B20E8645E004EAAD3 /* TextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE0C2A20E8645E004EAAD3 /* TextField+Extension.swift */; };
@@ -183,11 +182,10 @@
 		DD9CFC2320E6822A001E2A81 /* AmountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmountCell.xib; sourceTree = "<group>"; };
 		DDA8B34A2118944F006CFE21 /* Ewok8to9MappingModel.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Ewok8to9MappingModel.xcmappingmodel; sourceTree = "<group>"; };
 		DDB1F6EE2008223200C26E40 /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
-		DDC3F1C82038D89900EFF9FE /* SaveObjectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveObjectDelegate.swift; sourceTree = "<group>"; };
+		DDC3F1C82038D89900EFF9FE /* ClassProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassProtocols.swift; sourceTree = "<group>"; };
 		DDCAD2D3201BBF3E0057CD3D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		DDCE8DD820F1299C00A2D081 /* FlowPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowPresentationManager.swift; sourceTree = "<group>"; };
 		DDCE8DDA20F14CE300A2D081 /* SectionContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionContainerVC.swift; sourceTree = "<group>"; };
-		DDCE8DDC20F19C6900A2D081 /* SelectedSectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedSectionDelegate.swift; sourceTree = "<group>"; };
 		DDDDB61F2012DB2100CC66E8 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DDDE0C2820E6ADAD004EAAD3 /* CashTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashTextFieldDelegate.swift; sourceTree = "<group>"; };
 		DDDE0C2A20E8645E004EAAD3 /* TextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extension.swift"; sourceTree = "<group>"; };
@@ -536,9 +534,8 @@
 		DDE3E6322051DDE800A13182 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				DDC3F1C82038D89900EFF9FE /* SaveObjectDelegate.swift */,
+				DDC3F1C82038D89900EFF9FE /* ClassProtocols.swift */,
 				DDDE0C2820E6ADAD004EAAD3 /* CashTextFieldDelegate.swift */,
-				DDCE8DDC20F19C6900A2D081 /* SelectedSectionDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -925,12 +922,11 @@
 				DDE0D9F62052190700F3A527 /* WalletFetchControllerDelegate.swift in Sources */,
 				DD35724A20C0D1700078D2B6 /* TagsVC.swift in Sources */,
 				DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */,
-				DDCE8DDD20F19C6900A2D081 /* SelectedSectionDelegate.swift in Sources */,
 				DD9CFC2220E6801F001E2A81 /* TransactionDetailVC.swift in Sources */,
 				DD0A91C82064256B006E7039 /* DatesFilterVC.swift in Sources */,
 				DD844049205DE73B003EF476 /* DateCell.swift in Sources */,
 				DD95EF5A2022AC4E00C788D1 /* AddButton.swift in Sources */,
-				DDC3F1C92038D89900EFF9FE /* SaveObjectDelegate.swift in Sources */,
+				DDC3F1C92038D89900EFF9FE /* ClassProtocols.swift in Sources */,
 				DD7A13561FF7340A00943E6C /* Tag+CoreDataProperties.swift in Sources */,
 				DDCE8DD920F1299C00A2D081 /* FlowPresentationManager.swift in Sources */,
 				DD7A134F1FF7340A00943E6C /* Wallet+CoreDataClass.swift in Sources */,

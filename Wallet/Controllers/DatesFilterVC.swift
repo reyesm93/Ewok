@@ -15,11 +15,31 @@ class DatesFilterVC : UIViewController {
     @IBOutlet weak var beforeOrAfterControl: UISegmentedControl!
     
     // MARK: Properties
-    weak var parentVC: WalletVC?
+    weak var walletController: WalletVC?
+    weak var selectionDateDelegate: SelectedDatesDelegate?
     var isDateFilterApplied: Bool = false
     var dateRange : [Date]? {
         didSet {
             self.beforeOrAfterControl.isHidden = dateRange?.count != 1
+            
+            // Update Dates Button Title
+            if dateRange != nil {
+                var datesString: String = ""
+                
+                if let dateCount = dateRange?.count {
+                    if dateCount > 1 {
+                        if let fromDateString = dateRange?[0].shortFormatString, let toDateString = dateRange?[1].shortFormatString {
+                             datesString = fromDateString + " - \n" + toDateString
+                        }
+                    } else if dateCount == 1, let singleDateString =  dateRange?[0].shortFormatString {
+                        datesString = singleDateString
+                    }
+                }
+                datesButton.setTitle(datesString, for: .normal)
+                datesButton.setNeedsDisplay()
+
+            }
+
         }
     }
     
@@ -29,7 +49,7 @@ class DatesFilterVC : UIViewController {
         super.viewDidLoad()
         datesButton.titleLabel?.lineBreakMode = .byWordWrapping
         beforeOrAfterControl.addTarget(self, action: #selector(filterWithSingleDate), for: UIControlEvents.valueChanged)
-        NotificationCenter.default.addObserver(self, selector: #selector(applyFilter), name: NSNotification.Name(rawValue: "SendDates"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(applyFilter), name: NSNotification.Name(rawValue: "SendDates"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(clearFilter), name: NSNotification.Name(rawValue: "ClearFilter"), object: nil)
         
     }
@@ -53,13 +73,15 @@ class DatesFilterVC : UIViewController {
     // MARK: Actions
     @IBAction func showCalendar(_ sender: Any) {
         
-        if let vc = UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(withIdentifier: "CalendarVC") as? CalendarVC {
-            vc.definesPresentationContext = true
-            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            vc.allowsMultipleDates = true
-            vc.parentVC = parentVC
-            self.present(vc, animated: true, completion: nil)
+        if let calendarController = UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(withIdentifier: "CalendarVC") as? CalendarVC {
+            calendarController.definesPresentationContext = true
+            calendarController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            calendarController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            calendarController.dateRangeType = .continuous
+            calendarController.walletController = walletController
+            calendarController.selectionDateDelegate = selectionDateDelegate
+            calendarController.filterController = self
+            self.present(calendarController, animated: true, completion: nil)
         }
     }
     
@@ -72,28 +94,28 @@ class DatesFilterVC : UIViewController {
     
     // MARK: Obj-C Messages
     
-    @objc func applyFilter(notification: Notification) {
-        
-        guard let filterDates = notification.userInfo?["dates"] as! [Date]? else { return }
-        guard let shouldApplyFilter = notification.userInfo?["shouldApplyFilter"] as! Bool? else { return }
-        
-        if shouldApplyFilter {
-            isDateFilterApplied = true
-            var datesString: String = ""
-            
-            if let dates = filterDates as [Date]? {
-                dateRange = dates
-                if dates.count > 1 {
-                    datesString = dates[0].shortFormatString + " - \n" + dates[1].shortFormatString
-                } else if dates.count == 1 {
-                    datesString = dates[0].shortFormatString
-                }
-                
-                datesButton.setTitle(datesString, for: .normal)
-                datesButton.setNeedsDisplay()
-            }
-        }
-    }
+//    @objc func applyFilter(notification: Notification) {
+//
+//        guard let filterDates = notification.userInfo?["dates"] as! [Date]? else { return }
+//        guard let shouldApplyFilter = notification.userInfo?["shouldApplyFilter"] as! Bool? else { return }
+//
+//        if shouldApplyFilter {
+//            isDateFilterApplied = true
+//            var datesString: String = ""
+//
+//            if let dates = filterDates as [Date]? {
+//                dateRange = dates
+//                if dates.count > 1 {
+//                    datesString = dates[0].shortFormatString + " - \n" + dates[1].shortFormatString
+//                } else if dates.count == 1 {
+//                    datesString = dates[0].shortFormatString
+//                }
+//
+//                datesButton.setTitle(datesString, for: .normal)
+//                datesButton.setNeedsDisplay()
+//            }
+//        }
+//    }
     
     @objc func clearFilter(notification: Notification) {
         
@@ -104,28 +126,19 @@ class DatesFilterVC : UIViewController {
     
     @objc func filterWithSingleDate(_ sender: UISegmentedControl) {
         
-        var userInfo = [String:Any]()
-        
         guard dateRange?.count == 1 else { return }
-        userInfo["dates"] = dateRange
-        userInfo["filterType"] = FilterType.dates
-        userInfo["shouldApplyFilter"] = true
-        
+        var afterDate: Bool?
+
         switch sender.selectedSegmentIndex {
         case 0:
-            userInfo["afterDate"] = false
+            afterDate = false
         case 1:
-            userInfo["afterDate"] = true
+            afterDate = true
         default:
             print("S")
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SendDates"), object: nil, userInfo: userInfo)
-        
-    }
-    
-    func setSingleDayBalances() {
-        
+        selectionDateDelegate?.selectedDates(viewController: self, dates: dateRange!, rangeType: .single, afterDate: afterDate)
         
     }
 }

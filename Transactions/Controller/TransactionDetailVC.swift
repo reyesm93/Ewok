@@ -65,7 +65,7 @@ class TransactionDetailVC: UIViewController {
         setTransactionCopies()
         setUI()
         setTableView()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDate(notification:)), name: NSNotification.Name(rawValue: "SendDates"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateDate(notification:)), name: NSNotification.Name(rawValue: "SendDates"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTransactionAmount(notification:)), name: NSNotification.Name(rawValue: "UpdateAmountTransaction"), object: nil)
         
         monthDayPickerProtocol.selectionDelegate = self
@@ -148,13 +148,14 @@ class TransactionDetailVC: UIViewController {
         detailsTableView.backgroundView = gradientView
     }
     
-    private func showCalendar() {
-        if let vc = UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(withIdentifier: "CalendarVC") as? CalendarVC {
-            vc.definesPresentationContext = true
-            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            vc.allowsMultipleDates = false
-            self.present(vc, animated: true, completion: nil)
+    private func showCalendar(dateRangeType: DateRangeType) {
+        if let calendarController = UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(withIdentifier: "CalendarVC") as? CalendarVC {
+            calendarController.definesPresentationContext = true
+            calendarController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            calendarController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            calendarController.dateRangeType = .single
+            calendarController.selectionDateDelegate = self
+            self.present(calendarController, animated: true, completion: nil)
         }
     }
     
@@ -266,23 +267,23 @@ class TransactionDetailVC: UIViewController {
         shouldShowSaveButton = isTransactionReadyToSave()
     }
     
-    @objc func updateDate(notification: Notification) {
-        guard let chosenDate = notification.userInfo?["dates"] as! [Date]? else { return }
-        
-        if isNewTransaction && newTransaction != nil {
-            newTransaction?.date = chosenDate[0]
-        } else if !isNewTransaction && existingTransaction != nil {
-            isLaterDate = transactionCopy?.date?.compare(chosenDate[0]) == ComparisonResult.orderedAscending
-            transactionCopy?.date = chosenDate[0]
-        }
-        
-        if let dateCell = detailsTableView.cellForRow(at: dateCellIndex) {
-            dateCell.textLabel?.text = chosenDate[0].longFormatString
-            detailsTableView.reloadRows(at: [dateCellIndex], with: .fade)
-        }
-        
-        shouldShowSaveButton = isTransactionReadyToSave()
-    }
+//    @objc func updateDate(notification: Notification) {
+//        guard let chosenDate = notification.userInfo?["dates"] as! [Date]? else { return }
+//
+//        if isNewTransaction && newTransaction != nil {
+//            newTransaction?.date = chosenDate[0]
+//        } else if !isNewTransaction && existingTransaction != nil {
+//            isLaterDate = transactionCopy?.date?.compare(chosenDate[0]) == ComparisonResult.orderedAscending
+//            transactionCopy?.date = chosenDate[0]
+//        }
+//
+//        if let dateCell = detailsTableView.cellForRow(at: dateCellIndex) {
+//            dateCell.textLabel?.text = chosenDate[0].longFormatString
+//            detailsTableView.reloadRows(at: [dateCellIndex], with: .fade)
+//        }
+//
+//        shouldShowSaveButton = isTransactionReadyToSave()
+//    }
     
     @objc func updateTransactionAmount(notification: Notification) {
         guard let updatedAmount = notification.userInfo?["updatedAmount"] as! String? else { return }
@@ -381,7 +382,7 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == dateCellIndex {
-            showCalendar()
+            showCalendar(dateRangeType: .single)
         }
         //detailsTableView.reloadRows(at: [indexPath], with: .fade)
     }
@@ -563,7 +564,7 @@ extension TransactionDetailVC : UITextFieldDelegate {
 
 }
 
-extension TransactionDetailVC: PickerDidSelectDelegate {
+extension TransactionDetailVC: PickerDidSelectDelegate, SelectedDatesDelegate {
     func pickerDidSelect(frequencyInfo: FrequencyInfo) {
         if existingTransaction != nil && !isNewTransaction {
             transactionCopy?.frequencyInfo = frequencyInfo
@@ -574,6 +575,24 @@ extension TransactionDetailVC: PickerDidSelectDelegate {
         periodPickerProtocol.currentFrequency = frequencyInfo
         monthDayPickerProtocol.currentFrequency = frequencyInfo
         //detailsTableView.reloadRows(at: [recurrentCellIndex], with: .none)
+        shouldShowSaveButton = isTransactionReadyToSave()
+    }
+    
+    func selectedDates(viewController: UIViewController, dates: [Date], rangeType: DateRangeType, afterDate: Bool?) {
+        
+        guard dates.count == 1 else { return }
+        if isNewTransaction && newTransaction != nil {
+            newTransaction?.date = dates[0]
+        } else if !isNewTransaction && existingTransaction != nil {
+            isLaterDate = transactionCopy?.date?.compare(dates[0]) == ComparisonResult.orderedAscending
+            transactionCopy?.date = dates[0]
+        }
+        
+        if let dateCell = detailsTableView.cellForRow(at: dateCellIndex) {
+            dateCell.textLabel?.text = dates[0].longFormatString
+            detailsTableView.reloadRows(at: [dateCellIndex], with: .none)
+        }
+        
         shouldShowSaveButton = isTransactionReadyToSave()
     }
         

@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum DateRangeType: Int {
+    case single = 0, continuous, specific
+}
+
 class CalendarVC : UIViewController {
     
     // MARK: Outelts
@@ -15,7 +19,9 @@ class CalendarVC : UIViewController {
     @IBOutlet weak var completeDateButton: UIButton!
     
     //MARK: Properties
-    weak var parentVC: WalletVC?
+    weak var walletController: WalletVC?
+    weak var filterController: DatesFilterVC?
+    weak var selectionDateDelegate: SelectedDatesDelegate?
     var firstWeekDayOfMonth = 0   //(Sunday-Saturday 1-7)
     var startDate: IndexPath?
     var endDate: IndexPath?
@@ -23,7 +29,7 @@ class CalendarVC : UIViewController {
     var dateLimits : [Date]?
     var limitsIndexPath : [IndexPath]?
     let calendarData = CalendarModel()
-    var allowsMultipleDates: Bool = false
+    var dateRangeType: DateRangeType?
     var selectedDateRange = [IndexPath]() {
         didSet {
             completeDateButton.isEnabled = (selectedDateRange.count > 0) ? true : false
@@ -35,7 +41,7 @@ class CalendarVC : UIViewController {
         super.viewDidLoad()
         todayIndexPath = calendarData.todayIndexPath
         
-        if let dateLimits = parentVC?.transactionsDateLimits {
+        if let dateLimits = walletController?.transactionsDateLimits {
             limitsIndexPath = getTransactionIndexLimits(dateLimits)
         }
         
@@ -63,19 +69,16 @@ class CalendarVC : UIViewController {
     
     @objc func didTapCompleteDate(sender: UIButton) {
         var dates = [Date]()
+        
         if selectedDateRange.count > 1 {
             dates.append(calendarData.getDate(fromIndex: selectedDateRange.first!))
             dates.append(calendarData.getDate(fromIndex: selectedDateRange.last!))
         } else if selectedDateRange.count == 1 {
             dates.append(calendarData.getDate(fromIndex: selectedDateRange[0]))
         }
-        
-        var userInfo = [String:Any]()
-        userInfo["dates"] = dates
-        userInfo["filterType"] = FilterType.dates
-        userInfo["shouldApplyFilter"] = allowsMultipleDates
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SendDates"), object: nil, userInfo: userInfo)
+        guard let dateRangeType = dateRangeType else { return }
+        filterController?.dateRange = dates
+        selectionDateDelegate?.selectedDates(viewController: self, dates: dates, rangeType: dateRangeType, afterDate: nil)
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -113,6 +116,11 @@ class CalendarVC : UIViewController {
     
     @IBAction func cancelDate(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func clearDates(_ sender: Any) {
+        selectedDateRange.removeAll()
+        calendarView.myCollectionView.reloadData()
     }
     
     func getTransactionIndexLimits(_ limits : [Date]) -> [IndexPath] {

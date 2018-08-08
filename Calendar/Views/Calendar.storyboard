@@ -40,6 +40,9 @@
                                 <state key="normal" title="Clear">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="clearDates:" destination="BJl-m9-c63" eventType="touchUpInside" id="Ccf-1k-bsy"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wC-vn-0Gz">
                                 <rect key="frame" x="61" y="52.000000000000007" width="253" height="26.333333333333336"/>

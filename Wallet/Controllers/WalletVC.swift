@@ -86,7 +86,8 @@ class WalletVC: UIViewController {
         print("childVCs WalletVC: \(self.childViewControllers)")
         
         if let filterVC = self.childViewControllers[0] as? DatesFilterVC {
-            filterVC.parentVC = self
+            filterVC.selectionDateDelegate = self
+            filterVC.walletController = self
 //            filterVC.view.heightAnchor.constraint(equalToConstant: 0)
 //            filterVC.datesButton.isHidden = false
         }
@@ -275,7 +276,7 @@ class WalletVC: UIViewController {
     }
     
     @objc func applyFilter(notification: Notification) {
-        
+     
         guard let filterDates = notification.userInfo?["dates"] as? [Date], let filterType = notification.userInfo?["filterType"] as? FilterType, let shouldApplyFilter = notification.userInfo?["shouldApplyFilter"] as? Bool else { return }
         
         if shouldApplyFilter {
@@ -429,7 +430,26 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
         
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+}
     
+
+extension WalletVC: SelectedDatesDelegate {
+    func selectedDates(viewController: UIViewController, dates: [Date], rangeType: DateRangeType, afterDate:Bool?) {
+
+        if dates.count == 2 {
+            updatePredicates(withPredicate: createPredicateWithDates(dates), filterType: .dates)
+            updateMainBalance()
+            // Update earnings/expenses label
+        } else if dates.count == 1 {
+            if let isAfter = afterDate {
+                sortByAscendingDates = isAfter
+            }
+            setTransactionDateLimits()
+            let dates = sortByAscendingDates ? [dates[0], transactionsDateLimits[1]] : [transactionsDateLimits[0], dates[0]]
+            updatePredicates(withPredicate: createPredicateWithDates(dates), filterType: .dates)
+            updateMainBalance()
+        }
+    }
 }
 
 extension Double {
