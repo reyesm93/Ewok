@@ -27,8 +27,8 @@ class TransactionDetailVC: UIViewController {
     weak var existingTransaction: Transaction?
     weak var walletVC: WalletVC?
     let stack = CoreDataStack.sharedInstance
-    var newTransaction: TransactionStruct?
-    var transactionCopy: TransactionStruct?
+    var newTransaction: TransactionCopy?
+    var transactionCopy: TransactionCopy?
     var cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
     var saveDelegate: SaveObjectDelegate?
     let monthDayPickerProtocol = MonthDayPickerDataSource()
@@ -52,7 +52,6 @@ class TransactionDetailVC: UIViewController {
                 UIView.animate(withDuration: 1) {
                     self.saveButtonBottomConstraint.constant = -1 * self.saveButton.frame.height
                 }
-                
             }
         }
     }
@@ -89,9 +88,10 @@ class TransactionDetailVC: UIViewController {
                     saveDelegate?.saveObject(controller: self, saveObject: existingTransaction!, isNew: false)
                 }
             } else if newTransaction != nil && isNewTransaction {
-                guard let newName = newTransaction?.description, let newAmount = newTransaction?.amount, let newIncome = newTransaction?.income, let newDate = newTransaction?.date as NSDate? else { return }
-                let createTransaction = Transaction(title: newName, amount: newAmount, income: newIncome, date: newDate, context: stack.context)
-                saveDelegate?.saveObject(controller: self, saveObject: createTransaction, isNew: true)
+                guard let _ = newTransaction?.description, let _ = newTransaction?.amount, let _ = newTransaction?.income, let _ = newTransaction?.date as NSDate?, let _ = newTransaction?.recurrent else { return }
+                if let createTransaction = newTransaction?.createTransactionManagedObject() {
+                    saveDelegate?.saveObject(controller: self, saveObject: createTransaction, isNew: true)
+                }
             }
         }
         
@@ -118,15 +118,15 @@ class TransactionDetailVC: UIViewController {
     fileprivate func setTransactionCopies() {
         if existingTransaction != nil {
             isNewTransaction = false
-            transactionCopy = TransactionStruct(with: existingTransaction!)
+            transactionCopy = TransactionCopy(with: existingTransaction!)
             guard let isIncome = transactionCopy?.income else { return }
             amountColor = isIncome ? UIColor.white : UIColor.red
             cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: amountColor)
             periodPickerProtocol.currentFrequency = transactionCopy?.frequencyInfo
             monthDayPickerProtocol.currentFrequency = transactionCopy?.frequencyInfo
         } else {
-            let frequency = FrequencyInfo(frequencyType: .byMonthDay)
-            newTransaction = TransactionStruct(date: Date().simpleFormat, income: true, recurrent: false, variable: false, frequencyInfo: frequency)
+            let frequency = FrequencyInfoCopy(frequencyType: .byMonthDay)
+            newTransaction = TransactionCopy(date: Date().simpleFormat, income: true, recurrent: false, variable: false, frequencyInfo: frequency)
             isNewTransaction = true
             cashDelegate = CashTextFieldDelegate(fontSize: 46, fontColor: .white)
             periodPickerProtocol.currentFrequency = newTransaction?.frequencyInfo
@@ -153,7 +153,7 @@ class TransactionDetailVC: UIViewController {
             calendarController.definesPresentationContext = true
             calendarController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             calendarController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            calendarController.dateRangeType = .single
+            calendarController.dateRangeType = dateRangeType
             calendarController.selectionDateDelegate = self
             self.present(calendarController, animated: true, completion: nil)
         }
@@ -235,7 +235,7 @@ class TransactionDetailVC: UIViewController {
     private func isTransactionReadyToSave() -> Bool {
         if existingTransaction != nil && !isNewTransaction {
             if transactionCopy?.amount != 0.0  && transactionCopy?.description != "" {
-                let updatedTransaction = TransactionStruct(with: existingTransaction!)
+                let updatedTransaction = TransactionCopy(with: existingTransaction!)
                 return updatedTransaction != transactionCopy
             }
         } else if newTransaction != nil && isNewTransaction {
@@ -253,11 +253,11 @@ class TransactionDetailVC: UIViewController {
     @objc func changeValue(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            setIncome(false)
+            setIncome(true)
             updateAmountTextField(isIncome: true)
             //sender.tintColor = UIColor.blue
         case 1:
-            setIncome(true)
+            setIncome(false)
             updateAmountTextField(isIncome: false)
             //sender.tintColor = UIColor.red
         default:
@@ -328,10 +328,11 @@ class TransactionDetailVC: UIViewController {
     
     fileprivate func setFrequencyType(_ type: FrequencyType) {
         if existingTransaction != nil && !isNewTransaction {
-            transactionCopy?.frequencyInfo?.frequencyType = .byMonthDay
+            transactionCopy?.frequencyInfo?.frequencyType = type
         } else {
-            newTransaction?.frequencyInfo?.frequencyType = .byMonthDay
+            newTransaction?.frequencyInfo?.frequencyType =  type
         }
+        shouldShowSaveButton = isTransactionReadyToSave()
     }
     
     @objc func selectMonthDay(_ sender: UITapGestureRecognizer) {
@@ -347,9 +348,8 @@ class TransactionDetailVC: UIViewController {
     }
     
     @objc func selectByDates(_ sender: UITapGestureRecognizer) {
-        let cell = detailsTableView.cellForRow(at: recurrentCellIndex) as? RecurrentCell
-        cell?.frequencyType = .byDates
-        setFrequencyType(.byDates)
+        showCalendar(dateRangeType: .specific)
+        //shouldShowSaveButton = isTransactionReadyToSave()
     }
 }
 
@@ -484,6 +484,16 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         cell?.byPeriodPicker.delegate = periodPickerProtocol
         
         let currentTransaction = isNewTransaction ? newTransaction : transactionCopy
+        var dateListString = "On specific dates: "
+        
+        if let dateList = currentTransaction?.frequencyInfo?.dates {
+            for date in dateList {
+                dateListString.append(date.shortFormatString + ", ")
+            }
+        }
+        
+        cell?.specificDatesLabel.text = dateListString
+        
 
         if let isRecurrent = currentTransaction?.recurrent {
             cell?.recurrentSwitch.isOn = isRecurrent
@@ -497,7 +507,22 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         
         if let freqInfo = currentTransaction?.frequencyInfo {
             cell?.frequencyType = freqInfo.frequencyType
+            if var dayRow = freqInfo.monthDay {
+                dayRow = dayRow - 1
+                cell?.monthDayPicker.selectRow(dayRow, inComponent: 0, animated: false)
+            }
             
+            if var daysRow = freqInfo.period?.value {
+                daysRow = daysRow - 1
+                cell?.byPeriodPicker.selectRow(daysRow, inComponent: 0, animated: false)
+            }
+            
+            if let periodTypeRow = freqInfo.period?.periodType {
+                cell?.byPeriodPicker.selectRow(periodTypeRow.rawValue, inComponent: 1, animated: false)
+            }
+            
+        } else {
+            cell?.frequencyType = .byMonthDay
         }
         
         
@@ -565,7 +590,7 @@ extension TransactionDetailVC : UITextFieldDelegate {
 }
 
 extension TransactionDetailVC: PickerDidSelectDelegate, SelectedDatesDelegate {
-    func pickerDidSelect(frequencyInfo: FrequencyInfo) {
+    func pickerDidSelect(frequencyInfo: FrequencyInfoCopy) {
         if existingTransaction != nil && !isNewTransaction {
             transactionCopy?.frequencyInfo = frequencyInfo
         } else {
@@ -580,19 +605,44 @@ extension TransactionDetailVC: PickerDidSelectDelegate, SelectedDatesDelegate {
     
     func selectedDates(viewController: UIViewController, dates: [Date], rangeType: DateRangeType, afterDate: Bool?) {
         
-        guard dates.count == 1 else { return }
-        if isNewTransaction && newTransaction != nil {
-            newTransaction?.date = dates[0]
-        } else if !isNewTransaction && existingTransaction != nil {
-            isLaterDate = transactionCopy?.date?.compare(dates[0]) == ComparisonResult.orderedAscending
-            transactionCopy?.date = dates[0]
+        switch rangeType {
+        case .single:
+            guard dates.count == 1 else { return }
+            if isNewTransaction && newTransaction != nil {
+                newTransaction?.date = dates[0]
+            } else if !isNewTransaction && existingTransaction != nil {
+                isLaterDate = transactionCopy?.date?.compare(dates[0]) == ComparisonResult.orderedAscending
+                transactionCopy?.date = dates[0]
+            }
+            
+            if let dateCell = detailsTableView.cellForRow(at: dateCellIndex) {
+                dateCell.textLabel?.text = dates[0].longFormatString
+                detailsTableView.reloadRows(at: [dateCellIndex], with: .none)
+            }
+        case .specific:
+            if isNewTransaction && newTransaction != nil {
+                newTransaction?.frequencyInfo?.dates = dates
+            } else if !isNewTransaction && existingTransaction != nil {
+                transactionCopy?.frequencyInfo?.dates = dates
+            }
+            let cell = detailsTableView.cellForRow(at: recurrentCellIndex) as? RecurrentCell
+            cell?.frequencyType = .byDates
+            setFrequencyType(.byDates)
+            
+            var dateListString = "On specific dates: "
+            
+            for date in dates {
+                if dates.index(of: date) != 0 {
+                    dateListString += ", "
+                }
+                dateListString.append(date.shortFormatString)
+            }
+            
+            cell?.specificDatesLabel.text = dateListString
+        default:
+            break
         }
-        
-        if let dateCell = detailsTableView.cellForRow(at: dateCellIndex) {
-            dateCell.textLabel?.text = dates[0].longFormatString
-            detailsTableView.reloadRows(at: [dateCellIndex], with: .none)
-        }
-        
+
         shouldShowSaveButton = isTransactionReadyToSave()
     }
         

@@ -110,7 +110,9 @@ class WalletVC: UIViewController {
         
 //        setFilterBySC()
         setTransactionDateLimits()
-        updatePredicates(withPredicate: createPredicateWithDates([transactionsDateLimits[0], Date().simpleFormat]), filterType: .noFilter)
+        if transactionsDateLimits != nil && transactionsDateLimits.count > 0 {
+            updatePredicates(withPredicate: createPredicateWithDates([transactionsDateLimits[0], Date().simpleFormat]), filterType: .noFilter)
+        }
         
     }
     
@@ -379,7 +381,7 @@ extension WalletVC : UIScrollViewDelegate {
 extension WalletVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let objectCount = (fetchedResultsController?.fetchedObjects?.count)!
+        guard let objectCount = fetchedResultsController?.fetchedObjects?.count else { return 0 }
         return objectCount
     }
     

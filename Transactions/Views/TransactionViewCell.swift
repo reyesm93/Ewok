@@ -40,7 +40,7 @@ class RecurrentCell: UITableViewCell {
     @IBOutlet weak var monthDayPicker: UIPickerView!
     @IBOutlet weak var monthDayCheckmark: UIImageView!
     @IBOutlet weak var monthDayView: UIView!
-    
+    @IBOutlet weak var theLabel: UILabel!
     
     @IBOutlet weak var byPeriodLabel: UILabel!
     @IBOutlet weak var byPeriodPicker: UIPickerView!
@@ -70,6 +70,7 @@ class RecurrentCell: UITableViewCell {
         specificDatesCheckmark.tintColor = tintColor
         byPeriodLabel.textColor = .lightGray
         specificDatesLabel.textColor = .lightGray
+        theLabel.textColor = .lightGray
         
     }
     enum CellState {

@@ -24,8 +24,8 @@ class TransactionVC: UIViewController {
     var transactionDate: Date?
     var amount: Double?
     var tagsFetchRequest : NSFetchRequest<Tag>?
-    var oldTransaction : TransactionStruct?
-    var newTransaction : TransactionStruct?
+    var oldTransaction : TransactionCopy?
+    var newTransaction : TransactionCopy?
     var saveDelegate: SaveObjectDelegate?
     var isEditingTags : Bool = false {
         didSet {
@@ -76,7 +76,7 @@ class TransactionVC: UIViewController {
             amount = transaction.amount
             isIncome = transaction.income
             
-            oldTransaction = TransactionStruct(description: transaction.title!, amount: transaction.amount, date: transaction.date! as Date, income: transaction.income)
+            oldTransaction = TransactionCopy(description: transaction.title!, amount: transaction.amount, date: transaction.date! as Date, income: transaction.income)
         }
         
         addNewTagButton.isHidden = isEditingTags
@@ -122,7 +122,7 @@ class TransactionVC: UIViewController {
         
         if updatedValue {
             
-            newTransaction = TransactionStruct(description: transactionTitle!, amount: amount!, date: transactionDate!, income: isIncome!)
+            newTransaction = TransactionCopy(description: transactionTitle!, amount: amount!, date: transactionDate!, income: isIncome!)
             
             transaction!.date = transactionDate as! NSDate
             transaction!.amount = amount!

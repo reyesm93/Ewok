@@ -27,14 +27,33 @@ public class Transaction: NSManagedObject {
         }
     }
     
-    func updateWithStructCopy(_ copy: TransactionStruct) {
+    func updateWithStructCopy(_ copy: TransactionCopy) {
         self.title = copy.description
         self.amount = copy.amount ?? self.amount
         self.income = copy.income ?? self.income
         self.date = copy.date as NSDate?
         self.recurrent = copy.recurrent ?? self.recurrent
         self.variable = copy.variable ?? self.variable
-        self.frequencyInfo = copy.frequencyInfo ?? self.frequencyInfo
+        
+        if let freqInfo = copy.frequencyInfo {
+            var freqMonthDay: Int?
+            var freqPeriod: FrequencyPeriod?
+            var freqDates: [Date]?
+            
+            if freqInfo.monthDay != nil {
+                freqMonthDay = freqInfo.monthDay
+            }
+            
+            if freqInfo.period != nil {
+                freqPeriod = FrequencyPeriod((freqInfo.period?.value)!, (freqInfo.period?.periodType)!)
+            }
+            
+            if freqInfo.dates != nil {
+                freqDates = freqInfo.dates
+            }
+            
+            self.frequencyInfo = FrequencyInfo(frequencyType: freqInfo.frequencyType, monthDay: freqMonthDay, period: freqPeriod, dates: freqDates)
+        }
     }
 
 }

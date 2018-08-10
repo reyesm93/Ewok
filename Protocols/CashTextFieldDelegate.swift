@@ -45,6 +45,10 @@ class CashTextFieldDelegate: NSObject, UITextFieldDelegate {
                 textField.attributedText = "$0.00".cashAttributedString(color: UIColor.white, size: size)
             }
         }
+        if let updatedAmount = textField.text {
+            let userInfo: [String:String] = ["updatedAmount" : updatedAmount]
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateAmountTransaction"), object: nil, userInfo: userInfo)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -60,6 +64,5 @@ class CashTextFieldDelegate: NSObject, UITextFieldDelegate {
         }
     }
     
-     
 }
 

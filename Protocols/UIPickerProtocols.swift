@@ -9,12 +9,12 @@
 import UIKit
 
 protocol PickerDidSelectDelegate {
-    func pickerDidSelect(frequencyInfo: FrequencyInfo)
+    func pickerDidSelect(frequencyInfo: FrequencyInfoCopy)
 }
 class MonthDayPickerDataSource: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var selectionDelegate: PickerDidSelectDelegate?
-    var currentFrequency: FrequencyInfo?
+    var currentFrequency: FrequencyInfoCopy?
     
     var monthDays: [Int] = {
         var days = [Int]()
@@ -52,7 +52,7 @@ class MonthDayPickerDataSource: NSObject, UIPickerViewDelegate, UIPickerViewData
 class PeriodPickerDataSource: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var selectionDelegate: PickerDidSelectDelegate?
-    var currentFrequency: FrequencyInfo?
+    var currentFrequency: FrequencyInfoCopy?
     
     var multipliers: [Int] = {
         var numbers = [Int]()
@@ -95,7 +95,7 @@ class PeriodPickerDataSource: NSObject, UIPickerViewDelegate, UIPickerViewDataSo
             currentFrequency?.frequencyType = .byPeriod
             
             if currentFrequency?.period == nil {
-                let newPeriod = FrequencyPeriod(1,.days)
+                let newPeriod = FrequencyPeriodCopy(1,.days)
                 currentFrequency?.period = newPeriod
             }
             

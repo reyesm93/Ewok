@@ -58,7 +58,7 @@
                                         </segments>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The amount of a fixed transaction remains the same accross time." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="up8-B4-8Ug">
-                                        <rect key="frame" x="20" y="0.0" width="365" height="81"/>
+                                        <rect key="frame" x="20" y="0.0" width="365" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.55097530750000001" green="0.58129758880000004" blue="0.54064342190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -69,15 +69,14 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEi-dT-Bm0" userLabel="MonthDayPickerView">
                                                 <rect key="frame" x="0.0" y="0.0" width="502" height="50"/>
                                                 <subviews>
-                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbb-Fk-WzJ" userLabel="Month Day Picker">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="5er-fg-zb8"/>
-                                                            <constraint firstAttribute="height" constant="50" id="Eyd-2C-Efs"/>
-                                                        </constraints>
-                                                    </pickerView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8JZ-FL-0fJ">
+                                                        <rect key="frame" x="0.0" y="15.5" width="29.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th day of every month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZz-n0-xgC">
-                                                        <rect key="frame" x="50" y="15" width="167.5" height="20.5"/>
+                                                        <rect key="frame" x="79.5" y="15" width="167.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -90,17 +89,26 @@
                                                             <constraint firstAttribute="width" constant="20" id="XfY-J2-mXJ"/>
                                                         </constraints>
                                                     </imageView>
+                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbb-Fk-WzJ" userLabel="Month Day Picker">
+                                                        <rect key="frame" x="29.5" y="0.0" width="50" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="5er-fg-zb8"/>
+                                                            <constraint firstAttribute="height" constant="50" id="Eyd-2C-Efs"/>
+                                                        </constraints>
+                                                    </pickerView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="wZz-n0-xgC" firstAttribute="leading" secondItem="jbb-Fk-WzJ" secondAttribute="trailing" id="6yH-CG-WKZ"/>
                                                     <constraint firstAttribute="bottom" secondItem="jbb-Fk-WzJ" secondAttribute="bottom" id="7ct-rR-1Iz"/>
+                                                    <constraint firstItem="8JZ-FL-0fJ" firstAttribute="centerY" secondItem="OEi-dT-Bm0" secondAttribute="centerY" id="F0c-dP-v4k"/>
                                                     <constraint firstAttribute="trailing" secondItem="GhB-F4-3Sd" secondAttribute="trailing" constant="8" id="HHr-Kt-lrB"/>
+                                                    <constraint firstItem="8JZ-FL-0fJ" firstAttribute="leading" secondItem="OEi-dT-Bm0" secondAttribute="leading" id="Mwb-Bq-3FR"/>
                                                     <constraint firstAttribute="height" constant="50" id="Rvp-nh-87I"/>
-                                                    <constraint firstItem="jbb-Fk-WzJ" firstAttribute="leading" secondItem="OEi-dT-Bm0" secondAttribute="leading" id="SSK-xg-M6b"/>
                                                     <constraint firstItem="GhB-F4-3Sd" firstAttribute="centerY" secondItem="OEi-dT-Bm0" secondAttribute="centerY" id="XtN-c4-fQq"/>
                                                     <constraint firstItem="jbb-Fk-WzJ" firstAttribute="top" secondItem="OEi-dT-Bm0" secondAttribute="top" id="Ydy-fR-ex1"/>
+                                                    <constraint firstItem="jbb-Fk-WzJ" firstAttribute="leading" secondItem="8JZ-FL-0fJ" secondAttribute="trailing" id="iy2-k4-cGW"/>
                                                     <constraint firstItem="wZz-n0-xgC" firstAttribute="centerY" secondItem="OEi-dT-Bm0" secondAttribute="centerY" id="v4a-uD-Nq0"/>
                                                 </constraints>
                                             </view>
@@ -158,8 +166,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DB8-Me-MBm" userLabel="SpecificDaysView">
                                                 <rect key="frame" x="0.0" y="102" width="502" height="50"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specific Dates:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6em-xc-9UV">
-                                                        <rect key="frame" x="0.0" y="15" width="115" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On specific Dates:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6em-xc-9UV">
+                                                        <rect key="frame" x="0.0" y="15.5" width="140" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -194,7 +202,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Frequency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TM-g6-Vgf">
-                                        <rect key="frame" x="20" y="93" width="117" height="21.5"/>
+                                        <rect key="frame" x="20" y="48" width="117" height="21.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="117" id="dIs-Sg-7tW"/>
                                         </constraints>
@@ -202,17 +210,28 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="This recurrent transaction is repeated..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAf-wB-wXm">
+                                        <rect key="frame" x="20" y="77" width="300" height="39.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="nME-t7-Ydp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.55097530750000001" green="0.58129758880000004" blue="0.54064342190000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="aSg-Sn-PD9" firstAttribute="top" secondItem="47Z-gk-eVc" secondAttribute="topMargin" id="E8Z-K2-vuO"/>
                                     <constraint firstItem="9TM-g6-Vgf" firstAttribute="top" secondItem="up8-B4-8Ug" secondAttribute="bottom" constant="12" id="H4h-z6-FNu"/>
+                                    <constraint firstItem="OAf-wB-wXm" firstAttribute="leading" secondItem="47Z-gk-eVc" secondAttribute="leading" constant="20" id="LWo-dR-xMo"/>
                                     <constraint firstItem="9TM-g6-Vgf" firstAttribute="leading" secondItem="47Z-gk-eVc" secondAttribute="leading" constant="20" id="PkY-iF-aBy"/>
                                     <constraint firstAttribute="trailing" secondItem="7fM-Ol-UuP" secondAttribute="trailing" constant="20" id="SQj-O5-KQg"/>
                                     <constraint firstItem="up8-B4-8Ug" firstAttribute="top" secondItem="47Z-gk-eVc" secondAttribute="top" id="Tc5-gW-D6Y"/>
+                                    <constraint firstItem="7fM-Ol-UuP" firstAttribute="top" secondItem="OAf-wB-wXm" secondAttribute="bottom" constant="8" id="bFj-a5-lQ8"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="230" id="iW6-2U-WOW"/>
                                     <constraint firstItem="7fM-Ol-UuP" firstAttribute="leading" secondItem="47Z-gk-eVc" secondAttribute="leading" constant="20" id="kGh-w0-e82"/>
-                                    <constraint firstItem="7fM-Ol-UuP" firstAttribute="top" secondItem="9TM-g6-Vgf" secondAttribute="bottom" constant="10" id="pHP-uC-gtb"/>
+                                    <constraint firstItem="OAf-wB-wXm" firstAttribute="top" secondItem="9TM-g6-Vgf" secondAttribute="bottom" constant="7.5" id="oSM-Zd-0zN"/>
                                     <constraint firstItem="up8-B4-8Ug" firstAttribute="leading" secondItem="9TM-g6-Vgf" secondAttribute="leading" id="tEq-i2-tYT"/>
                                     <constraint firstItem="aSg-Sn-PD9" firstAttribute="leading" secondItem="up8-B4-8Ug" secondAttribute="trailing" constant="12" id="tTk-Ql-e9o"/>
                                     <constraint firstAttribute="trailing" secondItem="aSg-Sn-PD9" secondAttribute="trailing" constant="25" id="tb1-xO-ysz"/>
@@ -248,6 +267,7 @@
                 <outlet property="specificDatesCheckmark" destination="iXb-78-Mq1" id="dyb-8R-IAM"/>
                 <outlet property="specificDatesLabel" destination="6em-xc-9UV" id="5M9-Km-sos"/>
                 <outlet property="specificDatesView" destination="DB8-Me-MBm" id="hq3-RI-6pp"/>
+                <outlet property="theLabel" destination="8JZ-FL-0fJ" id="wtm-XW-BCM"/>
             </connections>
             <point key="canvasLocation" x="85" y="114.5"/>
         </tableViewCell>
