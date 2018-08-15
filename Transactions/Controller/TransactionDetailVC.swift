@@ -79,23 +79,35 @@ class TransactionDetailVC: UIViewController {
             
             if existingTransaction != nil && !isNewTransaction && transactionCopy != nil {
                 existingTransaction?.updateWithStructCopy(transactionCopy!)
-                if isLaterDate {
+                if isLaterDate{
+                    
                     walletVC?.getNextTransaction(fromTransaction: existingTransaction!) { (result) in
                         // check what happens if you only have one transaction and you change to a later date
-                        self.saveDelegate?.saveObject(controller: self, saveObject: result!, isNew: false)
+                        
+                        self.saveDelegate?.saveObject(controller: self, saveObject: result!, isNew: false) { (didSave) in
+                            if didSave {
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }
                     }
                 } else {
-                    saveDelegate?.saveObject(controller: self, saveObject: existingTransaction!, isNew: false)
+                    saveDelegate?.saveObject(controller: self, saveObject: existingTransaction!, isNew: false) { (didSave) in
+                        if didSave {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
                 }
             } else if newTransaction != nil && isNewTransaction {
                 guard let _ = newTransaction?.description, let _ = newTransaction?.amount, let _ = newTransaction?.income, let _ = newTransaction?.date as NSDate?, let _ = newTransaction?.recurrent else { return }
                 if let createTransaction = newTransaction?.createTransactionManagedObject() {
-                    saveDelegate?.saveObject(controller: self, saveObject: createTransaction, isNew: true)
+                    saveDelegate?.saveObject(controller: self, saveObject: createTransaction, isNew: true) { (didSave) in
+                        if didSave {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
                 }
             }
         }
-        
-        navigationController?.popViewController(animated: true)
     }
     
     

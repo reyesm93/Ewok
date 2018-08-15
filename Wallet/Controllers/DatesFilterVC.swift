@@ -36,7 +36,7 @@ class DatesFilterVC : UIViewController {
                     }
                 }
                 datesButton.setTitle(datesString, for: .normal)
-                datesButton.setNeedsDisplay()
+                //datesButton.setNeedsDisplay()
 
             }
 
@@ -56,7 +56,7 @@ class DatesFilterVC : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         if !isDateFilterApplied {
              dateRange = [Date().simpleFormat]
             datesButton.setTitle(dateRange![0].shortFormatString, for: .normal)
@@ -67,7 +67,7 @@ class DatesFilterVC : UIViewController {
             }
         }
         
-        datesButton.setNeedsDisplay()
+        //datesButton.setNeedsDisplay()
     }
     
     // MARK: Actions

@@ -99,10 +99,10 @@ extension TagsVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension TagsVC : SaveObjectDelegate {
-    func saveObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
+    func saveObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool, completionHandlerForSave: @escaping (Bool) -> Void) {
         self.stack.context.performAndWait {
             self.stack.save()
+            completionHandlerForSave(true)
         }
     }
-    
 }

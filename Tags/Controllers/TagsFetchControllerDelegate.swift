@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-extension TransactionVC : NSFetchedResultsControllerDelegate {
+extension TagsVC : NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tagsTableView.beginUpdates()

@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 protocol SaveObjectDelegate: class {
-    func saveObject(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool)
+    func saveObject(controller : UIViewController, saveObject: NSManagedObject, isNew: Bool, completionHandlerForSave: @escaping (_ didSave: Bool) -> Void)
 }
 
 protocol SelectedSectionDelegate: class {

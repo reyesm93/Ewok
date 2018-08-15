@@ -36,8 +36,12 @@ class TagDetailVC : UIViewController {
     @IBAction func save(_ sender: Any) {
         if nameTextField.text?.count != 0 {
             let newTag = Tag(name: nameTextField.text!, context: self.stack.context)
-            saveDelegate?.saveObject(controller: self, saveObject: newTag, isNew: true)
-            self.dismiss(animated: true, completion: nil)
+            saveDelegate?.saveObject(controller: self, saveObject: newTag, isNew: true) { (didSave) in
+                if didSave {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+            
         }
     }
 }

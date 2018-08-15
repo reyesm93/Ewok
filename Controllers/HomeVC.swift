@@ -290,11 +290,21 @@ extension HomeVC: NSFetchedResultsControllerDelegate {
 }
 
 extension HomeVC: SaveObjectDelegate {
+    func saveObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool, completionHandlerForSave: @escaping (Bool) -> Void) {
+        self.stack.context.performAndWait {
+            let _ = saveObject
+            self.stack.save()
+            completionHandlerForSave(true)
+            
+        }
+    }
+    
     
     func saveObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
         self.stack.context.performAndWait {
             let _ = saveObject
             self.stack.save()
+            
         }
         
         if let controller = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletVC") as? WalletVC {

@@ -11,9 +11,7 @@ import UIKit
 import CoreData
 
 extension WalletVC: SaveObjectDelegate {
-    
-    func saveObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool) {
-        
+    func saveObject(controller: UIViewController, saveObject: NSManagedObject, isNew: Bool, completionHandlerForSave: @escaping (Bool) -> Void) {
         let transaction = saveObject as! Transaction
         
         if isNew {
@@ -24,12 +22,14 @@ extension WalletVC: SaveObjectDelegate {
             if success {
                 self.stack.context.performAndWait {
                     self.stack.save()
+                    completionHandlerForSave(true)
                 }
             } else {
                 print(errorString)
             }
         }
     }
+
     
     func updateBalances(startingAt: Transaction, completionHandlerForUpdates: @escaping (_ success: Bool, _ errorString: String?) -> Void) {
         
@@ -180,6 +180,8 @@ extension WalletVC: SaveObjectDelegate {
                 }
             }
         }
+        
+        updateMainBalance()
     }
     
     func getNextTransaction(fromTransaction: Transaction, completionHandlerForNext: @escaping (_ result: Transaction?) -> Void) {

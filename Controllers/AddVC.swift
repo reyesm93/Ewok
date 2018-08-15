@@ -105,8 +105,12 @@ class AddVC: UIViewController, UIGestureRecognizerDelegate {
                 object = Tag(name: objectName, context: self.stack.context)
             }
             guard let newObject = object else { return }
-            saveDelegate?.saveObject(controller: self, saveObject: newObject, isNew: true)
-            self.dismiss(animated: true, completion: nil)
+            saveDelegate?.saveObject(controller: self, saveObject: newObject, isNew: true) { (didSave) in
+                if didSave {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+            
         }
         
     }

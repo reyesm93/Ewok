@@ -57,7 +57,7 @@ extension WalletVC: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         transactionTableView.endUpdates()
         
-        setTransactionDateLimits()
+        getTransactionDateLimits()
         performUIUpdatesOnMain {
             self.updateMainBalance()
             //            self.mainBalance.text = self.wallet?.balance.currency
