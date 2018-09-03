@@ -11,7 +11,7 @@ import SnapKit
 import CoreData
 import Firebase
 
-class HomeVC: UIViewController, UIGestureRecognizerDelegate  {
+class HomeVC: UIViewController  {
     
     // MARK: Properties
     
@@ -161,7 +161,6 @@ class HomeVC: UIViewController, UIGestureRecognizerDelegate  {
     func setGestureRecognizer(_ walletView: WalletView) {
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectWalletRecognizer(_:)))
-        tapRecognizer.delegate = self
         walletView.addGestureRecognizer(tapRecognizer)
         
     }

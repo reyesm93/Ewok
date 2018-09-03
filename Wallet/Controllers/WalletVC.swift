@@ -55,14 +55,6 @@ class WalletVC: UIViewController {
         }
     }
     
-    var tagsFetchedResultsController : NSFetchedResultsController<Tag>? {
-        
-        didSet {
-            fetchTags()
-        }
-        
-    }
-    
 //    var topTransaction : IndexPath? {
 //        didSet {
 //            //Update table view
@@ -83,6 +75,7 @@ class WalletVC: UIViewController {
         //self.automaticallyAdjustsScrollViewInsets = false
         
         print("childVCs WalletVC: \(self.childViewControllers)")
+        navigationItem.title = wallet?.walletName
         
         if let filterVC = self.childViewControllers[0] as? DatesFilterVC {
             filterVC.selectionDateDelegate = self
@@ -159,20 +152,6 @@ class WalletVC: UIViewController {
         }
         
         return transactions
-    }
-    
-    func fetchTags() -> [Tag] {
-        var tags = [Tag]()
-        if let fc = tagsFetchedResultsController {
-            do {
-                try fc.performFetch()
-                tags = fc.fetchedObjects!
-            } catch let e as NSError {
-                print("Error while trying to perform a search: \n\(e)\n\(String(describing: fetchedResultsController))")
-            }
-        }
-        
-        return tags
     }
     
 //    func setFilterBySC() {

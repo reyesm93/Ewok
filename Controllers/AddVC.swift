@@ -15,7 +15,7 @@ enum ObjectType {
     case wallet, tag
 }
 
-class AddVC: UIViewController, UIGestureRecognizerDelegate {
+class AddVC: UIViewController {
     
     //  MARK: - Outlets
     

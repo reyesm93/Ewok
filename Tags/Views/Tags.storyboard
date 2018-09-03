@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S6e-Lu-JbX">
-                                <rect key="frame" x="0.0" y="218" width="375" height="594"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Czv-xS-N1a" customClass="AddButton" customModule="Ewok" customModuleProvider="target">
@@ -37,8 +37,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="S6e-Lu-JbX" firstAttribute="leading" secondItem="12L-xK-m4D" secondAttribute="leading" id="1x2-in-y51"/>
+                            <constraint firstItem="S6e-Lu-JbX" firstAttribute="top" secondItem="rqP-AT-ETs" secondAttribute="top" id="6zr-uD-bIp"/>
                             <constraint firstAttribute="bottom" secondItem="Czv-xS-N1a" secondAttribute="bottom" constant="15" id="Lj2-97-UI5"/>
-                            <constraint firstItem="S6e-Lu-JbX" firstAttribute="top" secondItem="12L-xK-m4D" secondAttribute="top" constant="174" id="OHo-SH-hy0"/>
                             <constraint firstItem="S6e-Lu-JbX" firstAttribute="trailing" secondItem="12L-xK-m4D" secondAttribute="trailing" id="bzJ-jF-7bU"/>
                             <constraint firstItem="Czv-xS-N1a" firstAttribute="trailing" secondItem="12L-xK-m4D" secondAttribute="trailing" constant="-16" id="hOj-hN-THz"/>
                             <constraint firstAttribute="bottom" secondItem="S6e-Lu-JbX" secondAttribute="bottom" id="mD4-Nh-Ho4"/>
@@ -51,7 +51,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kwh-8U-n3K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1175" y="-310"/>
+            <point key="canvasLocation" x="-1255" y="-310"/>
         </scene>
         <!--Tag DetailVC-->
         <scene sceneID="p4h-ih-RsQ">

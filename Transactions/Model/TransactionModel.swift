@@ -35,8 +35,9 @@ struct TransactionCopy : Equatable {
     var recurrent: Bool?
     var variable: Bool?
     var frequencyInfo: FrequencyInfoCopy?
+    var tags: NSSet?
     
-    init(description: String? = nil, amount: Double? = nil, date: Date? = nil, income: Bool? = false, recurrent: Bool? = false, variable: Bool? = false, frequencyInfo: FrequencyInfoCopy? = nil) {
+    init(description: String? = nil, amount: Double? = nil, date: Date? = nil, income: Bool? = false, recurrent: Bool? = false, variable: Bool? = false, frequencyInfo: FrequencyInfoCopy? = nil, tags: NSSet? = nil) {
         self.description = description
         self.amount = amount
         self.date = date
@@ -44,6 +45,7 @@ struct TransactionCopy : Equatable {
         self.recurrent = recurrent
         self.variable = variable
         self.frequencyInfo = frequencyInfo
+        self.tags = tags
     }
     
     init(with transaction: Transaction) {
@@ -54,6 +56,7 @@ struct TransactionCopy : Equatable {
         self.variable = transaction.variable
         self.recurrent = transaction.recurrent
         self.variable = transaction.variable
+        self.tags = transaction.tags
         
         if let freqInfo = transaction.frequencyInfo {
             self.frequencyInfo = FrequencyInfoCopy(with: freqInfo as! FrequencyInfo)
@@ -68,6 +71,9 @@ struct TransactionCopy : Equatable {
         }
         if let freqInfo = self.frequencyInfo {
             newTransaction.frequencyInfo = freqInfo.createFrequencyObject()
+        }
+        if self.tags != nil {
+            newTransaction.tags = self.tags
         }
         
         return newTransaction

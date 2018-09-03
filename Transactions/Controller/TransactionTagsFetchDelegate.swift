@@ -6,49 +6,59 @@
 //  Copyright © 2018 Arturo Reyes. All rights reserved.
 //
 
-//import UIKit
-//import CoreData
-//
-//extension TagsVC : NSFetchedResultsControllerDelegate {
-//
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tagsTableView.beginUpdates()
-//    }
-//
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-//
-//        let set = IndexSet(integer: sectionIndex)
-//
-//        switch (type) {
-//        case .insert:
-//            tagsTableView.insertSections(set, with: .fade)
-//        case .delete:
-//            tagsTableView.deleteSections(set, with: .fade)
-//        default:
-//            // irrelevant in our case
-//            break
-//        }
-//    }
-//
-//
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-//
-//        switch(type) {
-//        case .insert:
-//            tagsTableView.insertRows(at: [newIndexPath!], with: .fade)
-//        case .delete:
-//            tagsTableView.deleteRows(at: [indexPath!], with: .fade)
-//        case .update:
-//            tagsTableView.reloadRows(at: [indexPath!], with: .fade)
-//        case .move:
-//            tagsTableView.deleteRows(at: [indexPath!], with: .fade)
-//            tagsTableView.insertRows(at: [newIndexPath!], with: .fade)
-//
-//        }
-//    }
-//
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tagsTableView.endUpdates()
-//
-//    }
-//}
+import UIKit
+import CoreData
+
+extension TransactionDetailVC : NSFetchedResultsControllerDelegate {
+    
+    func fetchTags() -> [Tag] {
+        var tags = [Tag]()
+        if let fc = tagsFetchedResultsController {
+            do {
+                try fc.performFetch()
+                tags = fc.fetchedObjects!
+            } catch let e as NSError {
+                print("Error while trying to perform a search: \n\(e)\n\(String(describing: tagsFetchedResultsController))")
+            }
+        }
+        
+        return tags
+    }
+
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        detailsTableView.beginUpdates()
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        var newTagIndexPath: IndexPath?
+        var tagIndexPath: IndexPath?
+        
+        if let new = newIndexPath {
+            newTagIndexPath = IndexPath(row: new.row, section: 1)
+        }
+        
+        if let index = indexPath {
+            tagIndexPath = IndexPath(row: index.row, section: 1)
+        }
+        
+
+        switch(type) {
+        case .insert:
+            detailsTableView.insertRows(at: [newTagIndexPath!], with: .fade)
+        case .delete:
+            detailsTableView.deleteRows(at: [tagIndexPath!], with: .fade)
+        case .update:
+            detailsTableView.reloadRows(at: [tagIndexPath!], with: .fade)
+        case .move:
+            detailsTableView.deleteRows(at: [tagIndexPath!], with: .fade)
+            detailsTableView.insertRows(at: [newTagIndexPath!], with: .fade)
+
+        }
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        detailsTableView.endUpdates()
+
+    }
+}

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import CoreData
 
-class MenuContainerVC: UIViewController, UIGestureRecognizerDelegate {
+class MenuContainerVC: UIViewController {
     
     // MARK: Outlets
     

@@ -78,6 +78,7 @@
 		DDDE0C2B20E8645E004EAAD3 /* TextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE0C2A20E8645E004EAAD3 /* TextField+Extension.swift */; };
 		DDE0D9F62052190700F3A527 /* WalletFetchControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0D9F52052190700F3A527 /* WalletFetchControllerDelegate.swift */; };
 		DDE3E6302051DAC700A13182 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE3E62F2051DAC700A13182 /* TransactionModel.swift */; };
+		DDF2A5E2213CADDA00726117 /* TransactionsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF2A5E1213CADDA00726117 /* TransactionsTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +191,7 @@
 		DDE0576A1FF862DB00D66208 /* Ewok 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 4.xcdatamodel"; sourceTree = "<group>"; };
 		DDE0D9F52052190700F3A527 /* WalletFetchControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletFetchControllerDelegate.swift; sourceTree = "<group>"; };
 		DDE3E62F2051DAC700A13182 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		DDF2A5E1213CADDA00726117 /* TransactionsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +247,7 @@
 			children = (
 				DD0305F520CDC8BC00875F2E /* TransactionTagsFetchDelegate.swift */,
 				DD9CFC2120E6801F001E2A81 /* TransactionDetailVC.swift */,
+				DDF2A5E1213CADDA00726117 /* TransactionsTableView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -953,6 +956,7 @@
 				DD843E931FF5D8D700EE3C0D /* AppDelegate.swift in Sources */,
 				DD8D1AB720375E5E00C52EC9 /* PlaidClient.swift in Sources */,
 				DD844045205DD21B003EF476 /* WeedaysView.swift in Sources */,
+				DDF2A5E2213CADDA00726117 /* TransactionsTableView.swift in Sources */,
 				DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */,
 				DD4BE7F320CCBCE500033090 /* TagViews.swift in Sources */,
 				DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */,

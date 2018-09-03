@@ -25,7 +25,6 @@ class TagsVC : UIViewController {
         didSet {
             // Whenever the frc changes, we execute the search and
             // reload the table
-            
             fetchTags()
             fetchedResultsController?.delegate = self
             tagsTableView.dataSource = self
@@ -76,10 +75,7 @@ class TagsVC : UIViewController {
                 print("Error while trying to perform a search: \n\(e)\n\(String(describing: fetchedResultsController))")
             }
         }
-        
         return tags
-
-
     }
     
 }

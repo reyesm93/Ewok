@@ -13,7 +13,7 @@ import CoreData
 @objc(Transaction)
 public class Transaction: NSManagedObject {
     
-    convenience init(title: String, amount: Double, income: Bool, date: NSDate, context: NSManagedObjectContext, recurrent: Bool? = false, variable: Bool? = false) {
+    convenience init(title: String, amount: Double, income: Bool, date: NSDate, context: NSManagedObjectContext, recurrent: Bool? = false, variable: Bool? = false, tags: NSSet? = nil) {
         if let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: CoreDataStack.sharedInstance.context) {
             self.init(entity: entity, insertInto: CoreDataStack.sharedInstance.context)
             self.title = title
@@ -22,6 +22,7 @@ public class Transaction: NSManagedObject {
             self.date = date
             self.recurrent = recurrent ?? false
             self.variable = variable ?? false
+            self.tags = tags
         } else {
             fatalError("Unable to find Entity name!")
         }

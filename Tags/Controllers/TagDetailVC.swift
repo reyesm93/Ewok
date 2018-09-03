@@ -19,6 +19,8 @@ class TagDetailVC : UIViewController {
     
     var saveDelegate: SaveObjectDelegate?
     let stack = CoreDataStack.sharedInstance
+    var isNewTag: Bool = false
+    var invokedByTransaction: Transaction?
     
     // MARK : Initializers
     
