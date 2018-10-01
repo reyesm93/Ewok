@@ -166,8 +166,8 @@ class TransactionDetailVC: UIViewController {
         detailsTableView.dataSource = self
         detailsTableView.register(UINib(nibName: "AmountCell", bundle: nil), forCellReuseIdentifier: "AmountCell")
         detailsTableView.register(UINib(nibName: "RecurrentCell", bundle: nil), forCellReuseIdentifier: "RecurrentCell")
-        detailsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "TagCell")
-        detailsTableView.rowHeight = UITableViewAutomaticDimension
+        detailsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "TransactionTagCell")
+        detailsTableView.rowHeight = UITableView.automaticDimension
         detailsTableView.estimatedRowHeight = 200
         
         let gradientView = GradientView()
@@ -325,6 +325,12 @@ class TransactionDetailVC: UIViewController {
     
     @objc func showTagsVC(_ sender: UITapGestureRecognizer) {
         if let tagsVC = UIStoryboard(name: "Tags", bundle: nil).instantiateViewController(withIdentifier: "TagsVC") as? TagsVC {
+            
+            if existingTransaction != nil {
+                tagsVC.invokedByTransaction = existingTransaction
+            }
+            tagsVC.isEditingTags = true
+            tagsVC.transactionVC = self
             self.navigationController?.pushViewController(tagsVC, animated: true)
         }
         

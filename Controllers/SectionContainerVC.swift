@@ -38,7 +38,7 @@ class SectionContainerVC: UIViewController, SelectedSectionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let menuButton = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.plain, target: self, action: #selector(showSideMenu))
+        let menuButton = UIBarButtonItem(title: "Menu", style: UIBarButtonItem.Style.plain, target: self, action: #selector(showSideMenu))
         navigationItem.setLeftBarButton(menuButton, animated: true)
         
         currentViewController = homeViewController
@@ -49,17 +49,17 @@ class SectionContainerVC: UIViewController, SelectedSectionDelegate {
     // MARK: Methods
     
     private func addViewController(asChildVC viewController: UIViewController) {
-        addChildViewController(viewController)
+        addChild(viewController)
         view.addSubview(viewController.view)
         viewController.view.frame = view.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
     }
     
     private func removeViewController(asChildVC viewController: UIViewController) {
-        viewController.willMove(toParentViewController: nil)
+        viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
-        viewController.removeFromParentViewController()
+        viewController.removeFromParent()
     }
     
     /// Changes View to selected view controller

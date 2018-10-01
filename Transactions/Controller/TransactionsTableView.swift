@@ -87,7 +87,7 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
                 cell = zeroTagsCell
                 
             } else {
-                let tagCell = tableView.dequeueReusableCell(withIdentifier: "TagCell", for: indexPath)
+                let tagCell = tableView.dequeueReusableCell(withIdentifier: "TransactionTagCell", for: indexPath)
                 let tag = tagList[indexPath.row]
                 tagCell.textLabel?.text = tag.name
                 tagCell.textLabel?.textColor = .white
@@ -133,7 +133,7 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         cell?.amountTextField.adjustsFontSizeToFitWidth = false
         cell?.amountTextField.addDoneButtonOnKeyboard()
         //        cell?.valueSegmentControl.tintColor = amountColor
-        cell?.valueSegmentControl.addTarget(self, action: #selector(changeValue), for: UIControlEvents.valueChanged)
+        cell?.valueSegmentControl.addTarget(self, action: #selector(changeValue), for: UIControl.Event.valueChanged)
         cell?.selectionStyle = .none
         
         
@@ -155,7 +155,7 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         let cell = detailsTableView.dequeueReusableCell(withIdentifier: "TransacionDetailCell")
         cell?.selectionStyle = .none
         descriptionTextField = createTextField()
-        descriptionTextField?.attributedPlaceholder = NSAttributedString(string: "Enter transaction description here", attributes: [NSAttributedStringKey.foregroundColor:UIColor.lightGray])
+        descriptionTextField?.attributedPlaceholder = NSAttributedString(string: "Enter transaction description here", attributes: [NSAttributedString.Key.foregroundColor:UIColor.lightGray])
         
         if let transactionName = transactionCopy?.description {
             descriptionTextField?.text = transactionName
@@ -195,8 +195,8 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
     
     private func loadRecurrentCell() -> UITableViewCell {
         let cell = detailsTableView.dequeueReusableCell(withIdentifier: "RecurrentCell") as? RecurrentCell
-        cell?.recurrentSwitch.addTarget(self, action: #selector(recurrentValueChanged), for: UIControlEvents.valueChanged)
-        cell?.fixedOrVariableControl.addTarget(self, action: #selector(variableValueChanged), for: UIControlEvents.valueChanged)
+        cell?.recurrentSwitch.addTarget(self, action: #selector(recurrentValueChanged), for: UIControl.Event.valueChanged)
+        cell?.fixedOrVariableControl.addTarget(self, action: #selector(variableValueChanged), for: UIControl.Event.valueChanged)
         setFrequencyOptionsRecognizers(cell)
         
         cell?.monthDayPicker.dataSource = monthDayPickerProtocol
@@ -264,13 +264,13 @@ extension TransactionDetailVC : UITableViewDelegate, UITableViewDataSource {
         let textField =  UITextField(frame: CGRect(x: 20, y: 0, width: 300, height: 60))
         textField.font = UIFont.systemFont(ofSize: 18)
         textField.textColor = .white
-        textField.borderStyle = UITextBorderStyle.none
+        textField.borderStyle = UITextField.BorderStyle.none
         textField.backgroundColor = .clear
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
         textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextFieldViewMode.whileEditing;
-        textField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
+        textField.clearButtonMode = UITextField.ViewMode.whileEditing;
+        textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         textField.delegate = self
         return textField
     }

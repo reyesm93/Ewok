@@ -53,7 +53,7 @@ class AddButton: CircularButton {
         backgroundColor = UIColor.white
         titleLabel?.removeFromSuperview()
         setImage(UIImage(named: "icon_addpin.png"), for: .normal)
-        imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+        imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }
 
@@ -71,6 +71,6 @@ class FilterTypeButton : CircularButton {
     private func setView() {
         layer.borderWidth = 1
         backgroundColor = .clear
-        imageEdgeInsets = UIEdgeInsetsMake(16, 16, 16, 16)
+        imageEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
 }

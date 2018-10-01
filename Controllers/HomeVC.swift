@@ -58,7 +58,7 @@ class HomeVC: UIViewController  {
             make.edges.equalTo(view)
         }
         
-        view.bringSubview(toFront: addWalletButton)
+        view.bringSubviewToFront(addWalletButton)
         fetchedResultsController.delegate = self
     
         if fetchWallets().isEmpty {

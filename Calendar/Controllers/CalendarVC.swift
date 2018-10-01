@@ -89,7 +89,7 @@ class CalendarVC : UIViewController {
         calendarView.myCollectionView.delegate = self
         calendarView.myCollectionView.dataSource = self
         calendarView.myCollectionView.register(DateCell.self, forCellWithReuseIdentifier: "DateCell")
-        calendarView.myCollectionView.register(MonthHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "MonthHeader")
+        calendarView.myCollectionView.register(MonthHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "MonthHeader")
         calendarView.myCollectionView.scrollToItem(at: todayIndexPath!, at: .centeredVertically, animated: false)
 
 //        if let attributes = calendarView.myCollectionView.collectionViewLayout.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: IndexPath(item: 0, section: (todayIndexPath?.section)!)) {

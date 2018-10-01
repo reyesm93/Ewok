@@ -15,12 +15,12 @@ extension String {
         
         let isNegative = self.hasPrefix("-")
         let attributedText = NSMutableAttributedString()
-        var cashStringAttributes = [NSAttributedStringKey:Any]()
-        cashStringAttributes[NSAttributedStringKey.foregroundColor] = isNegative ? UIColor.red : color
-        cashStringAttributes[NSAttributedStringKey.font] = UIFont(name: "KohinoorBangla-Light", size: size)
+        var cashStringAttributes = [NSAttributedString.Key:Any]()
+        cashStringAttributes[NSAttributedString.Key.foregroundColor] = isNegative ? UIColor.red : color
+        cashStringAttributes[NSAttributedString.Key.font] = UIFont(name: "KohinoorBangla-Light", size: size)
         
         var centStringAttributes = cashStringAttributes
-        centStringAttributes[NSAttributedStringKey.font] = UIFont(name: "KohinoorBangla-Light", size: round((size*0.7)))
+        centStringAttributes[NSAttributedString.Key.font] = UIFont(name: "KohinoorBangla-Light", size: round((size*0.7)))
         
         let dollarSign = NSAttributedString(string: "$", attributes: centStringAttributes)
         let period = NSAttributedString(string: ".", attributes: cashStringAttributes)
@@ -52,11 +52,11 @@ extension String {
         return attributedText
     }
     
-    func dollarStringFromInt(_ value: Int, attributes: [NSAttributedStringKey:Any]) -> NSAttributedString {
+    func dollarStringFromInt(_ value: Int, attributes: [NSAttributedString.Key:Any]) -> NSAttributedString {
         return NSAttributedString(string: String(value / 100), attributes: attributes)
     }
     
-    func centsStringFromInt(_ value: Int, attributes: [NSAttributedStringKey:Any]) -> NSAttributedString {
+    func centsStringFromInt(_ value: Int, attributes: [NSAttributedString.Key:Any]) -> NSAttributedString {
         
         let cents = value % 100
         var centsString = String(cents)
@@ -96,8 +96,8 @@ extension UITextField {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle = UIBarStyle.default
         
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction(sender:)))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction(sender:)))
         
         var items = [UIBarButtonItem]()
         items.append(flexSpace)

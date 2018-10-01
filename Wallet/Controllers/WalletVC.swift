@@ -74,10 +74,10 @@ class WalletVC: UIViewController {
         super.viewDidLoad()
         //self.automaticallyAdjustsScrollViewInsets = false
         
-        print("childVCs WalletVC: \(self.childViewControllers)")
+        print("childVCs WalletVC: \(self.children)")
         navigationItem.title = wallet?.walletName
         
-        if let filterVC = self.childViewControllers[0] as? DatesFilterVC {
+        if let filterVC = self.children[0] as? DatesFilterVC {
             filterVC.selectionDateDelegate = self
             filterVC.walletController = self
 //            filterVC.view.heightAnchor.constraint(equalToConstant: 0)

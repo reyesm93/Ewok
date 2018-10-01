@@ -224,7 +224,7 @@ extension UIFont {
     }
     
     
-    func with(traits: UIFontDescriptorSymbolicTraits) -> UIFont {
+    func with(traits: UIFontDescriptor.SymbolicTraits) -> UIFont {
         guard let descriptor = self.fontDescriptor.withSymbolicTraits(traits) else {
             return self
         } // guard

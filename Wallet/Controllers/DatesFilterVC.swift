@@ -48,7 +48,7 @@ class DatesFilterVC : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         datesButton.titleLabel?.lineBreakMode = .byWordWrapping
-        beforeOrAfterControl.addTarget(self, action: #selector(filterWithSingleDate), for: UIControlEvents.valueChanged)
+        beforeOrAfterControl.addTarget(self, action: #selector(filterWithSingleDate), for: UIControl.Event.valueChanged)
 //        NotificationCenter.default.addObserver(self, selector: #selector(applyFilter), name: NSNotification.Name(rawValue: "SendDates"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(clearFilter), name: NSNotification.Name(rawValue: "ClearFilter"), object: nil)
         

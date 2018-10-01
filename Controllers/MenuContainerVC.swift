@@ -46,7 +46,7 @@ class MenuContainerVC: UIViewController {
     
     private func setUpDelegates() {
         
-        for child in childViewControllers {
+        for child in children {
             if let navCotroller = child as? TransparentNavController {
                 if let topController = navCotroller.topViewController as? SectionContainerVC {
                     sectionController = topController
@@ -71,7 +71,7 @@ class MenuContainerVC: UIViewController {
         
                 self.sideMenuConstraint.constant = 0
                 self.navControllerView.addSubview(self.coverView!)
-                self.view.bringSubview(toFront: self.sideMenuView)
+                self.view.bringSubviewToFront(self.sideMenuView)
                 self.sideMenuView.layer.shadowOpacity = 1
                 self.sideMenuView.layer.shadowRadius = 8
                 self.sideMenuOpen = !self.sideMenuOpen

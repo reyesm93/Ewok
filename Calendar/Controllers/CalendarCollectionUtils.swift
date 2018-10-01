@@ -143,7 +143,7 @@ extension CalendarVC : UICollectionViewDelegate, UICollectionViewDataSource, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let monthHeader = calendarView.myCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "MonthHeader", for: indexPath) as! MonthHeader
+        let monthHeader = calendarView.myCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "MonthHeader", for: indexPath) as! MonthHeader
         let month = calendarData.monthArray[indexPath.section]
         
         monthHeader.monthLbl.text = "   " + month.name

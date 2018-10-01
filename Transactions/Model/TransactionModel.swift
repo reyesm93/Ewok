@@ -35,9 +35,9 @@ struct TransactionCopy : Equatable {
     var recurrent: Bool?
     var variable: Bool?
     var frequencyInfo: FrequencyInfoCopy?
-    var tags: NSSet?
+    var tags: Set<Tag>?
     
-    init(description: String? = nil, amount: Double? = nil, date: Date? = nil, income: Bool? = false, recurrent: Bool? = false, variable: Bool? = false, frequencyInfo: FrequencyInfoCopy? = nil, tags: NSSet? = nil) {
+    init(description: String? = nil, amount: Double? = nil, date: Date? = nil, income: Bool? = false, recurrent: Bool? = false, variable: Bool? = false, frequencyInfo: FrequencyInfoCopy? = nil, tags: Set<Tag>? = nil) {
         self.description = description
         self.amount = amount
         self.date = date
@@ -56,7 +56,7 @@ struct TransactionCopy : Equatable {
         self.variable = transaction.variable
         self.recurrent = transaction.recurrent
         self.variable = transaction.variable
-        self.tags = transaction.tags
+        self.tags = transaction.tags as? Set<Tag>
         
         if let freqInfo = transaction.frequencyInfo {
             self.frequencyInfo = FrequencyInfoCopy(with: freqInfo as! FrequencyInfo)
@@ -64,7 +64,7 @@ struct TransactionCopy : Equatable {
     }
     
     func createTransactionManagedObject() -> Transaction? {
-        guard let description = self.description, let amount = self.amount, let income = self.income, let date = self.date, let recurrent = self.recurrent else { return nil}
+        guard let description = self.description, let amount = self.amount, let income = self.income, let date = self.date, let recurrent = self.recurrent else { return nil }
         let newTransaction = Transaction(title: description, amount: amount, income: income, date: date as NSDate, context: CoreDataStack.sharedInstance.context, recurrent: recurrent)
         if let isVariable = self.variable {
             newTransaction.variable = isVariable
@@ -73,9 +73,8 @@ struct TransactionCopy : Equatable {
             newTransaction.frequencyInfo = freqInfo.createFrequencyObject()
         }
         if self.tags != nil {
-            newTransaction.tags = self.tags
+            newTransaction.tags = self.tags as NSSet?
         }
-        
         return newTransaction
     }
     

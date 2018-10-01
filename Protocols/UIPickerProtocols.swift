@@ -34,7 +34,7 @@ class MonthDayPickerDataSource: NSObject, UIPickerViewDelegate, UIPickerViewData
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let pickerString = "\(monthDays[row])"
-        return NSAttributedString(string: pickerString, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        return NSAttributedString(string: pickerString, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         
     }
     
@@ -86,7 +86,7 @@ class PeriodPickerDataSource: NSObject, UIPickerViewDelegate, UIPickerViewDataSo
         } else {
             pickerString = "\(periods[row])"
         }
-        return NSAttributedString(string: pickerString, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        return NSAttributedString(string: pickerString, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

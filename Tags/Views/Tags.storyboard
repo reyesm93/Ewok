@@ -21,6 +21,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S6e-Lu-JbX">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TagCell" id="BCA-Mz-F06">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BCA-Mz-F06" id="hNN-ld-s2O">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Czv-xS-N1a" customClass="AddButton" customModule="Ewok" customModuleProvider="target">
                                 <rect key="frame" x="299" y="737" width="60" height="60"/>
@@ -51,7 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kwh-8U-n3K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1255" y="-310"/>
+            <point key="canvasLocation" x="-1404" y="-310"/>
         </scene>
         <!--Tag DetailVC-->
         <scene sceneID="p4h-ih-RsQ">
@@ -124,7 +134,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmB-gq-JAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="f7R-iV-XUO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-378.39999999999998" y="-310.34482758620692"/>
+            <point key="canvasLocation" x="-538" y="-310"/>
         </scene>
     </scenes>
 </document>

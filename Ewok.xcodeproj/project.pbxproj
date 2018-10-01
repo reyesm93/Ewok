@@ -31,8 +31,6 @@
 		DD4331FE20BC7F080081C3EF /* SideMenuCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4331FD20BC7F080081C3EF /* SideMenuCells.swift */; };
 		DD4736C820BCA3C8009B6D50 /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4736C720BCA3C8009B6D50 /* SideMenuCell.xib */; };
 		DD4BE7EB20CCAA4C00033090 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4BE7EA20CCAA4C00033090 /* Transaction+CoreDataProperties.swift */; };
-		DD4BE7EE20CCBBFF00033090 /* TagCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4BE7ED20CCBBFF00033090 /* TagCellView.xib */; };
-		DD4BE7F320CCBCE500033090 /* TagViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4BE7F220CCBCE500033090 /* TagViews.swift */; };
 		DD53B39B2118E941000065CA /* UIPickerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD53B39A2118E941000065CA /* UIPickerProtocols.swift */; };
 		DD5F063F1FF7199B00BBD97E /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */; };
 		DD60A38B2012B4380019675C /* MenuContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD60A38A2012B4380019675C /* MenuContainerVC.swift */; };
@@ -134,8 +132,6 @@
 		DD4BE7E920CCA8E500033090 /* Ewok 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 7.xcdatamodel"; sourceTree = "<group>"; };
 		DD4BE7EA20CCAA4C00033090 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DD4BE7EC20CCABE800033090 /* Ewok 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ewok 8.xcdatamodel"; sourceTree = "<group>"; };
-		DD4BE7ED20CCBBFF00033090 /* TagCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCellView.xib; sourceTree = "<group>"; };
-		DD4BE7F220CCBCE500033090 /* TagViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViews.swift; sourceTree = "<group>"; };
 		DD53B39A2118E941000065CA /* UIPickerProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerProtocols.swift; sourceTree = "<group>"; };
 		DD5F063E1FF7199B00BBD97E /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
 		DD60A38A2012B4380019675C /* MenuContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContainerVC.swift; sourceTree = "<group>"; };
@@ -379,8 +375,6 @@
 			isa = PBXGroup;
 			children = (
 				DD35724720C0D1400078D2B6 /* Tags.storyboard */,
-				DD4BE7ED20CCBBFF00033090 /* TagCellView.xib */,
-				DD4BE7F220CCBCE500033090 /* TagViews.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -678,7 +672,6 @@
 				DD855FA520C22C9A002B0B7D /* Transaction.storyboard in Resources */,
 				DD9CFC2420E6822A001E2A81 /* AmountCell.xib in Resources */,
 				DD0115862012E7C4001ED2B5 /* GoogleService-Info.plist in Resources */,
-				DD4BE7EE20CCBBFF00033090 /* TagCellView.xib in Resources */,
 				DD843E9D1FF5D8D700EE3C0D /* Assets.xcassets in Resources */,
 				DD855F9E20C227A0002B0B7D /* Calendar.storyboard in Resources */,
 				DD4331FC20BC7EED0081C3EF /* ProfileHeaderCell.xib in Resources */,
@@ -958,7 +951,6 @@
 				DD844045205DD21B003EF476 /* WeedaysView.swift in Sources */,
 				DDF2A5E2213CADDA00726117 /* TransactionsTableView.swift in Sources */,
 				DDCAD2D4201BBF3E0057CD3D /* DatabaseManager.swift in Sources */,
-				DD4BE7F320CCBCE500033090 /* TagViews.swift in Sources */,
 				DD8DD4A3202E74B900FDF3B6 /* WalletView.swift in Sources */,
 				DD7A13551FF7340A00943E6C /* Tag+CoreDataClass.swift in Sources */,
 				DDDDB6202012DB2100CC66E8 /* LoginVC.swift in Sources */,
@@ -1137,7 +1129,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = arturoreyes.Ewok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1154,7 +1146,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = arturoreyes.Ewok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

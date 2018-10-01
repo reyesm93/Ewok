@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         print("directory: \(NSHomeDirectory())")
@@ -80,10 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Perform any operations when the user disconnects from app here.
     }
     
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
         -> Bool {
             return GIDSignIn.sharedInstance().handle(url,
-                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                     sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
                                                      annotation: [:])
     }
     

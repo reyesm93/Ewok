@@ -1767,7 +1767,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ewok/AppDelegate.swift"
-            timestampString = "557624312.721418"
+            timestampString = "560044932.330062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3"
@@ -2135,7 +2135,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Controllers/SideMenuVC.swift"
-            timestampString = "552777197.4684941"
+            timestampString = "559362625.818311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -2151,7 +2151,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/Controllers/WalletVC.swift"
-            timestampString = "557702308.1255929"
+            timestampString = "559362625.818491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -2167,7 +2167,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ewok/Utils/TextField+Extension.swift"
-            timestampString = "555294894.04129"
+            timestampString = "559362625.8185951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -2183,7 +2183,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ewok/Utils/TextField+Extension.swift"
-            timestampString = "555294894.04134"
+            timestampString = "559362625.818929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
@@ -2199,7 +2199,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ewok/Utils/TextField+Extension.swift"
-            timestampString = "555294894.04138"
+            timestampString = "559362625.819087"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "84"
@@ -2215,7 +2215,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ewok/Utils/TextField+Extension.swift"
-            timestampString = "555294894.041484"
+            timestampString = "559362625.819252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
@@ -2231,7 +2231,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ewok/Utils/TextField+Extension.swift"
-            timestampString = "555294894.041549"
+            timestampString = "559362625.8194259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -2247,7 +2247,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ewok/Utils/TextField+Extension.swift"
-            timestampString = "555294894.041592"
+            timestampString = "559362625.819567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -2263,7 +2263,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Calendar/Controllers/CalendarCollectionUtils.swift"
-            timestampString = "556046264.312197"
+            timestampString = "559362625.819685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
@@ -2279,7 +2279,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Calendar/Controllers/CalendarCollectionUtils.swift"
-            timestampString = "556046264.312276"
+            timestampString = "559362625.819822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
@@ -2327,7 +2327,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Calendar/Controllers/CalendarCollectionUtils.swift"
-            timestampString = "556046264.312332"
+            timestampString = "559362625.819924"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "155"
@@ -2343,7 +2343,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Calendar/Controllers/CalendarCollectionUtils.swift"
-            timestampString = "556046264.312386"
+            timestampString = "559362625.820019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
@@ -2359,7 +2359,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/Controllers/WalletVC.swift"
-            timestampString = "557702308.125809"
+            timestampString = "559362625.820109"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "300"
@@ -2375,7 +2375,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/Controllers/WalletVC.swift"
-            timestampString = "557702308.125864"
+            timestampString = "559362625.820232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "386"
@@ -2391,23 +2391,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Protocols/UIPickerProtocols.swift"
-            timestampString = "556046264.318813"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Protocols/UIPickerProtocols.swift"
-            timestampString = "556046264.318992"
+            timestampString = "559362625.820336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -2423,7 +2407,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Protocols/UIPickerProtocols.swift"
-            timestampString = "556046264.319122"
+            timestampString = "559362625.820384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -2451,27 +2435,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Protocols/UIPickerProtocols.swift"
-            timestampString = "556046264.321533"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Transactions/Controller/TransactionDetailVC.swift"
-            timestampString = "557702308.125977"
+            timestampString = "559362625.82056"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "315"
@@ -2503,11 +2471,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Transactions/Controller/TransactionDetailVC.swift"
-            timestampString = "557702308.126408"
+            timestampString = "559362625.8206249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "updateTransactionAmount(notification:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2515,7 +2483,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/Controllers/BalanceManager.swift"
@@ -2531,7 +2499,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/Controllers/BalanceManager.swift"
@@ -2547,7 +2515,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/Controllers/BalanceManager.swift"
@@ -2563,7 +2531,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/Controllers/WalletFetchControllerDelegate.swift"
@@ -2583,7 +2551,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/Controllers/WalletVC.swift"
-            timestampString = "557702308.126711"
+            timestampString = "559362625.8208129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "420"
@@ -2599,7 +2567,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/Controllers/DatesFilterVC.swift"
-            timestampString = "556046264.329942"
+            timestampString = "559362625.820891"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
@@ -2615,13 +2583,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wallet/Controllers/DatesFilterVC.swift"
-            timestampString = "556046264.330025"
+            timestampString = "559362625.8209521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
             endingLineNumber = "132"
             landmarkName = "filterWithSingleDate(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ewok.DatesFilterVC.filterWithSingleDate(__C.UISegmentedControl) -&gt; ()"
+                  moduleName = "Ewok"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arturoreyes/Documents/Developer/Ewok/Wallet/Controllers/DatesFilterVC.swift"
+                  timestampString = "560045279.085578"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "303">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ewok.DatesFilterVC.filterWithSingleDate(__C.UISegmentedControl) -&gt; ()"
+                  moduleName = "Ewok"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arturoreyes/Documents/Developer/Ewok/Wallet/Controllers/DatesFilterVC.swift"
+                  timestampString = "560045279.087967"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "326">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2631,7 +2631,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Transactions/Controller/TransactionsTableView.swift"
-            timestampString = "557702308.126868"
+            timestampString = "559362625.82103"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
@@ -2647,7 +2647,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Transactions/Controller/TransactionsTableView.swift"
-            timestampString = "557702308.127152"
+            timestampString = "559362625.82109"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -2663,13 +2663,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Transactions/Controller/TransactionsTableView.swift"
-            timestampString = "557702308.127371"
+            timestampString = "559362625.821148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tags/Controllers/TagsVC.swift"
+            timestampString = "557714240.641099"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
